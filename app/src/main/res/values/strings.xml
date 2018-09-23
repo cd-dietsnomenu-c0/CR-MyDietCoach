@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">True love Stories</string>
+    <string name="app_name">High school love story  </string>
     <string name="check_your_connect">Check your internet</string>
 
     
-    <string name="admob_banner" translatable="false">ca-app-pub-3050564412171997/5192066135</string>
-    <string name="admob_inter" translatable="false">ca-app-pub-3050564412171997/1252821121</string>
-    <string name="admob_id" translatable="false">ca-app-pub-3050564412171997~9756985345</string>
-    <string name="YM" translatable="false">2da83a19-a132-4d30-ba97-63f869a95476</string>
+    <string name="admob_banner" translatable="false">ca-app-pub-3050564412171997/6099869419</string>
+    <string name="admob_inter" translatable="false">ca-app-pub-3050564412171997/1969052716</string>
+    <string name="admob_id" translatable="false">ca-app-pub-3050564412171997~5169931124</string>
+    <string name="YM" translatable="false">cbec77f7-53a8-465e-a8cc-3cc26ffd35c8</string>
 
     <string name="title_activity_drawer">DrawerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
