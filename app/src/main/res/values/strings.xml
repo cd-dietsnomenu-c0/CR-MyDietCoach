@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">True love Stories</string>
+    <string name="check_your_connect">Check your internet</string>
+
+    
+    <string name="admob_banner" translatable="false">ca-app-pub-3050564412171997/5192066135</string>
+    <string name="admob_inter" translatable="false">ca-app-pub-3050564412171997/1252821121</string>
+    <string name="admob_id" translatable="false">ca-app-pub-3050564412171997~9756985345</string>
+    <string name="YM" translatable="false">2da83a19-a132-4d30-ba97-63f869a95476</string>
+
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Moon Calendar</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--AlertDialog for gdpr-->
+    <string name="body_gdpr">Continuing to use this application, you accept our privacy policy</string>
+    <string name="title_gdpr">Hello!</string>
+    <string name="open_gdpr">Open Privacy Policy text</string>
+    <string name="yes_gdpr">Continue using the app</string>
+    <string name="url_gdpr" translatable="false">https://www.freeprivacypolicy.com/privacy/view/272200879b5cf29dd1b4fcd0f0299409</string>
+
+    <!--AlertDialog for grade-->
+    <string name="titleAlertDialog">Hello!</string>
+    <string name="bodyAlertDialog">Please rate our application or leave a review. This helps to improve the product. Thank you!</string>
+    <string name="splash_screen_title">Love Story</string>
+    <string name="laterButtonAlert">Later</string>
+    <string name="neverButtonAlert">Never</string>
+    <string name="evaluateButtonAlert">Estimate</string>
+
+
+</resources>

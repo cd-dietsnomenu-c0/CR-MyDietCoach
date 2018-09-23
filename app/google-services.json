@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "546198725249",
+    "firebase_url": "https://true-love-story-e2599.firebaseio.com",
+    "project_id": "true-love-story-e2599",
+    "storage_bucket": "true-love-story-e2599.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546198725249:android:1a2ff32995255c40",
+        "android_client_info": {
+          "package_name": "com.wsoteam.truelovestories"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546198725249-0e26caajlob849pecncr0lrgfo3in69d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wsoteam.truelovestories",
+            "certificate_hash": "090267c15381903ca85fae6213459feed4e3b108"
+          }
+        },
+        {
+          "client_id": "546198725249-crb927lehgriduq8k3an727tj214k78u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFfiboVGJwCrUWeTXlMoX_tS8tOby4zEU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546198725249-crb927lehgriduq8k3an727tj214k78u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
