@@ -1,4 +1,4 @@
-package com.wsoteam.truelovestories.POJOS;
+package com.wsoteam.highschoollovestory.POJOS;
 
 import java.io.Serializable;
 

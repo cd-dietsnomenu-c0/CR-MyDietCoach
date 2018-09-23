@@ -1,4 +1,4 @@
-package com.wsoteam.truelovestories.Fragments;
+package com.wsoteam.highschoollovestory.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,10 +17,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-import com.wsoteam.truelovestories.Config;
-import com.wsoteam.truelovestories.POJOS.Section;
-import com.wsoteam.truelovestories.POJOS.Subsection;
-import com.wsoteam.truelovestories.R;
+import com.wsoteam.highschoollovestory.Config;
+import com.wsoteam.highschoollovestory.POJOS.Section;
+import com.wsoteam.highschoollovestory.POJOS.Subsection;
+import com.wsoteam.highschoollovestory.R;
 
 import java.util.ArrayList;
 

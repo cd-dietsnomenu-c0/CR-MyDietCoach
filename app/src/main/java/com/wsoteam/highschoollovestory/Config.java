@@ -1,4 +1,4 @@
-package com.wsoteam.truelovestories;
+package com.wsoteam.highschoollovestory;
 
 public class Config {
     public static final String ID_SECTIONS_ARGS = "id_sec_args";

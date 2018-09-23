@@ -1,8 +1,8 @@
-package com.wsoteam.truelovestories.AppMetrica;
+package com.wsoteam.highschoollovestory.AppMetrica;
 
 import android.app.Application;
 
-import com.wsoteam.truelovestories.R;
+import com.wsoteam.highschoollovestory.R;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 

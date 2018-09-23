@@ -1,4 +1,4 @@
-package com.wsoteam.truelovestories.Activities;
+package com.wsoteam.highschoollovestory.Activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,10 +23,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.wsoteam.truelovestories.Fragments.FragmentSections;
-import com.wsoteam.truelovestories.Fragments.FragmentSplash;
-import com.wsoteam.truelovestories.POJOS.Global;
-import com.wsoteam.truelovestories.R;
+import com.wsoteam.highschoollovestory.Fragments.FragmentSections;
+import com.wsoteam.highschoollovestory.Fragments.FragmentSplash;
+import com.wsoteam.highschoollovestory.POJOS.Global;
+import com.wsoteam.highschoollovestory.R;
 
 
 public class MainActivity extends AppCompatActivity {

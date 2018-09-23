@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "546198725249",
-    "firebase_url": "https://true-love-story-e2599.firebaseio.com",
-    "project_id": "true-love-story-e2599",
-    "storage_bucket": "true-love-story-e2599.appspot.com"
+    "project_number": "897623714188",
+    "firebase_url": "https://high-school-love-story.firebaseio.com",
+    "project_id": "high-school-love-story",
+    "storage_bucket": "high-school-love-story.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:546198725249:android:1a2ff32995255c40",
+        "mobilesdk_app_id": "1:897623714188:android:0d4b0e9b5041dc02",
         "android_client_info": {
-          "package_name": "com.wsoteam.truelovestories"
+          "package_name": "com.wsoteam.highschoollovestory"
         }
       },
       "oauth_client": [
         {
-          "client_id": "546198725249-0e26caajlob849pecncr0lrgfo3in69d.apps.googleusercontent.com",
+          "client_id": "897623714188-02m87ood0cje230t3n4s047h4urajjtt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.wsoteam.truelovestories",
+            "package_name": "com.wsoteam.highschoollovestory",
             "certificate_hash": "090267c15381903ca85fae6213459feed4e3b108"
           }
         },
         {
-          "client_id": "546198725249-crb927lehgriduq8k3an727tj214k78u.apps.googleusercontent.com",
+          "client_id": "897623714188-06gr7e3ro0ti7t6s27dpjb7lusjo2d1a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCFfiboVGJwCrUWeTXlMoX_tS8tOby4zEU"
+          "current_key": "AIzaSyBwDH9CiBudvhyYWUM9fZIXf3CHjFhygWM"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "546198725249-crb927lehgriduq8k3an727tj214k78u.apps.googleusercontent.com",
+              "client_id": "897623714188-06gr7e3ro0ti7t6s27dpjb7lusjo2d1a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
