@@ -1,11 +1,11 @@
-package com.wsoteam.highschoollovestory.DB;
+package com.wsoteam.blacklove.DB;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.wsoteam.highschoollovestory.POJOS.Global;
-import com.wsoteam.highschoollovestory.POJOS.ItemOfSubsection;
-import com.wsoteam.highschoollovestory.POJOS.Section;
-import com.wsoteam.highschoollovestory.POJOS.Subsection;
+import com.wsoteam.blacklove.POJOS.Global;
+import com.wsoteam.blacklove.POJOS.ItemOfSubsection;
+import com.wsoteam.blacklove.POJOS.Section;
+import com.wsoteam.blacklove.POJOS.Subsection;
 
 import java.util.ArrayList;
 

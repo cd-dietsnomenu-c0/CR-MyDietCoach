@@ -1,4 +1,4 @@
-package com.wsoteam.highschoollovestory;
+package com.wsoteam.blacklove;
 
 import org.junit.Test;
 

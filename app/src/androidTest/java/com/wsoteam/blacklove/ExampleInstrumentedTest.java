@@ -1,4 +1,4 @@
-package com.wsoteam.highschoollovestory;
+package com.wsoteam.blacklove;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

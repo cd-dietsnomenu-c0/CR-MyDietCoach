@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">High school love story  </string>
+    <string name="app_name">Черная любовь. Колдовство и заклинания  </string>
     <string name="check_your_connect">Check your internet</string>
 
     
@@ -18,19 +18,19 @@
 
 
     <!--AlertDialog for gdpr-->
-    <string name="body_gdpr">Continuing to use this application, you accept our privacy policy</string>
-    <string name="title_gdpr">Hello!</string>
-    <string name="open_gdpr">Open Privacy Policy text</string>
-    <string name="yes_gdpr">Continue using the app</string>
+    <string name="body_gdpr">Продолжая использовать данное приложение Вы принимаете нашу политику конфиденциальности</string>
+    <string name="title_gdpr">Здравствуйте!</string>
+    <string name="open_gdpr">Открыть текст политики конфиденциальности</string>
+    <string name="yes_gdpr">Продолжить использование приложения</string>
     <string name="url_gdpr" translatable="false">https://www.freeprivacypolicy.com/privacy/view/272200879b5cf29dd1b4fcd0f0299409</string>
 
     <!--AlertDialog for grade-->
-    <string name="titleAlertDialog">Hello!</string>
-    <string name="bodyAlertDialog">Please rate our application or leave a review. This helps to improve the product. Thank you!</string>
-    <string name="splash_screen_title">Love Story</string>
-    <string name="laterButtonAlert">Later</string>
-    <string name="neverButtonAlert">Never</string>
-    <string name="evaluateButtonAlert">Estimate</string>
+    <string name="titleAlertDialog">Привет!</string>
+    <string name="bodyAlertDialog">Оцените наше приложение или оставьте отзыв. Это помогает улучшить продукт. Спасибо!</string>
+    <string name="splash_screen_title">Любовь и магия. Любовные заклинания</string>
+    <string name="laterButtonAlert">Позже</string>
+    <string name="neverButtonAlert">Никогда</string>
+    <string name="evaluateButtonAlert">Оценить</string>
 
 
 </resources>
