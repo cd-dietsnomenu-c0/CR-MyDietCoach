@@ -47,6 +47,8 @@ public class FragmentSubSections extends Fragment {
         Section section = (Section) getArguments().getSerializable(Config.ID_SUBSECTIONS_ARGS);
         subsectionArrayList = (ArrayList<Subsection>) section.getArrayOfSubSections();
 
+        Config.INDEX_ADMOB++;
+
         recyclerView = view.findViewById(R.id.rvSubSections);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new SubSectionsAdapter(subsectionArrayList));

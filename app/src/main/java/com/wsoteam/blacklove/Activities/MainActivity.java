@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.wsoteam.blacklove.Config;
 import com.wsoteam.blacklove.Fragments.FragmentSections;
 import com.wsoteam.blacklove.Fragments.FragmentSplash;
 import com.wsoteam.blacklove.POJOS.Global;
@@ -40,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        checkPermissionForShowInter();
+        if (Config.INDEX_ADMOB > 0) {
+            checkPermissionForShowInter();
+        }
         super.onBackPressed();
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getResources().getString(R.string.admob_inter));
@@ -50,13 +53,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkPermissionForShowInter() {
-        if (COUNT_OF_BACK_PRESSED % 5 == 0) {
-
-            if (mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
-            }
+        if (mInterstitialAd.isLoaded()) {
+            Config.INDEX_ADMOB = 0;
+            mInterstitialAd.show();
         }
-        COUNT_OF_BACK_PRESSED += 1;
     }
 
 

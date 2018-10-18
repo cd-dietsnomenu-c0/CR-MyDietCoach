@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "903082731323-nusvl3fbvki908qlr8mpsgcb5boqlf0u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wsoteam.blacklove",
+            "certificate_hash": "795c1bcbff986e08bd6643d13e8b221dc595c140"
+          }
+        },
+        {
           "client_id": "903082731323-9net23ahlc0o46bfpoogaf97hcksl203.apps.googleusercontent.com",
           "client_type": 3
         }

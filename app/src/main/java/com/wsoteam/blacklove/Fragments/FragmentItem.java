@@ -51,6 +51,7 @@ public class FragmentItem extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.main_toolbar);
         CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.main_collapsing);
 
+        Config.INDEX_ADMOB++;
 
         subsection = (Subsection) getArguments().getSerializable(Config.ID_ITEM);
         Picasso.with(getActivity()).load(subsection.getUrlOfImage()).into(ivCollapsingToolBar);
