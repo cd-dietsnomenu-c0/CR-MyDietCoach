@@ -32,5 +32,13 @@
     <string name="neverButtonAlert">Никогда</string>
     <string name="evaluateButtonAlert">Оценить</string>
 
+    <!--FAB-->
+    <string name="settings">Настройки</string>
+    <string name="rate_us">Оцените нас</string>
+    <string name="share">Поделиться с друзьями</string>
+    <string name="accompanying_text">Все работает в реальной жизни! Попробуй и ты!</string>
+
+    <string name="privacy_policy">Privacy policy</string>
+
 
 </resources>

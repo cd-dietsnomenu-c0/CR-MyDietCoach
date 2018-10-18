@@ -1,8 +1,10 @@
 package com.wsoteam.blacklove.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.wsoteam.blacklove.Activities.ActivitySettings;
 import com.wsoteam.blacklove.Config;
 import com.wsoteam.blacklove.POJOS.Global;
 import com.wsoteam.blacklove.POJOS.Section;
@@ -30,6 +33,8 @@ public class FragmentSections extends Fragment {
     private String TAG_SECTION = "tag_of_sec";
     private String TAG_SUBSECTION = "tag_of_sec";
     private ArrayList<Section> sectionArrayList;
+
+    private FloatingActionButton fab;
 
 
     public static FragmentSections newInstance(Global global) {
@@ -52,7 +57,14 @@ public class FragmentSections extends Fragment {
         rvSections.setAdapter(new SectionsAdapter(sectionArrayList));
         rvSections.setItemViewCacheSize(50);
 
-
+        fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ActivitySettings.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
