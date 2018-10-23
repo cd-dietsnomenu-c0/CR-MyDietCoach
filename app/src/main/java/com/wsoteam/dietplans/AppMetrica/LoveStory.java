@@ -1,8 +1,8 @@
-package com.wsoteam.blacklove.AppMetrica;
+package com.wsoteam.dietplans.AppMetrica;
 
 import android.app.Application;
 
-import com.wsoteam.blacklove.R;
+import com.wsoteam.dietplans.R;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 

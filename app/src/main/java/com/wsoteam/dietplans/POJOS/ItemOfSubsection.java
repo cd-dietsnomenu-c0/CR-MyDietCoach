@@ -1,4 +1,4 @@
-package com.wsoteam.blacklove.POJOS;
+package com.wsoteam.dietplans.POJOS;
 
 import java.io.Serializable;
 

@@ -3,10 +3,12 @@
     <string name="check_your_connect">Check your internet</string>
 
     
-    <string name="admob_banner" translatable="false">ca-app-pub-3050564412171997/6154961305</string>
-    <string name="admob_inter" translatable="false">ca-app-pub-3050564412171997/2275318244</string>
-    <string name="admob_id" translatable="false">ca-app-pub-3050564412171997~6729676373</string>
-    <string name="YM" translatable="false">07de2383-08a3-4170-9f5f-60c3dac7b784</string>
+    <string name="admob_banner" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_inter" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="YM" translatable="false">d61400e7-21ea-4d2e-8cb3-60571eac5b5c</string>
+
+
 
     <string name="title_activity_drawer">DrawerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

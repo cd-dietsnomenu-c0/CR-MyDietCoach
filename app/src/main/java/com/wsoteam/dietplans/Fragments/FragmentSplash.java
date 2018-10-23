@@ -1,4 +1,4 @@
-package com.wsoteam.blacklove.Fragments;
+package com.wsoteam.dietplans.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wsoteam.blacklove.R;
+import com.wsoteam.dietplans.R;
 
 public class FragmentSplash extends Fragment {
     @Nullable

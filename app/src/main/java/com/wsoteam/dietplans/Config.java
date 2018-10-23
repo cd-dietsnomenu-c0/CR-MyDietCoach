@@ -1,4 +1,4 @@
-package com.wsoteam.blacklove;
+package com.wsoteam.dietplans;
 
 public class Config {
     public static final String ID_SECTIONS_ARGS = "id_sec_args";

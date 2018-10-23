@@ -1,4 +1,4 @@
-package com.wsoteam.blacklove.Activities;
+package com.wsoteam.dietplans.Activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,11 +23,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.wsoteam.blacklove.Config;
-import com.wsoteam.blacklove.Fragments.FragmentSections;
-import com.wsoteam.blacklove.Fragments.FragmentSplash;
-import com.wsoteam.blacklove.POJOS.Global;
-import com.wsoteam.blacklove.R;
+import com.wsoteam.dietplans.Config;
+import com.wsoteam.dietplans.Fragments.FragmentSections;
+import com.wsoteam.dietplans.Fragments.FragmentSplash;
+import com.wsoteam.dietplans.POJOS.Global;
+import com.wsoteam.dietplans.R;
 
 
 public class MainActivity extends AppCompatActivity {

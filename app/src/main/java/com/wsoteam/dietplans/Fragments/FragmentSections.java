@@ -1,4 +1,4 @@
-package com.wsoteam.blacklove.Fragments;
+package com.wsoteam.dietplans.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,11 +19,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-import com.wsoteam.blacklove.Activities.ActivitySettings;
-import com.wsoteam.blacklove.Config;
-import com.wsoteam.blacklove.POJOS.Global;
-import com.wsoteam.blacklove.POJOS.Section;
-import com.wsoteam.blacklove.R;
+import com.wsoteam.dietplans.Activities.ActivitySettings;
+import com.wsoteam.dietplans.Config;
+import com.wsoteam.dietplans.POJOS.Global;
+import com.wsoteam.dietplans.POJOS.Section;
+import com.wsoteam.dietplans.R;
 
 import java.util.ArrayList;
 
