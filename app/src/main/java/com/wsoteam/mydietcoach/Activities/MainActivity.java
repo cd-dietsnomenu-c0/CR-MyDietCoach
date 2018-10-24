@@ -1,4 +1,4 @@
-package com.wsoteam.dietplans.Activities;
+package com.wsoteam.mydietcoach.Activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,11 +23,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.wsoteam.dietplans.Config;
-import com.wsoteam.dietplans.Fragments.FragmentSections;
-import com.wsoteam.dietplans.Fragments.FragmentSplash;
-import com.wsoteam.dietplans.POJOS.Global;
-import com.wsoteam.dietplans.R;
+import com.wsoteam.mydietcoach.Config;
+import com.wsoteam.mydietcoach.Fragments.FragmentSections;
+import com.wsoteam.mydietcoach.Fragments.FragmentSplash;
+import com.wsoteam.mydietcoach.POJOS.Global;
+import com.wsoteam.mydietcoach.R;
 
 
 public class MainActivity extends AppCompatActivity {

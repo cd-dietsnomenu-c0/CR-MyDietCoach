@@ -1,8 +1,8 @@
-package com.wsoteam.dietplans.AppMetrica;
+package com.wsoteam.mydietcoach.AppMetrica;
 
 import android.app.Application;
 
-import com.wsoteam.dietplans.R;
+import com.wsoteam.mydietcoach.R;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 

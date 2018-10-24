@@ -1,4 +1,4 @@
-package com.wsoteam.dietplans.Activities;
+package com.wsoteam.mydietcoach.Activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 
-import com.wsoteam.dietplans.Config;
-import com.wsoteam.dietplans.R;
+import com.wsoteam.mydietcoach.Config;
+import com.wsoteam.mydietcoach.R;
 
 public class ActivitySettings extends AppCompatActivity {
     CardView cvRate, cvPrivacy, cvShare;

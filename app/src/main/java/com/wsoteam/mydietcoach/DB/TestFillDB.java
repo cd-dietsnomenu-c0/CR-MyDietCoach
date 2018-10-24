@@ -1,11 +1,11 @@
-package com.wsoteam.dietplans.DB;
+package com.wsoteam.mydietcoach.DB;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.wsoteam.dietplans.POJOS.Global;
-import com.wsoteam.dietplans.POJOS.ItemOfSubsection;
-import com.wsoteam.dietplans.POJOS.Section;
-import com.wsoteam.dietplans.POJOS.Subsection;
+import com.wsoteam.mydietcoach.POJOS.Global;
+import com.wsoteam.mydietcoach.POJOS.ItemOfSubsection;
+import com.wsoteam.mydietcoach.POJOS.Section;
+import com.wsoteam.mydietcoach.POJOS.Subsection;
 
 import java.util.ArrayList;
 

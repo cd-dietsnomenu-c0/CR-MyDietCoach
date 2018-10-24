@@ -1,4 +1,4 @@
-package com.wsoteam.dietplans;
+package com.wsoteam.mydietcoach;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

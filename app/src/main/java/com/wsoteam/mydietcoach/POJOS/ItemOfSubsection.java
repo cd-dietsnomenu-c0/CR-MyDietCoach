@@ -1,4 +1,4 @@
-package com.wsoteam.dietplans.POJOS;
+package com.wsoteam.mydietcoach.POJOS;
 
 import java.io.Serializable;
 

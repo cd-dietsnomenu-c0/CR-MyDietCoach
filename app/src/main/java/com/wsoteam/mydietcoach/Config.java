@@ -1,4 +1,4 @@
-package com.wsoteam.dietplans;
+package com.wsoteam.mydietcoach;
 
 public class Config {
     public static final String ID_SECTIONS_ARGS = "id_sec_args";

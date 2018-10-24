@@ -1,4 +1,4 @@
-package com.wsoteam.dietplans.Fragments;
+package com.wsoteam.mydietcoach.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,10 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.wsoteam.dietplans.Config;
-import com.wsoteam.dietplans.POJOS.ItemOfSubsection;
-import com.wsoteam.dietplans.POJOS.Subsection;
-import com.wsoteam.dietplans.R;
+import com.wsoteam.mydietcoach.Config;
+import com.wsoteam.mydietcoach.POJOS.ItemOfSubsection;
+import com.wsoteam.mydietcoach.POJOS.Subsection;
+import com.wsoteam.mydietcoach.R;
 
 import java.util.ArrayList;
 
