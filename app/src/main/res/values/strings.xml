@@ -1,18 +1,17 @@
 <resources>
-    <string name="app_name">Диета для похудения 10 кг за неделю</string>
+    <string name="app_name">Диеты</string>
     <string name="check_your_connect">Check your internet</string>
 
-    <!--TEST ID-->
-    <!--<string name="admob_banner" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
-    <!--<string name="admob_inter" translatable="false">ca-app-pub-3940256099942544/1033173712</string>-->
-    <!--<string name="admob_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>-->
-    <!--<string name="YM" translatable="false">d61400e7-21ea-4d2e-8cb3-60571eac5b5c</string>-->
+    <!--TEST ID
+    <string name="admob_banner" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_inter" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="YM" translatable="false">d61400e7-21ea-4d2e-8cb3-60571eac5b5c</string>-->
 
-    <string name="admob_banner" translatable="false">ca-app-pub-3050564412171997/2072075591</string>
-    <string name="admob_inter" translatable="false">ca-app-pub-3050564412171997/9870959978</string>
-    <string name="admob_id" translatable="false">ca-app-pub-3050564412171997~8941021681</string>
-    <string name="YM" translatable="false">5cef6d3a-cfb1-4140-b4a8-6198877bd09a</string>
-
+    <string name="admob_banner" translatable="false">ca-app-pub-2555056002292788/3757460883</string>
+    <string name="admob_inter" translatable="false">ca-app-pub-2555056002292788/8107769431</string>
+    <string name="admob_id" translatable="false">ca-app-pub-2555056002292788~2196488278</string>
+    <string name="YM" translatable="false">ff7d61e2-c6f2-4746-a3e7-9d0f05350b8b</string>
     <string name="title_activity_drawer">DrawerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

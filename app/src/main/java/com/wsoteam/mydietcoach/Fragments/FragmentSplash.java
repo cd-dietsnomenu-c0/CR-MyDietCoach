@@ -15,7 +15,6 @@ public class FragmentSplash extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fr_splash, container, false);
-
         return view;
 
     }

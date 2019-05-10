@@ -1,52 +1,37 @@
 {
   "project_info": {
-    "project_number": "716753137788",
-    "firebase_url": "https://my-diet-coach.firebaseio.com",
-    "project_id": "my-diet-coach",
-    "storage_bucket": "my-diet-coach.appspot.com"
+    "project_number": "64518622596",
+    "firebase_url": "https://diets-b7a1e.firebaseio.com",
+    "project_id": "diets-b7a1e",
+    "storage_bucket": "diets-b7a1e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:716753137788:android:4079df66781ac7cb",
+        "mobilesdk_app_id": "1:64518622596:android:cf26ab1477f9eccd",
         "android_client_info": {
-          "package_name": "com.wsoteam.mydietcoach"
+          "package_name": "com.jundev.diets"
         }
       },
       "oauth_client": [
         {
-          "client_id": "716753137788-jiifmknmje0en61k1b805sj258fg79kc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.wsoteam.mydietcoach",
-            "certificate_hash": "795c1bcbff986e08bd6643d13e8b221dc595c140"
-          }
-        },
-        {
-          "client_id": "716753137788-3ilifq3su1ahm3vr2dss0j0ncl6okesl.apps.googleusercontent.com",
+          "client_id": "64518622596-24o0n0l4dgofeoads2mscbvjp66ce0cs.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCy-R9Kq1CE0haECvC-96NNZ0bZ-0lDBr8"
+          "current_key": "AIzaSyDDuHvBG6zaKW4v59m_Qosud1mhcVHW0LY"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "716753137788-3ilifq3su1ahm3vr2dss0j0ncl6okesl.apps.googleusercontent.com",
+              "client_id": "64518622596-24o0n0l4dgofeoads2mscbvjp66ce0cs.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

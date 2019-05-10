@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.amplitude.api.Amplitude;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -41,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (Config.INDEX_ADMOB > 0) {
-            checkPermissionForShowInter();
-        }
+        checkPermissionForShowInter();
         super.onBackPressed();
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getResources().getString(R.string.admob_inter));
@@ -53,10 +52,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkPermissionForShowInter() {
-        if (mInterstitialAd.isLoaded()) {
-            Config.INDEX_ADMOB = 0;
-            mInterstitialAd.show();
+        if (COUNT_OF_BACK_PRESSED % 3 == 0) {
+
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            }
         }
+        COUNT_OF_BACK_PRESSED += 1;
     }
 
 
@@ -65,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
+        Amplitude.getInstance().logEvent("Run");
         adView = findViewById(R.id.bannerMainActivity);
         MobileAds.initialize(this, getResources().getString(R.string.admob_id));
         AdRequest adRequest = new AdRequest.Builder().build();
