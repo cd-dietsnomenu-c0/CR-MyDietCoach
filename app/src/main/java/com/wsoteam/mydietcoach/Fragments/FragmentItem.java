@@ -50,18 +50,12 @@ public class FragmentItem extends Fragment {
         ivCollapsingToolBar = view.findViewById(R.id.ivCollapsing);
         Toolbar toolbar = view.findViewById(R.id.main_toolbar);
         CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.main_collapsing);
-
         Config.INDEX_ADMOB++;
-
         subsection = (Subsection) getArguments().getSerializable(Config.ID_ITEM);
         Picasso.with(getActivity()).load(subsection.getUrlOfImage()).into(ivCollapsingToolBar);
         toolbar.setTitle(subsection.getDescription());
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new ItemAdapter((ArrayList<ItemOfSubsection>) subsection.getArrayOfItemOfSubsection()));
-
-
         return view;
     }
 

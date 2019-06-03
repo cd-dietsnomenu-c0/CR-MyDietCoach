@@ -12,9 +12,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.amplitude.api.Amplitude;
+import com.appodeal.ads.Appodeal;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -37,25 +39,20 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences countOfRun;
     private int COUNT_OF_RUN = 0, COUNT_OF_BACK_PRESSED = 0;
     private final String TAG_OF_COUNT_RUN = "TAG_OF_COUNT_RUN";
-    private InterstitialAd mInterstitialAd;
-    private static AdView adView;
+    private boolean isInter = true;
 
     @Override
     public void onBackPressed() {
         checkPermissionForShowInter();
         super.onBackPressed();
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.admob_inter));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-
-
     }
 
     private void checkPermissionForShowInter() {
-        if (COUNT_OF_BACK_PRESSED % 3 == 0) {
+        if (COUNT_OF_BACK_PRESSED % 5 == 0) {
 
-            if (mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
+            if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
+                Amplitude.getInstance().logEvent("show ad");
+                Appodeal.show(this, Appodeal.INTERSTITIAL);
             }
         }
         COUNT_OF_BACK_PRESSED += 1;
@@ -68,16 +65,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Amplitude.getInstance().logEvent("Run");
-        adView = findViewById(R.id.bannerMainActivity);
-        MobileAds.initialize(this, getResources().getString(R.string.admob_id));
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-        adView.setVisibility(View.GONE);
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.admob_inter));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-
+        Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
+                Appodeal.INTERSTITIAL, isInter);
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.fragmentContainer, new FragmentSplash()).commit();
@@ -85,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         if (!hasConnection(this)) {
             Toast.makeText(this, R.string.check_your_connect, Toast.LENGTH_SHORT).show();
         }
+
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference(NAME_DB);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -94,9 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().replace(R.id.fragmentContainer, FragmentSections.newInstance(global)).commit();
                 additionOneToSharedPreference();
                 checkFirstRun();
-                adView.setVisibility(View.VISIBLE);
-
-
             }
 
             @Override
