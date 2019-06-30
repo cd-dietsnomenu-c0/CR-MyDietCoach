@@ -14,8 +14,7 @@
             android:id="@+id/iv_item"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/test_rotate"/>
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/tv_item"
@@ -23,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:padding="10dp"
-            android:text="TestTestTest"
+            android:text="Lorem ipsum Lorem ipsum"
             android:layout_gravity="left|bottom"
             android:textColor="@color/white"
             android:textSize="17sp"
