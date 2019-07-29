@@ -12,4 +12,12 @@
 
     </android.support.v7.widget.RecyclerView>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/fab_icon_settings"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"/>
 </FrameLayout>

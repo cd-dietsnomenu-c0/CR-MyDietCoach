@@ -11,15 +11,24 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.amplitude.api.Amplitude;
 import com.appodeal.ads.Appodeal;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.wsoteam.mydietcoach.Config;
+import com.wsoteam.mydietcoach.Fragments.FragmentSections;
+import com.wsoteam.mydietcoach.Fragments.FragmentSplash;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.R;
 
@@ -61,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 Appodeal.INTERSTITIAL, isInter);
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
-        //fragmentManager.beginTransaction().add(R.id.fragmentContainer, new FragmentSplash()).commit();
+        fragmentManager.beginTransaction().add(R.id.fragmentContainer, new FragmentSplash()).commit();
 
         if (!hasConnection(this)) {
             Toast.makeText(this, R.string.check_your_connect, Toast.LENGTH_SHORT).show();
@@ -70,12 +79,12 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("GLOBAL");
-
+        databaseReference.push().setValue("sdf");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 global = dataSnapshot.getValue(Global.class);
-                //fragmentManager.beginTransaction().replace(R.id.fragmentContainer, FragmentSections.newInstance(global)).commit();
+                fragmentManager.beginTransaction().replace(R.id.fragmentContainer, FragmentSections.newInstance(global)).commit();
                 additionOneToSharedPreference();
                 checkFirstRun();
             }
