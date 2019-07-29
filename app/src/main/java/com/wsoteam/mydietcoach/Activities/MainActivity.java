@@ -78,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("GLOBAL");
-        databaseReference.push().setValue("sdf");
+        DatabaseReference databaseReference = firebaseDatabase.getReference(NAME_DB);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
