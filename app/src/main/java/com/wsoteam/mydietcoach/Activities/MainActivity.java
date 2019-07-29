@@ -7,10 +7,12 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -26,11 +28,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
 import com.wsoteam.mydietcoach.Config;
 import com.wsoteam.mydietcoach.Fragments.FragmentSections;
 import com.wsoteam.mydietcoach.Fragments.FragmentSplash;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.R;
+
+import java.io.InputStream;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private int COUNT_OF_RUN = 0, COUNT_OF_BACK_PRESSED = 0;
     private final String TAG_OF_COUNT_RUN = "TAG_OF_COUNT_RUN";
     private boolean isInter = true;
+    FragmentManager fragmentManager;
 
     @Override
     public void onBackPressed() {
@@ -63,36 +70,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new AsyncLoadFoodList().execute();
 
         Amplitude.getInstance().logEvent("Run");
 
         Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
                 Appodeal.INTERSTITIAL, isInter);
 
-        final FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.fragmentContainer, new FragmentSplash()).commit();
 
         if (!hasConnection(this)) {
             Toast.makeText(this, R.string.check_your_connect, Toast.LENGTH_SHORT).show();
         }
 
-
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference(NAME_DB);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                global = dataSnapshot.getValue(Global.class);
-                fragmentManager.beginTransaction().replace(R.id.fragmentContainer, FragmentSections.newInstance(global)).commit();
-                additionOneToSharedPreference();
-                checkFirstRun();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
         COUNT_OF_RUN = getPreferences(MODE_PRIVATE).getInt(TAG_OF_COUNT_RUN, 0);
 
 
@@ -155,6 +146,38 @@ public class MainActivity extends AppCompatActivity {
             });
             alertDialogGrade.show();
 
+        }
+    }
+
+    private class AsyncLoadFoodList extends AsyncTask<Void, Void, Global> {
+        @Override
+        protected void onPostExecute(Global global) {
+            fragmentManager.beginTransaction().replace(R.id.fragmentContainer, FragmentSections.newInstance(global)).commit();
+            additionOneToSharedPreference();
+            checkFirstRun();
+        }
+
+        @Override
+        protected Global doInBackground(Void... voids) {
+            String json;
+            Moshi moshi = new Moshi.Builder().build();
+            JsonAdapter<Global> jsonAdapter = moshi.adapter(Global.class);
+            try {
+                InputStream inputStream = getAssets().open("adb.json");
+                int size = inputStream.available();
+                byte[] buffer = new byte[size];
+                Log.e("LOL", String.valueOf(size));
+                inputStream.read(buffer);
+                inputStream.close();
+                json = new String(buffer, "UTF-8");
+
+                Global global = jsonAdapter.fromJson(json);
+
+                return global;
+            } catch (Exception e) {
+
+            }
+            return null;
         }
     }
 
