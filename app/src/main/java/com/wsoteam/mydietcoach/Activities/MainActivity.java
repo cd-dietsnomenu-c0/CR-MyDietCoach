@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private int COUNT_OF_RUN = 0, COUNT_OF_BACK_PRESSED = 0;
     private final String TAG_OF_COUNT_RUN = "TAG_OF_COUNT_RUN";
     private boolean isInter = true;
-    FragmentManager fragmentManager;
+    private FragmentManager fragmentManager;
 
     @Override
     public void onBackPressed() {
@@ -55,14 +55,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkPermissionForShowInter() {
-        if (COUNT_OF_BACK_PRESSED % 5 == 0) {
-
-            if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
-                Amplitude.getInstance().logEvent("show ad");
-                Appodeal.show(this, Appodeal.INTERSTITIAL);
-            }
+        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
+            Amplitude.getInstance().logEvent("show ad");
+            Appodeal.show(this, Appodeal.INTERSTITIAL);
+            Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
+                    Appodeal.INTERSTITIAL, isInter);
         }
-        COUNT_OF_BACK_PRESSED += 1;
     }
 
 
@@ -85,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         COUNT_OF_RUN = getPreferences(MODE_PRIVATE).getInt(TAG_OF_COUNT_RUN, 0);
-
-
     }
 
 
