@@ -1,5 +1,6 @@
 package com.wsoteam.mydietcoach.Fragments;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.wsoteam.mydietcoach.Config;
@@ -51,7 +53,7 @@ public class FragmentSubSections extends Fragment {
 
         recyclerView = view.findViewById(R.id.rvSubSections);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new SubSectionsAdapter(subsectionArrayList));
+        recyclerView.setAdapter(new SubSectionsAdapter(subsectionArrayList, getResources().obtainTypedArray(R.array.images)));
 
 
         return view;
@@ -60,33 +62,17 @@ public class FragmentSubSections extends Fragment {
     private class SubSectionsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvBodyOfText;
         ImageView ivBackGroundOfItem;
-        Animation animation = null;
 
         public SubSectionsHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
             super(layoutInflater.inflate(R.layout.item_of_subsections, viewGroup, false));
-
             tvBodyOfText = itemView.findViewById(R.id.tvSubsections);
             ivBackGroundOfItem = itemView.findViewById(R.id.ivSubsections);
-            animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_loading);
-
-            ivBackGroundOfItem.startAnimation(animation);
-
             itemView.setOnClickListener(this);
         }
 
-        public void bind(Subsection subsection) {
+        public void bind(Subsection subsection, int resourceId) {
             tvBodyOfText.setText(subsection.getDescription());
-            Picasso.with(getActivity()).load(subsection.getUrlOfImage()).noPlaceholder().into(ivBackGroundOfItem, new Callback() {
-                @Override
-                public void onSuccess() {
-                    ivBackGroundOfItem.clearAnimation();
-                }
-
-                @Override
-                public void onError() {
-
-                }
-            });
+            Glide.with(getActivity()).load(resourceId).into(ivBackGroundOfItem);
 
         }
 
@@ -101,9 +87,11 @@ public class FragmentSubSections extends Fragment {
 
     private class SubSectionsAdapter extends RecyclerView.Adapter<SubSectionsHolder> {
         ArrayList<Subsection> subsectionArrayList;
+        TypedArray drawablesLeft;
 
-        public SubSectionsAdapter(ArrayList<Subsection> subsectionArrayList) {
+        public SubSectionsAdapter(ArrayList<Subsection> subsectionArrayList, TypedArray drawablesLeft) {
             this.subsectionArrayList = subsectionArrayList;
+            this.drawablesLeft = drawablesLeft;
         }
 
         @NonNull
@@ -115,7 +103,7 @@ public class FragmentSubSections extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull SubSectionsHolder holder, int position) {
-            holder.bind(subsectionArrayList.get(position));
+            holder.bind(subsectionArrayList.get(position), drawablesLeft.getResourceId(Integer.parseInt(subsectionArrayList.get(position).getUrlOfImage()), -1));
 
         }
 

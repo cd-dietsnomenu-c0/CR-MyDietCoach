@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.wsoteam.mydietcoach.Config;
 import com.wsoteam.mydietcoach.POJOS.ItemOfSubsection;
@@ -39,7 +40,6 @@ public class FragmentItem extends Fragment {
         fragmentItem.setArguments(bundle);
 
         return fragmentItem;
-
     }
 
     @Nullable
@@ -49,10 +49,9 @@ public class FragmentItem extends Fragment {
         recyclerView = view.findViewById(R.id.rvArticle);
         ivCollapsingToolBar = view.findViewById(R.id.ivCollapsing);
         Toolbar toolbar = view.findViewById(R.id.main_toolbar);
-        CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.main_collapsing);
         Config.INDEX_ADMOB++;
         subsection = (Subsection) getArguments().getSerializable(Config.ID_ITEM);
-        Picasso.with(getActivity()).load(subsection.getUrlOfImage()).into(ivCollapsingToolBar);
+        Glide.with(getActivity()).load(getResources().obtainTypedArray(R.array.images).getResourceId(Integer.parseInt(subsection.getUrlOfImage()), -1)).into(ivCollapsingToolBar);
         toolbar.setTitle(subsection.getDescription());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new ItemAdapter((ArrayList<ItemOfSubsection>) subsection.getArrayOfItemOfSubsection()));

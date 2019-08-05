@@ -1,6 +1,7 @@
 package com.wsoteam.mydietcoach.Fragments;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.wsoteam.mydietcoach.Activities.ActivitySettings;
@@ -54,7 +56,9 @@ public class FragmentSections extends Fragment {
 
         rvSections = view.findViewById(R.id.rvSections);
         rvSections.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvSections.setAdapter(new SectionsAdapter(sectionArrayList));
+        rvSections.setHasFixedSize(true);
+        rvSections.setItemViewCacheSize(10);
+        rvSections.setAdapter(new SectionsAdapter(sectionArrayList, getResources().obtainTypedArray(R.array.images)));
         rvSections.setItemViewCacheSize(50);
 
         fab = view.findViewById(R.id.fab);
@@ -74,28 +78,17 @@ public class FragmentSections extends Fragment {
         ImageView ivItem;
         Animation animation = null;
 
+
         public SectionsHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
             super(layoutInflater.inflate(R.layout.item_of_sections, viewGroup, false));
             itemView.setOnClickListener(this);
             tvItem = itemView.findViewById(R.id.tv_item);
             ivItem = itemView.findViewById(R.id.iv_item);
 
-            animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_loading);
-            ivItem.startAnimation(animation);
         }
 
-        public void bind(Section section) {
-            Picasso.with(getActivity()).load(section.getUrlOfImage()).noPlaceholder().into(ivItem, new Callback() {
-                @Override
-                public void onSuccess() {
-                    ivItem.clearAnimation();
-                }
-
-                @Override
-                public void onError() {
-
-                }
-            });
+        public void bind(Section section, int resourceId) {
+            Glide.with(getActivity()).load(resourceId).into(ivItem);
             tvItem.setText(section.getDescription());
         }
 
@@ -119,9 +112,11 @@ public class FragmentSections extends Fragment {
 
     private class SectionsAdapter extends RecyclerView.Adapter<SectionsHolder> {
         ArrayList<Section> sectionArrayList;
+        TypedArray drawablesLeft;
 
-        public SectionsAdapter(ArrayList<Section> sectionArrayList) {
+        public SectionsAdapter(ArrayList<Section> sectionArrayList, TypedArray drawablesLeft) {
             this.sectionArrayList = sectionArrayList;
+            this.drawablesLeft = drawablesLeft;
         }
 
         @NonNull
@@ -133,7 +128,7 @@ public class FragmentSections extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull SectionsHolder holder, int position) {
-            holder.bind(sectionArrayList.get(position));
+            holder.bind(sectionArrayList.get(position), drawablesLeft.getResourceId(Integer.parseInt(sectionArrayList.get(position).getUrlOfImage()), -1));
         }
 
         @Override
