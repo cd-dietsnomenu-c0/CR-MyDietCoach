@@ -36,7 +36,6 @@ public class FragmentSubSections extends Fragment {
     public static FragmentSubSections newInstance(Section section) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(Config.ID_SUBSECTIONS_ARGS, section);
-
         FragmentSubSections subSections = new FragmentSubSections();
         subSections.setArguments(bundle);
         return subSections;
@@ -48,14 +47,10 @@ public class FragmentSubSections extends Fragment {
         View view = inflater.inflate(R.layout.fr_subsections, container, false);
         Section section = (Section) getArguments().getSerializable(Config.ID_SUBSECTIONS_ARGS);
         subsectionArrayList = (ArrayList<Subsection>) section.getArrayOfSubSections();
-
         Config.INDEX_ADMOB++;
-
         recyclerView = view.findViewById(R.id.rvSubSections);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new SubSectionsAdapter(subsectionArrayList, getResources().obtainTypedArray(R.array.images)));
-
-
         return view;
     }
 

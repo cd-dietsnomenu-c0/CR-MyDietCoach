@@ -35,10 +35,8 @@ public class FragmentItem extends Fragment {
     public static FragmentItem newInstance(Subsection subsection) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(Config.ID_ITEM, subsection);
-
         FragmentItem fragmentItem = new FragmentItem();
         fragmentItem.setArguments(bundle);
-
         return fragmentItem;
     }
 

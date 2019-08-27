@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "64518622596-fmuncdo5ho212mglndpfm0bl2e8er33j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jundev.diets",
+            "certificate_hash": "4bc011909dc2d72cedd03ce985928daba7bf1c85"
+          }
+        },
+        {
           "client_id": "64518622596-24o0n0l4dgofeoads2mscbvjp66ce0cs.apps.googleusercontent.com",
           "client_type": 3
         }
