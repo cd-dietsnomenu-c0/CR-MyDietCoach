@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.amplitude.api.Amplitude;
 import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.AppodealNetworks;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -40,10 +41,8 @@ import java.io.InputStream;
 
 
 public class MainActivity extends AppCompatActivity {
-    private final String NAME_DB = "adb";
-    private Global global = new Global();
     private SharedPreferences countOfRun;
-    private int COUNT_OF_RUN = 0, COUNT_OF_BACK_PRESSED = 0;
+    private int COUNT_OF_RUN = 0;
     private final String TAG_OF_COUNT_RUN = "TAG_OF_COUNT_RUN";
     private boolean isInter = true;
     private FragmentManager fragmentManager;
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,9 +69,10 @@ public class MainActivity extends AppCompatActivity {
         new AsyncLoadFoodList().execute();
 
         Amplitude.getInstance().logEvent("Run");
-
+        Appodeal.setBannerViewId(R.id.appodealBannerView);
         Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
-                Appodeal.INTERSTITIAL, isInter);
+                Appodeal.INTERSTITIAL|Appodeal.BANNER_VIEW, isInter);
+        Appodeal.show(this, Appodeal.BANNER_VIEW);
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.fragmentContainer, new FragmentSplash()).commit();
