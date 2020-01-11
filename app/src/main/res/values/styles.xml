@@ -52,4 +52,15 @@
         <item name="isLightTheme">true</item>
     </style>
 
+
+    <style name="AppTheme.BottomItemTextView">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/roboto_light</item>
+        <item name="android:textSize">9sp</item>
+    </style>
+
 </resources>

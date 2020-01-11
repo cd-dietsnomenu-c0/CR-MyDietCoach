@@ -69,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
         new AsyncLoadFoodList().execute();
 
         Amplitude.getInstance().logEvent("Run");
-        Appodeal.setBannerViewId(R.id.appodealBannerView);
         Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
-                Appodeal.INTERSTITIAL|Appodeal.BANNER_VIEW, isInter);
-        Appodeal.show(this, Appodeal.BANNER_VIEW);
+                Appodeal.INTERSTITIAL, isInter);
+
+
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.fragmentContainer, new FragmentSplash()).commit();
