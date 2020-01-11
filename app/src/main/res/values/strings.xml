@@ -43,9 +43,12 @@
     <string name="accompanying_text">Все работает в реальной жизни! Попробуй и ты!</string>
 
     <string name="privacy_policy">Privacy policy</string>
+  <string name="bnv_main">Главная</string>
+  <string name="bnv_prem">Премиум</string>
+  <string name="bnv_settings">Настройки</string>
 
 
-    <integer-array name="images">
+  <integer-array name="images">
         <item>@drawable/w0</item>
         <item>@drawable/w1</item>
         <item>@drawable/w2</item>

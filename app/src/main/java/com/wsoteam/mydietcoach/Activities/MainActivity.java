@@ -8,30 +8,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.amplitude.api.Amplitude;
 import com.appodeal.ads.Appodeal;
-import com.appodeal.ads.AppodealNetworks;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
-import com.wsoteam.mydietcoach.Config;
 import com.wsoteam.mydietcoach.Fragments.FragmentSections;
 import com.wsoteam.mydietcoach.Fragments.FragmentSplash;
 import com.wsoteam.mydietcoach.POJOS.Global;
@@ -71,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         Amplitude.getInstance().logEvent("Run");
         Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
                 Appodeal.INTERSTITIAL, isInter);
-
-
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.fragmentContainer, new FragmentSplash()).commit();
