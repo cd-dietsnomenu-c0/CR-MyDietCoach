@@ -19,7 +19,7 @@ import com.amplitude.api.Amplitude;
 import com.appodeal.ads.Appodeal;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
-import com.wsoteam.mydietcoach.Fragments.FragmentSections;
+import com.wsoteam.mydietcoach.diets.FragmentSections;
 import com.wsoteam.mydietcoach.Fragments.FragmentSplash;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.R;

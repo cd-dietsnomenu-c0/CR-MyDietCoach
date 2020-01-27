@@ -1,4 +1,4 @@
-package com.wsoteam.mydietcoach.Fragments;
+package com.wsoteam.mydietcoach.diets;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -19,9 +18,13 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.Activities.ActivitySettings;
 import com.wsoteam.mydietcoach.Config;
+import com.wsoteam.mydietcoach.Fragments.FragmentItem;
+import com.wsoteam.mydietcoach.Fragments.FragmentSubSections;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.POJOS.Section;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.diets.controllers.SectionAdapter;
+
 import java.util.ArrayList;
 
 public class FragmentSections extends Fragment {
@@ -53,7 +56,7 @@ public class FragmentSections extends Fragment {
         rvSections.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvSections.setHasFixedSize(true);
         rvSections.setItemViewCacheSize(10);
-        rvSections.setAdapter(new SectionsAdapter(sectionArrayList, getResources().obtainTypedArray(R.array.images)));
+        rvSections.setAdapter(new SectionAdapter(sectionArrayList, getResources().obtainTypedArray(R.array.images)));
         rvSections.setItemViewCacheSize(50);
 
         fab = view.findViewById(R.id.fab);
@@ -68,10 +71,9 @@ public class FragmentSections extends Fragment {
     }
 
 
-    private class SectionsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    /*private class SectionsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvItem;
         ImageView ivItem;
-        Animation animation = null;
 
         public SectionsHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
             super(layoutInflater.inflate(R.layout.item_of_sections, viewGroup, false));
@@ -93,7 +95,7 @@ public class FragmentSections extends Fragment {
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainer, FragmentItem.newInstance(sectionArrayList.get(getAdapterPosition()).getArrayOfSubSections().get(0)))
                         .addToBackStack(TAG_SUBSECTION).commit();
-                /*check one-size subsection*/
+                *//*check one-size subsection*//*
             }else {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction()
@@ -129,5 +131,5 @@ public class FragmentSections extends Fragment {
         public int getItemCount() {
             return sectionArrayList.size();
         }
-    }
+    }*/
 }
