@@ -56,10 +56,7 @@ public class FragmentSections extends Fragment {
 
         rvSections = view.findViewById(R.id.rvSections);
         rvSections.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvSections.setHasFixedSize(true);
-        rvSections.setItemViewCacheSize(10);
         rvSections.setAdapter(new SectionsAdapter(sectionArrayList, getResources().obtainTypedArray(R.array.images)));
-        rvSections.setItemViewCacheSize(50);
 
         fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

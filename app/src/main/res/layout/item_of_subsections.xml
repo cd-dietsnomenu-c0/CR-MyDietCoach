@@ -16,8 +16,7 @@
             android:id="@+id/ivSubsections"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/test_rotate"/>
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/tvSubsections"
@@ -26,6 +25,7 @@
             android:text="TestTestTest"
             android:layout_gravity="left|bottom"
             android:textColor="@color/white"
+            android:padding="10dp"
             android:textSize="17sp"
             android:textStyle="bold"
             android:background="@drawable/gradient_black"/>
