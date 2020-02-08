@@ -1,40 +1,31 @@
 package com.wsoteam.mydietcoach.diets;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.wsoteam.mydietcoach.Activities.ActivitySettings;
 import com.wsoteam.mydietcoach.Config;
-import com.wsoteam.mydietcoach.Fragments.FragmentItem;
-import com.wsoteam.mydietcoach.Fragments.FragmentSubSections;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.POJOS.Section;
 import com.wsoteam.mydietcoach.R;
 import com.wsoteam.mydietcoach.diets.controllers.SectionAdapter;
+import com.wsoteam.mydietcoach.diets.items.ActivityListItems;
 
 import java.util.ArrayList;
 
 public class FragmentSections extends Fragment {
     private RecyclerView rvSections;
     private Global global;
-    private String TAG_SECTION = "tag_of_sec";
-    private String TAG_SUBSECTION = "tag_of_sec";
     private ArrayList<Section> sectionArrayList;
-
-    private FloatingActionButton fab;
 
 
     public static FragmentSections newInstance(Global global) {
@@ -49,84 +40,28 @@ public class FragmentSections extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fr_sections, container, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         global = (Global) getArguments().getSerializable(Config.ID_SECTIONS_ARGS);
         sectionArrayList = (ArrayList<Section>) global.getSectionsArray();
 
         rvSections = view.findViewById(R.id.rvSections);
         rvSections.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvSections.setAdapter(new SectionAdapter(sectionArrayList, getResources().obtainTypedArray(R.array.images)));
-
-        fab = view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        rvSections.setAdapter(new SectionAdapter(sectionArrayList, getResources().obtainTypedArray(R.array.images), new ItemClick(){
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ActivitySettings.class);
+            public void click(int position) {
+                Intent intent = new Intent(getActivity(), ActivityListItems.class);
+                if(sectionArrayList.get(position).getArrayOfSubSections().size() == 1){
+                    intent.putExtra(Config.SECTION_DATA, sectionArrayList.get(position).getArrayOfSubSections().get(0));
+                }else {
+                    intent.putExtra(Config.SECTION_DATA, sectionArrayList.get(position));
+                }
                 startActivity(intent);
             }
-        });
-        return view;
+        }));
     }
-
-
-    /*private class SectionsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView tvItem;
-        ImageView ivItem;
-
-        public SectionsHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-            super(layoutInflater.inflate(R.layout.item_of_sections, viewGroup, false));
-            itemView.setOnClickListener(this);
-            tvItem = itemView.findViewById(R.id.tv_item);
-            ivItem = itemView.findViewById(R.id.iv_item);
-
-        }
-
-        public void bind(Section section, int resourceId) {
-            Glide.with(getActivity()).load(resourceId).into(ivItem);
-            tvItem.setText(section.getDescription());
-        }
-
-        @Override
-        public void onClick(View v) {
-            if(sectionArrayList.get(getAdapterPosition()).getArrayOfSubSections().size() == 1){
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, FragmentItem.newInstance(sectionArrayList.get(getAdapterPosition()).getArrayOfSubSections().get(0)))
-                        .addToBackStack(TAG_SUBSECTION).commit();
-                *//*check one-size subsection*//*
-            }else {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, FragmentSubSections.newInstance(sectionArrayList.get(getAdapterPosition())))
-                        .addToBackStack(TAG_SECTION).commit();
-            }
-
-        }
-    }
-
-    private class SectionsAdapter extends RecyclerView.Adapter<SectionsHolder> {
-        ArrayList<Section> sectionArrayList;
-        TypedArray drawablesLeft;
-
-        public SectionsAdapter(ArrayList<Section> sectionArrayList, TypedArray drawablesLeft) {
-            this.sectionArrayList = sectionArrayList;
-            this.drawablesLeft = drawablesLeft;
-        }
-
-        @NonNull
-        @Override
-        public SectionsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            return new SectionsHolder(layoutInflater, parent);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull SectionsHolder holder, int position) {
-            holder.bind(sectionArrayList.get(position), drawablesLeft.getResourceId(Integer.parseInt(sectionArrayList.get(position).getUrlOfImage()), -1));
-        }
-
-        @Override
-        public int getItemCount() {
-            return sectionArrayList.size();
-        }
-    }*/
 }

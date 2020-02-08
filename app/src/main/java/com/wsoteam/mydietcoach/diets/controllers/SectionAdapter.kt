@@ -5,11 +5,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.wsoteam.mydietcoach.POJOS.Section
+import com.wsoteam.mydietcoach.diets.ItemClick
+import java.util.ArrayList
 
-class SectionAdapter(var sectionList: ArrayList<Section>, var leftDrawables : TypedArray) : Adapter<SectionVH>() {
+class SectionAdapter(var sectionList: ArrayList<Section>, var leftDrawables: TypedArray, var itemClick: ItemClick) : Adapter<SectionVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SectionVH {
         val inflater = LayoutInflater.from(parent.context)
-        return SectionVH(inflater, parent)
+        return SectionVH(inflater, parent, object : ItemClick {
+            override fun click(position: Int) {
+                itemClick.click(position)
+            }
+        })
     }
 
     override fun getItemCount(): Int {
