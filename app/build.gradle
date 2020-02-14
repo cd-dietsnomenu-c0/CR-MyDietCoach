@@ -72,6 +72,8 @@ dependencies {
 
   implementation 'com.amplitude:android-sdk:2.23.2'
   implementation 'androidx.multidex:multidex:2.0.0'
+  implementation "com.android.billingclient:billing:2.0.1"
+
 
   configurations {
     all*.exclude group: 'com.squareup.okhttp3', module: 'okhttp'

@@ -32,6 +32,9 @@
         <activity android:name=".diets.items.ActivityListItems"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name=".diets.items.article.ActivityArticle"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
