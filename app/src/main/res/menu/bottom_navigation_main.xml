@@ -7,17 +7,17 @@
       android:title="@string/bnv_main" />
 
   <item
-      android:id="@+id/bnv_prem"
+      android:id="@+id/bnv_calclators"
       android:icon="@drawable/bnv_prem"
       android:title="@string/bnv_prem"/>
 
   <item
-      android:id="@+id/bnv_settings"
+      android:id="@+id/bnv_premium"
       android:icon="@drawable/bnv_settings"
       android:title="@string/bnv_settings"/>
 
   <item
-      android:id="@+id/bnv_settingsd"
+      android:id="@+id/bnv_settings"
       android:icon="@drawable/bnv_settings"
       android:title="@string/bnv_settings"/>
 

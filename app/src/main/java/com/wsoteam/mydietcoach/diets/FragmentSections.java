@@ -58,7 +58,7 @@ public class FragmentSections extends Fragment {
                 Intent intent = new Intent(getActivity(), ActivityListItems.class);
                 if(sectionArrayList.get(position).getArrayOfSubSections().size() == 1){
                     intent = new Intent(getActivity(), ActivityArticle.class);
-                    intent.putExtra(Config.SECTION_DATA, sectionArrayList.get(position).getArrayOfSubSections().get(0));
+                    intent.putExtra(Config.ITEM_DATA, sectionArrayList.get(position).getArrayOfSubSections().get(0));
                 }else {
                     intent.putExtra(Config.SECTION_DATA, sectionArrayList.get(position));
                 }
