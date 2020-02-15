@@ -23,7 +23,7 @@ class ActivityListItems : AppCompatActivity(R.layout.activity_list_items) {
         subsectionArrayList = section.arrayOfSubSections as ArrayList<Subsection>
         rvSubSections.layoutManager = LinearLayoutManager(this)
         var intent = Intent(this, ActivityArticle::class.java)
-        rvSubSections.adapter = ItemAdapter(subsectionArrayList!!, resources.obtainTypedArray(R.array.images), object : ItemClick{
+        rvSubSections.adapter = ItemAdapter(subsectionArrayList!!, resources.getStringArray(R.array.images), object : ItemClick{
             override fun click(position: Int) {
                 intent.putExtra(Config.ITEM_DATA, subsectionArrayList!![position])
                 startActivity(intent)

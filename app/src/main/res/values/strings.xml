@@ -48,7 +48,7 @@
   <string name="bnv_settings">Настройки</string>
 
 
-  <integer-array name="images">
+  <!--<integer-array name="images">
         <item>@drawable/w0</item>
         <item>@drawable/w1</item>
         <item>@drawable/w2</item>
@@ -77,7 +77,39 @@
         <item>@drawable/w25</item>
         <item>@drawable/w26</item>
         <item>@drawable/w27</item>
-    </integer-array>
+    </integer-array>-->
+
+
+    <string-array name="images">
+        <item>https://i.ibb.co/bF4N5d6/w0.jpg</item>
+        <item>https://i.ibb.co/5x4RbWd/w1.jpg</item>
+        <item>https://i.ibb.co/sKqH1hs/w2.jpg</item>
+        <item>https://i.ibb.co/spS0Cqm/w3.jpg</item>
+        <item>https://i.ibb.co/dQqVwL8/w4.jpg</item>
+        <item>https://i.ibb.co/7nR5CqH/w5.jpg</item>
+        <item>https://i.ibb.co/Y7q6dQN/w6.jpg</item>
+        <item>https://i.ibb.co/2Fvh7nW/w7.jpg</item>
+        <item>https://i.ibb.co/FxrSC1H/w8.jpg</item>
+        <item>https://i.ibb.co/9G0hP98/w9.jpg</item>
+        <item>https://i.ibb.co/CP9J1rr/w10.jpg</item>
+        <item>https://i.ibb.co/H4b232Q/w11.jpg</item>
+        <item>https://i.ibb.co/W54SCWD/w12.jpg</item>
+        <item>https://i.ibb.co/sCYRV5H/w13.jpg</item>
+        <item>https://i.ibb.co/yypthtq/w14.jpg</item>
+        <item>https://i.ibb.co/4WC5HNG/w15.jpg</item>
+        <item>https://i.ibb.co/xj0TxgC/w16.jpg</item>
+        <item>https://i.ibb.co/5FR7Tx7/w17.jpg</item>
+        <item>https://i.ibb.co/Rb2yZPD/w18.jpg</item>
+        <item>https://i.ibb.co/3MRkywX/w19.jpg</item>
+        <item>https://i.ibb.co/DpDtsHJ/w20.jpg</item>
+        <item>https://i.ibb.co/QQdSwBF/w21.jpg</item>
+        <item>https://i.ibb.co/PhLBfKz/w22.jpg</item>
+        <item>https://i.ibb.co/brZzL9Y/w23.jpg</item>
+        <item>https://i.ibb.co/YR8JTqZ/w24.jpg</item>
+        <item>https://i.ibb.co/m9qzdMv/w25.jpg</item>
+        <item>https://i.ibb.co/fxYFsqT/w26.jpg</item>
+        <item>https://i.ibb.co/Z1bJrLx/w27.jpg</item>
+    </string-array>
 
 
 </resources>

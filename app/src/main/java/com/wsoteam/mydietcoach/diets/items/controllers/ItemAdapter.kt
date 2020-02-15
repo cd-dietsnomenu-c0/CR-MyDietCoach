@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wsoteam.mydietcoach.POJOS.Subsection
 import com.wsoteam.mydietcoach.diets.ItemClick
 
-class ItemAdapter(val list: ArrayList<Subsection>,  var drawables: TypedArray, var itemClick: ItemClick) : RecyclerView.Adapter<ItemVH>() {
+class ItemAdapter(val list: ArrayList<Subsection>,  var drawables: Array<String>, var itemClick: ItemClick) : RecyclerView.Adapter<ItemVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemVH {
         var inflater = LayoutInflater.from(parent.context)
@@ -19,6 +19,6 @@ class ItemAdapter(val list: ArrayList<Subsection>,  var drawables: TypedArray, v
     }
 
     override fun onBindViewHolder(holder: ItemVH, position: Int) {
-        holder.bind(list[position], drawables.getResourceId(list[position].urlOfImage.toInt(), -1))
+        holder.bind(list[position], drawables[list[position].urlOfImage.toInt()])
     }
 }

@@ -19,7 +19,7 @@ class ActivityArticle : AppCompatActivity(R.layout.fr_article) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var subsection = intent.getSerializableExtra(Config.ITEM_DATA) as Subsection
-        Glide.with(this).load(resources.obtainTypedArray(R.array.images).getResourceId(subsection.getUrlOfImage().toInt(), -1)).into(ivCollapsing)
+        Glide.with(this).load(resources.getStringArray(R.array.images)[subsection.urlOfImage.toInt()]).into(ivCollapsing)
         main_toolbar.title = subsection.description
         rvArticle.layoutManager = LinearLayoutManager(this)
         rvArticle.adapter = PartAdapter(subsection.arrayOfItemOfSubsection as ArrayList<ItemOfSubsection>)

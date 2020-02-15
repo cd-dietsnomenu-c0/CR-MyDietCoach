@@ -21,7 +21,7 @@ class ItemVH(inflater: LayoutInflater, viewGroup: ViewGroup, var itemClick: Item
         itemClick.click(adapterPosition)
     }
 
-    fun bind(subsection: Subsection, resourceId: Int) {
+    fun bind(subsection: Subsection, resourceId: String) {
         itemView.tvSubsections.text = subsection.description
         Glide.with(itemView.context).load(resourceId).into(itemView.ivSubsections)
     }

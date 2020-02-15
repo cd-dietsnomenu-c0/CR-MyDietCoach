@@ -19,6 +19,7 @@ import com.wsoteam.mydietcoach.POJOS.Section;
 import com.wsoteam.mydietcoach.R;
 import com.wsoteam.mydietcoach.diets.controllers.SectionAdapter;
 import com.wsoteam.mydietcoach.diets.items.ActivityListItems;
+import com.wsoteam.mydietcoach.diets.items.article.ActivityArticle;
 
 import java.util.ArrayList;
 
@@ -51,11 +52,12 @@ public class FragmentSections extends Fragment {
 
         rvSections = view.findViewById(R.id.rvSections);
         rvSections.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvSections.setAdapter(new SectionAdapter(sectionArrayList, getResources().obtainTypedArray(R.array.images), new ItemClick(){
+        rvSections.setAdapter(new SectionAdapter(sectionArrayList, getResources().getStringArray(R.array.images), new ItemClick(){
             @Override
             public void click(int position) {
                 Intent intent = new Intent(getActivity(), ActivityListItems.class);
                 if(sectionArrayList.get(position).getArrayOfSubSections().size() == 1){
+                    intent = new Intent(getActivity(), ActivityArticle.class);
                     intent.putExtra(Config.SECTION_DATA, sectionArrayList.get(position).getArrayOfSubSections().get(0));
                 }else {
                     intent.putExtra(Config.SECTION_DATA, sectionArrayList.get(position));

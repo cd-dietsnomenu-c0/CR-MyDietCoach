@@ -18,7 +18,7 @@ class SectionVH(inflater: LayoutInflater, viewGroup: ViewGroup, var itemClick: I
         itemView.setOnClickListener(this)
     }
 
-    fun bind(section: Section, id: Int) {
+    fun bind(section: Section, id: String) {
         itemView.tv_item.text = section.description
         Glide.with(itemView.context).load(id).into(itemView.iv_item)
     }
