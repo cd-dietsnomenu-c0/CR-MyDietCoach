@@ -11,11 +11,7 @@ import java.util.ArrayList
 class SectionAdapter(var sectionList: ArrayList<Section>, var leftDrawables: TypedArray, var itemClick: ItemClick) : Adapter<SectionVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SectionVH {
         val inflater = LayoutInflater.from(parent.context)
-        return SectionVH(inflater, parent, object : ItemClick {
-            override fun click(position: Int) {
-                itemClick.click(position)
-            }
-        })
+        return SectionVH(inflater, parent, itemClick)
     }
 
     override fun getItemCount(): Int {

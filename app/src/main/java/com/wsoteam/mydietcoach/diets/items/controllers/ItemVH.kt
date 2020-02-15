@@ -13,6 +13,10 @@ import kotlinx.android.synthetic.main.item_of_subsections.view.*
 class ItemVH(inflater: LayoutInflater, viewGroup: ViewGroup, var itemClick: ItemClick)
     : RecyclerView.ViewHolder(inflater.inflate(R.layout.item_of_subsections, viewGroup, false)), View.OnClickListener {
 
+    init {
+        itemView.setOnClickListener(this)
+    }
+
     override fun onClick(p0: View?) {
         itemClick.click(adapterPosition)
     }

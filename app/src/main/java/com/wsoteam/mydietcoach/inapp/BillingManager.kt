@@ -10,7 +10,7 @@ object BillingManager : PurchasesUpdatedListener, BillingClientStateListener {
     lateinit private var playStoreBillingClient: BillingClient
     private lateinit var preferences: SharedPreferences
 
-    private const val SUBSCRIPTION_ID = "no_ads_sub"
+    private const val SUBSCRIPTION_ID = "no_ads"
     private const val HAS_SUBSCRIPTION = "has_subscription"
     private const val IS_APPROVED = "is_approved"
 
@@ -66,7 +66,7 @@ object BillingManager : PurchasesUpdatedListener, BillingClientStateListener {
 
     fun hasSubscription() = preferences.getBoolean(HAS_SUBSCRIPTION, false)
 
-    fun startSubscription(activity: Activity) {
+    public fun startSubscription(activity: Activity) {
         val params = SkuDetailsParams.newBuilder().setSkusList(arrayListOf(SUBSCRIPTION_ID))
                 .setType(BillingClient.SkuType.SUBS).build()
         playStoreBillingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->

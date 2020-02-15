@@ -23,6 +23,7 @@ import com.wsoteam.mydietcoach.diets.FragmentSections;
 import com.wsoteam.mydietcoach.Fragments.FragmentSplash;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.inapp.BillingManager;
 
 import java.io.InputStream;
 
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         COUNT_OF_RUN = getPreferences(MODE_PRIVATE).getInt(TAG_OF_COUNT_RUN, 0);
+        //BillingManager.INSTANCE.startSubscription(this);
+
     }
 
 
