@@ -1,4 +1,4 @@
-package com.wsoteam.mydietcoach.Activities;
+package com.wsoteam.mydietcoach;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,10 +26,7 @@ import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
-import com.wsoteam.mydietcoach.Fragments.FragmentSplash;
 import com.wsoteam.mydietcoach.POJOS.Global;
-import com.wsoteam.mydietcoach.R;
-import com.wsoteam.mydietcoach.inapp.BillingManager;
 import com.wsoteam.mydietcoach.premium.FragmentPremium;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
 
