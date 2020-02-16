@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,7 @@ public class FragmentCalculators extends Fragment {
     private String[] listOfTitles;
     private String[] listOfDescriptions;
     private final int NUMBER_OF_BROK = 0, NUMBER_OF_LORENC = 1, NUMBER_OF_IMT = 2, NUMBER_OF_SPK = 3;
+    Integer[] gradients = new Integer[]{R.drawable.gradient_brok, R.drawable.gradient_lorenc, R.drawable.gradient_imt, R.drawable.gradient_spk};
 
     @Nullable
     @Override
@@ -38,7 +40,7 @@ public class FragmentCalculators extends Fragment {
         fillDataForList();
         rvListOfCalculating = view.findViewById(R.id.rvListOfCalculating);
         rvListOfCalculating.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        rvListOfCalculating.setAdapter(new CalculatingAdapter(listOfTitles, listOfDescriptions));
+        rvListOfCalculating.setAdapter(new CalculatingAdapter(listOfTitles, listOfDescriptions, gradients));
     }
 
     private void fillDataForList() {
@@ -49,12 +51,16 @@ public class FragmentCalculators extends Fragment {
 
     private class CaclulatingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title, description;
+        CardView cvParent;
+        LinearLayout llParent;
 
         public CaclulatingViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
             super(layoutInflater.inflate(R.layout.item_of_list_calculating, viewGroup, false));
 
             title = itemView.findViewById(R.id.tvTitleOfItemListCalculating);
             description = itemView.findViewById(R.id.tvDescriptionOfItemListCalculating);
+            cvParent = itemView.findViewById(R.id.cvParent);
+            llParent = itemView.findViewById(R.id.llParent);
 
             itemView.setOnClickListener(this);
         }
@@ -82,18 +88,21 @@ public class FragmentCalculators extends Fragment {
 
         }
 
-        public void bind(String title, String desription) {
+        public void bind(String title, String desription, Integer gradient) {
             this.title.setText(title);
             this.description.setText(desription);
+            llParent.setBackgroundResource(gradient);
         }
     }
 
     private class CalculatingAdapter extends RecyclerView.Adapter<CaclulatingViewHolder> {
         String[] titles, desriptions;
+        Integer[] gradients;
 
-        public CalculatingAdapter(String[] titles, String[] desriptions) {
+        public CalculatingAdapter(String[] titles, String[] desriptions, Integer[] gradients) {
             this.titles = titles;
             this.desriptions = desriptions;
+            this.gradients = gradients;
         }
 
         @NonNull
@@ -105,7 +114,7 @@ public class FragmentCalculators extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull CaclulatingViewHolder holder, int position) {
-            holder.bind(titles[position], desriptions[position]);
+            holder.bind(titles[position], desriptions[position], gradients[position]);
         }
 
         @Override
