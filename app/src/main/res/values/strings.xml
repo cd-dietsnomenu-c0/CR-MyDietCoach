@@ -111,5 +111,67 @@
         <item>https://i.ibb.co/Z1bJrLx/w27.jpg</item>
     </string-array>
 
+    <string-array name="titles_of_calculating_list">
+        <item>Метод Поля Брока</item>
+        <item>\"Мечта Лоренца\"</item>
+        <item>Калькулятор ИМТ</item>
+        <item>Калькулятор СПК</item>
+    </string-array>
+
+    <string-array name="descriptions_of_calculating_list">
+        <item>Формула для определения идеального веса была разработана в 1871 году французским хирургом и антропологом Полем Брока.
+            Формула подходит для людей выше 155 и ниже 185 сантиметров среднего телосложения.</item>
+        <item>Существует изрядное количество формул для определения идеального веса.
+            Алгоритмы расчётов отличаются сложностью и набором необходимых исходных данных.
+            Способ Лоренца — один из самых известных и простейших.
+            Чтобы его использовать, достаточно знать только рост.</item>
+        <item>С помощью индекса массы тела вы можете проверить соответствие
+            между массой вашего тела и вашим ростом и узнать,
+            имеется ли у вас избыточный вес, или же, наоборот,
+            не страдаете ли вы недостатком веса.</item>
+        <item>С помощью калькулятора СПК можно определить ваш суточный лимит калорий, коридор калорий для похудения, оптимальное соотношение суточного потребления белков, жиров и углеводов (БЖУ)</item>
+    </string-array>
+
+    <string name="level_none">Минимальная активность</string>
+    <string name="level_easy">Легкая активность</string>
+    <string name="level_medium">Средняя активность</string>
+    <string name="level_hard">Повышенная активность</string>
+    <string name="level_up_hard">Высокая активность</string>
+    <string name="level_super">Сверхвысокая активность</string>
+    <string name="level_up_super">Предельная активность</string>
+    <string name="spk_choise_your_gender">Выберите Ваш пол</string>
+    <string name="spk_check_your_age">Проверьте Ваш возраст</string>
+    <string name="spk_check_your_height">Проверьте введенный рост</string>
+    <string name="spk_check_weight">Проверьте введенный вес</string>
+    <string name="spk_kcal">ккал</string>
+    <string name="description_of_SPK">Для комфортного похудения, для избежания срывов и нанесения вреда здоровью снижать калораж рациона ниже 1200 нельзя, поэтому в случае, если Ваш нижний предел оказался ниже 1200, надо необходимые калории сжигать за счёт физических нагрузок.</string>
+    <string name="main_menu">Главное меню</string>
+
+
+    <!--Calculating Brok-->
+    <string name="description_brok">
+        П. Брока включил в свои расчеты данные о возрастной категории, к которой относится исследуемый,
+        а также сведения о длине его тела и конституционном типе сложения.</string>
+    <string name="brok">Метод Поля Брока</string>
+    <string name="tall">Ваш рост (см)</string>
+    <string name="girth">Обхват запяться в сантиметрах</string>
+    <string name="your_age">Ваш возраст</string>
+    <string name="sex">Ваш пол</string>
+    <string name="sex_male">Мужской</string>
+    <string name="sex_female">Женский</string>
+    <string name="calculate_btn">Рассчитать</string>
+    <string name="fill_all_fields">Для расчета заполните все поля</string>
+    <string name="check_your_data">Проверьте введенные данные</string>
+    <string name="unknown_error">Проверьте введенные данные</string>
+
+    <!--Calculating Lorenc-->
+    <string name="lorenc_method">Метод Лоренца</string>
+    <string name="description_of_lorenc">Если ваш вес отличается несколькими килограммами от оптимального,
+        определённого по формуле, но вы чувствуете себя комфортно, не стоит беспокоиться.</string>
+    <string name="height_lorenc">Ваш рост в сантиметрах</string>
+    <string name="lorenc_calculate">Рассчитать</string>
+    <string name="recommended_weight">Ваш рекомендуемый вес</string>
+    <string name="ok">Ok</string>
+
 
 </resources>
