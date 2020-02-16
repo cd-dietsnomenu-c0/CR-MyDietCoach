@@ -62,11 +62,11 @@ public class FragmentCalculators extends Fragment {
         @Override
         public void onClick(View view) {
             switch (getAdapterPosition()) {
-                /*case NUMBER_OF_BROK:
-                    Intent intentBrok = new Intent(FragmentCalculators.this, ActivityCalculatorBrok.class);
+                case NUMBER_OF_BROK:
+                    Intent intentBrok = new Intent(getActivity(), ActivityCalculatorBrok.class);
                     startActivity(intentBrok);
                     break;
-                case NUMBER_OF_LORENC:
+                /*case NUMBER_OF_LORENC:
                     Intent intentLorenc = new Intent(FragmentCalculators.this, ActivityCalculatorLorenc.class);
                     startActivity(intentLorenc);
                     break;
