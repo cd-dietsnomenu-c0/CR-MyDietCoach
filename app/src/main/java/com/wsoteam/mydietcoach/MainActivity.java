@@ -27,6 +27,7 @@ import com.squareup.moshi.Moshi;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
 import com.wsoteam.mydietcoach.POJOS.Global;
+import com.wsoteam.mydietcoach.inapp.BillingManager;
 import com.wsoteam.mydietcoach.premium.FragmentPremium;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
 
@@ -56,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(1)).commit();
                     return true;
                 }
-                case R.id.bnv_premium : {
+                /*case R.id.bnv_premium : {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(2)).commit();
                     return true;
-                }
+                }*/
                 case R.id.bnv_settings: {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(3)).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(2)).commit();
                     return true;
                 }
 
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         COUNT_OF_RUN = getPreferences(MODE_PRIVATE).getInt(TAG_OF_COUNT_RUN, 0);
-        //BillingManager.INSTANCE.startSubscription(this);
+        BillingManager.INSTANCE.startSubscription(this);
         navigationView = findViewById(R.id.bnv_main);
         navigationView.setOnNavigationItemSelectedListener(bnvListener);
     }
@@ -175,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
             checkFirstRun();
             sections.add(fragmentSections);
             sections.add(new FragmentCalculators());
-            sections.add(new FragmentPremium());
+            //sections.add(new FragmentPremium());
             sections.add(new FragmentSettings());
         }
 

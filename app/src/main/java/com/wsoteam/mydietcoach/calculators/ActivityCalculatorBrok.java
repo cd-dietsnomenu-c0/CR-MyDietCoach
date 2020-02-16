@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amplitude.api.Amplitude;
+import com.appodeal.ads.Appodeal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.R;
 
@@ -23,6 +25,21 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
     int growth, girth, age, femaleDownFlag = 14, femaleUpFlag = 18, maleDownFlag = 17, maleUpFlag = 20, minNumber = 0;
     double idealWeight;
     boolean ast = false, normo = false, hyper = false;
+
+    @Override
+    public void onBackPressed() {
+        checkPermissionForShowInter();
+        super.onBackPressed();
+    }
+
+    private void checkPermissionForShowInter() {
+        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
+            Amplitude.getInstance().logEvent("show ad");
+            Appodeal.show(this, Appodeal.INTERSTITIAL);
+            Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
+                    Appodeal.INTERSTITIAL, true);
+        }
+    }
 
 
     @Override
