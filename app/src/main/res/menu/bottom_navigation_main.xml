@@ -8,13 +8,13 @@
 
   <item
       android:id="@+id/bnv_calclators"
-      android:icon="@drawable/bnv_prem"
-      android:title="@string/bnv_prem"/>
+      android:icon="@drawable/bnv_calulators"
+      android:title="@string/bnv_calc"/>
 
   <item
       android:id="@+id/bnv_premium"
-      android:icon="@drawable/bnv_settings"
-      android:title="@string/bnv_settings"/>
+      android:icon="@drawable/bnv_prem"
+      android:title="@string/bnv_prem"/>
 
   <item
       android:id="@+id/bnv_settings"

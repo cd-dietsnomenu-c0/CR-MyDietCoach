@@ -43,7 +43,7 @@
     <string name="accompanying_text">Все работает в реальной жизни! Попробуй и ты!</string>
 
     <string name="privacy_policy">Privacy policy</string>
-  <string name="bnv_main">Главная</string>
+  <string name="bnv_main">Диеты</string>
   <string name="bnv_prem">Премиум</string>
   <string name="bnv_settings">Настройки</string>
 
@@ -181,6 +181,7 @@
         Каждый Ваш просмотр помогает нам и ускоряет процесс разработки.
         Так же Вы просто можете вернуться назад при помощи кнопки "Back"</string>
     <string name="name_of_app">Диеты 6 лепестков</string>
+    <string name="bnv_calc">Расчеты</string>
 
     <!--IMT calculator-->
     <string-array name="body_types">
