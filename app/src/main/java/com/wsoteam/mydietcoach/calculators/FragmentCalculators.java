@@ -66,14 +66,14 @@ public class FragmentCalculators extends Fragment {
                     Intent intentBrok = new Intent(getActivity(), ActivityCalculatorBrok.class);
                     startActivity(intentBrok);
                     break;
-                /*case NUMBER_OF_LORENC:
-                    Intent intentLorenc = new Intent(FragmentCalculators.this, ActivityCalculatorLorenc.class);
+                case NUMBER_OF_LORENC:
+                    Intent intentLorenc = new Intent(getActivity(), ActivityCalculatorLorenc.class);
                     startActivity(intentLorenc);
                     break;
                 case NUMBER_OF_IMT:
-                    Intent intentIMT = new Intent(FragmentCalculators.this, ActivityCalculatorIMT.class);
+                    Intent intentIMT = new Intent(getActivity(), ActivityCalculatorIMT.class);
                     startActivity(intentIMT);
-                    break;*/
+                    break;
                 case NUMBER_OF_SPK:
                     Intent intentSPK = new Intent(getActivity(), ActivityCalculatorSPK.class);
                     startActivity(intentSPK);
