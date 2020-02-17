@@ -24,6 +24,7 @@ import com.appodeal.ads.Appodeal;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
 import com.wsoteam.mydietcoach.POJOS.Global;
@@ -51,10 +52,12 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.bnv_main: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(0)).commit();
+                    Ampl.Companion.openDiets();
                     return true;
                 }
                 case R.id.bnv_calclators: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(1)).commit();
+                    Ampl.Companion.openCalculators();
                     return true;
                 }
                 /*case R.id.bnv_premium : {
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 }*/
                 case R.id.bnv_settings: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(2)).commit();
+                    Ampl.Companion.openSettings();
                     return true;
                 }
 
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkPermissionForShowInter() {
         if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
+            Ampl.Companion.showAd();
             Amplitude.getInstance().logEvent("show ad");
             Appodeal.show(this, Appodeal.INTERSTITIAL);
             Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
@@ -91,8 +96,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new AsyncLoadFoodList().execute();
-
-        Amplitude.getInstance().logEvent("Run");
+        Ampl.Companion.run();
         Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
                 Appodeal.INTERSTITIAL, isInter);
 

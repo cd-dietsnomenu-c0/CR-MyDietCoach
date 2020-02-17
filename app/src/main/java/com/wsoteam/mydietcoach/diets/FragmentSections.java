@@ -17,6 +17,7 @@ import com.wsoteam.mydietcoach.Config;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.POJOS.Section;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.diets.controllers.SectionAdapter;
 import com.wsoteam.mydietcoach.diets.items.ActivityListItems;
 import com.wsoteam.mydietcoach.diets.items.article.ActivityArticle;
@@ -57,9 +58,11 @@ public class FragmentSections extends Fragment {
             public void click(int position) {
                 Intent intent = new Intent(getActivity(), ActivityListItems.class);
                 if(sectionArrayList.get(position).getArrayOfSubSections().size() == 1){
+                    Ampl.Companion.openDiet(sectionArrayList.get(position).getArrayOfSubSections().get(0).getDescription());
                     intent = new Intent(getActivity(), ActivityArticle.class);
                     intent.putExtra(Config.ITEM_DATA, sectionArrayList.get(position).getArrayOfSubSections().get(0));
                 }else {
+                    Ampl.Companion.openSubSectionDiets(sectionArrayList.get(position).getDescription());
                     intent.putExtra(Config.SECTION_DATA, sectionArrayList.get(position));
                 }
                 startActivity(intent);

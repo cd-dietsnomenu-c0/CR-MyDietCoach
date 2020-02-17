@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.analytics.Ampl;
 
 
 public class FragmentCalculators extends Fragment {

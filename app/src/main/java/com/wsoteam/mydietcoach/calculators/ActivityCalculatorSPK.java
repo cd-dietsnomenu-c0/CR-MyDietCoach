@@ -15,8 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amplitude.api.Amplitude;
+import com.appodeal.ads.Appodeal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.analytics.Ampl;
 
 
 public class ActivityCalculatorSPK extends AppCompatActivity {
@@ -25,11 +28,33 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
     private RadioGroup rgFemaleOrMale;
     private TextView tvTitle;
 
+    @Override
+    public void onBackPressed() {
+        checkPermissionForShowInter();
+        super.onBackPressed();
+    }
+
+    private void checkPermissionForShowInter() {
+        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
+            Ampl.Companion.showAd();
+            Amplitude.getInstance().logEvent("show ad");
+            Appodeal.show(this, Appodeal.INTERSTITIAL);
+            Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
+                    Appodeal.INTERSTITIAL, true);
+        }
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator_spk);
+        Ampl.Companion.openCalcualtor("spk");
+        Appodeal.setBannerViewId(R.id.appodealBannerView);
+        Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
+                Appodeal.INTERSTITIAL|Appodeal.BANNER, true);
+        Appodeal.show(this, Appodeal.BANNER_VIEW);
+
         edtHeight = findViewById(R.id.edtSpkGrowth);
         edtAge = findViewById(R.id.edtSpkAge);
         edtWeight = findViewById(R.id.edtSpkWeight);
@@ -97,7 +122,7 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
     Тяжелая физическая работа или интенсивные тренировки 2 раза в день - К=1.9*/
 
     private void calculate() {
-
+        Ampl.Companion.openCalcualtor("spk");
         String levelNone = getString(R.string.level_none);
         double BOO = 0, SDD = 0.1;
         double rateNone = 1.2, rateEasy = 1.375, rateMedium = 1.4625, rateHard = 1.55,

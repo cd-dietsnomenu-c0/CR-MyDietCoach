@@ -13,8 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amplitude.api.Amplitude;
+import com.appodeal.ads.Appodeal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.analytics.Ampl;
 
 import java.util.ArrayList;
 
@@ -24,11 +27,32 @@ public class ActivityCalculatorIMT extends AppCompatActivity {
     private EditText edtHeight, edtWeight;
     private double weight, height;
 
+    @Override
+    public void onBackPressed() {
+        checkPermissionForShowInter();
+        super.onBackPressed();
+    }
+
+    private void checkPermissionForShowInter() {
+        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
+            Ampl.Companion.showAd();
+            Amplitude.getInstance().logEvent("show ad");
+            Appodeal.show(this, Appodeal.INTERSTITIAL);
+            Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
+                    Appodeal.INTERSTITIAL, true);
+        }
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator_imt);
+        Ampl.Companion.openCalcualtor("imt");
+        Appodeal.setBannerViewId(R.id.appodealBannerView);
+        Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
+                Appodeal.INTERSTITIAL|Appodeal.BANNER, true);
+        Appodeal.show(this, Appodeal.BANNER_VIEW);
 
         btnCalculate = findViewById(R.id.btnIMTCalculate);
         edtHeight = findViewById(R.id.edtIMTHeight);
@@ -98,6 +122,7 @@ public class ActivityCalculatorIMT extends AppCompatActivity {
     }
 
     private void createAlertDialog(ArrayList<String> mainIndicators) {
+        Ampl.Companion.useCalcualtor("imt");
         String bodyType = mainIndicators.get(0), IMT = mainIndicators.get(1), description = mainIndicators.get(2);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

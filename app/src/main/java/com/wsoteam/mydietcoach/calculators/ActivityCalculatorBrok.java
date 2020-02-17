@@ -16,6 +16,7 @@ import com.amplitude.api.Amplitude;
 import com.appodeal.ads.Appodeal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.analytics.Ampl;
 
 
 public class ActivityCalculatorBrok extends AppCompatActivity {
@@ -34,6 +35,7 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
 
     private void checkPermissionForShowInter() {
         if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
+            Ampl.Companion.showAd();
             Amplitude.getInstance().logEvent("show ad");
             Appodeal.show(this, Appodeal.INTERSTITIAL);
             Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
@@ -46,6 +48,11 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator_brok);
+        Ampl.Companion.openCalcualtor("brok");
+        Appodeal.setBannerViewId(R.id.appodealBannerView);
+        Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
+                Appodeal.INTERSTITIAL|Appodeal.BANNER, true);
+        Appodeal.show(this, Appodeal.BANNER_VIEW);
 
         edtBrokGrowth = findViewById(R.id.edtBrokGrowth);
         edtBrokGirth = findViewById(R.id.edtBrokGirth);
@@ -68,6 +75,7 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
     }
 
     private void calculate() {
+        Ampl.Companion.useCalcualtor("brok");
         if (age <= 40) {
             if (growth <= 165) {
                 idealWeight = ((growth - 100) * 0.9 - ((growth - 100) * 0.1)) * checkTypeOfBody();
