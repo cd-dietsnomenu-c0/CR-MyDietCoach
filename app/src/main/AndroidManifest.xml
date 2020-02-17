@@ -20,7 +20,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.wsoteam.mydietcoach.MainActivity">
+        <activity android:name="com.wsoteam.mydietcoach.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,8 +32,7 @@
         <activity android:name=".diets.items.ActivityListItems"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".diets.items.article.ActivityArticle"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".diets.items.article.ActivityArticle"/>
 
         <activity android:name=".calculators.ActivityCalculatorSPK"
             android:theme="@style/AppTheme.NoActionBar"/>

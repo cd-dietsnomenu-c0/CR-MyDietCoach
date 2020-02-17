@@ -9,8 +9,8 @@ android {
     applicationId "com.jundev.diets"
     minSdkVersion 16
     targetSdkVersion 28
-    versionCode 14
-    versionName "1.9.1test"
+    versionCode 15
+    versionName "2.0"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     multiDexEnabled true
   }

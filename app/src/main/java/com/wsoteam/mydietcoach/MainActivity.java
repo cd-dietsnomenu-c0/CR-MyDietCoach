@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         COUNT_OF_RUN = getPreferences(MODE_PRIVATE).getInt(TAG_OF_COUNT_RUN, 0);
-        BillingManager.INSTANCE.startSubscription(this);
+        //BillingManager.INSTANCE.startSubscription(this);
         navigationView = findViewById(R.id.bnv_main);
         navigationView.setOnNavigationItemSelectedListener(bnvListener);
     }

@@ -48,8 +48,18 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rvArticle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.appodeal.ads.BannerView
+        android:id="@+id/appodealBannerView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

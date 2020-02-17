@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.request.RequestOptions
 import com.wsoteam.mydietcoach.POJOS.Section
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.diets.ItemClick

@@ -58,7 +58,6 @@ public class FragmentSections extends Fragment {
             public void click(int position) {
                 Intent intent = new Intent(getActivity(), ActivityListItems.class);
                 if(sectionArrayList.get(position).getArrayOfSubSections().size() == 1){
-                    Ampl.Companion.openDiet(sectionArrayList.get(position).getArrayOfSubSections().get(0).getDescription());
                     intent = new Intent(getActivity(), ActivityArticle.class);
                     intent.putExtra(Config.ITEM_DATA, sectionArrayList.get(position).getArrayOfSubSections().get(0));
                 }else {
