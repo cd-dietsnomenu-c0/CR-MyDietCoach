@@ -28,6 +28,8 @@ import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
 import com.wsoteam.mydietcoach.POJOS.Global;
+import com.wsoteam.mydietcoach.diets.items.article.ActivityArticle;
+import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct;
 import com.wsoteam.mydietcoach.inapp.BillingManager;
 import com.wsoteam.mydietcoach.premium.FragmentPremium;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
@@ -109,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         //BillingManager.INSTANCE.startSubscription(this);
         navigationView = findViewById(R.id.bnv_main);
         navigationView.setOnNavigationItemSelectedListener(bnvListener);
+        startActivity(new Intent(this, DietAct.class));
     }
 
 

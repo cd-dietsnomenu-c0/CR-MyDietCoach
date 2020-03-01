@@ -22,7 +22,6 @@
     <color name="images_filter_edit_profile">#be252525</color>
 
 
-
     <color name="red_progress">#fa3939</color>
     <color name="yellow_progress">#fcd537</color>
     <color name="green_progress">#2ae133</color>
@@ -42,6 +41,7 @@
     <color name="darkWithoutAlfaMoreLight">#4b4a4a</color>
     <color name="backgroundDelete">#b41c1c</color>
     <color name="transparent">#00b41c1c</color>
+    <color name="transparent_white">#1E9C68</color>
 
 
     <!--Colors for cirlce progress on main screen-->
@@ -53,7 +53,6 @@
     <color name="littlejust_transparent">#c143d448</color>
     <color name="textColor">#ffffff</color>
     <color name="backgroundColor">#ffffff</color>
-
 
 
     <color name="over_eat_color">#ff0008</color>
@@ -76,4 +75,6 @@
 
 
     <color name="imt_close_ad">#00a82d</color>
+    <color name="text_color">#c0000000</color>
+    <color name="text_color_small">#99000000</color>
 </resources>
