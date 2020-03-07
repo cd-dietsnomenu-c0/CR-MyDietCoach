@@ -185,6 +185,7 @@
     <string name="eat_breakfast">Завтрак</string>
     <string name="eat_lunch">Обед</string>
     <string name="eat_snack_one">Перекус</string>
+    <string name="hints">СОВЕТЫ</string>
 
     <!--IMT calculator-->
     <string-array name="body_types">

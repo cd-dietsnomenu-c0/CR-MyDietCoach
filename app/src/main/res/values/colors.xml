@@ -57,6 +57,7 @@
 
     <color name="over_eat_color">#ff0008</color>
     <color name="bottom_color_for_eating_diary_style">#a943fe</color>
+    <color name="divider_hint">#6A60FD</color>
 
 
     <color name="text_color_item_eating_diary">#7091be</color>

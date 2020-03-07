@@ -22,6 +22,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         falseLoad()
         rvDietDays.layoutManager = LinearLayoutManager(this)
         rvDietDays.adapter = DietDayAdapter(diet.days)
+        tvHintText.text = diet.hintText
     }
 
     private fun falseLoad() {
@@ -45,7 +46,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         eatList.add(eat2)
         eatList.add(eat3)
 
-        val day = DietDay("1 день", "https://s1.stc.all.kpcdn.net/putevoditel/projectid_103889/images/tild3530-6661-4332-a434-613435663634__2.jpg", eatList, "Совет", "СоветСоветСоветСоветСоветСоветСоветСоветСоветСоветСоветСоветСоветСоветСовет")
+        val day = DietDay("1 день", "https://s1.stc.all.kpcdn.net/putevoditel/projectid_103889/images/tild3530-6661-4332-a434-613435663634__2.jpg", eatList)
         var days = ArrayList<DietDay>()
         days.add(day)
         days.add(day)
@@ -73,6 +74,9 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
 
          diet = Diet("Куриная диета", "тексттексттексттексттексттексттексттексттексттексттексттексттексттексттексттексттексттексттекст", "https://s1.stc.all.kpcdn.net/putevoditel/projectid_103889/images/tild6139-3064-4537-b930-623362366338__960.jpg",
                 "Плюсы диеты", benList, "Минусы диеты", consList, "Меню на неделю для куриной диеты", "Во время куриной диеты нужно пить достаточное количество воды (30 мл на 1 кг веса), также допустимы травяные чаи.", days,
+                 "Количество приемов пищи должно быть не менее 5 раз в день.\n" +
+                         "\n" +
+                         "На время диеты из продуктовой корзины исключаем: сахар, соль, майонез, кетчуп, мед, хлеб, сдобу, колбасы, бананы, виноград, картофель, кукурузу, манку, пшеницу, сладкую газированную воду, пакетированные соки и алкоголь.",
                 "Результаты", "Соблюдая куриную диету можно похудеть от 2 до 6 килограммов за неделю. Конечная цифра на весах будет зависеть от соблюдения всех правил и от продуктов, которые вы будете употреблять. Имейте в виду, что куриная диета рассчитана на интенсивные нагрузки, поэтому вы с легкостью можете подключать и спорт. А это, в свою очередь, поможет еще быстрее сбросить ненужный вес и укрепить здоровье.",
                 reviewList)
 
