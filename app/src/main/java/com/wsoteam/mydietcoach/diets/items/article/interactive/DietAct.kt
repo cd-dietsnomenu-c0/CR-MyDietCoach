@@ -32,11 +32,11 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         reviewList.add(review)
         reviewList.add(review)
 
-        val eat = Eat("завтрак", 0, "аааааааааааываываываыва")
-        val eat1 = Eat("завтрак", 1, "аааааааааааываываываыва")
-        val eat2 = Eat("завтрак", 2, "аааааааааааываываываыва")
-        val eat3 = Eat("завтрак", 3, "аааааааааааываываываыва")
-        val eat4 = Eat("завтрак", 4, "аааааааааааываываываыва")
+        val eat = Eat( 0, "аааааааааааываываываыва")
+        val eat1 = Eat( 1, "аааааааааааываываываыва")
+        val eat2 = Eat( 2, "аааааааааааываываываыва")
+        val eat3 = Eat( 3, "аааааааааааываываываыва")
+        val eat4 = Eat( 4, "аааааааааааываываываыва")
 
         var eatList = ArrayList<Eat>()
         eatList.add(eat)

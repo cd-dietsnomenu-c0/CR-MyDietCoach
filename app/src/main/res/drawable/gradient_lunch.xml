@@ -7,4 +7,9 @@
         android:endColor="#595dda"
         android:angle="315">
     </gradient>
+    <corners
+        android:bottomLeftRadius="12dp"
+        android:bottomRightRadius="12dp"
+        android:topLeftRadius="12dp"
+        android:topRightRadius="80dp" />
 </shape>
