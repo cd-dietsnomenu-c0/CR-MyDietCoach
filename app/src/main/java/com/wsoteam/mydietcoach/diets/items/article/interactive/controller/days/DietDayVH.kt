@@ -1,13 +1,12 @@
-package com.wsoteam.mydietcoach.diets.items.article.interactive.controller
+package com.wsoteam.mydietcoach.diets.items.article.interactive.controller.days
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wsoteam.mydietcoach.POJOS.interactive.DietDay
-import com.wsoteam.mydietcoach.POJOS.interactive.Eat
 import com.wsoteam.mydietcoach.R
-import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.inside.EatAdapter
+import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.days.inside.EatAdapter
 import kotlinx.android.synthetic.main.item_diet_day.view.*
 
 class DietDayVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup)

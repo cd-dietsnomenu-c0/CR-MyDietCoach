@@ -1,0 +1,22 @@
+package com.wsoteam.mydietcoach.diets.items.article.interactive.controller
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.wsoteam.mydietcoach.R
+import kotlinx.android.synthetic.main.vh_cons.view.*
+
+class ConsVH(inflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(inflater.inflate(R.layout.vh_cons, viewGroup, false)) {
+    fun bind(consTitle: String, cons: List<String>) {
+        itemView.tvConsTitle.text = consTitle
+        itemView.tvConsText.text = getAllCons(cons)
+    }
+
+    private fun getAllCons(cons: List<String>): String {
+        var allCons = ""
+        for (i in cons.indices) {
+            allCons += (i + 1).toString() + ". " + cons[i] + "\n"
+        }
+        return allCons
+    }
+}

@@ -1,4 +1,4 @@
-package com.wsoteam.mydietcoach.diets.items.article.interactive.controller.inside
+package com.wsoteam.mydietcoach.diets.items.article.interactive.controller.days.inside
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

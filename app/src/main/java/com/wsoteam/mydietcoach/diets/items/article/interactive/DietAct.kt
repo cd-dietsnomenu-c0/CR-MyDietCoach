@@ -3,14 +3,16 @@ package com.wsoteam.mydietcoach.diets.items.article.interactive
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.wsoteam.mydietcoach.POJOS.interactive.Diet
 import com.wsoteam.mydietcoach.POJOS.interactive.DietDay
 import com.wsoteam.mydietcoach.POJOS.interactive.Eat
 import com.wsoteam.mydietcoach.POJOS.interactive.Review
 import com.wsoteam.mydietcoach.R
-import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.DietDayAdapter
+import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.DietAdapter
 import kotlinx.android.synthetic.main.diet_act.*
+import kotlinx.android.synthetic.main.diet_act.ivCollapsing
+import kotlinx.android.synthetic.main.fr_article.*
 import java.util.ArrayList
 
 class DietAct : AppCompatActivity(R.layout.diet_act) {
@@ -20,18 +22,16 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         falseLoad()
-        rvDietDays.layoutManager = LinearLayoutManager(this)
-        rvDietDays.adapter = DietDayAdapter(diet.days)
-        tvHintText.text = diet.hintText
+        Glide.with(this).load("https://s1.stc.all.kpcdn.net/putevoditel/projectid_103889/images/tild6139-3064-4537-b930-623362366338__960.jpg").into(ivCollapsing)
+        rvDiet.layoutManager = LinearLayoutManager(this)
+        rvDiet.adapter = DietAdapter(diet)
     }
 
     private fun falseLoad() {
         val review = Review("Name",
                 "https://img.freepik.com/free-photo/beautiful-young-woman-showing-pointing-white-background_1301-7232.jpg?size=626&ext=jpg",
                 "TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText")
-        var reviewList = ArrayList<Review>()
-        reviewList.add(review)
-        reviewList.add(review)
+
 
         val eat = Eat( 0, "Отварная грудка с овощным салатом (огурец, помидор, зелень)")
         val eat1 = Eat( 1, "Салат из капусты и огурца")
@@ -56,29 +56,25 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         days.add(day)
         days.add(day)
 
-        val benefit = "ПлюсПлюсПлюсПлюс"
         var benList = ArrayList<String>()
-        benList.add(benefit)
-        benList.add(benefit)
-        benList.add(benefit)
-        benList.add(benefit)
-        benList.add(benefit)
+        benList.add("Оптимальное количество белка в еде – это помогает в процессе похудения, сжигая жировую ткань;")
+        benList.add("Чувство насыщения – куриная грудка в сочетании с овощами придает чувство сытости на длительное время;")
+        benList.add("В курином мясе намного меньше жиров, чем в других видах мяса;")
+        benList.add("Мясо курицы усваивается организмом намного легче, и оно доступнее, в отличие от крольчатины и индейки, которые так же относятся к диетическим сортам;")
+        benList.add("Куриная диета обладает разнообразным рационом. Поэтому вы можете сочетать куриное мясо с овощами, кисломолочными продуктами, крупами (кроме пшеничной, манной) и фруктами (кроме банана и винограда).")
 
-        val cons = "ПлюсПлюсПлюсПлюс"
         var consList = ArrayList<String>()
-        consList.add(cons)
-        consList.add(cons)
-        consList.add(cons)
-        consList.add(cons)
-        consList.add(cons)
+        consList.add("Куриная диета не может быть достаточно сбалансированной, так как лишена «полезных» жиров. Придерживаться такого рациона больше 1 недели не рекомендуется.")
+        consList.add("Попробовать такую диету могут только полностью здоровые люди. При имеющихся проблемах со здоровьем перед началом диеты нужно проконсультироваться с врачом.")
+        consList.add("Куриное мясо может спровоцировать аллергию при имеющейся склонности.")
 
-         diet = Diet("Куриная диета", "тексттексттексттексттексттексттексттексттексттексттексттексттексттексттексттексттексттексттекст", "https://s1.stc.all.kpcdn.net/putevoditel/projectid_103889/images/tild6139-3064-4537-b930-623362366338__960.jpg",
+         diet = Diet("Куриная диета", "В курином мясе содержится множество полезных аминокислот, которые благотворно сказываются на здоровье. Большинство диетологов рекомендуют куриную диету, так как она низкокалорийная, питательная и позволяет достаточно быстро получить желаемый результат.", "https://s1.stc.all.kpcdn.net/putevoditel/projectid_103889/images/tild6139-3064-4537-b930-623362366338__960.jpg",
                 "Плюсы диеты", benList, "Минусы диеты", consList, "Меню на неделю для куриной диеты", "Во время куриной диеты нужно пить достаточное количество воды (30 мл на 1 кг веса), также допустимы травяные чаи.", days,
                  "Количество приемов пищи должно быть не менее 5 раз в день.\n" +
                          "\n" +
                          "На время диеты из продуктовой корзины исключаем: сахар, соль, майонез, кетчуп, мед, хлеб, сдобу, колбасы, бананы, виноград, картофель, кукурузу, манку, пшеницу, сладкую газированную воду, пакетированные соки и алкоголь.",
-                "Результаты", "Соблюдая куриную диету можно похудеть от 2 до 6 килограммов за неделю. Конечная цифра на весах будет зависеть от соблюдения всех правил и от продуктов, которые вы будете употреблять. Имейте в виду, что куриная диета рассчитана на интенсивные нагрузки, поэтому вы с легкостью можете подключать и спорт. А это, в свою очередь, поможет еще быстрее сбросить ненужный вес и укрепить здоровье.",
-                reviewList)
+                 "Соблюдая куриную диету можно похудеть от 2 до 6 килограммов за неделю. Конечная цифра на весах будет зависеть от соблюдения всех правил и от продуктов, которые вы будете употреблять. Имейте в виду, что куриная диета рассчитана на интенсивные нагрузки, поэтому вы с легкостью можете подключать и спорт. А это, в свою очередь, поможет еще быстрее сбросить ненужный вес и укрепить здоровье.",
+                review)
 
     }
 }

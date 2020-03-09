@@ -186,6 +186,8 @@
     <string name="eat_lunch">Обед</string>
     <string name="eat_snack_one">Перекус</string>
     <string name="hints">СОВЕТЫ</string>
+    <string name="results">РЕЗУЛЬТАТЫ</string>
+    <string name="reviews">ОТЗЫВЫ ДИЕТОЛОГОВ</string>
 
     <!--IMT calculator-->
     <string-array name="body_types">
