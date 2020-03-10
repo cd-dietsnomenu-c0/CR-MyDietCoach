@@ -25,6 +25,12 @@ android {
 
     checkReleaseBuilds false
   }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
 }
 
 repositories {
@@ -64,9 +70,7 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
 
-  implementation 'com.appodeal.ads:nodex:2.5.7'
-  implementation 'com.appodeal.optional:flurry-ads:11.6.0'
-  implementation 'com.appodeal.optional:flurry-analytics:11.6.0'
+  implementation 'com.appodeal.ads:sdk:2.6.2.+'
   implementation 'com.google.android.exoplayer:exoplayer-core:2.8.4'
   implementation 'com.google.android.exoplayer:exoplayer-hls:2.8.4'
 
@@ -75,13 +79,7 @@ dependencies {
   implementation "com.android.billingclient:billing:2.0.1"
 
 
-  configurations {
-    all*.exclude group: 'com.squareup.okhttp3', module: 'okhttp'
-  }
 
-  configurations {
-    all*.exclude group: 'com.squareup.okio', module: 'okio'
-  }
 }
 
 apply plugin: 'com.google.gms.google-services'

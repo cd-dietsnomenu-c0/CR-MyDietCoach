@@ -22,7 +22,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         falseLoad()
-        Glide.with(this).load("https://s1.stc.all.kpcdn.net/putevoditel/projectid_103889/images/tild6139-3064-4537-b930-623362366338__960.jpg").into(ivCollapsing)
+        Glide.with(this).load("https://image.freepik.com/free-photo/grilled-chicken-legs-with-spices-garlic_82893-5464.jpg").into(ivCollapsing)
         rvDiet.layoutManager = LinearLayoutManager(this)
         rvDiet.adapter = DietAdapter(diet)
     }
