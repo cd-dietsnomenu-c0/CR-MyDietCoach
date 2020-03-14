@@ -14,6 +14,7 @@ class DietAdapter(var diet : Diet) : RecyclerView.Adapter<RecyclerView.ViewHolde
     val RESULTS_TYPE = 4
     val REVIEW_TYPE = 5
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when(viewType){

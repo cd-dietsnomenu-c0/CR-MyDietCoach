@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
         //BillingManager.INSTANCE.startSubscription(this);
         navigationView = findViewById(R.id.bnv_main);
         navigationView.setOnNavigationItemSelectedListener(bnvListener);
-        startActivity(new Intent(this, DietAct.class));
     }
 
 

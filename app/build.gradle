@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'io.fabric'
 
 android {
   compileSdkVersion 28
@@ -9,8 +9,8 @@ android {
     applicationId "com.jundev.diets"
     minSdkVersion 16
     targetSdkVersion 28
-    versionCode 15
-    versionName "2.0"
+    versionCode 16
+    versionName "2.0.1"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     multiDexEnabled true
   }
@@ -77,7 +77,7 @@ dependencies {
   implementation 'com.amplitude:android-sdk:2.23.2'
   implementation 'androidx.multidex:multidex:2.0.0'
   implementation "com.android.billingclient:billing:2.0.1"
-
+  implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 
 
 }

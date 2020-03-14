@@ -9,7 +9,8 @@ import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.days.DietDayAdapter
 import kotlinx.android.synthetic.main.vh_menu.view.*
 
-class MenuVH(inflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(inflater.inflate(R.layout.vh_menu, viewGroup, false)) {
+class MenuVH(inflater: LayoutInflater, viewGroup: ViewGroup)
+    : RecyclerView.ViewHolder(inflater.inflate(R.layout.vh_menu, viewGroup, false)) {
 
     init {
         itemView.rvDietDays.layoutManager = LinearLayoutManager(itemView.context)

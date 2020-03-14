@@ -54,7 +54,8 @@ android:fitsSystemWindows="true">
                 android:textSize="27sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.58000004" />
 
             <View
                 android:id="@+id/divider"
@@ -74,13 +75,15 @@ android:fitsSystemWindows="true">
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|left"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="Куриная диета — это простая, эффективная и вкусная диета"
                 android:textColor="@color/white"
                 android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tvHead"
                 app:layout_constraintStart_toStartOf="@+id/divider"
-                app:layout_constraintTop_toBottomOf="@+id/divider" />
-
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.CollapsingToolbarLayout>

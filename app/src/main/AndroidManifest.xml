@@ -48,7 +48,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".diets.items.article.interactive.DietAct"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/NewDiets"/>
 
         <meta-data
             android:name="preloaded_fonts"

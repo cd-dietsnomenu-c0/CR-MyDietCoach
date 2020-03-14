@@ -11,6 +11,17 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <style name="NewDiets" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#2C2C2C</item>
+        <item name="colorPrimaryDark">#2C2C2C</item>
+        <item name="colorAccent">#2C2C2C</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="AppTheme.NoActionBarChange">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
