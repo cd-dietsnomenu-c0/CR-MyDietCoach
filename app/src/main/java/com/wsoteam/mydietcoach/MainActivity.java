@@ -22,8 +22,11 @@ import android.widget.Toast;
 import com.amplitude.api.Amplitude;
 import com.appodeal.ads.Appodeal;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
@@ -37,6 +40,10 @@ import com.wsoteam.mydietcoach.settings.FragmentSettings;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -97,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new AsyncLoadFoodList().execute();
+        //new AsyncLoadFoodList().execute();
         Ampl.Companion.run();
         Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
                 Appodeal.INTERSTITIAL, isInter);
@@ -111,6 +118,52 @@ public class MainActivity extends AppCompatActivity {
         //BillingManager.INSTANCE.startSubscription(this);
         navigationView = findViewById(R.id.bnv_main);
         navigationView.setOnNavigationItemSelectedListener(bnvListener);
+
+        /*startActivity(new Intent(this, DietAct.class));*/
+        loadDietData();
+    }
+
+    private void loadDietData() {
+        Single.fromCallable(() -> {
+            Global global = getAsyncDietData();
+            return global;
+        })
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(t -> setDietData(t), Throwable::printStackTrace);
+    }
+
+    private void setDietData(Global global) {
+        FragmentSections fragmentSections = FragmentSections.newInstance(global);
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentSections).commit();
+        additionOneToSharedPreference();
+        checkFirstRun();
+        sections.add(fragmentSections);
+        sections.add(new FragmentCalculators());
+        //sections.add(new FragmentPremium());
+        sections.add(new FragmentSettings());
+        //Log.e("LOL", global.getAllDiets().getDietList().get(0).getTitle());
+    }
+
+    private Global getAsyncDietData() {
+        String json;
+        Moshi moshi = new Moshi.Builder().build();
+        JsonAdapter<Global> jsonAdapter = moshi.adapter(Global.class);
+        try {
+            InputStream inputStream = getAssets().open("adb.json");
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+            json = new String(buffer, "UTF-8");
+
+            Global global = jsonAdapter.fromJson(json);
+
+            return global;
+        } catch (Exception e) {
+
+        }
+        return null;
     }
 
 
@@ -170,43 +223,6 @@ public class MainActivity extends AppCompatActivity {
             });
             alertDialogGrade.show();
 
-        }
-    }
-
-    private class AsyncLoadFoodList extends AsyncTask<Void, Void, Global> {
-        @Override
-        protected void onPostExecute(Global global) {
-            FragmentSections fragmentSections = FragmentSections.newInstance(global);
-            fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentSections).commit();
-            additionOneToSharedPreference();
-            checkFirstRun();
-            sections.add(fragmentSections);
-            sections.add(new FragmentCalculators());
-            //sections.add(new FragmentPremium());
-            sections.add(new FragmentSettings());
-        }
-
-        @Override
-        protected Global doInBackground(Void... voids) {
-            String json;
-            Moshi moshi = new Moshi.Builder().build();
-            JsonAdapter<Global> jsonAdapter = moshi.adapter(Global.class);
-            try {
-                InputStream inputStream = getAssets().open("adb.json");
-                int size = inputStream.available();
-                byte[] buffer = new byte[size];
-                Log.e("LOL", String.valueOf(size));
-                inputStream.read(buffer);
-                inputStream.close();
-                json = new String(buffer, "UTF-8");
-
-                Global global = jsonAdapter.fromJson(json);
-
-                return global;
-            } catch (Exception e) {
-
-            }
-            return null;
         }
     }
 

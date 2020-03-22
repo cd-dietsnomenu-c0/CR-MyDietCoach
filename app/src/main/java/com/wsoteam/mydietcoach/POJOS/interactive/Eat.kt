@@ -1,4 +1,6 @@
 package com.wsoteam.mydietcoach.POJOS.interactive
 
-data class Eat (var type : Int, var text : String){
+import java.io.Serializable
+
+data class Eat (var type : Int, var text : String)  : Serializable {
 }
