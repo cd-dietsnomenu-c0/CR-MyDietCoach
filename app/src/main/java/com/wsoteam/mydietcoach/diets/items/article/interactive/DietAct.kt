@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
+import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.interactive.*
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.DietAdapter
@@ -19,11 +20,10 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        falseLoad()
-        Glide.with(this).load("https://image.freepik.com/free-photo/grilled-chicken-legs-with-spices-garlic_82893-5464.jpg").into(ivCollapsing)
+        val diet = intent.getSerializableExtra(Config.NEW_DIET) as Diet
+        Glide.with(this).load(diet.mainImage).into(ivCollapsing)
         rvDiet.layoutManager = LinearLayoutManager(this)
         rvDiet.adapter = DietAdapter(diet)
-        //falseLoadEmpty()
     }
 
     private fun falseLoad() {

@@ -22,6 +22,7 @@ import com.wsoteam.mydietcoach.R;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.diets.controllers.SectionAdapter;
 import com.wsoteam.mydietcoach.diets.items.ActivityListItems;
+import com.wsoteam.mydietcoach.diets.items.NewDietsListActivity;
 import com.wsoteam.mydietcoach.diets.items.article.ActivityArticle;
 
 import java.util.ArrayList;
@@ -30,8 +31,6 @@ public class FragmentSections extends Fragment {
     private RecyclerView rvSections;
     private Global global;
     private ArrayList<Section> sectionArrayList;
-    private ImageView ivHead;
-
 
     public static FragmentSections newInstance(Global global) {
         Bundle bundle = new Bundle();
@@ -68,6 +67,11 @@ public class FragmentSections extends Fragment {
                     intent.putExtra(Config.SECTION_DATA, sectionArrayList.get(position));
                 }
                 startActivity(intent);
+            }
+
+            @Override
+            public void newDietsClick() {
+                startActivity(new Intent(getActivity(), NewDietsListActivity.class).putExtra(Config.NEW_DIETS, global.getAllDiets()));
             }
         }));
     }

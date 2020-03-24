@@ -6,5 +6,7 @@ public class Config {
     public static final String ID_ITEM= "id_item";
     public static final String SECTION_DATA = "SECTION_DATA";
     public static final String ITEM_DATA = "ITEM_DATA";
+    public static final String NEW_DIETS = "NEW_DIETS";
+    public static final String NEW_DIET = "NEW_DIET";
     public static int INDEX_ADMOB = 0;
 }

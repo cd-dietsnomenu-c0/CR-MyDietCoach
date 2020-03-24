@@ -52,6 +52,9 @@ class ActivityListItems : AppCompatActivity(R.layout.activity_list_items) {
                 intent.putExtra(Config.ITEM_DATA, subsectionArrayList!![position])
                 startActivity(intent)
             }
+
+            override fun newDietsClick() {
+            }
         })
     }
 }

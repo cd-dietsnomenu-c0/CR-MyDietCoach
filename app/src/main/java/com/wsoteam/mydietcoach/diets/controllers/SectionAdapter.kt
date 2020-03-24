@@ -15,7 +15,7 @@ class SectionAdapter(var sectionList: ArrayList<Section>, var leftDrawables: Arr
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when(viewType){
-            HEAD_TYPE -> HeadVH(inflater, parent)
+            HEAD_TYPE -> HeadVH(inflater, parent, itemClick)
             else -> SectionVH(inflater, parent, itemClick)
         }
     }
