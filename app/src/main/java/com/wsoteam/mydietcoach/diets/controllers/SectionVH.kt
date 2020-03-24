@@ -26,6 +26,6 @@ class SectionVH(inflater: LayoutInflater, viewGroup: ViewGroup, var itemClick: I
     }
 
     override fun onClick(p0: View?) {
-        itemClick.click(adapterPosition)
+        itemClick.click(adapterPosition - 1)
     }
 }

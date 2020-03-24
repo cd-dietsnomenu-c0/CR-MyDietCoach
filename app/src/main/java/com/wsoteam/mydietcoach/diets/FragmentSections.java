@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.Config;
 import com.wsoteam.mydietcoach.POJOS.Global;
@@ -28,6 +30,7 @@ public class FragmentSections extends Fragment {
     private RecyclerView rvSections;
     private Global global;
     private ArrayList<Section> sectionArrayList;
+    private ImageView ivHead;
 
 
     public static FragmentSections newInstance(Global global) {

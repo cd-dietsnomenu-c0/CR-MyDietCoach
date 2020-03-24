@@ -12,6 +12,7 @@
     </style>
 
 
+
     <style name="NewDiets" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#2C2C2C</item>
