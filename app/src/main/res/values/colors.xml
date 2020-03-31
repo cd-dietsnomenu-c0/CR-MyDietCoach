@@ -78,4 +78,5 @@
     <color name="imt_close_ad">#00a82d</color>
     <color name="text_color">#c0000000</color>
     <color name="text_color_small">#99000000</color>
+    <color name="text_gray">#CE3C3939</color>
 </resources>

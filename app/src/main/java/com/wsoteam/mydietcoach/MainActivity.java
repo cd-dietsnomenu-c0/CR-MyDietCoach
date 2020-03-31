@@ -36,6 +36,7 @@ import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct;
 import com.wsoteam.mydietcoach.inapp.BillingManager;
 import com.wsoteam.mydietcoach.premium.FragmentPremium;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
+import com.wsoteam.mydietcoach.utils.FragmentLoad;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -110,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
                 Appodeal.INTERSTITIAL, isInter);
 
         fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new FragmentLoad()).commit();
+
         if (!hasConnection(this)) {
             Toast.makeText(this, R.string.check_your_connect, Toast.LENGTH_SHORT).show();
         }

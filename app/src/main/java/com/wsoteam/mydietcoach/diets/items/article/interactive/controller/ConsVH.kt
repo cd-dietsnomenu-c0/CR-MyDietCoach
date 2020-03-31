@@ -15,6 +15,9 @@ class ConsVH(inflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.View
     private fun getAllCons(cons: List<String>): String {
         var allCons = ""
         for (i in cons.indices) {
+            if (cons[i] == ""){
+                break
+            }
             allCons += (i + 1).toString() + ". " + cons[i] + "\n"
         }
         return allCons

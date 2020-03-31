@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_result" />
-                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\start.svg" />
+                            <entry key="outputName" value="ic_contents_description" />
+                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\file.svg" />
                           </map>
                         </option>
                       </PersistentState>

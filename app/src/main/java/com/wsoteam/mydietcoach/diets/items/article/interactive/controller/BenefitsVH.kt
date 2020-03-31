@@ -15,6 +15,9 @@ class BenefitsVH(inflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.
     private fun getBenefitsText(benefits: List<String>): String {
         var allBenefits = ""
         for (i in benefits.indices) {
+            if (benefits[i] == ""){
+                break
+            }
             allBenefits += (i + 1).toString() + ". " + benefits[i] + "\n"
         }
         return allBenefits
