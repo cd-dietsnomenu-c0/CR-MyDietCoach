@@ -3,11 +3,14 @@ package com.wsoteam.mydietcoach.diets.items.article.interactive
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.interactive.*
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.DietAdapter
 import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.IContents
+import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.managers.LayoutManagerTopScroll
 import kotlinx.android.synthetic.main.diet_act.*
 import java.util.*
 
@@ -18,10 +21,12 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         diet = intent.getSerializableExtra(Config.NEW_DIET) as Diet
-        rvDiet.layoutManager = LinearLayoutManager(this)
+
+        rvDiet.layoutManager = LayoutManagerTopScroll(this)
         rvDiet.adapter = DietAdapter(diet, object : IContents{
             override fun moveTo(position: Int) {
-                rvDiet.scrollToPosition(position)
+                //rvDiet.scrollToPosition(position)
+                rvDiet.smoothScrollToPosition(position)
             }
         })
     }

@@ -79,4 +79,5 @@
     <color name="text_color">#c0000000</color>
     <color name="text_color_small">#99000000</color>
     <color name="text_gray">#CE3C3939</color>
+    <color name="material_blue">#2196F3</color>
 </resources>

@@ -8,7 +8,6 @@ import kotlinx.android.synthetic.main.vh_info.view.*
 
 class InfoVh(inflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(inflater.inflate(R.layout.vh_info, viewGroup, false)) {
     fun bind(title: String, introduction: String) {
-        itemView.tvTitleInfo.text = title
         itemView.tvInfoText.text = introduction
     }
 }

@@ -88,7 +88,7 @@
         android:text="РЕЗУЛЬТАТЫ"
         android:textColor="@color/text_color"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
         app:layout_constraintEnd_toEndOf="@+id/tvBenefits"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/tvBenefits"
@@ -176,6 +176,20 @@
         app:layout_constraintStart_toStartOf="@+id/tvReviews"
         app:layout_constraintTop_toTopOf="@+id/fabResults"
         app:srcCompat="@drawable/ic_contents_reviews" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="4dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

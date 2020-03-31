@@ -9,22 +9,22 @@ import kotlinx.android.synthetic.main.contents_vh.view.*
 class ContentsVH(inflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(inflater.inflate(R.layout.contents_vh, viewGroup, false)) {
 
     fun bind(iContents: IContents) {
-        itemView.tvDescription.setOnClickListener {
+        itemView.fabInfo.setOnClickListener {
             iContents.moveTo(2)
         }
-        itemView.tvBenefits.setOnClickListener {
+        itemView.fabBenefits.setOnClickListener {
             iContents.moveTo(3)
         }
-        itemView.tvCons.setOnClickListener {
+        itemView.fabCons.setOnClickListener {
             iContents.moveTo(4)
         }
-        itemView.tvMenu.setOnClickListener {
+        itemView.fabMenu.setOnClickListener {
             iContents.moveTo(5)
         }
-        itemView.tvResults.setOnClickListener {
+        itemView.fabResults.setOnClickListener {
             iContents.moveTo(6)
         }
-        itemView.tvReviews.setOnClickListener {
+        itemView.fabReviews.setOnClickListener {
             iContents.moveTo(7)
         }
     }
