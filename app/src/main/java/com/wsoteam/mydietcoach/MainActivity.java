@@ -137,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setDietData(Global global) {
-        clearList(global);
         FragmentSections fragmentSections = FragmentSections.newInstance(global);
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentSections).commit();
         additionOneToSharedPreference();
