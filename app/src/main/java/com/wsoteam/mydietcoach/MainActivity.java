@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setDietData(Global global) {
+        clearList(global);
         FragmentSections fragmentSections = FragmentSections.newInstance(global);
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentSections).commit();
         additionOneToSharedPreference();
@@ -146,6 +147,25 @@ public class MainActivity extends AppCompatActivity {
         //sections.add(new FragmentPremium());
         sections.add(new FragmentSettings());
         //Log.e("LOL", global.getAllDiets().getDietList().get(0).getTitle());
+    }
+
+    private void clearList(Global global) {
+        for (int i = 0; i < global.getAllDiets().getDietList().size(); i++) {
+            for (int j = 0; j < global.getAllDiets().getDietList().get(i).getDays().size(); j++) {
+                for (int k = 0; k < global.getAllDiets().getDietList().get(i).getDays().get(j).getEats().size(); k++) {
+                    if (global.getAllDiets().getDietList().get(i).getDays().get(j).getEats().get(k).getText().equals("")){
+                        global.getAllDiets().getDietList().get(i).getDays().get(j).getEats().remove(k);
+                        k--;
+                    }
+                }
+
+            }
+        }
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("clearAdb");
+        databaseReference.setValue(global);
+
     }
 
     private Global getAsyncDietData() {

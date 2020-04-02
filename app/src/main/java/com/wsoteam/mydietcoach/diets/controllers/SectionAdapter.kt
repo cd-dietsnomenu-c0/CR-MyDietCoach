@@ -21,13 +21,13 @@ class SectionAdapter(var sectionList: ArrayList<Section>, var leftDrawables: Arr
     }
 
     override fun getItemCount(): Int {
-        return sectionList.size
+        return sectionList.size + 1
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is HeadVH -> holder.bind()
-            is SectionVH -> holder.bind(sectionList[position], leftDrawables[sectionList[position].urlOfImage.toInt()])
+            is SectionVH -> holder.bind(sectionList[position - 1], leftDrawables[sectionList[position - 1].urlOfImage.toInt()])
         }
     }
 
