@@ -35,6 +35,8 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Appodeal.setBannerViewId(R.id.appodealBannerView)
+        Appodeal.show(this, Appodeal.BANNER_VIEW)
         diet = intent.getSerializableExtra(Config.NEW_DIET) as Diet
         rvDiet.layoutManager = LayoutManagerTopScroll(this)
         rvDiet.adapter = DietAdapter(diet, object : IContents{

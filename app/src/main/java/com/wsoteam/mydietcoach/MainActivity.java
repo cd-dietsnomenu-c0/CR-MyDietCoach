@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.amplitude.api.Amplitude;
 import com.appodeal.ads.Appodeal;
 import com.appodeal.ads.BannerCallbacks;
+import com.appodeal.ads.InterstitialCallbacks;
 import com.appodeal.ads.NativeAd;
 import com.appodeal.ads.NativeCallbacks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

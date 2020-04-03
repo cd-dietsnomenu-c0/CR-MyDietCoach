@@ -30,6 +30,8 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Appodeal.setBannerViewId(R.id.appodealBannerView)
+        Appodeal.show(this, Appodeal.BANNER_VIEW)
         val allDiets = intent.getSerializableExtra(Config.NEW_DIETS) as AllDiets
         rvListDiets.layoutManager = LinearLayoutManager(this)
         rvListDiets.adapter = InteractiveAdapter(allDiets, object : ItemClick{
