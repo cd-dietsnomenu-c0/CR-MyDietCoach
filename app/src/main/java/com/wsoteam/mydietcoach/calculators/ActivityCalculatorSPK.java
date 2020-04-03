@@ -37,10 +37,7 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
     private void checkPermissionForShowInter() {
         if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
             Ampl.Companion.showAd();
-            Amplitude.getInstance().logEvent("show ad");
             Appodeal.show(this, Appodeal.INTERSTITIAL);
-            Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
-                    Appodeal.INTERSTITIAL, true);
         }
     }
 
@@ -51,8 +48,6 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
         setContentView(R.layout.activity_calculator_spk);
         Ampl.Companion.openCalcualtor("spk");
         Appodeal.setBannerViewId(R.id.appodealBannerView);
-        Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
-                Appodeal.INTERSTITIAL|Appodeal.BANNER, true);
         Appodeal.show(this, Appodeal.BANNER_VIEW);
 
         edtHeight = findViewById(R.id.edtSpkGrowth);

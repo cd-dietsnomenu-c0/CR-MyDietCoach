@@ -25,10 +25,7 @@ class ActivityArticle : AppCompatActivity(R.layout.fr_article) {
     private fun checkPermissionForShowInter() {
         if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
             showAd()
-            Amplitude.getInstance().logEvent("show ad")
             Appodeal.show(this, Appodeal.INTERSTITIAL)
-            Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
-                    Appodeal.INTERSTITIAL, true)
         }
     }
 
@@ -36,8 +33,6 @@ class ActivityArticle : AppCompatActivity(R.layout.fr_article) {
         super.onCreate(savedInstanceState)
 
         Appodeal.setBannerViewId(R.id.appodealBannerView)
-        Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
-                Appodeal.INTERSTITIAL or Appodeal.BANNER, true)
         Appodeal.show(this, Appodeal.BANNER_VIEW)
 
         var subsection = intent.getSerializableExtra(Config.ITEM_DATA) as Subsection

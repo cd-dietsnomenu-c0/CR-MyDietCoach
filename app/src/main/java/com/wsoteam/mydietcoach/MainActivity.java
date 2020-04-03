@@ -21,6 +21,9 @@ import android.widget.Toast;
 
 import com.amplitude.api.Amplitude;
 import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.BannerCallbacks;
+import com.appodeal.ads.NativeAd;
+import com.appodeal.ads.NativeCallbacks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -94,10 +97,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkPermissionForShowInter() {
         if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
             Ampl.Companion.showAd();
-            Amplitude.getInstance().logEvent("show ad");
             Appodeal.show(this, Appodeal.INTERSTITIAL);
-            Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
-                    Appodeal.INTERSTITIAL, isInter);
         }
     }
 
@@ -105,10 +105,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //new AsyncLoadFoodList().execute();
         Ampl.Companion.run();
         Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
-                Appodeal.INTERSTITIAL, isInter);
+                Appodeal.INTERSTITIAL | Appodeal.BANNER, isInter);
+
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new FragmentLoad()).commit();

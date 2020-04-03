@@ -4,15 +4,29 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.appodeal.ads.Appodeal
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.diets.ItemClick
 import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct
 import com.wsoteam.mydietcoach.diets.items.controllers.interactive.InteractiveAdapter
 import kotlinx.android.synthetic.main.new_diets_list_activity.*
 
 class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity) {
+
+    override fun onBackPressed() {
+        checkPermissionForShowInter()
+        super.onBackPressed()
+    }
+
+    private fun checkPermissionForShowInter() {
+        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
+            Ampl.showAd()
+            Appodeal.show(this, Appodeal.INTERSTITIAL)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
