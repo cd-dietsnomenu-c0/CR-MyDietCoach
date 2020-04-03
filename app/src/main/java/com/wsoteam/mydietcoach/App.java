@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.amplitude.api.Amplitude;
+import com.google.android.gms.ads.MobileAds;
 import com.wsoteam.mydietcoach.inapp.BillingManager;
 
 public class App extends Application{
@@ -13,6 +14,7 @@ public class App extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+        MobileAds.initialize(this);
         BillingManager.INSTANCE.init(this);
         Amplitude.getInstance().initialize(this, "d0d5dffefe8b29a89279f15daf6d62b5").
                 enableForegroundTracking(this);

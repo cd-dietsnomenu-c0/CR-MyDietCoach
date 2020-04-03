@@ -20,17 +20,15 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.amplitude.api.Amplitude;
-import com.appodeal.ads.Appodeal;
-import com.appodeal.ads.BannerCallbacks;
-import com.appodeal.ads.InterstitialCallbacks;
-import com.appodeal.ads.NativeAd;
-import com.appodeal.ads.NativeCallbacks;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets;
+import com.wsoteam.mydietcoach.ad.AdWorker;
+import com.wsoteam.mydietcoach.ad.Counter;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
@@ -91,25 +89,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        checkPermissionForShowInter();
+        AdWorker.INSTANCE.showInter();
         super.onBackPressed();
     }
 
-    private void checkPermissionForShowInter() {
-        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
-            Ampl.Companion.showAd();
-            Appodeal.show(this, Appodeal.INTERSTITIAL);
-        }
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AdWorker.INSTANCE.init(this);
         Ampl.Companion.run();
-        Appodeal.initialize(this, "7fd0642d87baf8b8e03f806d1605348bb83e4148cf2a9aa6",
-                Appodeal.INTERSTITIAL | Appodeal.BANNER, isInter);
-
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new FragmentLoad()).commit();

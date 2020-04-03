@@ -4,10 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.appodeal.ads.Appodeal
+import com.google.android.gms.ads.AdRequest
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.ad.AdWorker
 import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.diets.ItemClick
 import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct
@@ -17,21 +18,14 @@ import kotlinx.android.synthetic.main.new_diets_list_activity.*
 class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity) {
 
     override fun onBackPressed() {
-        checkPermissionForShowInter()
+        AdWorker.showInter()
         super.onBackPressed()
     }
 
-    private fun checkPermissionForShowInter() {
-        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
-            Ampl.showAd()
-            Appodeal.show(this, Appodeal.INTERSTITIAL)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Appodeal.setBannerViewId(R.id.appodealBannerView)
-        Appodeal.show(this, Appodeal.BANNER_VIEW)
+        appodealBannerView.loadAd(AdRequest.Builder().build())
         val allDiets = intent.getSerializableExtra(Config.NEW_DIETS) as AllDiets
         rvListDiets.layoutManager = LinearLayoutManager(this)
         rvListDiets.adapter = InteractiveAdapter(allDiets, object : ItemClick{

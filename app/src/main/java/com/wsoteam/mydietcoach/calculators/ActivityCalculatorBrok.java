@@ -13,9 +13,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplitude.api.Amplitude;
-import com.appodeal.ads.Appodeal;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.ad.AdWorker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 
 
@@ -23,21 +25,15 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
     private EditText edtBrokGrowth, edtBrokGirth, edtBrokAge;
     private RadioButton rbFemale, rbMale;
     private Button btnCalculate;
+    private AdView ban;
     int growth, girth, age, femaleDownFlag = 14, femaleUpFlag = 18, maleDownFlag = 17, maleUpFlag = 20, minNumber = 0;
     double idealWeight;
     boolean ast = false, normo = false, hyper = false;
 
     @Override
     public void onBackPressed() {
-        checkPermissionForShowInter();
+        AdWorker.INSTANCE.showInter();
         super.onBackPressed();
-    }
-
-    private void checkPermissionForShowInter() {
-        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
-            Ampl.Companion.showAd();
-            Appodeal.show(this, Appodeal.INTERSTITIAL);
-        }
     }
 
 
@@ -46,9 +42,8 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator_brok);
         Ampl.Companion.openCalcualtor("brok");
-        Appodeal.setBannerViewId(R.id.appodealBannerView);
-        Appodeal.show(this, Appodeal.BANNER_VIEW);
-
+        ban = findViewById(R.id.appodealBannerView);
+        ban.loadAd(new AdRequest.Builder().build());
         edtBrokGrowth = findViewById(R.id.edtBrokGrowth);
         edtBrokGirth = findViewById(R.id.edtBrokGirth);
         edtBrokAge = findViewById(R.id.edtBrokAge);

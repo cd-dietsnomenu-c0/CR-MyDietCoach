@@ -4,37 +4,30 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amplitude.api.Amplitude
-import com.appodeal.ads.Appodeal
 import com.bumptech.glide.Glide
+import com.google.android.gms.ads.AdRequest
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.ItemOfSubsection
 import com.wsoteam.mydietcoach.POJOS.Subsection
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.ad.AdWorker
 import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.analytics.Ampl.Companion.showAd
 import com.wsoteam.mydietcoach.diets.items.article.controllers.PartAdapter
+import kotlinx.android.synthetic.main.activity_list_items.*
 import kotlinx.android.synthetic.main.fr_article.*
+import kotlinx.android.synthetic.main.fr_article.appodealBannerView
 
 class ActivityArticle : AppCompatActivity(R.layout.fr_article) {
 
     override fun onBackPressed() {
-        checkPermissionForShowInter()
+        AdWorker.showInter()
         super.onBackPressed()
-    }
-
-    private fun checkPermissionForShowInter() {
-        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
-            showAd()
-            Appodeal.show(this, Appodeal.INTERSTITIAL)
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        Appodeal.setBannerViewId(R.id.appodealBannerView)
-        Appodeal.show(this, Appodeal.BANNER_VIEW)
-
+        appodealBannerView.loadAd(AdRequest.Builder().build())
         var subsection = intent.getSerializableExtra(Config.ITEM_DATA) as Subsection
         Glide.with(this).load(resources.getStringArray(R.array.images)[subsection.urlOfImage.toInt()]).into(ivCollapsing)
         main_toolbar.title = subsection.description

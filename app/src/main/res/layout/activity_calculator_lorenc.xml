@@ -86,10 +86,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtLorencHeight" />
 
-        <com.appodeal.ads.BannerView
+        <com.google.android.gms.ads.AdView
             android:id="@+id/appodealBannerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="@string/banner_id"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

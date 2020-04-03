@@ -16,9 +16,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplitude.api.Amplitude;
-import com.appodeal.ads.Appodeal;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.ad.AdWorker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 
 
@@ -27,18 +30,11 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
     private Button btnLevelLoad, btnCalculate;
     private RadioGroup rgFemaleOrMale;
     private TextView tvTitle;
-
+    private AdView ban;
     @Override
     public void onBackPressed() {
-        checkPermissionForShowInter();
+        AdWorker.INSTANCE.showInter();
         super.onBackPressed();
-    }
-
-    private void checkPermissionForShowInter() {
-        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
-            Ampl.Companion.showAd();
-            Appodeal.show(this, Appodeal.INTERSTITIAL);
-        }
     }
 
 
@@ -47,9 +43,8 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator_spk);
         Ampl.Companion.openCalcualtor("spk");
-        Appodeal.setBannerViewId(R.id.appodealBannerView);
-        Appodeal.show(this, Appodeal.BANNER_VIEW);
-
+        ban = findViewById(R.id.appodealBannerView);
+        ban.loadAd(new AdRequest.Builder().build());
         edtHeight = findViewById(R.id.edtSpkGrowth);
         edtAge = findViewById(R.id.edtSpkAge);
         edtWeight = findViewById(R.id.edtSpkWeight);

@@ -14,31 +14,27 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplitude.api.Amplitude;
-import com.appodeal.ads.Appodeal;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.ad.AdWorker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 
 import java.util.ArrayList;
 
 public class ActivityCalculatorIMT extends AppCompatActivity {
-
+    private AdView ban;
     private Button btnCalculate;
     private EditText edtHeight, edtWeight;
     private double weight, height;
 
     @Override
     public void onBackPressed() {
-        checkPermissionForShowInter();
+        AdWorker.INSTANCE.showInter();
         super.onBackPressed();
     }
 
-    private void checkPermissionForShowInter() {
-        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
-            Ampl.Companion.showAd();
-            Appodeal.show(this, Appodeal.INTERSTITIAL);
-        }
-    }
 
 
     @Override
@@ -46,9 +42,8 @@ public class ActivityCalculatorIMT extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator_imt);
         Ampl.Companion.openCalcualtor("imt");
-        Appodeal.setBannerViewId(R.id.appodealBannerView);
-        Appodeal.show(this, Appodeal.BANNER_VIEW);
-
+        ban = findViewById(R.id.appodealBannerView);
+        ban.loadAd(new AdRequest.Builder().build());
         btnCalculate = findViewById(R.id.btnIMTCalculate);
         edtHeight = findViewById(R.id.edtIMTHeight);
         edtWeight = findViewById(R.id.edtIMTWeight);

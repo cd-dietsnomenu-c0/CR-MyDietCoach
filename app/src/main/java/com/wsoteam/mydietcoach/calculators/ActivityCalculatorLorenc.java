@@ -12,37 +12,31 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplitude.api.Amplitude;
-import com.appodeal.ads.Appodeal;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.ad.AdWorker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 
 public class ActivityCalculatorLorenc extends AppCompatActivity {
     EditText edtLorencHeight;
     Button btnCalculate;
+    private AdView ban;
 
     @Override
     public void onBackPressed() {
-        checkPermissionForShowInter();
+        AdWorker.INSTANCE.showInter();
         super.onBackPressed();
     }
-
-    private void checkPermissionForShowInter() {
-        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
-            Ampl.Companion.showAd();
-            Appodeal.show(this, Appodeal.INTERSTITIAL);
-        }
-    }
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator_lorenc);
         Ampl.Companion.openCalcualtor("lorenc");
-        Appodeal.setBannerViewId(R.id.appodealBannerView);
-        Appodeal.show(this, Appodeal.BANNER_VIEW);
-
+        ban = findViewById(R.id.appodealBannerView);
+        ban.loadAd(new AdRequest.Builder().build());
         edtLorencHeight = findViewById(R.id.edtLorencHeight);
         btnCalculate = findViewById(R.id.btnLorencCalculate);
 
