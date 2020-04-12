@@ -41,6 +41,7 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdWorker.INSTANCE.checkLoad();
         setContentView(R.layout.activity_calculator_spk);
         Ampl.Companion.openCalcualtor("spk");
         ban = findViewById(R.id.appodealBannerView);

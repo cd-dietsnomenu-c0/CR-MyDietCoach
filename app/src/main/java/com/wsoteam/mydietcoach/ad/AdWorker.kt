@@ -11,6 +11,11 @@ object AdWorker {
     private const val MAX_REQUEST_AD = 3
     private var countRequestAd: Int = 0
     private var inter : InterstitialAd? = null
+    private const val MAX_QUERY = 3
+    private var counterFailed = 0
+    var isFailedLoad = false
+
+
 
     fun init(context: Context){
         inter = InterstitialAd(context)
@@ -19,8 +24,11 @@ object AdWorker {
         inter?.adListener = object : AdListener() {
 
             override fun onAdFailedToLoad(p0: Int) {
-                if (countRequestAd <= MAX_REQUEST_AD){
-                    inter?.loadAd(AdRequest.Builder().build())
+                counterFailed ++
+                if (counterFailed <= MAX_QUERY){
+                    reload()
+                }else{
+                    isFailedLoad = true
                 }
             }
 
@@ -35,13 +43,27 @@ object AdWorker {
         }
     }
 
+    private fun reload(){
+        inter?.loadAd(AdRequest.Builder().build())
+    }
+
+    fun checkLoad(){
+        if (isFailedLoad) {
+            counterFailed = 0
+            isFailedLoad = false
+            reload()
+        }
+    }
+
     fun showInter(){
         if (Counter.getInstance().getCounter() % 3 == 0) {
             if (inter?.isLoaded == true) {
                 inter?.show()
                 Counter.getInstance().adToCounter()
-            } else {
-                //TODO log
+            } else if(isFailedLoad){
+                counterFailed = 0
+                isFailedLoad = false
+                reload()
             }
         }else{
             Counter.getInstance().adToCounter()

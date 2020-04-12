@@ -19,8 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:id="@+id/ivBackground"
-            tools:src="@drawable/head_newdiets"/>
+            android:id="@+id/ivBackground"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -37,6 +36,15 @@
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
             android:layout_marginLeft="16dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivLabelNew"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/img_label_new"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"/>
 
     </androidx.cardview.widget.CardView>
 </FrameLayout>

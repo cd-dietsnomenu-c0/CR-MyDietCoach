@@ -40,6 +40,7 @@ public class ActivityCalculatorIMT extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdWorker.INSTANCE.checkLoad();
         setContentView(R.layout.activity_calculator_imt);
         Ampl.Companion.openCalcualtor("imt");
         ban = findViewById(R.id.appodealBannerView);

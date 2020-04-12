@@ -27,6 +27,7 @@ class ActivityArticle : AppCompatActivity(R.layout.fr_article) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AdWorker.checkLoad()
         appodealBannerView.loadAd(AdRequest.Builder().build())
         var subsection = intent.getSerializableExtra(Config.ITEM_DATA) as Subsection
         Glide.with(this).load(resources.getStringArray(R.array.images)[subsection.urlOfImage.toInt()]).into(ivCollapsing)

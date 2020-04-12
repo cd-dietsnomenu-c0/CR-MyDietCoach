@@ -32,6 +32,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AdWorker.checkLoad()
         appodealBannerView.loadAd(AdRequest.Builder().build())
         diet = intent.getSerializableExtra(Config.NEW_DIET) as Diet
         rvDiet.layoutManager = LayoutManagerTopScroll(this)

@@ -9,4 +9,5 @@ public class Config {
     public static final String NEW_DIETS = "NEW_DIETS";
     public static final String NEW_DIET = "NEW_DIET";
     public static int INDEX_ADMOB = 0;
+    public static int NEW_MAX = 6;
 }

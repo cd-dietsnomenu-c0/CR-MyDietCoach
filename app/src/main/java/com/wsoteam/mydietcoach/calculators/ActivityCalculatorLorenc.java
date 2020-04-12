@@ -33,6 +33,7 @@ public class ActivityCalculatorLorenc extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdWorker.INSTANCE.checkLoad();
         setContentView(R.layout.activity_calculator_lorenc);
         Ampl.Companion.openCalcualtor("lorenc");
         ban = findViewById(R.id.appodealBannerView);

@@ -31,6 +31,7 @@ class ActivityListItems : AppCompatActivity(R.layout.activity_list_items) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AdWorker.checkLoad()
         appodealBannerView.loadAd(AdRequest.Builder().build())
         val section = intent.getSerializableExtra(Config.SECTION_DATA) as Section
         subsectionArrayList = section.arrayOfSubSections as ArrayList<Subsection>

@@ -40,6 +40,7 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdWorker.INSTANCE.checkLoad();
         setContentView(R.layout.activity_calculator_brok);
         Ampl.Companion.openCalcualtor("brok");
         ban = findViewById(R.id.appodealBannerView);

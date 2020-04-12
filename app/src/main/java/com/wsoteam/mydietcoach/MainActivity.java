@@ -22,11 +22,15 @@ import android.widget.Toast;
 import com.amplitude.api.Amplitude;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets;
+import com.wsoteam.mydietcoach.POJOS.interactive.Diet;
 import com.wsoteam.mydietcoach.ad.AdWorker;
 import com.wsoteam.mydietcoach.ad.Counter;
 import com.wsoteam.mydietcoach.analytics.Ampl;
@@ -42,6 +46,7 @@ import com.wsoteam.mydietcoach.utils.FragmentLoad;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -137,27 +142,9 @@ public class MainActivity extends AppCompatActivity {
         sections.add(new FragmentCalculators());
         //sections.add(new FragmentPremium());
         sections.add(new FragmentSettings());
-        //Log.e("LOL", global.getAllDiets().getDietList().get(0).getTitle());
     }
 
-    private void clearList(Global global) {
-        for (int i = 0; i < global.getAllDiets().getDietList().size(); i++) {
-            for (int j = 0; j < global.getAllDiets().getDietList().get(i).getDays().size(); j++) {
-                for (int k = 0; k < global.getAllDiets().getDietList().get(i).getDays().get(j).getEats().size(); k++) {
-                    if (global.getAllDiets().getDietList().get(i).getDays().get(j).getEats().get(k).getText().equals("")){
-                        global.getAllDiets().getDietList().get(i).getDays().get(j).getEats().remove(k);
-                        k--;
-                    }
-                }
 
-            }
-        }
-
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("clearAdb");
-        databaseReference.setValue(global);
-
-    }
 
     private Global getAsyncDietData() {
         String json;
