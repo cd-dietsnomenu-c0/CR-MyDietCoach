@@ -2,13 +2,16 @@ package com.wsoteam.mydietcoach.diets.items
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.ad.AdWorker
+import com.wsoteam.mydietcoach.ad.NativeSpeaker
 import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.diets.ItemClick
 import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct
@@ -25,6 +28,12 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AdWorker.observeOnNativeList(object : NativeSpeaker{
+            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                Log.e("LOL", nativeList.size.toString() + " lol")
+                AdWorker.refreshNativeAd(this@NewDietsListActivity)
+            }
+        })
         Ampl.openNewDiets()
         AdWorker.checkLoad()
         appodealBannerView.loadAd(AdRequest.Builder().build())

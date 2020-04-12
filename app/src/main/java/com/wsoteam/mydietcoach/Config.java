@@ -10,4 +10,5 @@ public class Config {
     public static final String NEW_DIET = "NEW_DIET";
     public static int INDEX_ADMOB = 0;
     public static int NEW_MAX = 6;
+    public static int NATIVE_ITEMS_MAX = 2;
 }

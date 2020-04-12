@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.amplitude.api.Amplitude;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +34,7 @@ import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets;
 import com.wsoteam.mydietcoach.POJOS.interactive.Diet;
 import com.wsoteam.mydietcoach.ad.AdWorker;
 import com.wsoteam.mydietcoach.ad.Counter;
+import com.wsoteam.mydietcoach.ad.NativeSpeaker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
@@ -43,6 +45,8 @@ import com.wsoteam.mydietcoach.inapp.BillingManager;
 import com.wsoteam.mydietcoach.premium.FragmentPremium;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
 import com.wsoteam.mydietcoach.utils.FragmentLoad;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -105,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AdWorker.INSTANCE.init(this);
+        AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
+            @Override
+            public void loadFin(@NotNull ArrayList<UnifiedNativeAd> nativeList) {
+                Log.e("LOL", String.valueOf(nativeList.size()) + " kek");
+            }
+        });
         Ampl.Companion.run();
 
         fragmentManager = getSupportFragmentManager();
