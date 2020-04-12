@@ -37,6 +37,7 @@ import com.wsoteam.mydietcoach.ad.Counter;
 import com.wsoteam.mydietcoach.ad.NativeSpeaker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
+import com.wsoteam.mydietcoach.common.FBWork;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.diets.items.article.ActivityArticle;
