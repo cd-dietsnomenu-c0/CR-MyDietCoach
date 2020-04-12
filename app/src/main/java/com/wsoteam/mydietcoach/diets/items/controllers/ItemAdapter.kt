@@ -19,6 +19,7 @@ class ItemAdapter(val list: ArrayList<Subsection>,
 
     val ITEM_TYPE = 0
     val AD_TYPE = 1
+    var counter = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var inflater = LayoutInflater.from(parent.context)
@@ -44,12 +45,24 @@ class ItemAdapter(val list: ArrayList<Subsection>,
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
             ITEM_TYPE ->(holder as ItemVH).bind(list[position], drawables[list[position].urlOfImage.toInt()])
-            AD_TYPE ->(holder as NativeVH).bind(nativeList[0])
+            AD_TYPE ->(holder as NativeVH).bind(nativeList[getAdPosition()])
         }
     }
 
     fun insertAds(listAds: ArrayList<UnifiedNativeAd>) {
         nativeList = listAds
         notifyDataSetChanged()
+    }
+
+    private fun getAdPosition() : Int{
+        var position = 0
+        if (counter > Config.NATIVE_ITEMS_MAX - 1){
+            position = 0
+            counter = 1
+        }else{
+            position = counter
+            counter++
+        }
+        return position
     }
 }

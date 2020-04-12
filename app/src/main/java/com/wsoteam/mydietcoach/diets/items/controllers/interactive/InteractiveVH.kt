@@ -25,6 +25,8 @@ class InteractiveVH(inflater: LayoutInflater, viewGroup: ViewGroup, val itemClic
     private fun bindLabel() {
         if (adapterPosition > Config.NEW_MAX){
             itemView.ivLabelNew.visibility = View.GONE
+        }else{
+            itemView.ivLabelNew.visibility = View.VISIBLE
         }
     }
 

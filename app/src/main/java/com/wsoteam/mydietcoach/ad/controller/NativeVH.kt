@@ -21,10 +21,7 @@ class NativeVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup)
         itemView.ad_view.bodyView = itemView.ad_body
         itemView.ad_view.callToActionView = itemView.ad_call_to_action
         itemView.ad_view.iconView = itemView.ad_icon
-        itemView.ad_view.priceView = itemView.ad_price
         itemView.ad_view.starRatingView = itemView.ad_stars
-        itemView.ad_view.storeView = itemView.ad_store
-        itemView.ad_view.advertiserView = itemView.ad_advertiser
     }
 
     fun bind(unifiedNativeAd: UnifiedNativeAd) {
@@ -45,20 +42,6 @@ class NativeVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup)
             itemView.ad_view.iconView.visibility = View.VISIBLE
         }
 
-        if (nativeAd.price == null) {
-            itemView.ad_view.priceView.visibility = View.INVISIBLE
-        } else {
-            itemView.ad_view.priceView.visibility = View.VISIBLE
-            (itemView.ad_view.priceView as TextView).text = nativeAd.price
-        }
-
-        if (nativeAd.store == null) {
-            itemView.ad_view.storeView.visibility = View.INVISIBLE
-        } else {
-            itemView.ad_view.storeView.visibility = View.VISIBLE
-            (itemView.ad_view.storeView as TextView).text = nativeAd.store
-        }
-
         if (nativeAd.starRating == null) {
             itemView.ad_view.starRatingView.visibility = View.INVISIBLE
         } else {
@@ -66,12 +49,7 @@ class NativeVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup)
             itemView.ad_view.starRatingView.visibility = View.VISIBLE
         }
 
-        if (nativeAd.advertiser == null) {
-            itemView.ad_view.advertiserView.visibility = View.INVISIBLE
-        } else {
-            (itemView.ad_view.advertiserView as TextView).text = nativeAd.advertiser
-            itemView.ad_view.advertiserView.visibility = View.VISIBLE
-        }
+
 
         itemView.ad_view.setNativeAd(nativeAd)
     }
