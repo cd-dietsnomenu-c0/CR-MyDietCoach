@@ -28,23 +28,24 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AdWorker.observeOnNativeList(object : NativeSpeaker{
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
-                Log.e("LOL", nativeList.size.toString() + " lol")
-                AdWorker.refreshNativeAd(this@NewDietsListActivity)
-            }
-        })
         Ampl.openNewDiets()
         AdWorker.checkLoad()
-        appodealBannerView.loadAd(AdRequest.Builder().build())
+        //appodealBannerView.loadAd(AdRequest.Builder().build())
         val allDiets = intent.getSerializableExtra(Config.NEW_DIETS) as AllDiets
         rvListDiets.layoutManager = LinearLayoutManager(this)
-        rvListDiets.adapter = InteractiveAdapter(allDiets, object : ItemClick{
+        val adapter = InteractiveAdapter(allDiets, object : ItemClick{
             override fun click(position: Int) {
                 startActivity(Intent(this@NewDietsListActivity, DietAct::class.java).putExtra(Config.NEW_DIET, allDiets.dietList[position]))
             }
 
             override fun newDietsClick() {
+            }
+        }, arrayListOf())
+        rvListDiets.adapter = adapter
+        AdWorker.observeOnNativeList(object : NativeSpeaker{
+            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                adapter.insertAds(nativeList)
+                AdWorker.refreshNativeAd(this@NewDietsListActivity)
             }
         })
     }

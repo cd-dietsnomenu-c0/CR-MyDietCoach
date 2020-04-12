@@ -2,15 +2,16 @@
     <string name="app_name">Диеты</string>
     <string name="check_your_connect">Check your internet</string>
 
-    <!--<string name="admob_key" translatable="false">ca-app-pub-2555056002292788~2196488278</string>
+    <string name="admob_key" translatable="false">ca-app-pub-2555056002292788~2196488278</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-2555056002292788/2565401391</string>
-    <string name="banner_id" translatable="false">ca-app-pub-2555056002292788/5191564733</string>-->
+    <string name="banner_id" translatable="false">ca-app-pub-2555056002292788/5191564733</string>
+    <string name="native_ad" translatable="false">ca-app-pub-2555056002292788/5432421082</string>
 
     <!--Test-->
-    <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <!--<string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
+    <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>-->
 
     <string name="title_activity_drawer">DrawerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

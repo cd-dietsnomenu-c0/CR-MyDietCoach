@@ -15,7 +15,7 @@ public class App extends Application{
     public void onCreate() {
         super.onCreate();
         MobileAds.initialize(this);
-        BillingManager.INSTANCE.init(this);
+        //BillingManager.INSTANCE.init(this);
         Amplitude.getInstance().initialize(this, "d0d5dffefe8b29a89279f15daf6d62b5").
                 enableForegroundTracking(this);
         context = this;

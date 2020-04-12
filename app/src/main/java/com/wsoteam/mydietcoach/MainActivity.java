@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,7 +139,15 @@ public class MainActivity extends AppCompatActivity {
         })
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> setDietData(t), Throwable::printStackTrace);
+                .subscribe(t -> setDietDataTC(t), Throwable::printStackTrace);
+    }
+
+    private void setDietDataTC(Global t) {
+        try {
+            setDietData(t);
+        }catch (Exception ex){
+            finishAffinity();
+        }
     }
 
     private void setDietData(Global global) {
