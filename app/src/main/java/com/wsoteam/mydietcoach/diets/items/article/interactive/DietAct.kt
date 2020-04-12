@@ -42,6 +42,8 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
                 rvDiet.smoothScrollToPosition(position)
             }
         })
+
+        Ampl.openNewDiet(diet.title)
     }
 
 

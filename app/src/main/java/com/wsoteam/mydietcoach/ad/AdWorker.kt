@@ -6,10 +6,10 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.analytics.Ampl
 
 object AdWorker {
     private const val MAX_REQUEST_AD = 3
-    private var countRequestAd: Int = 0
     private var inter : InterstitialAd? = null
     private const val MAX_QUERY = 3
     private var counterFailed = 0
@@ -24,10 +24,12 @@ object AdWorker {
         inter?.adListener = object : AdListener() {
 
             override fun onAdFailedToLoad(p0: Int) {
+                Ampl.failedOneLoads()
                 counterFailed ++
                 if (counterFailed <= MAX_QUERY){
                     reload()
                 }else{
+                    Ampl.failedAllLoads()
                     isFailedLoad = true
                 }
             }
@@ -56,9 +58,10 @@ object AdWorker {
     }
 
     fun showInter(){
-        if (Counter.getInstance().getCounter() % 3 == 0) {
+        if (Counter.getInstance().getCounter() % MAX_REQUEST_AD == 0) {
             if (inter?.isLoaded == true) {
                 inter?.show()
+                Ampl.showAd()
                 Counter.getInstance().adToCounter()
             } else if(isFailedLoad){
                 counterFailed = 0

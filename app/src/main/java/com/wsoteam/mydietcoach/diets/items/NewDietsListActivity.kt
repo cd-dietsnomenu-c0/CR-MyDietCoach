@@ -25,6 +25,7 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Ampl.openNewDiets()
         AdWorker.checkLoad()
         appodealBannerView.loadAd(AdRequest.Builder().build())
         val allDiets = intent.getSerializableExtra(Config.NEW_DIETS) as AllDiets

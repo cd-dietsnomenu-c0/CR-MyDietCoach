@@ -7,8 +7,11 @@ import org.json.JSONObject
 class Ampl {
     companion object {
         val show_ad = "show_ad"
+        val failed_all_loads = "failed_all_loads"
+        val failed_one_loads = "failed_one_loads"
         val run_app = "run"
         val show_diet_section = "show_diet_section"
+        val show_new_diet_section = "show_new_diet_section"
         val show_calculation_section = "show_calculation_section"
         val show_settings_section = "show_settings_section"
 
@@ -17,6 +20,7 @@ class Ampl {
         val open_subsection_diet_name = "name"
 
         val open_diet = "open_diet"
+        val open_new_diet = "open_new_diet"
         val open_diet_name = "name_of_diet"
 
 
@@ -32,12 +36,24 @@ class Ampl {
         val settings_grade = "settings_grade"
         val settings_share = "settings_share"
 
+        fun failedAllLoads() {
+            Amplitude.getInstance().logEvent(failed_all_loads)
+        }
+
+        fun failedOneLoads() {
+            Amplitude.getInstance().logEvent(failed_one_loads)
+        }
+
         fun run() {
             Amplitude.getInstance().logEvent(run_app)
         }
 
         fun showAd() {
             Amplitude.getInstance().logEvent(show_ad)
+        }
+
+        fun openNewDiets() {
+            Amplitude.getInstance().logEvent(show_new_diet_section)
         }
 
         fun openDiets() {
@@ -72,6 +88,16 @@ class Ampl {
                 exception.printStackTrace()
             }
             Amplitude.getInstance().logEvent(open_subsection_diet, eventProperties)
+        }
+
+        fun openNewDiet(nameDiet: String) {
+            val eventProperties = JSONObject()
+            try {
+                eventProperties.put(open_diet_name, nameDiet)
+            } catch (exception: JSONException) {
+                exception.printStackTrace()
+            }
+            Amplitude.getInstance().logEvent(open_new_diet, eventProperties)
         }
 
         fun openDiet(nameDiet: String) {
