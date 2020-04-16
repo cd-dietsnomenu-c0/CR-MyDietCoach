@@ -24,14 +24,33 @@ class ItemAdapter(val list: ArrayList<Subsection>,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var inflater = LayoutInflater.from(parent.context)
         return when(viewType){
-            ITEM_TYPE -> ItemVH(inflater, parent, itemClick)
+            ITEM_TYPE -> ItemVH(inflater, parent,  object : ItemClick{
+                override fun click(position: Int) {
+                    itemClick.click(getRealPosition(position))
+                }
+
+                override fun newDietsClick() {
+                }
+            })
             AD_TYPE -> NativeVH(inflater, parent)
             else -> ItemVH(inflater, parent, itemClick)
         }
     }
 
+    private fun getRealPosition(position: Int): Int {
+        return if (nativeList.isEmpty()){
+            position
+        }else{
+            position - position / Config.WHICH_AD_NEW_DIETS
+        }
+    }
+
     override fun getItemCount(): Int {
-        return list.size
+        return if(nativeList.isNotEmpty()){
+            list.size + list.size / (Config.WHICH_AD_NEW_DIETS - 1)
+        }else{
+            return list.size
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -44,7 +63,7 @@ class ItemAdapter(val list: ArrayList<Subsection>,
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
-            ITEM_TYPE ->(holder as ItemVH).bind(list[position], drawables[list[position].urlOfImage.toInt()])
+            ITEM_TYPE ->(holder as ItemVH).bind(list[getRealPosition(position)], drawables[list[getRealPosition(position)].urlOfImage.toInt()])
             AD_TYPE ->(holder as NativeVH).bind(nativeList[getAdPosition()])
         }
     }

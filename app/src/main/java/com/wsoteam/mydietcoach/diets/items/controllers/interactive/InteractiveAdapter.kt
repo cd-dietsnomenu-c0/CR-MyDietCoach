@@ -17,7 +17,14 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var inflater = LayoutInflater.from(parent.context)
         return when(viewType){
-            ITEM_TYPE ->  InteractiveVH(inflater, parent, itemClick)
+            ITEM_TYPE ->  InteractiveVH(inflater, parent, object : ItemClick{
+                override fun click(position: Int) {
+                    itemClick.click(getRealPosition(position))
+                }
+
+                override fun newDietsClick() {
+                }
+            })
             AD_TYPE -> NativeVH(inflater, parent)
             else ->  InteractiveVH(inflater, parent, itemClick)
         }
@@ -25,7 +32,11 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
     }
 
     override fun getItemCount(): Int {
-        return allDiets.dietList.size
+        return if(nativeList.isNotEmpty()){
+            allDiets.dietList.size + allDiets.dietList.size / (Config.WHICH_AD_NEW_DIETS - 1)
+        }else{
+            return allDiets.dietList.size
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -38,8 +49,16 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
-            ITEM_TYPE ->(holder as InteractiveVH).bind(allDiets.dietList[position].title, allDiets.dietList[position].mainImage)
+            ITEM_TYPE ->(holder as InteractiveVH).bind(allDiets.dietList[getRealPosition(position)].title, allDiets.dietList[getRealPosition(position)].mainImage)
             AD_TYPE ->(holder as NativeVH).bind(nativeList[getAdPosition()])
+        }
+    }
+
+    private fun getRealPosition(position: Int): Int {
+        return if (nativeList.isEmpty()){
+            position
+        }else{
+           position - position / Config.WHICH_AD_NEW_DIETS
         }
     }
 
