@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets;
@@ -108,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FBWork.Companion.getFCMToken();
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
         AdWorker.INSTANCE.init(this);
         AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
             @Override
