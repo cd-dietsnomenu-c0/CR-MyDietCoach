@@ -1,5 +1,6 @@
 package com.wsoteam.mydietcoach.services
 
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.ContentResolver
@@ -8,6 +9,8 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -25,9 +28,9 @@ class FCMService : FirebaseMessagingService() {
         var pendingIntent = PendingIntent
                 .getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
-        var largeIcon = BitmapFactory.decodeResource(resources, R.drawable.gradient_benefits)
+        var largeIcon = BitmapFactory.decodeResource(resources, R.drawable.ic_notification)
         var notificationBuilder = NotificationCompat.Builder(this, "com.jundev.diets")
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_small_notification)
                 .setLargeIcon(largeIcon)
                 .setContentTitle(p0.notification?.title)
                 .setContentText(p0.notification?.body)
@@ -39,6 +42,15 @@ class FCMService : FirebaseMessagingService() {
                 .setContentIntent(pendingIntent)
 
         var notificationManager : NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel("com.jundev.diets",
+                    "Channel human readable title",
+                    NotificationManager.IMPORTANCE_DEFAULT)
+            notificationManager.createNotificationChannel(channel)
+        }*/
         notificationManager.notify(0, notificationBuilder.build())
     }
+
+
 }

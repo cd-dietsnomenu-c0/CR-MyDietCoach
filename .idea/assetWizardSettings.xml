@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_ad" />
-                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\ad.svg" />
+                            <entry key="outputName" value="ic_small_notification" />
+                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\slim-down.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -42,12 +42,12 @@ public class App extends Application{
 
             String channelId = "com.jundev.diets";
             String channelName = "com.jundev.diets";
-            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             channel.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.notification), att);
             channel.setLightColor(Color.parseColor("#4B8A08"));
-            channel.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});
+            channel.setVibrationPattern(new long[]{0, 500});
             channel.enableVibration(true);
-            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.createNotificationChannel(channel);
         }
     }
