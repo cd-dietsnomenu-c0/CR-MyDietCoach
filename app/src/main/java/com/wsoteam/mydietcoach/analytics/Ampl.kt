@@ -36,6 +36,17 @@ class Ampl {
         val settings_grade = "settings_grade"
         val settings_share = "settings_share"
 
+        val recieve_fcm = "recieve_fcm"
+        val open_from_push = "open_from_push"
+
+        fun recieveFCM() {
+            Amplitude.getInstance().logEvent(recieve_fcm)
+        }
+
+        fun openFromPush() {
+            Amplitude.getInstance().logEvent(open_from_push)
+        }
+
         fun failedAllLoads() {
             Amplitude.getInstance().logEvent(failed_all_loads)
         }

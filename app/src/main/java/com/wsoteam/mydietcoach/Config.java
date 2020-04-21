@@ -12,4 +12,7 @@ public class Config {
     public static int NEW_MAX = 6;
     public static int NATIVE_ITEMS_MAX = 3;
     public static int WHICH_AD_NEW_DIETS = 3;
+
+    public static String PUSH_TAG = "PUSH_TAG";
+    public static String OPEN_FROM_PUSH = "OPEN_FROM_PUSH";
 }

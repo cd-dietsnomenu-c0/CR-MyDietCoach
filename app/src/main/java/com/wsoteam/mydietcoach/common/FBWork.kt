@@ -52,7 +52,7 @@ class FBWork {
             dr.setValue(global)
         }
 
-        private fun clearList(global: Global) {
+        fun clearList(global: Global) {
             for (i in global.allDiets.dietList.indices) {
                 for (j in global.allDiets.dietList[i].days.indices) {
                     var k = 0
