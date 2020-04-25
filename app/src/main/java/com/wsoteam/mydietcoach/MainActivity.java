@@ -7,45 +7,30 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.amplitude.api.Amplitude;
-import com.google.android.gms.ads.MobileAds;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
-import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets;
-import com.wsoteam.mydietcoach.POJOS.interactive.Diet;
+import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.ad.AdWorker;
-import com.wsoteam.mydietcoach.ad.Counter;
 import com.wsoteam.mydietcoach.ad.NativeSpeaker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.common.FBWork;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
-import com.wsoteam.mydietcoach.POJOS.Global;
-import com.wsoteam.mydietcoach.diets.items.article.ActivityArticle;
-import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct;
-import com.wsoteam.mydietcoach.inapp.BillingManager;
-import com.wsoteam.mydietcoach.premium.FragmentPremium;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
 import com.wsoteam.mydietcoach.utils.FragmentLoad;
 
@@ -53,7 +38,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -110,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (getIntent().getExtras() != null && getIntent().getExtras().getString(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)){
+        if (getIntent().getExtras() != null
+                && getIntent().getExtras().getString(Config.PUSH_TAG) != null
+                && getIntent().getExtras().getString(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)){
             Ampl.Companion.openFromPush();
         }
         FirebaseMessaging.getInstance().subscribeToTopic("news").addOnSuccessListener(new OnSuccessListener<Void>() {
