@@ -9,7 +9,6 @@
         android:layout_height="90dp"
         android:layout_gravity="center"
         android:id="@+id/lavLoad"
-        app:lottie_cacheStrategy="weak"
         app:lottie_autoPlay="true"
         app:lottie_fileName="load.json"
         app:lottie_loop="true" />

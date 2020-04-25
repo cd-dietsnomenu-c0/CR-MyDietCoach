@@ -33,6 +33,7 @@ import com.wsoteam.mydietcoach.common.FBWork;
 import com.wsoteam.mydietcoach.common.FBWorker;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
+import com.wsoteam.mydietcoach.tracker.FragmentTracker;
 import com.wsoteam.mydietcoach.utils.FragmentLoad;
 
 import org.jetbrains.annotations.NotNull;
@@ -74,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
                 }*/
                 case R.id.bnv_settings: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(2)).commit();
+                    Ampl.Companion.openSettings();
+                    return true;
+                }
+
+                case R.id.bnv_tracker: {
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(3)).commit();
                     Ampl.Companion.openSettings();
                     return true;
                 }
@@ -159,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         sections.add(new FragmentCalculators());
         //sections.add(new FragmentPremium());
         sections.add(new FragmentSettings());
+        sections.add(new FragmentTracker());
     }
 
 

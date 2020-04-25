@@ -21,4 +21,9 @@
       android:icon="@drawable/bnv_settings"
       android:title="@string/bnv_settings"/>
 
+  <item
+      android:id="@+id/bnv_tracker"
+      android:icon="@drawable/bnv_tracker"
+      android:title="Трекер" />
+
 </menu>
