@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/ivFirstDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/shape_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivSecondDay"
@@ -32,8 +32,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lavFirstDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivFirstDay"
         app:layout_constraintEnd_toEndOf="@+id/ivFirstDay"
         app:layout_constraintStart_toStartOf="@+id/ivFirstDay"
@@ -42,8 +42,8 @@
 
     <ImageView
         android:id="@+id/ivSecondDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/shape_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivThirdDay"
@@ -66,8 +66,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lavSecondDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivSecondDay"
         app:layout_constraintEnd_toEndOf="@+id/ivSecondDay"
         app:layout_constraintStart_toStartOf="@+id/ivSecondDay"
@@ -76,8 +76,8 @@
 
     <ImageView
         android:id="@+id/ivThirdDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/shape_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivFourthDay"
@@ -100,8 +100,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lavThirdDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivThirdDay"
         app:layout_constraintEnd_toEndOf="@+id/ivThirdDay"
         app:layout_constraintStart_toStartOf="@+id/ivThirdDay"
@@ -110,8 +110,8 @@
 
     <ImageView
         android:id="@+id/ivFourthDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/shape_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivFifthDay"
@@ -134,8 +134,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lavFourthDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivFourthDay"
         app:layout_constraintEnd_toEndOf="@+id/ivFourthDay"
         app:layout_constraintStart_toStartOf="@+id/ivFourthDay"
@@ -144,8 +144,8 @@
 
     <ImageView
         android:id="@+id/ivFifthDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/shape_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivSixthDay"
@@ -168,8 +168,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lavFifthDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivFifthDay"
         app:layout_constraintEnd_toEndOf="@+id/ivFifthDay"
         app:layout_constraintStart_toStartOf="@+id/ivFifthDay"
@@ -178,8 +178,8 @@
 
     <ImageView
         android:id="@+id/ivSixthDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/shape_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivSeventhDay"
@@ -202,8 +202,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lavSixthDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivSixthDay"
         app:layout_constraintEnd_toEndOf="@+id/ivSixthDay"
         app:layout_constraintStart_toStartOf="@+id/ivSixthDay"
@@ -212,8 +212,8 @@
 
     <ImageView
         android:id="@+id/ivSeventhDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/shape_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -236,8 +236,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lavSeventhDay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivSeventhDay"
         app:layout_constraintEnd_toEndOf="@+id/ivSeventhDay"
         app:layout_constraintStart_toStartOf="@+id/ivSeventhDay"

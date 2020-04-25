@@ -41,6 +41,5 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             lavSeventhDay.playAnimation()
         }
 
-        ivFourthDay.setBackgroundResource(R.drawable.shape_circle_select)
     }
 }
