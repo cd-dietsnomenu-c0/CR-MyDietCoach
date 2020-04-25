@@ -58,7 +58,7 @@ class FBWork {
                     var k = 0
                     while (k < global.allDiets.dietList[i].days[j].eats.size) {
                         if (global.allDiets.dietList[i].days[j].eats[k].text == "") {
-                            //global.allDiets.dietList[i].days[j].eats.removeAt(k)
+                            global.allDiets.dietList[i].days[j].eats.drop(k)
                             k--
                         }
                         k++
