@@ -8,8 +8,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.wsoteam.mydietcoach.POJOS.Global
-import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets
-import com.wsoteam.mydietcoach.POJOS.interactive.Diet
+import com.wsoteam.mydietcoach.POJOS.interactive.*
 import java.util.*
 
 class FBWork {
@@ -68,6 +67,71 @@ class FBWork {
             val firebaseDatabase = FirebaseDatabase.getInstance()
             val databaseReference = firebaseDatabase.getReference("clearAdb")
             databaseReference.setValue(global)
+        }
+
+        fun falseLoadEmpty() : AllDiets {
+            val review = Review("",
+                    "",
+                    "")
+
+
+            val eat = Eat(0, "")
+            val eat1 = Eat(1, "")
+            val eat2 = Eat(2, "")
+            val eat3 = Eat(3, "")
+            val eat4 = Eat(4, "")
+
+            var eatList = ArrayList<Eat>()
+            eatList.add(eat)
+            eatList.add(eat1)
+            eatList.add(eat4)
+            eatList.add(eat2)
+            eatList.add(eat3)
+
+            val day = DietDay("", "", eatList)
+            var days = ArrayList<DietDay>()
+            days.add(day)
+            days.add(day)
+            days.add(day)
+            days.add(day)
+            days.add(day)
+            days.add(day)
+            days.add(day)
+
+            var benList = ArrayList<String>()
+            benList.add("")
+            benList.add("")
+            benList.add("")
+            benList.add("")
+            benList.add("")
+            benList.add("")
+            benList.add("")
+
+            var consList = ArrayList<String>()
+            consList.add("")
+            consList.add("")
+            consList.add("")
+            consList.add("")
+            consList.add("")
+            consList.add("")
+            consList.add("")
+
+            var diet = Diet("", "", "", "", "", benList, "", consList, "", "", days, "", "", review)
+
+            var listDiets = ArrayList<Diet>()
+            listDiets.add(diet)
+            listDiets.add(diet)
+            listDiets.add(diet)
+            listDiets.add(diet)
+            listDiets.add(diet)
+            listDiets.add(diet)
+            listDiets.add(diet)
+
+            var allDiets = AllDiets("", listDiets)
+
+            FirebaseDatabase.getInstance().getReference("empty").setValue(allDiets)
+
+            return allDiets
         }
     }
 }

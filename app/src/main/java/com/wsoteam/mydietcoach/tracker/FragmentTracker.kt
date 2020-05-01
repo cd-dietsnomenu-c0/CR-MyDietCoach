@@ -41,5 +41,6 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             lavSeventhDay.playAnimation()
         }
 
+
     }
 }

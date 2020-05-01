@@ -8,17 +8,19 @@ import android.content.Context;
 import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.net.Uri;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.room.Room;
 
 import com.amplitude.api.Amplitude;
 import com.google.android.gms.ads.MobileAds;
-import com.wsoteam.mydietcoach.inapp.BillingManager;
+import com.wsoteam.mydietcoach.common.db.DietDatabase;
 
-public class App extends Application{
+public class App extends Application {
 
     private static Context context;
+    private DietDatabase db;
+    private static App app;
 
     @Override
     public void onCreate() {
@@ -29,11 +31,15 @@ public class App extends Application{
         Amplitude.getInstance().initialize(this, "d0d5dffefe8b29a89279f15daf6d62b5").
                 enableForegroundTracking(this);
         context = this;
+        app = this;
         createNotificationChannel(getContext());
+
+        db = Room.databaseBuilder(this, DietDatabase.class, "dietPlans")
+                .build();
     }
 
     @SuppressLint("NewApi")
-    public  void createNotificationChannel(@NonNull Context context) {
+    public void createNotificationChannel(@NonNull Context context) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             AudioAttributes att = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_NOTIFICATION)
@@ -52,7 +58,15 @@ public class App extends Application{
         }
     }
 
-    public static Context getContext(){
+    public static Context getContext() {
         return context;
+    }
+
+    public static App getInstance() {
+        return app;
+    }
+
+    public DietDatabase getDB() {
+        return db;
     }
 }

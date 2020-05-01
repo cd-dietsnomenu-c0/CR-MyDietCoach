@@ -30,7 +30,7 @@ import com.wsoteam.mydietcoach.ad.NativeSpeaker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.common.FBWork;
-import com.wsoteam.mydietcoach.common.FBWorker;
+import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
 import com.wsoteam.mydietcoach.tracker.FragmentTracker;
@@ -137,6 +137,16 @@ public class MainActivity extends AppCompatActivity {
 
         /*startActivity(new Intent(this, DietAct.class));*/
         loadDietData();
+        /*Single.fromCallable(() -> {
+            List<DietPlanEntity> list = App.getInstance().getDB().dietDAO().getAllEnt();
+            return list;
+        })
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(t -> Log.e("LOL", String.valueOf(t.size()) + "KEK"), Throwable::printStackTrace);*/
+
+
+
     }
 
     private void loadDietData() {
