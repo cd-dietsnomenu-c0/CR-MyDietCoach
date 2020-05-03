@@ -30,6 +30,7 @@ import com.wsoteam.mydietcoach.ad.NativeSpeaker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.common.FBWork;
+import com.wsoteam.mydietcoach.common.GlobalHolder;
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity;
 import com.wsoteam.mydietcoach.diets.FragmentSections;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
@@ -113,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         FBWork.Companion.getFCMToken();
-        FirebaseMessaging.getInstance().subscribeToTopic("all");
         AdWorker.INSTANCE.init(this);
         AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
             @Override
@@ -131,33 +131,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         COUNT_OF_RUN = getPreferences(MODE_PRIVATE).getInt(TAG_OF_COUNT_RUN, 0);
-        //BillingManager.INSTANCE.startSubscription(this);
         navigationView = findViewById(R.id.bnv_main);
         navigationView.setOnNavigationItemSelectedListener(bnvListener);
-
-        /*startActivity(new Intent(this, DietAct.class));*/
-        loadDietData();
-        /*Single.fromCallable(() -> {
-            List<DietPlanEntity> list = App.getInstance().getDB().dietDAO().getAllEnt();
-            return list;
-        })
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> Log.e("LOL", String.valueOf(t.size()) + "KEK"), Throwable::printStackTrace);*/
-
-
-
+        setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
     }
 
-    private void loadDietData() {
-        Single.fromCallable(() -> {
-            Global global = getAsyncDietData();
-            return global;
-        })
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> setDietDataTC(t), Throwable::printStackTrace);
-    }
+
 
     private void setDietDataTC(Global t) {
         try {
@@ -178,30 +157,6 @@ public class MainActivity extends AppCompatActivity {
         sections.add(new FragmentSettings());
         sections.add(new FragmentTracker());
     }
-
-
-
-    private Global getAsyncDietData() {
-        String json;
-        Moshi moshi = new Moshi.Builder().build();
-        JsonAdapter<Global> jsonAdapter = moshi.adapter(Global.class);
-        try {
-            InputStream inputStream = getAssets().open("adb.json");
-            int size = inputStream.available();
-            byte[] buffer = new byte[size];
-            inputStream.read(buffer);
-            inputStream.close();
-            json = new String(buffer, "UTF-8");
-
-            Global global = jsonAdapter.fromJson(json);
-
-            return global;
-        } catch (Exception e) {
-
-        }
-        return null;
-    }
-
 
     public static boolean hasConnection(final Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -22,7 +22,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
+        <!--<activity
             android:name="com.wsoteam.mydietcoach.MainActivity"
             android:theme="@style/MainActivityTheme">
             <intent-filter>
@@ -30,7 +30,21 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>-->
+
+        <activity
+            android:name="com.wsoteam.mydietcoach.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/MainActivityTheme" />
 
         <activity
             android:name=".diets.items.ActivityListItems"
