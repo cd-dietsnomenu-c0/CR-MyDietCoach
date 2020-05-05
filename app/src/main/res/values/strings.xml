@@ -236,4 +236,12 @@
         <item>@drawable/img_snack_2</item>
     </integer-array>
 
+    <string-array name="loading_states">
+        <item>загружаем диету</item>
+        <item>выставляем дни</item>
+        <item>загружаем меню</item>
+        <item>запускаем трекер</item>
+        <item>заканчиваем настройку</item>
+    </string-array>
+
 </resources>

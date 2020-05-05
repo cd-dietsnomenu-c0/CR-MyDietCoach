@@ -1,5 +1,6 @@
 package com.wsoteam.mydietcoach.diets.items.article.interactive
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,9 +15,12 @@ import com.wsoteam.mydietcoach.POJOS.interactive.*
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.ad.AdWorker
 import com.wsoteam.mydietcoach.analytics.Ampl
+import com.wsoteam.mydietcoach.common.DBHolder
+import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
 import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.DietAdapter
 import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.IContents
 import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.managers.LayoutManagerTopScroll
+import com.wsoteam.mydietcoach.tracker.LoadingActivity
 import kotlinx.android.synthetic.main.activity_list_items.*
 import kotlinx.android.synthetic.main.diet_act.*
 import kotlinx.android.synthetic.main.diet_act.appodealBannerView
@@ -52,7 +56,10 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
     }
 
     fun startDietPlan(difficulty: Int) {
-        Log.e("LOL", difficulty.toString())
+        var entity = DietPlanEntity(diet, difficulty)
+        DBHolder.firstSet(entity)
+        startActivity(Intent(this, LoadingActivity::class.java))
+        //finishAffinity()
     }
 
 }

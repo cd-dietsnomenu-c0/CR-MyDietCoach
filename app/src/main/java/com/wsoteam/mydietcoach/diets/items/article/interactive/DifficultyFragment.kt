@@ -1,5 +1,6 @@
 package com.wsoteam.mydietcoach.diets.items.article.interactive
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,23 +12,25 @@ import kotlinx.android.synthetic.main.diff_dialog_fragment.*
 class DifficultyFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.diff_dialog_fragment, container, false)
+        var view = inflater.inflate(R.layout.diff_dialog_fragment, container, false)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        btnEasy.setOnClickListener {
+        cvEasy.setOnClickListener {
             (activity as DietAct).startDietPlan(0)
             dismiss()
         }
-        btnMedium.setOnClickListener {
+        cvMedium.setOnClickListener {
             (activity as DietAct).startDietPlan(1)
             dismiss()
         }
-        btnHard.setOnClickListener {
+        cvHard.setOnClickListener {
             (activity as DietAct).startDietPlan(2)
             dismiss()
         }
-        btnCancel.setOnClickListener {
+        tvCancel.setOnClickListener {
             dismiss()
         }
     }

@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         super.onCreate(savedInstanceState)
         loadAnimations()
         playAnim()
-        //loadDietData()
+        loadDietData()
     }
 
     private fun loadAnimations(){

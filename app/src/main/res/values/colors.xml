@@ -81,4 +81,8 @@
     <color name="text_gray">#CE3C3939</color>
     <color name="material_blue">#2196F3</color>
     <color name="splash_letter">#6356a6</color>
+
+    <color name="level_one">#4CAF50</color>
+    <color name="level_two">#ff7b05</color>
+    <color name="level_thre">#ff6464</color>
 </resources>
