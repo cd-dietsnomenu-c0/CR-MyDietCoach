@@ -29,6 +29,7 @@ import com.wsoteam.mydietcoach.ad.AdWorker;
 import com.wsoteam.mydietcoach.ad.NativeSpeaker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
+import com.wsoteam.mydietcoach.common.DBHolder;
 import com.wsoteam.mydietcoach.common.FBWork;
 import com.wsoteam.mydietcoach.common.GlobalHolder;
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity;
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 && getIntent().getExtras().getString(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)){
             Ampl.Companion.openFromPush();
         }
+        fragmentManager = getSupportFragmentManager();
         FirebaseMessaging.getInstance().subscribeToTopic("news").addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -123,20 +125,20 @@ public class MainActivity extends AppCompatActivity {
         });
         Ampl.Companion.run();
 
-        fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new FragmentLoad()).commit();
-
         if (!hasConnection(this)) {
             Toast.makeText(this, R.string.check_your_connect, Toast.LENGTH_SHORT).show();
         }
 
         COUNT_OF_RUN = getPreferences(MODE_PRIVATE).getInt(TAG_OF_COUNT_RUN, 0);
         navigationView = findViewById(R.id.bnv_main);
+        if (DBHolder.dietPlanEntity == null){
+            navigationView.getMenu().removeItem(R.id.bnv_tracker);
+        }
         navigationView.setOnNavigationItemSelectedListener(bnvListener);
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
+        additionOneToSharedPreference();
+        checkFirstRun();
     }
-
-
 
     private void setDietDataTC(Global t) {
         try {
@@ -148,9 +150,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setDietData(Global global) {
         FragmentSections fragmentSections = FragmentSections.newInstance(global);
-        fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentSections).commit();
-        additionOneToSharedPreference();
-        checkFirstRun();
+        if (DBHolder.dietPlanEntity == null) {
+            fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentSections).commit();
+        }else {
+            fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new FragmentTracker()).commit();
+        }
         sections.add(fragmentSections);
         sections.add(new FragmentCalculators());
         //sections.add(new FragmentPremium());
