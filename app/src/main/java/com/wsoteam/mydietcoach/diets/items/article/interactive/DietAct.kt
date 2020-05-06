@@ -56,10 +56,10 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
     }
 
     fun startDietPlan(difficulty: Int) {
-        var entity = DietPlanEntity(diet, difficulty)
+        var entity = DietPlanEntity(diet, difficulty, DBHolder.getCurrentTimeTrigger())
         DBHolder.firstSet(entity)
         startActivity(Intent(this, LoadingActivity::class.java))
-        //finishAffinity()
+        finishAffinity()
     }
 
 }

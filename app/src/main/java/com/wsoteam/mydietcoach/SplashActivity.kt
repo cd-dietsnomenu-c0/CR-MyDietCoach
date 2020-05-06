@@ -1,6 +1,5 @@
 package com.wsoteam.mydietcoach
 
-import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,10 +7,10 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.lottie.RenderMode
 import com.squareup.moshi.Moshi
 import com.wsoteam.mydietcoach.POJOS.Global
+import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,7 +26,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         super.onCreate(savedInstanceState)
         loadAnimations()
         playAnim()
-        loadDietData()
+        loadData()
     }
 
     private fun loadAnimations(){
@@ -67,6 +66,21 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 lavLetter.startAnimation(scale)
             }
         }
+    }
+
+    private fun loadData() {
+        loadDietData()
+        loadDB()
+    }
+
+    private fun loadDB() {
+        Single.fromCallable {
+            var dietPlanEntity = App.getInstance().db.dietDAO().getAll()[0]
+            dietPlanEntity
+        }
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ t -> DBHolder.set(t) }) { obj: Throwable -> obj.printStackTrace() }
     }
 
     private fun loadDietData() {
