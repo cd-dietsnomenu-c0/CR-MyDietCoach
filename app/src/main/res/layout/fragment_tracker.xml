@@ -6,15 +6,9 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:elevation="3dp">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView13"
@@ -22,7 +16,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Дневник"
                 android:textColor="@color/tracker_text_medium"
@@ -69,10 +63,12 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
                 app:cardElevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView15" >
+                app:layout_constraintTop_toBottomOf="@+id/textView15">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -83,9 +79,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="день"
-                        android:translationY="-8dp"
                         android:textColor="#9193a2"
                         android:textSize="12sp"
+                        android:translationY="-8dp"
                         app:layout_constraintEnd_toEndOf="@+id/textView16"
                         app:layout_constraintStart_toStartOf="@+id/textView16"
                         app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -135,7 +131,7 @@
                         android:layout_height="150dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="32dp"
                         android:background="@drawable/circle_progress_background"
                         android:indeterminate="false"
                         android:indeterminateOnly="false"
@@ -154,7 +150,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/divider7"
                         app:layout_constraintStart_toStartOf="@+id/textView18"
                         app:layout_constraintTop_toBottomOf="@+id/textView18"
-                        app:srcCompat="@drawable/ic_heart" />
+                        app:srcCompat="@drawable/ic_chear" />
 
                     <ImageView
                         android:id="@+id/ivSecondHeart"
@@ -165,7 +161,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/ivFirstHeart"
                         app:layout_constraintStart_toEndOf="@+id/ivFirstHeart"
                         app:layout_constraintTop_toTopOf="@+id/ivFirstHeart"
-                        app:srcCompat="@drawable/ic_heart" />
+                        app:srcCompat="@drawable/ic_chear" />
 
                     <ImageView
                         android:id="@+id/ivThirdHeart"
@@ -176,7 +172,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/ivSecondHeart"
                         app:layout_constraintStart_toEndOf="@+id/ivSecondHeart"
                         app:layout_constraintTop_toTopOf="@+id/ivSecondHeart"
-                        app:srcCompat="@drawable/ic_heart" />
+                        app:srcCompat="@drawable/ic_chear" />
 
                     <TextView
                         android:id="@+id/textView18"
@@ -191,9 +187,32 @@
                         app:layout_constraintStart_toEndOf="@+id/divider7"
                         app:layout_constraintTop_toTopOf="@+id/divider7" />
 
+                    <View
+                        android:id="@+id/divider9"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="#e4eafa"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cpbDay" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvDays"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider9" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
             </androidx.cardview.widget.CardView>
@@ -202,26 +221,16 @@
                 android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView13"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView13"
                 app:srcCompat="@drawable/ic_settings" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvDays"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvMainCard" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
