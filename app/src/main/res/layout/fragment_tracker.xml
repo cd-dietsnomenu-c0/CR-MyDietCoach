@@ -6,80 +6,197 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:cardCornerRadius="9dp"
+        android:layout_height="400dp"
         android:elevation="3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/gradient_head_tracker">
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tvDietName"
+                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="24dp"
-                android:fontFamily="@font/roboto"
-                android:text="Гречневая диета"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Дневник"
+                android:textColor="@color/tracker_text_medium"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvYou"
+                android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/roboto"
-                android:text="Идет"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Кремлевская диета"
+                android:textColor="@color/tracker_text_medium"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDietName" />
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <TextView
-                android:id="@+id/tvNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="2"
-                android:textColor="@color/white"
-                android:textSize="58sp"
-                app:layout_constraintEnd_toEndOf="@+id/tvYou"
-                app:layout_constraintStart_toStartOf="@+id/tvYou"
-                app:layout_constraintTop_toBottomOf="@+id/tvYou" />
-
-            <TextView
-                android:id="@+id/tvEnd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:fontFamily="@font/roboto"
-                android:text="день диеты"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/tvNumber"
-                app:layout_constraintStart_toStartOf="@+id/tvNumber"
-                app:layout_constraintTop_toBottomOf="@+id/tvNumber" />
+                android:drawableRight="@drawable/ic_tracker_right_arrow"
+                android:drawablePadding="12dp"
+                android:text="Детали"
+                android:textColor="@color/tracker_text"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView15" />
 
-            <include
-                layout="@layout/seven_days_layout"
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvMainCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:cardElevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvEnd" />
+                app:layout_constraintTop_toBottomOf="@+id/textView15" >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="день"
+                        android:translationY="-8dp"
+                        android:textColor="#9193a2"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView16"
+                        app:layout_constraintStart_toStartOf="@+id/textView16"
+                        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="3"
+                        android:textColor="#667fe4"
+                        android:textSize="60sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cpbDay"
+                        app:layout_constraintEnd_toEndOf="@+id/cpbDay"
+                        app:layout_constraintStart_toStartOf="@+id/cpbDay"
+                        app:layout_constraintTop_toTopOf="@+id/cpbDay"
+                        app:layout_constraintVertical_bias="0.39" />
+
+                    <View
+                        android:id="@+id/divider7"
+                        android:layout_width="1dp"
+                        android:layout_height="57dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="#f9b8cc"
+                        app:layout_constraintBottom_toBottomOf="@+id/cpbDay"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider8" />
+
+                    <View
+                        android:id="@+id/divider8"
+                        android:layout_width="1dp"
+                        android:layout_height="57dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#c2cefe"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/cpbDay" />
+
+                    <ProgressBar
+                        android:id="@+id/cpbDay"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/circle_progress_background"
+                        android:indeterminate="false"
+                        android:indeterminateOnly="false"
+                        android:progress="70"
+                        android:progressDrawable="@drawable/circle_progress_drawable"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageView
+                        android:id="@+id/ivFirstHeart"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginBottom="4dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/divider7"
+                        app:layout_constraintStart_toStartOf="@+id/textView18"
+                        app:layout_constraintTop_toBottomOf="@+id/textView18"
+                        app:srcCompat="@drawable/ic_heart" />
+
+                    <ImageView
+                        android:id="@+id/ivSecondHeart"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivFirstHeart"
+                        app:layout_constraintStart_toEndOf="@+id/ivFirstHeart"
+                        app:layout_constraintTop_toTopOf="@+id/ivFirstHeart"
+                        app:srcCompat="@drawable/ic_heart" />
+
+                    <ImageView
+                        android:id="@+id/ivThirdHeart"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivSecondHeart"
+                        app:layout_constraintStart_toEndOf="@+id/ivSecondHeart"
+                        app:layout_constraintTop_toTopOf="@+id/ivSecondHeart"
+                        app:srcCompat="@drawable/ic_heart" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Читмил"
+                        android:textColor="#868799"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toEndOf="@+id/divider7"
+                        app:layout_constraintTop_toTopOf="@+id/divider7" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -91,6 +208,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_settings" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvMainCard" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

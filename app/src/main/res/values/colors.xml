@@ -85,4 +85,9 @@
     <color name="level_one">#4CAF50</color>
     <color name="level_two">#ff7b05</color>
     <color name="level_thre">#ff6464</color>
+
+    <color name="tracker_count">#977bdf</color>
+    <color name="tracker_text">#a5b2e2</color>
+    <color name="tracker_text_medium">#2f2f50</color>
+    <color name="day_tracker">#03A9F4</color>
 </resources>
