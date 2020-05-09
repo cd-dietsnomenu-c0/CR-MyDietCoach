@@ -246,4 +246,12 @@
 
     <string name="ready">готово!</string>
 
+    <integer-array name="pluses">
+        <item>@drawable/ic_plus_green</item>
+        <item>@drawable/ic_plus_blue</item>
+        <item>@drawable/ic_plus_violet</item>
+        <item>@drawable/ic_plus_dark_red</item>
+        <item>@drawable/ic_plus_light_violet</item>
+    </integer-array>
+
 </resources>

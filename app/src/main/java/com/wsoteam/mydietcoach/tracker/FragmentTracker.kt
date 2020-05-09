@@ -29,7 +29,6 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         rvDays.layoutManager = LinearLayoutManager(activity)
         rvDays.adapter = DayAdapter(7)
 
-        CongrateAlert().show(activity!!.supportFragmentManager, CONGRATE_TAG)
     }
 
     private fun getEats(name: String): List<Eat>? {
