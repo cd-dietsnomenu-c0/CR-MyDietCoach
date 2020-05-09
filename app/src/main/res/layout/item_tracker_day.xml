@@ -47,6 +47,14 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto_medium"/>
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_loop="false"
+                android:layout_margin="4dp"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="day_check.json"/>
+
 
         </FrameLayout>
 
@@ -88,6 +96,12 @@
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto_medium"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                app:srcCompat="@drawable/ic_tracker_day_error"/>
 
         </FrameLayout>
 

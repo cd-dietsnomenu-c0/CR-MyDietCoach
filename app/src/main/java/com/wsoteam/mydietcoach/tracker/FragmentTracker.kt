@@ -11,11 +11,14 @@ import com.wsoteam.mydietcoach.POJOS.interactive.Eat
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
+import com.wsoteam.mydietcoach.tracker.alerts.CongrateAlert
 import com.wsoteam.mydietcoach.tracker.controller.DayAdapter
 import com.wsoteam.mydietcoach.tracker.controller.EatAdapter
 import kotlinx.android.synthetic.main.fragment_tracker.*
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
+
+    val CONGRATE_TAG = "CONGRATE_TAG"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,6 +28,8 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
         rvDays.layoutManager = LinearLayoutManager(activity)
         rvDays.adapter = DayAdapter(7)
+
+        CongrateAlert().show(activity!!.supportFragmentManager, CONGRATE_TAG)
     }
 
     private fun getEats(name: String): List<Eat>? {
