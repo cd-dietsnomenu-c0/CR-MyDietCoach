@@ -15,6 +15,7 @@ import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.tracker.controller.DayAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.EatAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.IEat
+import com.wsoteam.mydietcoach.tracker.controller.menu.MenuAdapter
 import kotlinx.android.synthetic.main.fragment_tracker.*
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
@@ -27,7 +28,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         super.onViewCreated(view, savedInstanceState)
         cvMainCard.setBackgroundResource(R.drawable.shape_card_tracker)
         rvEats.layoutManager = GridLayoutManager(activity, 2)
-
+        rvMenu.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         rvDays.layoutManager = LinearLayoutManager(activity)
         rvDays.adapter = DayAdapter(7)
@@ -48,6 +49,11 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     override fun onResume() {
         super.onResume()
         bindDB()
+        bindMenu()
+    }
+
+    private fun bindMenu() {
+        rvMenu.adapter = MenuAdapter(listOf(0, 1, 2, 3, 4))
     }
 
     private fun bindDB() {
