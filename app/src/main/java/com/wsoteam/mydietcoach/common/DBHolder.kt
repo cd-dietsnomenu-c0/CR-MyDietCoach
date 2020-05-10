@@ -28,10 +28,11 @@ object DBHolder {
         return dietPlanEntity
     }
 
-    fun firstSet(dietPlanEntity: DietPlanEntity){
+    fun firstSet(dietPlanEntity: DietPlanEntity, days: List<DietDay>){
         this.dietPlanEntity = dietPlanEntity
+        setMeals(days)
         Single.fromCallable {
-            App.getInstance().db.dietDAO().insert(dietPlanEntity)
+            App.getInstance().db.dietDAO().insert(this.dietPlanEntity)
             null
         }
                 .subscribeOn(Schedulers.computation())
@@ -47,7 +48,7 @@ object DBHolder {
         if (dietPlanEntity.missingDays > dietPlanEntity.difficulty){
             return DIET_LOSE
         }else if (isDietNotCompleted(days)){
-            setNewMeals(days)
+            setMeals(days)
             insertInDB()
             return DIET_CONTINUE
         }else{
@@ -75,7 +76,7 @@ object DBHolder {
 
     }
 
-    private fun setNewMeals(days: List<DietDay>) {
+    private fun setMeals(days: List<DietDay>) {
         dietPlanEntity.breakfastState = NOT_USE
         dietPlanEntity.lunchState = NOT_USE
         dietPlanEntity.dinnerState = NOT_USE
