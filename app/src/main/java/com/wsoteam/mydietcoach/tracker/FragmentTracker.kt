@@ -80,8 +80,18 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
 
     private fun bindMenu() {
-        menuAdapter = MenuAdapter(listOf(0, 1, 2, 3, 4))
+        menuAdapter = MenuAdapter(getTypedArray())
         rvMenu.adapter = menuAdapter
+    }
+
+    private fun getTypedArray(): List<Int> {
+        var list = mutableListOf<Int>()
+        if (DBHolder.get().breakfastState == DBHolder.NOT_CHECKED) list.add(0)
+        if (DBHolder.get().lunchState == DBHolder.NOT_CHECKED) list.add(1)
+        if (DBHolder.get().dinnerState == DBHolder.NOT_CHECKED) list.add(2)
+        if (DBHolder.get().snakeState == DBHolder.NOT_CHECKED) list.add(3)
+        if (DBHolder.get().snake2State == DBHolder.NOT_CHECKED) list.add(4)
+        return list
     }
 
     private fun bindDayView() {
