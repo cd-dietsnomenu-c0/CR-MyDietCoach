@@ -110,12 +110,12 @@
                         android:textColor="#9193a2"
                         android:textSize="12sp"
                         android:translationY="-8dp"
-                        app:layout_constraintEnd_toEndOf="@+id/textView16"
-                        app:layout_constraintStart_toStartOf="@+id/textView16"
-                        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+                        app:layout_constraintEnd_toEndOf="@+id/tvBigDay"
+                        app:layout_constraintStart_toStartOf="@+id/tvBigDay"
+                        app:layout_constraintTop_toBottomOf="@+id/tvBigDay" />
 
                     <TextView
-                        android:id="@+id/textView16"
+                        android:id="@+id/tvBigDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_bold"
