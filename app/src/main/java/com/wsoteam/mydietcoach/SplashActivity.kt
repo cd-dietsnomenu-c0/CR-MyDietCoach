@@ -76,6 +76,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun loadDB() {
         Single.fromCallable {
             var dietPlanEntity = App.getInstance().db.dietDAO().getAll()[0]
+            if(dietPlanEntity == null){
+                Log.e("LOL", "NULL")
+            }
             dietPlanEntity
         }
                 .subscribeOn(Schedulers.computation())

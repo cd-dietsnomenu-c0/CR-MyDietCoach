@@ -18,7 +18,13 @@ object DBHolder {
     var DIET_LOSE = -1
     var DIET_CONTINUE = 0
     var DIET_COMPLETED = 1
-    private lateinit var dietPlanEntity : DietPlanEntity
+    private var dietPlanEntity : DietPlanEntity
+
+    init {
+        dietPlanEntity = DietPlanEntity(0, 0, "",
+                false, false, 0, 0,
+                0, 0, 0, 0, 0, 0, mutableListOf())
+    }
 
     fun set(dietPlanEntity: DietPlanEntity){
         this.dietPlanEntity = dietPlanEntity
@@ -41,10 +47,10 @@ object DBHolder {
     }
 
     fun bindNewDay(days : List<DietDay>) : Int{
+        checkYesterday()
         dietPlanEntity.currentDay += 1
         dietPlanEntity.timeTrigger = getTomorrowTimeTrigger()
-        bindDays()
-        checkYesterday()
+        checkNotOpenedDays()
         if (dietPlanEntity.missingDays > dietPlanEntity.difficulty){
             return DIET_LOSE
         }else if (isDietNotCompleted(days)){
@@ -63,13 +69,18 @@ object DBHolder {
     private fun checkYesterday() {
         if (!isCompletedYesterday()){
             dietPlanEntity.missingDays += 1
+            dietPlanEntity.numbersLosesDays.add(dietPlanEntity.currentDay)
         }
     }
 
-    private fun bindDays() {
+    private fun checkNotOpenedDays() {
         var loseDays = ((dietPlanEntity.timeTrigger - Calendar.getInstance().timeInMillis) / ONE_DAY).toInt()
+        var oldCurrentDay = dietPlanEntity.currentDay
         dietPlanEntity.currentDay += loseDays
         dietPlanEntity.missingDays += loseDays
+        for (i in oldCurrentDay until dietPlanEntity.currentDay){
+            dietPlanEntity.numbersLosesDays.add(i)
+        }
     }
 
     private fun insertInDB() {
