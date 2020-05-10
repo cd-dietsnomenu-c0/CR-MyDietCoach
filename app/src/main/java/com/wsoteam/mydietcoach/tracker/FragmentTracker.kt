@@ -15,6 +15,7 @@ import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.tracker.controller.DayAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.EatAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.IEat
+import com.wsoteam.mydietcoach.tracker.controller.lives.LiveAdapter
 import com.wsoteam.mydietcoach.tracker.controller.menu.MenuAdapter
 import kotlinx.android.synthetic.main.fragment_tracker.*
 import kotlin.system.exitProcess
@@ -31,6 +32,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         rvEats.layoutManager = GridLayoutManager(activity, 2)
         rvMenu.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         rvDays.layoutManager = LinearLayoutManager(activity)
+        rvLives.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         rvDays.adapter = DayAdapter(7)
         for (eat in GlobalHolder.getGlobal().allDiets.dietList[0].days[0].eats){
@@ -55,7 +57,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         bindLives(DBHolder.get().difficulty, DBHolder.get().missingDays)
         bindEats(getDiet()?.get(currentDay))
         bindMenu()
-        dindDays()
+        bindDays()
         bindDayView()
         if (dietState == DBHolder.DIET_COMPLETED){
             showCompletedAlert()
@@ -77,7 +79,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     private fun showCompletedAlert() {
     }
 
-    private fun dindDays() {
+    private fun bindDays() {
 
     }
 
@@ -92,7 +94,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun bindLives(difficulty: Int, missingDays: Int) {
-
+        rvLives.adapter = LiveAdapter(difficulty + 1, missingDays)
     }
 
     private fun getDiet(): List<DietDay>? {

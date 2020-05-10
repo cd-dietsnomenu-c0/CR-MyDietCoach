@@ -170,40 +170,9 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0" />
 
-                    <ImageView
-                        android:id="@+id/ivFirstHeart"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginBottom="4dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/divider7"
-                        app:layout_constraintStart_toStartOf="@+id/textView18"
-                        app:layout_constraintTop_toBottomOf="@+id/textView18"
-                        app:srcCompat="@drawable/ic_chear" />
-
-                    <ImageView
-                        android:id="@+id/ivSecondHeart"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginLeft="4dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/ivFirstHeart"
-                        app:layout_constraintStart_toEndOf="@+id/ivFirstHeart"
-                        app:layout_constraintTop_toTopOf="@+id/ivFirstHeart"
-                        app:srcCompat="@drawable/ic_chear" />
-
-                    <ImageView
-                        android:id="@+id/ivThirdHeart"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginLeft="4dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/ivSecondHeart"
-                        app:layout_constraintStart_toEndOf="@+id/ivSecondHeart"
-                        app:layout_constraintTop_toTopOf="@+id/ivSecondHeart"
-                        app:srcCompat="@drawable/ic_chear" />
 
                     <TextView
-                        android:id="@+id/textView18"
+                        android:id="@+id/tvTitleLives"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -214,6 +183,18 @@
                         android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/divider7"
                         app:layout_constraintTop_toTopOf="@+id/divider7" />
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvLives"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/divider7"
+                        app:layout_constraintEnd_toEndOf="@+id/rvMenu"
+                        app:layout_constraintStart_toStartOf="@+id/tvTitleLives"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTitleLives" />
 
                     <View
                         android:id="@+id/divider9"
