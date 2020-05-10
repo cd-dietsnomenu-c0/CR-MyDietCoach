@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class MenuAdapter(val listEat : List<Int>) : RecyclerView.Adapter<MenuVH>() {
+class MenuAdapter(var listEat : List<Int>) : RecyclerView.Adapter<MenuVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuVH {
         return MenuVH(LayoutInflater.from(parent.context), parent)
@@ -16,5 +16,10 @@ class MenuAdapter(val listEat : List<Int>) : RecyclerView.Adapter<MenuVH>() {
 
     override fun onBindViewHolder(holder: MenuVH, position: Int) {
         holder.bind(listEat[position])
+    }
+
+    fun notify(type: Int) {
+        listEat = listEat - listOf<Int>(type)
+        notifyDataSetChanged()
     }
 }

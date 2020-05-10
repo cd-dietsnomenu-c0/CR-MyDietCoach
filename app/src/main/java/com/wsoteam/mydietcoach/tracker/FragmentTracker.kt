@@ -26,6 +26,10 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     var currentDay = 0
     var dietState = 0
 
+    lateinit var menuAdapter: MenuAdapter
+    lateinit var liveAdapter: LiveAdapter
+    lateinit var eatsAdapter: EatAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cvMainCard.setBackgroundResource(R.drawable.shape_card_tracker)
@@ -35,7 +39,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         rvLives.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         rvDays.adapter = DayAdapter(7)
-        for (eat in GlobalHolder.getGlobal().allDiets.dietList[0].days[0].eats){
+        for (eat in GlobalHolder.getGlobal().allDiets.dietList[0].days[0].eats) {
             Log.e("LOL", eat.type.toString())
         }
     }
@@ -45,9 +49,6 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         bindTracker()
     }
 
-    private fun bindMenu() {
-        rvMenu.adapter = MenuAdapter(listOf(0, 1, 2, 3, 4))
-    }
 
     private fun bindTracker() {
         if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
@@ -59,17 +60,11 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         bindMenu()
         bindDays()
         bindDayView()
-        if (dietState == DBHolder.DIET_COMPLETED){
+        if (dietState == DBHolder.DIET_COMPLETED) {
             showCompletedAlert()
-        }else if (dietState == DBHolder.DIET_LOSE){
+        } else if (dietState == DBHolder.DIET_LOSE) {
             showLosedAlert()
         }
-    }
-
-    private fun bindDayView() {
-        tvBigDay.text = (DBHolder.get().currentDay + 1).toString()
-        var progress = (DBHolder.get().currentDay + 1).toDouble() / getDiet()!!.size!!.toDouble()
-        cpbDay.progress = (progress * 100).toInt()
     }
 
     private fun showLosedAlert() {
@@ -83,19 +78,39 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
     }
 
+
+    private fun bindMenu() {
+        menuAdapter = MenuAdapter(listOf(0, 1, 2, 3, 4))
+        rvMenu.adapter = menuAdapter
+    }
+
+    private fun bindDayView() {
+        tvBigDay.text = (DBHolder.get().currentDay + 1).toString()
+        var progress = (DBHolder.get().currentDay + 1).toDouble() / getDiet()!!.size!!.toDouble()
+        cpbDay.progress = (progress * 100).toInt()
+    }
+
     private fun bindEats(day: DietDay?) {
-        rvEats.adapter = EatAdapter(day!!.eats, DBHolder.get().breakfastState,
+        eatsAdapter = EatAdapter(day!!.eats, DBHolder.get().breakfastState,
                 DBHolder.get().lunchState, DBHolder.get().breakfastState,
-                DBHolder.get().snakeState, DBHolder.get().snake2State, object : IEat{
+                DBHolder.get().snakeState, DBHolder.get().snake2State, object : IEat {
             override fun checkEat(type: Int) {
                 DBHolder.checkEat(type)
+                refreshEats(type)
             }
         })
+        rvEats.adapter = eatsAdapter
     }
 
     private fun bindLives(difficulty: Int, missingDays: Int) {
-        rvLives.adapter = LiveAdapter(difficulty + 1, missingDays)
+        liveAdapter = LiveAdapter(difficulty + 1, missingDays)
+        rvLives.adapter = liveAdapter
     }
+
+    private fun refreshEats(type: Int) {
+        menuAdapter.notify(type)
+    }
+
 
     private fun getDiet(): List<DietDay>? {
         for (diet in GlobalHolder.getGlobal().allDiets.dietList) {
