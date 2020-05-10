@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class DayAdapter(var count : Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DayAdapter(var count: Int, val numbersLosesDays: MutableList<Int>, val currentDay : Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var residue = 0
 
@@ -23,7 +23,19 @@ class DayAdapter(var count : Int) : RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as DayVH).bind(getSpanCount(position))
+        (holder as DayVH).bind(getSpanCount(position), getDayState(position))
+    }
+
+    private fun getDayState(position: Int): Any {
+        var states = mutableListOf<Int>(DayConfig.UNUSED, DayConfig.UNUSED, DayConfig.UNUSED, DayConfig.UNUSED, DayConfig.UNUSED)
+        var max = (position + 1) * 5
+        var min = max - 4
+        for (i in numbersLosesDays.indices){
+            if (numbersLosesDays[i] in min..max){
+                states[numbersLosesDays[i]] = DayConfig.LOSE
+            }
+        }
+        if (currentDay )
     }
 
     private fun getSpanCount(position: Int): Int {

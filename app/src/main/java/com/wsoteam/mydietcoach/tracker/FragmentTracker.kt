@@ -2,7 +2,6 @@ package com.wsoteam.mydietcoach.tracker
 
 import android.icu.util.Calendar
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,6 +17,7 @@ import com.wsoteam.mydietcoach.tracker.controller.lives.LiveAdapter
 import com.wsoteam.mydietcoach.tracker.controller.menu.IMenu
 import com.wsoteam.mydietcoach.tracker.controller.menu.MenuAdapter
 import kotlinx.android.synthetic.main.fragment_tracker.*
+import kotlinx.android.synthetic.main.vh_native.*
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
@@ -28,6 +28,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     lateinit var menuAdapter: MenuAdapter
     lateinit var liveAdapter: LiveAdapter
     lateinit var eatsAdapter: EatAdapter
+    lateinit var daysAdapter: DayAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,11 +37,6 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         rvMenu.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         rvDays.layoutManager = LinearLayoutManager(activity)
         rvLives.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-
-        rvDays.adapter = DayAdapter(7)
-        for (eat in GlobalHolder.getGlobal().allDiets.dietList[0].days[0].eats) {
-            Log.e("LOL", eat.type.toString())
-        }
     }
 
     override fun onResume() {
@@ -74,7 +70,8 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun bindDays() {
-
+        daysAdapter = DayAdapter(getDiet()!!.size, DBHolder.get().numbersLosesDays, DBHolder.get().currentDay)
+        rvDays.adapter = daysAdapter
     }
 
 
