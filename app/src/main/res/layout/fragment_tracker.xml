@@ -76,6 +76,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lavCompleteDay"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cpbDay"
+                        app:layout_constraintEnd_toEndOf="@+id/cpbDay"
+                        app:layout_constraintStart_toStartOf="@+id/cpbDay"
+                        app:layout_constraintTop_toTopOf="@+id/cpbDay"
+                        app:lottie_fileName="tracker_day_complete.json" />
+
                     <TextView
                         android:id="@+id/tvTitleMenu"
                         android:layout_width="wrap_content"
@@ -103,7 +113,7 @@
                     </androidx.recyclerview.widget.RecyclerView>
 
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/tvLabelDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="день"

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wsoteam.mydietcoach.POJOS.interactive.DietDay
-import com.wsoteam.mydietcoach.POJOS.interactive.Eat
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
@@ -16,9 +15,9 @@ import com.wsoteam.mydietcoach.tracker.controller.DayAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.EatAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.IEat
 import com.wsoteam.mydietcoach.tracker.controller.lives.LiveAdapter
+import com.wsoteam.mydietcoach.tracker.controller.menu.IMenu
 import com.wsoteam.mydietcoach.tracker.controller.menu.MenuAdapter
 import kotlinx.android.synthetic.main.fragment_tracker.*
-import kotlin.system.exitProcess
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
@@ -80,7 +79,11 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
 
     private fun bindMenu() {
-        menuAdapter = MenuAdapter(getTypedArray())
+        menuAdapter = MenuAdapter(getTypedArray(), object : IMenu{
+            override fun completeDay() {
+                closeDay()
+            }
+        })
         rvMenu.adapter = menuAdapter
     }
 
@@ -115,6 +118,12 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     private fun bindLives(difficulty: Int, missingDays: Int) {
         liveAdapter = LiveAdapter(difficulty + 1, missingDays)
         rvLives.adapter = liveAdapter
+    }
+
+    private fun closeDay() {
+        tvLabelDay.visibility = View.INVISIBLE
+        tvBigDay.visibility = View.INVISIBLE
+        lavCompleteDay.playAnimation()
     }
 
     private fun refreshEats(type: Int) {

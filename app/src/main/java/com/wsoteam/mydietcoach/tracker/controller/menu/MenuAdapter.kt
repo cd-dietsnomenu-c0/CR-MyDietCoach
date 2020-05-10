@@ -4,7 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class MenuAdapter(var listEat : List<Int>) : RecyclerView.Adapter<MenuVH>() {
+class MenuAdapter(var listEat : List<Int>, val iMenu: IMenu) : RecyclerView.Adapter<MenuVH>() {
+
+    init {
+        if (listEat.isEmpty()){
+            iMenu.completeDay()
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuVH {
         return MenuVH(LayoutInflater.from(parent.context), parent)
@@ -21,5 +27,8 @@ class MenuAdapter(var listEat : List<Int>) : RecyclerView.Adapter<MenuVH>() {
     fun notify(type: Int) {
         listEat = listEat - listOf<Int>(type)
         notifyDataSetChanged()
+        if (listEat.isEmpty()){
+            iMenu.completeDay()
+        }
     }
 }
