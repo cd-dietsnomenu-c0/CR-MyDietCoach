@@ -26,35 +26,30 @@ class DayAdapter(var count: Int, val numbersLosesDays: MutableList<Int>, val cur
         (holder as DayVH).bind(getSpanCount(position), getDayState(position))
     }
 
-    private fun getDayState(position: Int): Any {
+    private fun getDayState(position: Int): MutableList<Int> {
         var states = mutableListOf<Int>(DayConfig.UNUSED, DayConfig.UNUSED, DayConfig.UNUSED, DayConfig.UNUSED, DayConfig.UNUSED)
         var max = (position + 1) * 5
-        var min = max - 4
+        var min = max - 5
         for (i in numbersLosesDays.indices){
             if (numbersLosesDays[i] in min..max){
                 states[numbersLosesDays[i]] = DayConfig.LOSE
             }
         }
-        if (currentDay in (min - 1)..max){
-            for (i in (min - 1) until currentDay){
+        if (currentDay in (min)..max){
+            for (i in (min) until currentDay){
                 if (states[i] != DayConfig.LOSE){
                     states[i] = DayConfig.CHECKED
                 }
             }
-            for (i in (currentDay + 1)..max){
-                states[i] = DayConfig.UNUSED
-            }
-        }else if (currentDay < min -1){
-            for (i in states.indices){
-                states[i] = DayConfig.UNUSED
-            }
+            states[currentDay] = DayConfig.CURRENT
         }else if (currentDay > max){
             for (i in states.indices){
-                if (states[i] != DayConfig.UNUSED){
+                if (states[i] != DayConfig.LOSE){
                     states[i] = DayConfig.CHECKED
                 }
             }
         }
+        return states
     }
 
     private fun getSpanCount(position: Int): Int {

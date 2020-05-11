@@ -52,8 +52,17 @@
                 android:layout_height="match_parent"
                 app:lottie_loop="false"
                 android:layout_margin="4dp"
-                app:lottie_autoPlay="true"
+                android:visibility="invisible"
+                android:id="@+id/lavFirst"
                 app:lottie_fileName="day_check.json"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:visibility="invisible"
+                android:id="@+id/ivFirst"
+                app:srcCompat="@drawable/ic_tracker_day_error"/>
 
 
         </FrameLayout>
@@ -97,10 +106,21 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto_medium"/>
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_loop="false"
+                android:layout_margin="4dp"
+                android:id="@+id/lavSecond"
+                android:visibility="invisible"
+                app:lottie_fileName="day_check.json"/>
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="6dp"
+                android:visibility="invisible"
+                android:id="@+id/ivSecond"
                 app:srcCompat="@drawable/ic_tracker_day_error"/>
 
         </FrameLayout>
@@ -140,8 +160,25 @@
                 android:id="@+id/tvThird"
                 android:textSize="20sp"
                 android:layout_gravity="center"
+                android:visibility="invisible"
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto_medium"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_loop="false"
+                android:layout_margin="4dp"
+                android:id="@+id/lavThird"
+                app:lottie_fileName="day_check.json"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:visibility="invisible"
+                android:id="@+id/ivThird"
+                app:srcCompat="@drawable/ic_tracker_day_error"/>
 
         </FrameLayout>
 
@@ -184,6 +221,23 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto_medium"/>
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_loop="false"
+                android:layout_margin="4dp"
+                android:visibility="invisible"
+                android:id="@+id/lavFourth"
+                app:lottie_fileName="day_check.json"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:visibility="invisible"
+                android:id="@+id/ivFourth"
+                app:srcCompat="@drawable/ic_tracker_day_error"/>
+
         </FrameLayout>
 
     </androidx.cardview.widget.CardView>
@@ -224,6 +278,23 @@
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto_medium"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_loop="false"
+                android:layout_margin="4dp"
+                android:visibility="invisible"
+                android:id="@+id/lavFifth"
+                app:lottie_fileName="day_check.json"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:visibility="invisible"
+                android:id="@+id/ivFifth"
+                app:srcCompat="@drawable/ic_tracker_day_error"/>
 
         </FrameLayout>
 
