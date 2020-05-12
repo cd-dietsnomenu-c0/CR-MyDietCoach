@@ -27,17 +27,17 @@ class DayVH(var layoutInflater: LayoutInflater, var viewGroup: ViewGroup) : Recy
         listCVMarkers = listOf( itemView.cvMarkerFirst, itemView.cvMarkerSecond, itemView.cvMarkerThird, itemView.cvMarkerFourth, itemView.cvMarkerFifth)
     }
 
-    fun bind(count: Int, dayState: Pair<MutableList<Int>, Int>) {
+    fun bind(count: Int, dayState: Pair<MutableList<Int>, Int>, needPlayCompletedAnim: Boolean) {
         if (count < 5) itemView.cvFifth.visibility = View.GONE
         if (count < 4) itemView.cvFourth.visibility = View.GONE
         if (count < 3) itemView.cvThird.visibility = View.GONE
         if (count < 2) itemView.cvSecond.visibility = View.GONE
         setNumbers(adapterPosition )
-        setStates(dayState.first)
-        bindCurrentDay(dayState.second)
+        setStates(dayState.first, needPlayCompletedAnim, dayState.second)
+        setMarkers(dayState.second)
     }
 
-    private fun bindCurrentDay(currentDayIndex: Int) {
+    private fun setMarkers(currentDayIndex: Int) {
         for (i in listCVMarkers.indices){
             if (i == currentDayIndex){
                 listCVMarkers[i].visibility = View.VISIBLE
@@ -45,24 +45,27 @@ class DayVH(var layoutInflater: LayoutInflater, var viewGroup: ViewGroup) : Recy
                 listCVMarkers[i].visibility = View.INVISIBLE
             }
         }
-
     }
 
-    private fun setStates(dayState: MutableList<Int>) {
+    private fun setStates(dayState: MutableList<Int>, needPlayCompletedAnim: Boolean, currentDayIndex: Int) {
         for(i in dayState.indices){
             when(dayState[i]){
                 DayConfig.UNUSED -> setUnusedState(i)
                 DayConfig.LOSE -> setLoseState(i)
-                DayConfig.CHECKED -> setCompletedState(i)
+                DayConfig.CHECKED -> setCompletedState(i, needPlayCompletedAnim, currentDayIndex)
                 //DayConfig.CURRENT -> setCurrent(i)
             }
         }
     }
 
-    private fun setCompletedState(i: Int) {
-        listAnim[i].progress = 1.0f
-        listAnim[i].visibility = View.VISIBLE
+    private fun setCompletedState(i: Int, needPlayCompletedAnim: Boolean, currentDayIndex: Int) {
         listLoseImages[i].visibility = View.INVISIBLE
+        listAnim[i].visibility = View.VISIBLE
+        if (currentDayIndex == i && needPlayCompletedAnim){
+            listAnim[i].playAnimation()
+        }else{
+            listAnim[i].progress = 1.0f
+        }
     }
 
     private fun setLoseState(i: Int) {

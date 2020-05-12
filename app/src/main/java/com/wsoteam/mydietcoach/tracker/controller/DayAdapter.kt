@@ -4,8 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class DayAdapter(var count: Int, val numbersLosesDays: MutableList<Int>, val currentDay : Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DayAdapter(var count: Int, val numbersLosesDays: MutableList<Int>, val currentDay : Int, var isDayCompleted : Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    var isNeedPlayCompletedAnim = false
     var residue = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -23,7 +24,7 @@ class DayAdapter(var count: Int, val numbersLosesDays: MutableList<Int>, val cur
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as DayVH).bind(getSpanCount(position), getDayState(position))
+        (holder as DayVH).bind(getSpanCount(position), getDayState(position), isNeedPlayCompletedAnim)
     }
 
     private fun getDayState(position: Int): Pair<MutableList<Int>, Int>{
@@ -42,6 +43,7 @@ class DayAdapter(var count: Int, val numbersLosesDays: MutableList<Int>, val cur
                     states[i] = DayConfig.CHECKED
                 }
             }
+            if (isDayCompleted) states[getIndex(currentDay)] = DayConfig.CHECKED
             currentDayIndex = getIndex(currentDay)
         }else if (currentDay > max){
             for (i in states.indices){
@@ -65,5 +67,11 @@ class DayAdapter(var count: Int, val numbersLosesDays: MutableList<Int>, val cur
         }else {
             return 0
         }
+    }
+
+    fun notifyDayCompleted() {
+        isDayCompleted = true
+        isNeedPlayCompletedAnim = true
+        notifyDataSetChanged()
     }
 }

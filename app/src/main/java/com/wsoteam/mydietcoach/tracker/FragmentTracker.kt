@@ -24,6 +24,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     val CONGRATE_TAG = "CONGRATE_TAG"
     var currentDay = 0
     var dietState = 0
+    var isDayCompleted = false
 
     lateinit var menuAdapter: MenuAdapter
     lateinit var liveAdapter: LiveAdapter
@@ -71,7 +72,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun bindDays() {
-        daysAdapter = DayAdapter(getDiet()!!.size, DBHolder.get().numbersLosesDays, DBHolder.get().currentDay)
+        daysAdapter = DayAdapter(getDiet()!!.size, DBHolder.get().numbersLosesDays, DBHolder.get().currentDay, isDayCompleted)
         rvDays.adapter = daysAdapter
     }
 
@@ -119,12 +120,16 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun closeDay() {
+        isDayCompleted = true
         tvTitleMenu.visibility = View.INVISIBLE
         tvLabelDay.visibility = View.INVISIBLE
         tvBigDay.visibility = View.INVISIBLE
 
         lavCompleteDay.playAnimation()
         tvCompleteMenu.visibility = View.VISIBLE
+        if (this::daysAdapter.isInitialized) {
+            daysAdapter.notifyDayCompleted()
+        }
     }
 
     private fun refreshEats(type: Int) {
