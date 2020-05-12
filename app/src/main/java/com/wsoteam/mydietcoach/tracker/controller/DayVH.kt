@@ -17,29 +17,44 @@ class DayVH(var layoutInflater: LayoutInflater, var viewGroup: ViewGroup) : Recy
     var listTexts : List<TextView>
     var listAnim : List<LottieAnimationView>
     var listLoseImages : List<ImageView>
+    var listCVMarkers : List<CardView>
 
     init {
         listCV = listOf( itemView.cvFirst, itemView.cvSecond, itemView.cvThird, itemView.cvFourth, itemView.cvFifth)
         listTexts = listOf( itemView.tvFirst, itemView.tvSecond, itemView.tvThird, itemView.tvFourth, itemView.tvFifth)
         listAnim = listOf( itemView.lavFirst, itemView.lavSecond, itemView.lavThird, itemView.lavFourth, itemView.lavFifth)
         listLoseImages = listOf( itemView.ivFirst, itemView.ivSecond, itemView.ivThird, itemView.ivFourth, itemView.ivFifth)
+        listCVMarkers = listOf( itemView.cvMarkerFirst, itemView.cvMarkerSecond, itemView.cvMarkerThird, itemView.cvMarkerFourth, itemView.cvMarkerFifth)
     }
 
-    fun bind(count: Int, dayState: MutableList<Int>) {
+    fun bind(count: Int, dayState: Pair<MutableList<Int>, Int>) {
         if (count < 5) itemView.cvFifth.visibility = View.GONE
         if (count < 4) itemView.cvFourth.visibility = View.GONE
         if (count < 3) itemView.cvThird.visibility = View.GONE
         if (count < 2) itemView.cvSecond.visibility = View.GONE
         setNumbers(adapterPosition )
-        setStates(dayState)
+        setStates(dayState.first)
+        bindCurrentDay(dayState.second)
+    }
+
+    private fun bindCurrentDay(currentDayIndex: Int) {
+        for (i in listCVMarkers.indices){
+            if (i == currentDayIndex){
+                listCVMarkers[i].visibility = View.VISIBLE
+            }else {
+                listCVMarkers[i].visibility = View.INVISIBLE
+            }
+        }
+
     }
 
     private fun setStates(dayState: MutableList<Int>) {
         for(i in dayState.indices){
             when(dayState[i]){
-                DayConfig.CURRENT, DayConfig.UNUSED -> setUnusedState(i)
+                DayConfig.UNUSED -> setUnusedState(i)
                 DayConfig.LOSE -> setLoseState(i)
                 DayConfig.CHECKED -> setCompletedState(i)
+                //DayConfig.CURRENT -> setCurrent(i)
             }
         }
     }

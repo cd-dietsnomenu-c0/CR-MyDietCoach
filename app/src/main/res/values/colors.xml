@@ -90,4 +90,5 @@
     <color name="tracker_text">#a5b2e2</color>
     <color name="tracker_text_medium">#2f2f50</color>
     <color name="day_tracker">#03A9F4</color>
+    <color name="day_tracker_dot">#4f65de</color>
 </resources>
