@@ -37,13 +37,7 @@ object DBHolder {
     fun firstSet(dietPlanEntity: DietPlanEntity, days: List<DietDay>){
         this.dietPlanEntity = dietPlanEntity
         setMeals(days)
-        Single.fromCallable {
-            App.getInstance().db.dietDAO().insert(this.dietPlanEntity)
-            null
-        }
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ _ -> Log.e("LOL", "saved") }) { obj: Throwable -> obj.printStackTrace() }
+        insertInDB()
     }
 
     fun bindNewDay(days : List<DietDay>) : Int{
@@ -84,7 +78,13 @@ object DBHolder {
     }
 
     private fun insertInDB() {
-
+        Single.fromCallable {
+            App.getInstance().db.dietDAO().insert(this.dietPlanEntity)
+            null
+        }
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ _ -> Log.e("LOL", "saved") }) { obj: Throwable -> obj.printStackTrace() }
     }
 
     private fun setMeals(days: List<DietDay>) {
@@ -168,5 +168,6 @@ object DBHolder {
             3 -> dietPlanEntity.snakeState = CHECKED
             4 -> dietPlanEntity.snake2State = CHECKED
         }
+        insertInDB()
     }
 }

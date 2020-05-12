@@ -27,14 +27,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/tvTrackerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Кремлевская диета"
                 android:textColor="@color/tracker_text_medium"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,9 +50,9 @@
                 android:text="Детали"
                 android:textColor="@color/tracker_text"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView15"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTrackerTitle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView15" />
+                app:layout_constraintTop_toTopOf="@+id/tvTrackerTitle" />
 
 
             <androidx.cardview.widget.CardView
@@ -70,11 +69,30 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView15">
+                app:layout_constraintTop_toBottomOf="@+id/tvTrackerTitle">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvCompleteMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:drawableLeft="@drawable/ic_clock"
+                        android:drawablePadding="4dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center"
+                        android:text="Хорошая работа! \n Продолжим завтра"
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/divider8"
+                        app:layout_constraintEnd_toEndOf="@+id/tvTitleMenu"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/divider8"
+                        app:layout_constraintTop_toTopOf="@+id/divider8" />
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/lavCompleteDay"

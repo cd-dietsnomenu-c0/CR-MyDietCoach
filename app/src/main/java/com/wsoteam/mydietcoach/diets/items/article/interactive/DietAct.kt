@@ -51,8 +51,16 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         Ampl.openNewDiet(diet.title)
 
         btnStart.setOnClickListener {
-            DifficultyFragment().show(supportFragmentManager, TAG)
+            if (DBHolder.get().name != "") {
+                RewriteAlert().show(supportFragmentManager, TAG)
+            }else{
+                showNewDietAlert()
+            }
         }
+    }
+
+    fun showNewDietAlert(){
+        DifficultyFragment().show(supportFragmentManager, TAG)
     }
 
     fun startDietPlan(difficulty: Int) {

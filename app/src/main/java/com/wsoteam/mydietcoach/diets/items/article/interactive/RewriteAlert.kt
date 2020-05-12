@@ -7,30 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.wsoteam.mydietcoach.R
-import kotlinx.android.synthetic.main.diff_dialog_fragment.*
+import kotlinx.android.synthetic.main.rewrite_alert.*
 
-class DifficultyFragment : DialogFragment() {
+class RewriteAlert : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.diff_dialog_fragment, container, false)
+        var view = inflater.inflate(R.layout.rewrite_alert, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        cvEasy.setOnClickListener {
-            (activity as DietAct).startDietPlan(2)
+        btnOk.setOnClickListener {
+            (activity as DietAct).showNewDietAlert()
             dismiss()
         }
-        cvMedium.setOnClickListener {
-            (activity as DietAct).startDietPlan(1)
-            dismiss()
-        }
-        cvHard.setOnClickListener {
-            (activity as DietAct).startDietPlan(0)
-            dismiss()
-        }
-        tvCancel.setOnClickListener {
+
+        btnCancel.setOnClickListener {
             dismiss()
         }
     }

@@ -160,7 +160,6 @@
                 android:id="@+id/tvThird"
                 android:textSize="20sp"
                 android:layout_gravity="center"
-                android:visibility="invisible"
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto_medium"/>
 
@@ -169,6 +168,7 @@
                 android:layout_height="match_parent"
                 app:lottie_loop="false"
                 android:layout_margin="4dp"
+                android:visibility="invisible"
                 android:id="@+id/lavThird"
                 app:lottie_fileName="day_check.json"/>
 

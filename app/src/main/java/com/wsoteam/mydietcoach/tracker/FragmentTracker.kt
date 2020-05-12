@@ -49,6 +49,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
             dietState = DBHolder.bindNewDay(getDiet()!!)
         }
+        tvTrackerTitle.text = DBHolder.get().name
         currentDay = DBHolder.get().currentDay
         bindLives(DBHolder.get().difficulty, DBHolder.get().missingDays)
         bindEats(getDiet()?.get(currentDay))
@@ -102,7 +103,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
     private fun bindEats(day: DietDay?) {
         eatsAdapter = EatAdapter(day!!.eats, DBHolder.get().breakfastState,
-                DBHolder.get().lunchState, DBHolder.get().breakfastState,
+                DBHolder.get().lunchState, DBHolder.get().dinnerState,
                 DBHolder.get().snakeState, DBHolder.get().snake2State, object : IEat {
             override fun checkEat(type: Int) {
                 DBHolder.checkEat(type)
@@ -118,9 +119,12 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun closeDay() {
+        tvTitleMenu.visibility = View.INVISIBLE
         tvLabelDay.visibility = View.INVISIBLE
         tvBigDay.visibility = View.INVISIBLE
+
         lavCompleteDay.playAnimation()
+        tvCompleteMenu.visibility = View.VISIBLE
     }
 
     private fun refreshEats(type: Int) {

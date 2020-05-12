@@ -18,6 +18,10 @@ class DayLoseConverter {
 
     @TypeConverter
     fun fromBD(data : String) : MutableList<Int>{
-        return data.split(",").map { it.toInt() }.toMutableList()
+        return if (data == ""){
+            mutableListOf()
+        }else {
+            data.split(",").map { it.toInt() }.toMutableList()
+        }
     }
 }
