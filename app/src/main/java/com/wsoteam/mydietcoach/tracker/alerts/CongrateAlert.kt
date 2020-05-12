@@ -1,5 +1,6 @@
 package com.wsoteam.mydietcoach.tracker.alerts
 
+import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,5 +15,15 @@ class CongrateAlert : DialogFragment() {
         var view = inflater.inflate(R.layout.alert_congrate, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val dialog: Dialog? = dialog
+        if (dialog != null) {
+            val width = ViewGroup.LayoutParams.MATCH_PARENT
+            val height = ViewGroup.LayoutParams.MATCH_PARENT
+            dialog.window.setLayout(width, height)
+        }
     }
 }

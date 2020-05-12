@@ -10,6 +10,7 @@ import com.wsoteam.mydietcoach.POJOS.interactive.DietDay
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
+import com.wsoteam.mydietcoach.tracker.alerts.CongrateAlert
 import com.wsoteam.mydietcoach.tracker.controller.DayAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.EatAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.IEat
@@ -38,6 +39,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         rvMenu.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         rvDays.layoutManager = LinearLayoutManager(activity)
         rvLives.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        CongrateAlert().show(activity!!.supportFragmentManager, CONGRATE_TAG)
     }
 
     override fun onResume() {
