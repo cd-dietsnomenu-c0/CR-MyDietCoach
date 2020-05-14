@@ -47,7 +47,6 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
                     .putExtra(Config.NEW_DIET, getDiet())
                     .putExtra(Config.NEED_SHOW_CONNECT, false))
         }
-        LoseAlert().show(activity!!.supportFragmentManager, "sdf")
     }
 
     override fun onResume() {
