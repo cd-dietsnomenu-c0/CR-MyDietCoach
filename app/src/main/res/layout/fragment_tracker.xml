@@ -40,6 +40,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <TextView
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -47,6 +50,7 @@
                 android:fontFamily="@font/roboto"
                 android:drawableRight="@drawable/ic_tracker_right_arrow"
                 android:drawablePadding="12dp"
+                android:id="@+id/tvDetails"
                 android:text="Детали"
                 android:textColor="@color/tracker_text"
                 android:textSize="12sp"

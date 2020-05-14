@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         app:adSize="SMART_BANNER"
+        android:visibility="gone"
         app:adUnitId="@string/banner_id"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,10 +29,17 @@
 
     <Button
         android:id="@+id/btnStart"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_marginBottom="24dp"
+        android:text="Начать"
+        android:drawableLeft="@drawable/ic_start_button"
+        android:paddingHorizontal="40dp"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/white"
+        android:background="@drawable/shape_start_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

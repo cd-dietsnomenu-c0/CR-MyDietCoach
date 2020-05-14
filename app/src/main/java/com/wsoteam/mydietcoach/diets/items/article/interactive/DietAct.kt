@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
@@ -30,6 +32,11 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
 
     lateinit var diet: Diet
     private var TAG = "ALERT_DIET_ACT"
+    var isHided = false
+    var isShowed = true
+    var isNeedShowConnect = false
+    lateinit var showAnim : Animation
+    lateinit var hideAnim : Animation
 
     override fun onBackPressed() {
         AdWorker.showInter()
@@ -39,15 +46,33 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        showAnim = AnimationUtils.loadAnimation(this, R.anim.show_start_button)
+        hideAnim = AnimationUtils.loadAnimation(this, R.anim.hide_start_button)
+
         AdWorker.checkLoad()
         appodealBannerView.loadAd(AdRequest.Builder().build())
         diet = intent.getSerializableExtra(Config.NEW_DIET) as Diet
+        isNeedShowConnect = intent.getSerializableExtra(Config.NEED_SHOW_CONNECT) as Boolean
         rvDiet.layoutManager = LayoutManagerTopScroll(this)
         rvDiet.adapter = DietAdapter(diet, object : IContents {
             override fun moveTo(position: Int) {
                 rvDiet.smoothScrollToPosition(position)
             }
         })
+        if (isNeedShowConnect) {
+            rvDiet.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    if (dy > 0) {
+                        hideStartButton()
+                    } else {
+                        showScrollButton()
+                    }
+                }
+            })
+        }else{
+            btnStart.visibility = View.INVISIBLE
+        }
         Ampl.openNewDiet(diet.title)
 
         btnStart.setOnClickListener {
@@ -56,6 +81,24 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
             }else{
                 showNewDietAlert()
             }
+        }
+    }
+
+    private fun showScrollButton() {
+        if (!isShowed){
+            isHided = false
+            isShowed = true
+            btnStart.startAnimation(showAnim)
+            btnStart.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideStartButton() {
+        if (!isHided){
+            isShowed = false
+            isHided = true
+            btnStart.startAnimation(hideAnim)
+            btnStart.visibility = View.INVISIBLE
         }
     }
 

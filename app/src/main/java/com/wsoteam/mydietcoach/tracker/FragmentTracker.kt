@@ -1,16 +1,20 @@
 package com.wsoteam.mydietcoach.tracker
 
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wsoteam.mydietcoach.Config
+import com.wsoteam.mydietcoach.POJOS.interactive.Diet
 import com.wsoteam.mydietcoach.POJOS.interactive.DietDay
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
-import com.wsoteam.mydietcoach.tracker.alerts.CongrateAlert
+import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct
+import com.wsoteam.mydietcoach.tracker.alerts.LoseAlert
 import com.wsoteam.mydietcoach.tracker.controller.DayAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.EatAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.IEat
@@ -18,7 +22,6 @@ import com.wsoteam.mydietcoach.tracker.controller.lives.LiveAdapter
 import com.wsoteam.mydietcoach.tracker.controller.menu.IMenu
 import com.wsoteam.mydietcoach.tracker.controller.menu.MenuAdapter
 import kotlinx.android.synthetic.main.fragment_tracker.*
-import kotlinx.android.synthetic.main.vh_native.*
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
@@ -39,7 +42,12 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         rvMenu.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         rvDays.layoutManager = LinearLayoutManager(activity)
         rvLives.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        CongrateAlert().show(activity!!.supportFragmentManager, CONGRATE_TAG)
+        tvDetails.setOnClickListener {
+            startActivity(Intent(activity, DietAct::class.java)
+                    .putExtra(Config.NEW_DIET, getDiet())
+                    .putExtra(Config.NEED_SHOW_CONNECT, false))
+        }
+        LoseAlert().show(activity!!.supportFragmentManager, "sdf")
     }
 
     override fun onResume() {
@@ -50,12 +58,12 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
     private fun bindTracker() {
         if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
-            dietState = DBHolder.bindNewDay(getDiet()!!)
+            dietState = DBHolder.bindNewDay(getDietDays()!!)
         }
         tvTrackerTitle.text = DBHolder.get().name
         currentDay = DBHolder.get().currentDay
         bindLives(DBHolder.get().difficulty, DBHolder.get().missingDays)
-        bindEats(getDiet()?.get(currentDay))
+        bindEats(getDietDays()?.get(currentDay))
         bindMenu()
         bindDays()
         bindDayView()
@@ -74,7 +82,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun bindDays() {
-        daysAdapter = DayAdapter(getDiet()!!.size, DBHolder.get().numbersLosesDays, DBHolder.get().currentDay, isDayCompleted)
+        daysAdapter = DayAdapter(getDietDays()!!.size, DBHolder.get().numbersLosesDays, DBHolder.get().currentDay, isDayCompleted)
         rvDays.adapter = daysAdapter
     }
 
@@ -100,7 +108,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
     private fun bindDayView() {
         tvBigDay.text = (DBHolder.get().currentDay + 1).toString()
-        var progress = (DBHolder.get().currentDay + 1).toDouble() / getDiet()!!.size!!.toDouble()
+        var progress = (DBHolder.get().currentDay + 1).toDouble() / getDietDays()!!.size!!.toDouble()
         cpbDay.progress = (progress * 100).toInt()
     }
 
@@ -139,10 +147,19 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
 
-    private fun getDiet(): List<DietDay>? {
+    private fun getDietDays(): List<DietDay>? {
         for (diet in GlobalHolder.getGlobal().allDiets.dietList) {
             if (diet.title == DBHolder.get().name) {
                 return diet.days
+            }
+        }
+        return null
+    }
+
+    private fun getDiet(): Diet? {
+        for (diet in GlobalHolder.getGlobal().allDiets.dietList) {
+            if (diet.title == DBHolder.get().name) {
+                return diet
             }
         }
         return null

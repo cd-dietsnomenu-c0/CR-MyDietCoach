@@ -35,7 +35,9 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
         rvListDiets.layoutManager = LinearLayoutManager(this)
         val adapter = InteractiveAdapter(allDiets, object : ItemClick{
             override fun click(position: Int) {
-                startActivity(Intent(this@NewDietsListActivity, DietAct::class.java).putExtra(Config.NEW_DIET, allDiets.dietList[position]))
+                startActivity(Intent(this@NewDietsListActivity, DietAct::class.java)
+                        .putExtra(Config.NEW_DIET, allDiets.dietList[position])
+                        .putExtra(Config.NEED_SHOW_CONNECT, true))
             }
 
             override fun newDietsClick() {

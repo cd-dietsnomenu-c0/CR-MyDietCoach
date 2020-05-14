@@ -1,5 +1,7 @@
 package com.wsoteam.mydietcoach;
 
+import org.jetbrains.annotations.Nullable;
+
 public class Config {
     public static final String ID_SECTIONS_ARGS = "id_sec_args";
     public static final String ID_SUBSECTIONS_ARGS= "id_sub_sec_args";
@@ -15,4 +17,5 @@ public class Config {
 
     public static String PUSH_TAG = "PUSH_TAG";
     public static String OPEN_FROM_PUSH = "OPEN_FROM_PUSH";
+    public static final String NEED_SHOW_CONNECT = "NEED_SHOW_CONNECT";
 }
