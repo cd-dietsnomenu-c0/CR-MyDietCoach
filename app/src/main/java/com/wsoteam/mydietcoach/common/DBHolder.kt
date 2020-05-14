@@ -34,6 +34,24 @@ object DBHolder {
         return dietPlanEntity
     }
 
+    fun delete(){
+        clearDB()
+        dietPlanEntity = DietPlanEntity(0, 0, "",
+                false, false, 0, 0,
+                0, 0, 0, 0, 0, 0, mutableListOf())
+    }
+
+    private fun clearDB() {
+        Single.fromCallable {
+            App.getInstance().db.dietDAO().clearDiet(this.dietPlanEntity)
+            null
+        }
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ _ -> Log.e("LOL", "saved") }) { obj: Throwable -> obj.printStackTrace() }
+    }
+
+
     fun firstSet(dietPlanEntity: DietPlanEntity, days: List<DietDay>){
         this.dietPlanEntity = dietPlanEntity
         setMeals(days)

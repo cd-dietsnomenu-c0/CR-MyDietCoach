@@ -10,12 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wsoteam.mydietcoach.Config
+import com.wsoteam.mydietcoach.MainActivity
 import com.wsoteam.mydietcoach.POJOS.interactive.Diet
 import com.wsoteam.mydietcoach.POJOS.interactive.DietDay
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
+import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
 import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct
+import com.wsoteam.mydietcoach.tracker.alerts.CongrateAlert
 import com.wsoteam.mydietcoach.tracker.alerts.ExitAlert
 import com.wsoteam.mydietcoach.tracker.alerts.LoseAlert
 import com.wsoteam.mydietcoach.tracker.controller.DayAdapter
@@ -42,6 +45,8 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     lateinit var daysAdapter: DayAdapter
 
     lateinit var exitAlert : DialogFragment
+    lateinit var completeAlert : DialogFragment
+    lateinit var loseFragment : DialogFragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,10 +69,25 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     private fun createAlerts() {
         exitAlert = ExitAlert()
         exitAlert.setTargetFragment(this, 0)
+
+        completeAlert = CongrateAlert()
+        completeAlert.setTargetFragment(this, 0)
+
+        loseFragment = LoseAlert()
+        loseFragment.setTargetFragment(this, 0)
     }
 
     fun closeDiet(){
-        Log.e("LOL", "close diet")
+        DBHolder.delete()
+        startActivity(Intent(activity, MainActivity::class.java))
+        activity!!.finish()
+    }
+
+    fun restartDiet(){
+        var entity = DietPlanEntity(getDiet()!!, DBHolder.get().difficulty, DBHolder.getTomorrowTimeTrigger())
+        DBHolder.firstSet(entity, getDietDays()!!)
+        startActivity(Intent(activity, LoadingActivity::class.java))
+        activity!!.finish()
     }
 
     override fun onResume() {
@@ -95,7 +115,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun showLosedAlert() {
-
+        loseFragment.show(activity!!.supportFragmentManager, LOSE_TAG)
     }
 
     private fun showCompletedAlert() {

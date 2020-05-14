@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.tracker.FragmentTracker
+import kotlinx.android.synthetic.main.alert_congrate.*
 
 class CongrateAlert : DialogFragment() {
 
@@ -24,6 +26,18 @@ class CongrateAlert : DialogFragment() {
             val width = ViewGroup.LayoutParams.MATCH_PARENT
             val height = ViewGroup.LayoutParams.MATCH_PARENT
             dialog.window.setLayout(width, height)
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        fabEnd.setOnClickListener {
+            (targetFragment as FragmentTracker).closeDiet()
+            dismiss()
+        }
+
+        fabShare.setOnClickListener {
+            //(targetFragment as FragmentTracker).closeDiet()
+            dismiss()
         }
     }
 }

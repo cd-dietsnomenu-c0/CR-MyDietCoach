@@ -13,4 +13,7 @@ interface DietDAO {
     @Query("select * from DietPlanEntity")
     fun getAll() : List<DietPlanEntity>
 
+    @Delete
+    fun clearDiet(dietPlanEntity: DietPlanEntity)
+
 }
