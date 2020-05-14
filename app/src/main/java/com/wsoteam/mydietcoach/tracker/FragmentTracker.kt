@@ -3,7 +3,9 @@ package com.wsoteam.mydietcoach.tracker
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,7 @@ import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct
+import com.wsoteam.mydietcoach.tracker.alerts.ExitAlert
 import com.wsoteam.mydietcoach.tracker.alerts.LoseAlert
 import com.wsoteam.mydietcoach.tracker.controller.DayAdapter
 import com.wsoteam.mydietcoach.tracker.controller.eats.EatAdapter
@@ -26,6 +29,9 @@ import kotlinx.android.synthetic.main.fragment_tracker.*
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
     val CONGRATE_TAG = "CONGRATE_TAG"
+    val LOSE_TAG = "LOSE_TAG"
+    val EXIT_TAG = "EXIT_TAG"
+
     var currentDay = 0
     var dietState = 0
     var isDayCompleted = false
@@ -34,6 +40,8 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     lateinit var liveAdapter: LiveAdapter
     lateinit var eatsAdapter: EatAdapter
     lateinit var daysAdapter: DayAdapter
+
+    lateinit var exitAlert : DialogFragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,6 +55,19 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
                     .putExtra(Config.NEW_DIET, getDiet())
                     .putExtra(Config.NEED_SHOW_CONNECT, false))
         }
+        createAlerts()
+        ivExit.setOnClickListener {
+            exitAlert.show(activity!!.supportFragmentManager, EXIT_TAG)
+        }
+    }
+
+    private fun createAlerts() {
+        exitAlert = ExitAlert()
+        exitAlert.setTargetFragment(this, 0)
+    }
+
+    fun closeDiet(){
+        Log.e("LOL", "close diet")
     }
 
     override fun onResume() {
