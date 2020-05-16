@@ -77,6 +77,10 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         loseFragment.setTargetFragment(this, 0)
     }
 
+    fun share(){
+
+    }
+
     fun closeDiet(){
         DBHolder.delete()
         startActivity(Intent(activity, MainActivity::class.java))
