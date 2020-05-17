@@ -194,9 +194,16 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         if (this::daysAdapter.isInitialized) {
             daysAdapter.notifyDayCompleted()
         }
-        if (isDayViewBind){
+        if (isDayViewBind) {
             lavCompleteDay.playAnimation()
         }
+        if(isDietCompleteNow()){
+            showCompletedAlert()
+        }
+    }
+
+    private fun isDietCompleteNow(): Boolean {
+        return DBHolder.get().currentDay + 1 == getDietDays()!!.size
     }
 
     private fun refreshEats(type: Int) {
