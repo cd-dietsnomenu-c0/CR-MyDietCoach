@@ -18,10 +18,14 @@ object DBHolder {
     var DIET_LOSE = -1
     var DIET_CONTINUE = 0
     var DIET_COMPLETED = 1
+
+    var NO_DIET_YET = "NO_DIET_YET"
+    var INIT_DIET = "INIT_DIET"
+
     private var dietPlanEntity : DietPlanEntity
 
     init {
-        dietPlanEntity = DietPlanEntity(0, 0, "",
+        dietPlanEntity = DietPlanEntity(0, 0, INIT_DIET,
                 false, false, 0, 0,
                 0, 0, 0, 0, 0, 0, mutableListOf())
     }
@@ -31,6 +35,13 @@ object DBHolder {
     }
 
     fun get() : DietPlanEntity{
+        if (dietPlanEntity.name == INIT_DIET){
+            dietPlanEntity = App.getInstance().db.dietDAO().getAll()[0]
+        }
+        return dietPlanEntity
+    }
+
+    fun getIfExist() : DietPlanEntity{
         return dietPlanEntity
     }
 
@@ -187,5 +198,11 @@ object DBHolder {
             4 -> dietPlanEntity.snake2State = CHECKED
         }
         insertInDB()
+    }
+
+    fun setEmpty() {
+        dietPlanEntity = DietPlanEntity(0, 0, NO_DIET_YET,
+                false, false, 0, 0,
+                0, 0, 0, 0, 0, 0, mutableListOf())
     }
 }

@@ -42,6 +42,8 @@
     <string name="rate_us">Оцените нас</string>
     <string name="share">Поделиться с друзьями</string>
     <string name="accompanying_text">Все работает в реальной жизни! Попробуй и ты!</string>
+    <string name="tracker_share_1">Мной была успешно пройдена </string>
+    <string name="tracker_share_2">. Результаты поражают! Попробуй и ты)</string>
 
     <string name="privacy_policy">Privacy policy</string>
   <string name="bnv_main">Диеты</string>
@@ -253,5 +255,6 @@
         <item>@drawable/ic_plus_dark_red</item>
         <item>@drawable/ic_plus_light_violet</item>
     </integer-array>
+
 
 </resources>

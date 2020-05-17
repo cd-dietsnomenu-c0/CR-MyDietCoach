@@ -35,6 +35,7 @@ public class App extends Application {
         createNotificationChannel(getContext());
 
         db = Room.databaseBuilder(this, DietDatabase.class, "dietPlans")
+                .allowMainThreadQueries()
                 .build();
     }
 

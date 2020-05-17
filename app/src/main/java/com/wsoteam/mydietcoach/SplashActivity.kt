@@ -7,11 +7,13 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
 import com.airbnb.lottie.RenderMode
 import com.squareup.moshi.Moshi
 import com.wsoteam.mydietcoach.POJOS.Global
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
+import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -21,6 +23,21 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     lateinit var scale : Animation
     lateinit var alpha : Animation
+    lateinit var alphaText : Animation
+    var goCounter = 0
+    var maxGoCounter = 3
+
+    var goLiveData = MutableLiveData<Int>()
+
+    init {
+        goLiveData.observe(this, androidx.lifecycle.Observer {
+            goCounter += it
+            if (goCounter >= maxGoCounter){
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
+        })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +49,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun loadAnimations(){
         scale = AnimationUtils.loadAnimation(this, R.anim.scale_splash)
         alpha = AnimationUtils.loadAnimation(this, R.anim.alpha_splash)
+        alphaText = AnimationUtils.loadAnimation(this, R.anim.alpha_splash)
 
         alpha.fillAfter = true
         alpha.isFillEnabled = true
@@ -45,9 +63,22 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
             override fun onAnimationEnd(animation: Animation?) {
                 ivLogo.startAnimation(alpha)
-                tvText.startAnimation(alpha)
+                tvText.startAnimation(alphaText)
                 tvText.visibility = View.VISIBLE
                 ivLogo.visibility = View.VISIBLE
+            }
+
+            override fun onAnimationStart(animation: Animation?) {
+            }
+        })
+
+        alphaText.setAnimationListener(object : Animation.AnimationListener{
+            override fun onAnimationRepeat(animation: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                goLiveData.postValue(1)
             }
 
             override fun onAnimationStart(animation: Animation?) {
@@ -59,7 +90,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun playAnim() {
         lavLetter.setRenderMode(RenderMode.SOFTWARE)
         lavLetter.setAnimation("splash_letter.json")
-        lavLetter.speed = 1.9f
+        lavLetter.speed = 2.5f
         lavLetter.playAnimation()
         lavLetter.addAnimatorUpdateListener {
             if ((it.animatedValue as Float * 100).toInt() == 99){
@@ -76,12 +107,21 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun loadDB() {
         Single.fromCallable {
             var dietPlanEntity = App.getInstance().db.dietDAO().getAll()[0]
-            Log.e("LOL", dietPlanEntity.toString())
             dietPlanEntity
         }
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ t -> DBHolder.set(t) }) { obj: Throwable -> obj.printStackTrace() }
+                .subscribe({ t -> saveDiet(t)  }) { _: Throwable -> saveEmptyDiet() }
+    }
+
+    private fun saveDiet(t: DietPlanEntity) {
+        DBHolder.set(t)
+        goLiveData.postValue(1)
+    }
+
+    private fun saveEmptyDiet() {
+        DBHolder.setEmpty()
+        goLiveData.postValue(1)
     }
 
     private fun loadDietData() {
@@ -91,12 +131,12 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ t: Global -> saveAndGo(t) }) { obj: Throwable -> obj.printStackTrace() }
+                .subscribe({ t: Global -> save(t) }) { obj: Throwable -> obj.printStackTrace() }
     }
 
-    private fun saveAndGo(t: Global) {
+    private fun save(t: Global) {
         GlobalHolder.setGlobal(t)
-        startActivity(Intent(this, MainActivity::class.java))
+        goLiveData.postValue(1)
     }
 
     private fun getAsyncDietData(): Global? {

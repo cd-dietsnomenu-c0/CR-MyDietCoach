@@ -78,7 +78,12 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     fun share(){
-
+        var intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.tracker_share_1) + " " + getDiet()?.title + getString(R.string.tracker_share_2) + "\n"
+                + "https://play.google.com/store/apps/details?id="
+                + activity!!.packageName)
+        startActivity(intent)
     }
 
     fun closeDiet(){
@@ -123,6 +128,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun showCompletedAlert() {
+        completeAlert.show(activity!!.supportFragmentManager, CONGRATE_TAG)
     }
 
     private fun bindDays() {

@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
         COUNT_OF_RUN = getPreferences(MODE_PRIVATE).getInt(TAG_OF_COUNT_RUN, 0);
         navigationView = findViewById(R.id.bnv_main);
-        if (DBHolder.INSTANCE.get().getName().equals("")){
+        if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())){
             navigationView.getMenu().removeItem(R.id.bnv_tracker);
         }
         navigationView.setOnNavigationItemSelectedListener(bnvListener);
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setDietData(Global global) {
         FragmentSections fragmentSections = FragmentSections.newInstance(global);
-        if (DBHolder.INSTANCE.get().getName().equals("")) {
+        if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())) {
             fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentSections).commit();
         }else {
             fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new FragmentTracker()).commit();
