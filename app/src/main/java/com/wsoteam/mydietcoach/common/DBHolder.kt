@@ -47,9 +47,7 @@ object DBHolder {
 
     fun delete(){
         clearDB()
-        dietPlanEntity = DietPlanEntity(0, 0, "",
-                false, false, 0, 0,
-                0, 0, 0, 0, 0, 0, mutableListOf())
+        setEmpty()
     }
 
     private fun clearDB() {

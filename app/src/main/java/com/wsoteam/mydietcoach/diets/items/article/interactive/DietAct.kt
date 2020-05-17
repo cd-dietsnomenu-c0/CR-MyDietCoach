@@ -76,7 +76,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         Ampl.openNewDiet(diet.title)
 
         btnStart.setOnClickListener {
-            if (DBHolder.get().name != "") {
+            if (DBHolder.get().name != DBHolder.NO_DIET_YET) {
                 RewriteAlert().show(supportFragmentManager, TAG)
             }else{
                 showNewDietAlert()
