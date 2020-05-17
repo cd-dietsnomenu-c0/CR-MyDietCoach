@@ -3,7 +3,6 @@ package com.wsoteam.mydietcoach.tracker
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -65,6 +64,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             exitAlert.show(activity!!.supportFragmentManager, EXIT_TAG)
         }
     }
+
 
     private fun createAlerts() {
         exitAlert = ExitAlert()
