@@ -37,6 +37,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     var currentDay = 0
     var dietState = 0
     var isDayCompleted = false
+    var isDayViewBind = false
 
     lateinit var menuAdapter: MenuAdapter
     lateinit var liveAdapter: LiveAdapter
@@ -157,9 +158,13 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun bindDayView() {
+        isDayViewBind = true
         tvBigDay.text = (DBHolder.get().currentDay + 1).toString()
         var progress = (DBHolder.get().currentDay + 1).toDouble() / getDietDays()!!.size!!.toDouble()
         cpbDay.progress = (progress * 100).toInt()
+        if (isDayCompleted){
+            lavCompleteDay.progress = 1.0f
+        }
     }
 
     private fun bindEats(day: DietDay?) {
@@ -185,10 +190,12 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         tvLabelDay.visibility = View.INVISIBLE
         tvBigDay.visibility = View.INVISIBLE
 
-        lavCompleteDay.playAnimation()
         tvCompleteMenu.visibility = View.VISIBLE
         if (this::daysAdapter.isInitialized) {
             daysAdapter.notifyDayCompleted()
+        }
+        if (isDayViewBind){
+            lavCompleteDay.playAnimation()
         }
     }
 
