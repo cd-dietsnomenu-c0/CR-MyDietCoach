@@ -63,11 +63,13 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.bnv_main: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(0)).commit();
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.dark_status_bar));
                     Ampl.Companion.openDiets();
                     return true;
                 }
                 case R.id.bnv_calclators: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(1)).commit();
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
                     Ampl.Companion.openCalculators();
                     return true;
                 }
@@ -77,12 +79,14 @@ public class MainActivity extends AppCompatActivity {
                 }*/
                 case R.id.bnv_settings: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(2)).commit();
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
                     Ampl.Companion.openSettings();
                     return true;
                 }
 
                 case R.id.bnv_tracker: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(3)).commit();
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
                     Ampl.Companion.openSettings();
                     return true;
                 }
@@ -152,8 +156,10 @@ public class MainActivity extends AppCompatActivity {
         FragmentSections fragmentSections = FragmentSections.newInstance(global);
         if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())) {
             fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentSections).commit();
+            getWindow().setStatusBarColor(getResources().getColor(R.color.dark_status_bar));
         }else {
             fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new FragmentTracker()).commit();
+            getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
         }
         sections.add(fragmentSections);
         sections.add(new FragmentCalculators());

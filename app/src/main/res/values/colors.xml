@@ -91,4 +91,7 @@
     <color name="tracker_text_medium">#2f2f50</color>
     <color name="day_tracker">#03A9F4</color>
     <color name="day_tracker_dot">#4f65de</color>
+
+    <color name="trans_status_bar">#00000000</color>
+    <color name="dark_status_bar">#232323</color>
 </resources>
