@@ -22,7 +22,7 @@ object DBHolder {
     var NO_DIET_YET = "NO_DIET_YET"
     var INIT_DIET = "INIT_DIET"
 
-    private var dietPlanEntity : DietPlanEntity
+    private var dietPlanEntity: DietPlanEntity
 
     init {
         dietPlanEntity = DietPlanEntity(0, 0, INIT_DIET,
@@ -30,22 +30,22 @@ object DBHolder {
                 0, 0, 0, 0, 0, 0, mutableListOf())
     }
 
-    fun set(dietPlanEntity: DietPlanEntity){
+    fun set(dietPlanEntity: DietPlanEntity) {
         this.dietPlanEntity = dietPlanEntity
     }
 
-    fun get() : DietPlanEntity{
-        if (dietPlanEntity.name == INIT_DIET){
+    fun get(): DietPlanEntity {
+        if (dietPlanEntity.name == INIT_DIET) {
             dietPlanEntity = App.getInstance().db.dietDAO().getAll()[0]
         }
         return dietPlanEntity
     }
 
-    fun getIfExist() : DietPlanEntity{
+    fun getIfExist(): DietPlanEntity {
         return dietPlanEntity
     }
 
-    fun delete(){
+    fun delete() {
         clearDB()
         setEmpty()
     }
@@ -61,24 +61,26 @@ object DBHolder {
     }
 
 
-    fun firstSet(dietPlanEntity: DietPlanEntity, days: List<DietDay>){
+    fun firstSet(dietPlanEntity: DietPlanEntity, days: List<DietDay>) {
         this.dietPlanEntity = dietPlanEntity
         setMeals(days)
         insertInDB()
     }
 
-    fun bindNewDay(days : List<DietDay>) : Int{
-        checkYesterday()
-        dietPlanEntity.currentDay += 1
-        dietPlanEntity.timeTrigger = getTomorrowTimeTrigger()
-        checkNotOpenedDays()
-        if (dietPlanEntity.missingDays > dietPlanEntity.difficulty){
+    fun bindNewDay(days: List<DietDay>): Int {
+        checkLastDay()
+        var isLastDayHandled = checkNotOpenedDays(days)
+        if (dietPlanEntity.currentDay + 1 < days.size) {
+            dietPlanEntity.currentDay += 1
+            dietPlanEntity.timeTrigger += ONE_DAY
+        }
+        if (dietPlanEntity.missingDays > dietPlanEntity.difficulty) {
             return DIET_LOSE
-        }else if (isDietNotCompleted(days)){
+        } else if (isDietNotCompleted(days) && !isLastDayHandled) {
             setMeals(days)
             insertInDB()
             return DIET_CONTINUE
-        }else{
+        } else {
             return DIET_COMPLETED
         }
     }
@@ -87,21 +89,29 @@ object DBHolder {
         return days.size >= dietPlanEntity.currentDay + 1
     }
 
-    private fun checkYesterday() {
-        if (!isCompletedYesterday()){
+    private fun checkLastDay() {
+        if (!isCompletedYesterday() && dietPlanEntity.currentDay !in dietPlanEntity.numbersLosesDays) {
             dietPlanEntity.missingDays += 1
             dietPlanEntity.numbersLosesDays.add(dietPlanEntity.currentDay)
         }
     }
 
-    private fun checkNotOpenedDays() {
-        var loseDays = ((dietPlanEntity.timeTrigger - Calendar.getInstance().timeInMillis) / ONE_DAY).toInt()
-        var oldCurrentDay = dietPlanEntity.currentDay
+    private fun checkNotOpenedDays(days: List<DietDay>) : Boolean {
+        var isLastDayHandled = false
+        var currentTime = Calendar.getInstance().timeInMillis
+        var diff = currentTime - dietPlanEntity.timeTrigger
+        var loseDays = (diff / ONE_DAY).toInt()
+        var oldCurrentDay = dietPlanEntity.currentDay + 1
         dietPlanEntity.currentDay += loseDays
-        dietPlanEntity.missingDays += loseDays
-        for (i in oldCurrentDay until dietPlanEntity.currentDay){
-            dietPlanEntity.numbersLosesDays.add(i)
+        if (dietPlanEntity.currentDay > days.size - 1) {
+            dietPlanEntity.currentDay = days.size - 1
+            isLastDayHandled = true
         }
+        for (i in oldCurrentDay..dietPlanEntity.currentDay) {
+            dietPlanEntity.numbersLosesDays.add(i)
+            dietPlanEntity.missingDays += 1
+        }
+        return isLastDayHandled
     }
 
     private fun insertInDB() {
@@ -119,9 +129,9 @@ object DBHolder {
         dietPlanEntity.lunchState = NOT_USE
         dietPlanEntity.dinnerState = NOT_USE
         dietPlanEntity.snakeState = NOT_USE
-        dietPlanEntity.dinnerState = NOT_USE
-        for (eat in days[dietPlanEntity.currentDay].eats){
-            when (eat.type){
+        dietPlanEntity.snake2State = NOT_USE
+        for (eat in days[dietPlanEntity.currentDay].eats) {
+            when (eat.type) {
                 0 -> setBreakfast(eat.text)
                 1 -> setLunch(eat.text)
                 2 -> setDinner(eat.text)
@@ -132,44 +142,44 @@ object DBHolder {
     }
 
     private fun setSecondSnack(text: String) {
-        if (text != ""){
+        if (text != "") {
             dietPlanEntity.snake2State = NOT_CHECKED
         }
     }
 
     private fun setSnack(text: String) {
-        if (text != ""){
+        if (text != "") {
             dietPlanEntity.snakeState = NOT_CHECKED
         }
     }
 
     private fun setDinner(text: String) {
-        if (text != ""){
+        if (text != "") {
             dietPlanEntity.dinnerState = NOT_CHECKED
         }
     }
 
     private fun setLunch(text: String) {
-        if (text != ""){
+        if (text != "") {
             dietPlanEntity.lunchState = NOT_CHECKED
         }
     }
 
     private fun setBreakfast(text: String) {
-        if (text != ""){
+        if (text != "") {
             dietPlanEntity.breakfastState = NOT_CHECKED
         }
     }
 
     private fun isCompletedYesterday(): Boolean {
-        return  dietPlanEntity.breakfastState != NOT_CHECKED
+        return dietPlanEntity.breakfastState != NOT_CHECKED
                 && dietPlanEntity.lunchState != NOT_CHECKED
                 && dietPlanEntity.dinnerState != NOT_CHECKED
                 && dietPlanEntity.snakeState != NOT_CHECKED
                 && dietPlanEntity.snake2State != NOT_CHECKED
     }
 
-    fun getCurrentTimeTrigger() : Long{
+    fun getCurrentTimeTrigger(): Long {
         var calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, 0)
         calendar.set(Calendar.MINUTE, 0)
@@ -178,7 +188,7 @@ object DBHolder {
         return calendar.timeInMillis
     }
 
-    fun getTomorrowTimeTrigger() : Long{
+    fun getTomorrowTimeTrigger(): Long {
         var calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, 0)
         calendar.set(Calendar.MINUTE, 0)
@@ -188,7 +198,7 @@ object DBHolder {
     }
 
     fun checkEat(type: Int) {
-        when(type){
+        when (type) {
             0 -> dietPlanEntity.breakfastState = CHECKED
             1 -> dietPlanEntity.lunchState = CHECKED
             2 -> dietPlanEntity.dinnerState = CHECKED

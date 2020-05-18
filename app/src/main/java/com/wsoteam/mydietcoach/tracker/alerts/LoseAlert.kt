@@ -15,7 +15,7 @@ class LoseAlert : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.alert_lose, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
-        dialog?.setCancelable(false)
+        isCancelable = false
         return view
     }
 

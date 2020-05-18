@@ -16,7 +16,7 @@ class CongrateAlert : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.alert_congrate, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
-        dialog?.setCancelable(false)
+        isCancelable = false
         return view
     }
 
@@ -38,7 +38,6 @@ class CongrateAlert : DialogFragment() {
 
         fabShare.setOnClickListener {
             (targetFragment as FragmentTracker).share()
-            dismiss()
         }
     }
 }

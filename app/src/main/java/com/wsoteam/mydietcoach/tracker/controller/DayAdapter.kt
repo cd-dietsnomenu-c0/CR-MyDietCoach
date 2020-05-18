@@ -31,7 +31,7 @@ class DayAdapter(var count: Int, val numbersLosesDays: MutableList<Int>, val cur
         var currentDayIndex = DayConfig.NOT_HAVE_CURRENT_DAY
         var states = mutableListOf(DayConfig.UNUSED, DayConfig.UNUSED, DayConfig.UNUSED, DayConfig.UNUSED, DayConfig.UNUSED)
         var max = (position + 1) * 5 - 1
-        var min = max - 5
+        var min = max - 4
         for (i in numbersLosesDays.indices){
             if (numbersLosesDays[i] in min..max){
                 states[getIndex(numbersLosesDays[i])] = DayConfig.LOSE

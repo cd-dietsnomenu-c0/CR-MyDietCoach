@@ -3,6 +3,7 @@ package com.wsoteam.mydietcoach.tracker
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -107,29 +108,37 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
 
     private fun bindTracker() {
-        if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
+        isDayCompleted = false
+        /*if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
+            dietState = DBHolder.bindNewDay(getDietDays()!!)
+        }*/
+        if (true) {
             dietState = DBHolder.bindNewDay(getDietDays()!!)
         }
-        tvTrackerTitle.text = DBHolder.get().name
-        currentDay = DBHolder.get().currentDay
-        bindLives(DBHolder.get().difficulty, DBHolder.get().missingDays)
-        bindEats(getDietDays()?.get(currentDay))
-        bindMenu()
-        bindDays()
-        bindDayView()
         if (dietState == DBHolder.DIET_COMPLETED) {
             showCompletedAlert()
         } else if (dietState == DBHolder.DIET_LOSE) {
             showLosedAlert()
         }
+            tvTrackerTitle.text = DBHolder.get().name
+            currentDay = DBHolder.get().currentDay
+            bindLives(DBHolder.get().difficulty, DBHolder.get().missingDays)
+            bindEats(getDietDays()?.get(currentDay))
+            bindMenu()
+            bindDays()
+            bindDayView()
     }
 
     private fun showLosedAlert() {
-        loseFragment.show(activity!!.supportFragmentManager, LOSE_TAG)
+        if (!loseFragment.isAdded) {
+            loseFragment.show(activity!!.supportFragmentManager, LOSE_TAG)
+        }
     }
 
     private fun showCompletedAlert() {
-        completeAlert.show(activity!!.supportFragmentManager, CONGRATE_TAG)
+        if (!completeAlert.isAdded) {
+            completeAlert.show(activity!!.supportFragmentManager, CONGRATE_TAG)
+        }
     }
 
     private fun bindDays() {
@@ -163,6 +172,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         var progress = (DBHolder.get().currentDay + 1).toDouble() / getDietDays()!!.size!!.toDouble()
         cpbDay.progress = (progress * 100).toInt()
         if (isDayCompleted){
+            lavCompleteDay.visibility = View.VISIBLE
             lavCompleteDay.progress = 1.0f
         }
     }
@@ -195,6 +205,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             daysAdapter.notifyDayCompleted()
         }
         if (isDayViewBind) {
+            lavCompleteDay.visibility = View.VISIBLE
             lavCompleteDay.playAnimation()
         }
         if(isDietCompleteNow()){
@@ -204,6 +215,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
     private fun isDietCompleteNow(): Boolean {
         return DBHolder.get().currentDay + 1 == getDietDays()!!.size
+                && DBHolder.get().missingDays <= DBHolder.get().difficulty
     }
 
     private fun refreshEats(type: Int) {
