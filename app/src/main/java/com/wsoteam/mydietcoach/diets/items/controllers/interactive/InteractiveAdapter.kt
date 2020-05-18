@@ -69,7 +69,7 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
 
     private fun getAdPosition() : Int{
         var position = 0
-        if (counter > Config.NATIVE_ITEMS_MAX - 1){
+        if (counter > nativeList.size - 1){
             position = 0
             counter = 1
         }else{

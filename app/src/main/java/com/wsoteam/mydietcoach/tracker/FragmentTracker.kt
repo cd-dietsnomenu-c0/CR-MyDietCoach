@@ -28,6 +28,7 @@ import com.wsoteam.mydietcoach.tracker.controller.lives.LiveAdapter
 import com.wsoteam.mydietcoach.tracker.controller.menu.IMenu
 import com.wsoteam.mydietcoach.tracker.controller.menu.MenuAdapter
 import kotlinx.android.synthetic.main.fragment_tracker.*
+import java.lang.Exception
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
@@ -39,15 +40,16 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     var dietState = 0
     var isDayCompleted = false
     var isDayViewBind = false
+    var isCompleteAlertShowed = false
 
     lateinit var menuAdapter: MenuAdapter
     lateinit var liveAdapter: LiveAdapter
     lateinit var eatsAdapter: EatAdapter
     lateinit var daysAdapter: DayAdapter
 
-    lateinit var exitAlert : DialogFragment
-    lateinit var completeAlert : DialogFragment
-    lateinit var loseFragment : DialogFragment
+    lateinit var exitAlert: DialogFragment
+    lateinit var completeAlert: DialogFragment
+    lateinit var loseFragment: DialogFragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -79,7 +81,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         loseFragment.setTargetFragment(this, 0)
     }
 
-    fun share(){
+    fun share() {
         var intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.tracker_share_1) + " " + getDiet()?.title + getString(R.string.tracker_share_2) + "\n"
@@ -88,13 +90,13 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         startActivity(intent)
     }
 
-    fun closeDiet(){
+    fun closeDiet() {
         DBHolder.delete()
         startActivity(Intent(activity, MainActivity::class.java))
         activity!!.finish()
     }
 
-    fun restartDiet(){
+    fun restartDiet() {
         var entity = DietPlanEntity(getDiet()!!, DBHolder.get().difficulty, DBHolder.getTomorrowTimeTrigger())
         DBHolder.firstSet(entity, getDietDays()!!)
         startActivity(Intent(activity, LoadingActivity::class.java))
@@ -108,38 +110,39 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
 
     private fun bindTracker() {
+        isCompleteAlertShowed = false
         isDayCompleted = false
-        /*if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
-            dietState = DBHolder.bindNewDay(getDietDays()!!)
-        }*/
-        if (true) {
+        if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
             dietState = DBHolder.bindNewDay(getDietDays()!!)
         }
+        /*if (true) {
+            dietState = DBHolder.bindNewDay(getDietDays()!!)
+        }*/
         if (dietState == DBHolder.DIET_COMPLETED) {
             showCompletedAlert()
         } else if (dietState == DBHolder.DIET_LOSE) {
             showLosedAlert()
         }
-            tvTrackerTitle.text = DBHolder.get().name
-            currentDay = DBHolder.get().currentDay
-            bindLives(DBHolder.get().difficulty, DBHolder.get().missingDays)
-            bindEats(getDietDays()?.get(currentDay))
-            bindMenu()
-            bindDays()
-            bindDayView()
+        tvTrackerTitle.text = DBHolder.get().name
+        currentDay = DBHolder.get().currentDay
+        bindLives(DBHolder.get().difficulty, DBHolder.get().missingDays)
+        bindEats(getDietDays()?.get(currentDay))
+        bindMenu()
+        bindDays()
+        bindDayView()
     }
 
     private fun showLosedAlert() {
-        if (!loseFragment.isAdded) {
-            loseFragment.show(activity!!.supportFragmentManager, LOSE_TAG)
-        }
+        loseFragment.show(activity!!.supportFragmentManager, LOSE_TAG)
     }
 
     private fun showCompletedAlert() {
-        if (!completeAlert.isAdded) {
+        if (!isCompleteAlertShowed && !completeAlert.isAdded) {
             completeAlert.show(activity!!.supportFragmentManager, CONGRATE_TAG)
+            isCompleteAlertShowed = true
         }
     }
+
 
     private fun bindDays() {
         daysAdapter = DayAdapter(getDietDays()!!.size, DBHolder.get().numbersLosesDays, DBHolder.get().currentDay, isDayCompleted)
@@ -148,7 +151,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
 
     private fun bindMenu() {
-        menuAdapter = MenuAdapter(getTypedArray(), object : IMenu{
+        menuAdapter = MenuAdapter(getTypedArray(), object : IMenu {
             override fun completeDay() {
                 closeDay()
             }
@@ -171,7 +174,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         tvBigDay.text = (DBHolder.get().currentDay + 1).toString()
         var progress = (DBHolder.get().currentDay + 1).toDouble() / getDietDays()!!.size!!.toDouble()
         cpbDay.progress = (progress * 100).toInt()
-        if (isDayCompleted){
+        if (isDayCompleted) {
             lavCompleteDay.visibility = View.VISIBLE
             lavCompleteDay.progress = 1.0f
         }
@@ -208,7 +211,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             lavCompleteDay.visibility = View.VISIBLE
             lavCompleteDay.playAnimation()
         }
-        if(isDietCompleteNow()){
+        if (isDietCompleteNow()) {
             showCompletedAlert()
         }
     }

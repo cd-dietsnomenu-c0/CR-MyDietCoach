@@ -10,13 +10,14 @@ import android.media.AudioAttributes;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.multidex.MultiDexApplication;
 import androidx.room.Room;
 
 import com.amplitude.api.Amplitude;
 import com.google.android.gms.ads.MobileAds;
 import com.wsoteam.mydietcoach.common.db.DietDatabase;
 
-public class App extends Application {
+public class App extends MultiDexApplication {
 
     private static Context context;
     private DietDatabase db;

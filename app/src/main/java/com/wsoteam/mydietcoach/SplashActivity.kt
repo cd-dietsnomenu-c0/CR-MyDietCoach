@@ -21,22 +21,18 @@ import kotlinx.android.synthetic.main.splash_activity.*
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
-    lateinit var scale : Animation
-    lateinit var alpha : Animation
-    lateinit var alphaText : Animation
+    lateinit var scale: Animation
+    lateinit var alpha: Animation
+    lateinit var alphaText: Animation
     var goCounter = 0
     var maxGoCounter = 3
 
-    var goLiveData = MutableLiveData<Int>()
-
-    init {
-        goLiveData.observe(this, androidx.lifecycle.Observer {
-            goCounter += it
-            if (goCounter >= maxGoCounter){
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }
-        })
+    fun post() {
+        goCounter += 1
+        if (goCounter >= maxGoCounter){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +42,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         loadData()
     }
 
-    private fun loadAnimations(){
+    private fun loadAnimations() {
         scale = AnimationUtils.loadAnimation(this, R.anim.scale_splash)
         alpha = AnimationUtils.loadAnimation(this, R.anim.alpha_splash)
         alphaText = AnimationUtils.loadAnimation(this, R.anim.alpha_splash)
@@ -56,7 +52,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         scale.fillAfter = true
         scale.isFillEnabled = true
 
-        scale.setAnimationListener(object : Animation.AnimationListener{
+        scale.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {
 
             }
@@ -72,13 +68,14 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             }
         })
 
-        alphaText.setAnimationListener(object : Animation.AnimationListener{
+        alphaText.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {
 
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                goLiveData.postValue(1)
+                post()
+                Log.e("LOL", "anim")
             }
 
             override fun onAnimationStart(animation: Animation?) {
@@ -93,7 +90,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         lavLetter.speed = 2.5f
         lavLetter.playAnimation()
         lavLetter.addAnimatorUpdateListener {
-            if ((it.animatedValue as Float * 100).toInt() == 99){
+            if ((it.animatedValue as Float * 100).toInt() == 99) {
                 lavLetter.startAnimation(scale)
             }
         }
@@ -111,17 +108,21 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ t -> saveDiet(t)  }) { _: Throwable -> saveEmptyDiet() }
+                .subscribe({ t -> saveDiet(t) }) { _: Throwable -> saveEmptyDiet() }
     }
 
     private fun saveDiet(t: DietPlanEntity) {
         DBHolder.set(t)
-        goLiveData.postValue(1)
+        post()
+        Log.e("LOL", "db")
+
     }
 
     private fun saveEmptyDiet() {
         DBHolder.setEmpty()
-        goLiveData.postValue(1)
+        post()
+        Log.e("LOL", "empty db")
+
     }
 
     private fun loadDietData() {
@@ -136,7 +137,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun save(t: Global) {
         GlobalHolder.setGlobal(t)
-        goLiveData.postValue(1)
+        post()
+        Log.e("LOL", "aset")
+
     }
 
     private fun getAsyncDietData(): Global? {

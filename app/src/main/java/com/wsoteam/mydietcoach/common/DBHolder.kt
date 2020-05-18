@@ -1,6 +1,5 @@
 package com.wsoteam.mydietcoach.common
 
-import android.icu.util.Calendar
 import android.util.Log
 import com.wsoteam.mydietcoach.App
 import com.wsoteam.mydietcoach.POJOS.interactive.DietDay
@@ -8,6 +7,7 @@ import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 object DBHolder {
     var NOT_USE = -1
