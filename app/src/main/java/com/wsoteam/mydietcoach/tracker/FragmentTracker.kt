@@ -18,6 +18,7 @@ import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
 import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct
+import com.wsoteam.mydietcoach.tracker.alerts.CheatMealAlert
 import com.wsoteam.mydietcoach.tracker.alerts.CongrateAlert
 import com.wsoteam.mydietcoach.tracker.alerts.ExitAlert
 import com.wsoteam.mydietcoach.tracker.alerts.LoseAlert
@@ -35,6 +36,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     val CONGRATE_TAG = "CONGRATE_TAG"
     val LOSE_TAG = "LOSE_TAG"
     val EXIT_TAG = "EXIT_TAG"
+    val CHEAT_TAG = "CHEAT_TAG"
 
     var currentDay = 0
     var dietState = 0
@@ -50,6 +52,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     lateinit var exitAlert: DialogFragment
     lateinit var completeAlert: DialogFragment
     lateinit var loseFragment: DialogFragment
+    lateinit var cheatMealAlert: DialogFragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,6 +70,13 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         ivExit.setOnClickListener {
             exitAlert.show(activity!!.supportFragmentManager, EXIT_TAG)
         }
+        tvTitleLives.setOnClickListener {
+            showCheatAlert()
+        }
+    }
+
+    private fun showCheatAlert() {
+            cheatMealAlert.show(activity!!.supportFragmentManager, CHEAT_TAG)
     }
 
 
@@ -79,6 +89,9 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
         loseFragment = LoseAlert()
         loseFragment.setTargetFragment(this, 0)
+
+        cheatMealAlert = CheatMealAlert()
+        cheatMealAlert.setTargetFragment(this, 0)
     }
 
     fun share() {

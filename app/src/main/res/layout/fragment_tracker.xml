@@ -212,6 +212,8 @@
                         android:layout_marginLeft="16dp"
                         android:fontFamily="@font/roboto_medium"
                         android:text="Читмил"
+                        android:drawableRight="@drawable/ic_info"
+                        android:drawablePadding="8dp"
                         android:textColor="#868799"
                         android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/divider7"
@@ -251,6 +253,19 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:drawableLeft="@drawable/ic_days_calendar"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/tracker_text_medium"
+                        android:text="Расписание"
+                        app:layout_constraintStart_toStartOf="@+id/divider9"
                         app:layout_constraintTop_toBottomOf="@+id/divider9" />
 
 
