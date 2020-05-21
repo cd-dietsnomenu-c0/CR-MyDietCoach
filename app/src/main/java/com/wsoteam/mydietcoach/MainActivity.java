@@ -120,13 +120,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         FBWork.Companion.getFCMToken();
-        AdWorker.INSTANCE.init(this);
-        AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
-            @Override
-            public void loadFin(@NotNull ArrayList<UnifiedNativeAd> nativeList) {
-                Log.e("LOL", String.valueOf(nativeList.size()) + " kek");
-            }
-        });
         Ampl.Companion.run();
 
         if (!hasConnection(this)) {

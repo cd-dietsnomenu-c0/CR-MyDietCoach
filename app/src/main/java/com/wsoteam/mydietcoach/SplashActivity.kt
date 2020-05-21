@@ -41,12 +41,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        init(this)
-        observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
-                Log.e("LOL", nativeList.size.toString() + " kek")
-            }
-        })
+
         loadAnimations()
         playAnim()
         loadData()
@@ -72,6 +67,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 tvText.startAnimation(alphaText)
                 tvText.visibility = View.VISIBLE
                 ivLogo.visibility = View.VISIBLE
+                init(this@SplashActivity)
             }
 
             override fun onAnimationStart(animation: Animation?) {

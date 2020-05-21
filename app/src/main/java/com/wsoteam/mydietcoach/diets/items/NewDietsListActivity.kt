@@ -38,6 +38,7 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
                 startActivity(Intent(this@NewDietsListActivity, DietAct::class.java)
                         .putExtra(Config.NEW_DIET, allDiets.dietList[position])
                         .putExtra(Config.NEED_SHOW_CONNECT, true))
+                AdWorker.refreshNativeAd(this@NewDietsListActivity)
             }
 
             override fun newDietsClick() {
@@ -47,7 +48,6 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
         AdWorker.observeOnNativeList(object : NativeSpeaker{
             override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
                 adapter.insertAds(nativeList)
-                AdWorker.refreshNativeAd(this@NewDietsListActivity)
             }
         })
     }

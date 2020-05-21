@@ -2,6 +2,7 @@ package com.wsoteam.mydietcoach.calculators;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,9 +60,9 @@ public class FragmentCalculators extends Fragment {
             @Override
             public void loadFin(@NotNull ArrayList<UnifiedNativeAd> nativeList) {
                 adapter.insertAds(nativeList);
-                AdWorker.INSTANCE.refreshNativeAd(getActivity());
             }
         });
+        Log.e("LOL", "calc");
     }
 
     public void startCalculator(Integer position){

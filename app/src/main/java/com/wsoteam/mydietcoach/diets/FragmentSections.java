@@ -51,6 +51,7 @@ public class FragmentSections extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fr_sections, container, false);
+
         return view;
     }
 
@@ -59,6 +60,7 @@ public class FragmentSections extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         global = (Global) getArguments().getSerializable(Config.ID_SECTIONS_ARGS);
         sectionArrayList = (ArrayList<Section>) global.getSectionsArray();
+        Log.e("LOL", "calc");
 
         rvSections = view.findViewById(R.id.rvSections);
         rvSections.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -81,15 +83,15 @@ public class FragmentSections extends Fragment {
                 startActivity(new Intent(getActivity(), NewDietsListActivity.class).putExtra(Config.NEW_DIETS, global.getAllDiets()));
             }
         }, new ArrayList<>());
-        rvSections.setAdapter(adapter);
-
         AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
             @Override
             public void loadFin(@NotNull ArrayList<UnifiedNativeAd> nativeList) {
                 Log.e("LOL", "insert");
                 adapter.insertAds(nativeList);
-                AdWorker.INSTANCE.refreshNativeAd(getActivity());
             }
         });
+        rvSections.setAdapter(adapter);
+
+
     }
 }
