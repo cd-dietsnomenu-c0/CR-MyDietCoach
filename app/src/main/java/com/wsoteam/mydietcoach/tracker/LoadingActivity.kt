@@ -5,20 +5,34 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.RatingBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.mydietcoach.MainActivity
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.ad.AdWorker
+import com.wsoteam.mydietcoach.ad.NativeSpeaker
 import kotlinx.android.synthetic.main.loading_activity.*
+import kotlinx.android.synthetic.main.native_include.*
+import kotlinx.android.synthetic.main.vh_native.view.*
+import kotlinx.android.synthetic.main.vh_native.view.ad_view
+import java.util.ArrayList
 
 class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
 
     var lastNumber = -1
-    lateinit var animationHide : Animation
+    lateinit var animationHide: Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        banner.loadAd(AdRequest.Builder().build())
         animationHide = AnimationUtils.loadAnimation(this, R.anim.anim_hide_loading)
         lavLoading.loop(false)
         lavLoadingComplete.loop(false)
@@ -27,7 +41,7 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
         lavLoadingComplete.setAnimation("tracker_loading_complete.json")
         lavLoading.playAnimation()
 
-        animationHide.setAnimationListener(object : Animation.AnimationListener{
+        animationHide.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {
             }
 
@@ -45,7 +59,7 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
         }
 
 
-        lavLoading.addAnimatorListener(object : Animator.AnimatorListener{
+        lavLoading.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {
 
             }
@@ -61,7 +75,7 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
             }
         })
 
-        lavLoadingComplete.addAnimatorListener(object : Animator.AnimatorListener{
+        lavLoadingComplete.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {
             }
 
@@ -77,8 +91,10 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
         })
     }
 
+
+
     private fun startCountDown() {
-        object : CountDownTimer(500, 500){
+        object : CountDownTimer(500, 500) {
             override fun onFinish() {
                 startActivity(Intent(this@LoadingActivity, MainActivity::class.java))
                 finish()
@@ -91,7 +107,7 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
 
     private fun changeState(value: Float) {
         var progress = (value * 100).toInt()
-        if (progress % 20 == 0 && progress != lastNumber){
+        if (progress % 20 == 0 && progress != lastNumber) {
             lastNumber = progress
             tvStateLoading.text = resources.getStringArray(R.array.loading_states)[progress / 20]
         }

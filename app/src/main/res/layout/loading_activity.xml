@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_alignParentBottom="true"
     android:background="@color/white">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -35,5 +36,20 @@
         app:layout_constraintStart_toStartOf="@+id/lavLoading"
         app:layout_constraintTop_toBottomOf="@+id/lavLoading"
         tools:text="Loading..." />
+
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="@string/banner_id"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

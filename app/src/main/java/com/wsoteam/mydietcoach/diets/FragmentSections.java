@@ -2,6 +2,7 @@ package com.wsoteam.mydietcoach.diets;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +15,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wsoteam.mydietcoach.Config;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.POJOS.Section;
 import com.wsoteam.mydietcoach.R;
+import com.wsoteam.mydietcoach.ad.AdWorker;
+import com.wsoteam.mydietcoach.ad.NativeSpeaker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.diets.controllers.SectionAdapter;
 import com.wsoteam.mydietcoach.diets.items.ActivityListItems;
 import com.wsoteam.mydietcoach.diets.items.NewDietsListActivity;
 import com.wsoteam.mydietcoach.diets.items.article.ActivityArticle;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -31,6 +37,7 @@ public class FragmentSections extends Fragment {
     private RecyclerView rvSections;
     private Global global;
     private ArrayList<Section> sectionArrayList;
+    private SectionAdapter adapter;
 
     public static FragmentSections newInstance(Global global) {
         Bundle bundle = new Bundle();
@@ -55,7 +62,7 @@ public class FragmentSections extends Fragment {
 
         rvSections = view.findViewById(R.id.rvSections);
         rvSections.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvSections.setAdapter(new SectionAdapter(sectionArrayList, getResources().getStringArray(R.array.images), new ItemClick(){
+        adapter = new SectionAdapter(sectionArrayList, getResources().getStringArray(R.array.images), new ItemClick(){
             @Override
             public void click(int position) {
                 Intent intent = new Intent(getActivity(), ActivityListItems.class);
@@ -73,6 +80,16 @@ public class FragmentSections extends Fragment {
             public void newDietsClick() {
                 startActivity(new Intent(getActivity(), NewDietsListActivity.class).putExtra(Config.NEW_DIETS, global.getAllDiets()));
             }
-        }));
+        }, new ArrayList<>());
+        rvSections.setAdapter(adapter);
+
+        AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
+            @Override
+            public void loadFin(@NotNull ArrayList<UnifiedNativeAd> nativeList) {
+                Log.e("LOL", "insert");
+                adapter.insertAds(nativeList);
+                AdWorker.INSTANCE.refreshNativeAd(getActivity());
+            }
+        });
     }
 }

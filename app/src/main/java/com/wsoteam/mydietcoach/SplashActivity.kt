@@ -7,10 +7,13 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
 import com.airbnb.lottie.RenderMode
+import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.squareup.moshi.Moshi
 import com.wsoteam.mydietcoach.POJOS.Global
+import com.wsoteam.mydietcoach.ad.AdWorker.init
+import com.wsoteam.mydietcoach.ad.AdWorker.observeOnNativeList
+import com.wsoteam.mydietcoach.ad.NativeSpeaker
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
@@ -18,6 +21,7 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.splash_activity.*
+import java.util.*
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
@@ -37,6 +41,12 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        init(this)
+        observeOnNativeList(object : NativeSpeaker {
+            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                Log.e("LOL", nativeList.size.toString() + " kek")
+            }
+        })
         loadAnimations()
         playAnim()
         loadData()

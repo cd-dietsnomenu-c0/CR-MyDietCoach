@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.google.firebase.database.FirebaseDatabase
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.interactive.*
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.ad.AdWorker
+import com.wsoteam.mydietcoach.ad.NativeSpeaker
 import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
@@ -25,7 +27,6 @@ import com.wsoteam.mydietcoach.diets.items.article.interactive.controller.manage
 import com.wsoteam.mydietcoach.tracker.LoadingActivity
 import kotlinx.android.synthetic.main.activity_list_items.*
 import kotlinx.android.synthetic.main.diet_act.*
-import kotlinx.android.synthetic.main.diet_act.appodealBannerView
 import java.util.*
 
 class DietAct : AppCompatActivity(R.layout.diet_act) {
@@ -51,21 +52,28 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         hideAnim = AnimationUtils.loadAnimation(this, R.anim.hide_start_button)
 
         AdWorker.checkLoad()
-        appodealBannerView.loadAd(AdRequest.Builder().build())
+        //appodealBannerView.loadAd(AdRequest.Builder().build())
         diet = intent.getSerializableExtra(Config.NEW_DIET) as Diet
         isNeedShowConnect = intent.getSerializableExtra(Config.NEED_SHOW_CONNECT) as Boolean
         rvDiet.layoutManager = LayoutManagerTopScroll(this)
-        rvDiet.adapter = DietAdapter(diet, object : IContents {
+        var adapter = DietAdapter(diet, object : IContents {
             override fun moveTo(position: Int) {
                 rvDiet.smoothScrollToPosition(position)
+            }
+        }, arrayListOf())
+        rvDiet.adapter = adapter
+        AdWorker.observeOnNativeList(object : NativeSpeaker {
+            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                adapter.insertAds(nativeList)
+                AdWorker.refreshNativeAd(this@DietAct)
             }
         })
         if (isNeedShowConnect) {
             rvDiet.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    if (dy > 0) {
+                    if (dy > 5) {
                         hideStartButton()
-                    } else {
+                    } else if (dy < -5){
                         showScrollButton()
                     }
                 }

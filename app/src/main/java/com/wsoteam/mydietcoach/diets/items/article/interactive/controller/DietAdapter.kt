@@ -3,9 +3,11 @@ package com.wsoteam.mydietcoach.diets.items.article.interactive.controller
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.mydietcoach.POJOS.interactive.Diet
 
-class DietAdapter(var diet : Diet, val iContents: IContents) : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
+class DietAdapter(var diet : Diet, val iContents: IContents,
+                  var nativeList : ArrayList<UnifiedNativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
 
     val HEAD_TYPE = 0
     val CONTENTS_TYPE = 1
@@ -15,6 +17,7 @@ class DietAdapter(var diet : Diet, val iContents: IContents) : RecyclerView.Adap
     val MENU_TYPE = 5
     val RESULTS_TYPE = 6
     val REVIEW_TYPE = 7
+    val AD_TYPE = 20
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -28,16 +31,21 @@ class DietAdapter(var diet : Diet, val iContents: IContents) : RecyclerView.Adap
             MENU_TYPE -> MenuVH(inflater, parent)
             RESULTS_TYPE -> ResultsVH(inflater, parent)
             REVIEW_TYPE -> ReviewVH(inflater, parent)
+            AD_TYPE -> ADVH(inflater, parent)
             else -> InfoVh(inflater, parent)
         }
     }
 
     override fun getItemCount(): Int {
-        return 8
+        return if (nativeList.isEmpty()){
+            8
+        }else{
+            9
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(position){
+        when(getItemViewType(position)){
             HEAD_TYPE -> (holder as HeadVH).bind(diet.title, diet.shortIntroduction, diet.mainImage)
             CONTENTS_TYPE -> (holder as ContentsVH).bind(object : IContents{
                 override fun moveTo(position: Int) {
@@ -50,10 +58,24 @@ class DietAdapter(var diet : Diet, val iContents: IContents) : RecyclerView.Adap
             MENU_TYPE -> (holder as MenuVH).bind(diet.menuTitle, diet.menuText, diet.days, diet.hintText)
             RESULTS_TYPE -> (holder as ResultsVH).bind(diet.resultText)
             REVIEW_TYPE -> (holder as ReviewVH).bind(diet.review)
+            AD_TYPE -> (holder as ADVH).bind(nativeList[0])
         }
     }
 
+    fun insertAds(listAds: ArrayList<UnifiedNativeAd>) {
+        nativeList = listAds
+        notifyDataSetChanged()
+    }
+
     override fun getItemViewType(position: Int): Int {
-        return position
+        return if (nativeList.isEmpty()) {
+            position
+        }else if (position > 2){
+            position - 1
+        }else if (position == 2){
+            AD_TYPE
+        }else{
+            position
+        }
     }
 }
