@@ -114,6 +114,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
     }
 
     fun startDietPlan(difficulty: Int) {
+        Ampl.choiseHardLevel()
         var entity = DietPlanEntity(diet, difficulty, DBHolder.getTomorrowTimeTrigger())
         DBHolder.firstSet(entity, diet.days)
         startActivity(Intent(this, LoadingActivity::class.java))

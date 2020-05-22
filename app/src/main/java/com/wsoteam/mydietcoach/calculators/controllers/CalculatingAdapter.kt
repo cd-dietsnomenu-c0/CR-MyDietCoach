@@ -58,7 +58,7 @@ class CalculatingAdapter(val titles: Array<String>,
     }
 
     private fun getItemPosition(position: Int): Int {
-        return if (nativeList.isEmpty() || position == 0) {
+        return if (nativeList.isEmpty() || position < 2) {
             position
         } else {
             position - AD_COUNT
@@ -66,9 +66,9 @@ class CalculatingAdapter(val titles: Array<String>,
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (nativeList.isEmpty() || position == 0) {
+        return if (nativeList.isEmpty() || position < 2) {
             ITEM_TYPE
-        } else if (position == 1) {
+        } else if (position == 2) {
             AD_TYPE
         } else {
             ITEM_TYPE

@@ -14,6 +14,7 @@ import com.wsoteam.mydietcoach.MainActivity
 import com.wsoteam.mydietcoach.POJOS.interactive.Diet
 import com.wsoteam.mydietcoach.POJOS.interactive.DietDay
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
@@ -56,6 +57,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Ampl.openTracker()
         cvMainCard.setBackgroundResource(R.drawable.shape_card_tracker)
         rvEats.layoutManager = GridLayoutManager(activity, 2)
         rvMenu.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)

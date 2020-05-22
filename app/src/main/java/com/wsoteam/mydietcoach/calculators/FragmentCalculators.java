@@ -82,7 +82,6 @@ public class FragmentCalculators extends Fragment {
                 break;
         }
         startActivity(intent);
-        AdWorker.INSTANCE.refreshNativeAd(getActivity());
     }
 
     private void fillDataForList() {

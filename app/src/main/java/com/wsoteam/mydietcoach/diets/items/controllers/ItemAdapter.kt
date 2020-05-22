@@ -1,14 +1,12 @@
 package com.wsoteam.mydietcoach.diets.items.controllers
 
-import android.content.res.TypedArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.formats.NativeAd
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.Subsection
-import com.wsoteam.mydietcoach.ad.controller.NativeVH
+import com.wsoteam.mydietcoach.diets.items.controllers.interactive.NativeVH
 import com.wsoteam.mydietcoach.diets.ItemClick
 
 class ItemAdapter(val list: ArrayList<Subsection>,

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.analytics.Ampl
 import kotlinx.android.synthetic.main.diff_dialog_fragment.*
 
 class DifficultyFragment : DialogFragment() {
@@ -14,6 +15,7 @@ class DifficultyFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.diff_dialog_fragment, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
+        Ampl.showHardCard()
         return view
     }
 

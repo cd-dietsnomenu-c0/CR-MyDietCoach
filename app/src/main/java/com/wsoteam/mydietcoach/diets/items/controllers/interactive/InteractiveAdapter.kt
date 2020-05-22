@@ -1,14 +1,13 @@
 package com.wsoteam.mydietcoach.diets.items.controllers.interactive
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets
-import com.wsoteam.mydietcoach.ad.controller.NativeVH
 import com.wsoteam.mydietcoach.diets.ItemClick
-import com.wsoteam.mydietcoach.diets.items.controllers.ItemVH
 
 class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var nativeList : ArrayList<UnifiedNativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val ITEM_TYPE = 0
@@ -63,6 +62,7 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
     }
 
     fun insertAds(listAds: ArrayList<UnifiedNativeAd>) {
+        Log.e("LOL", listAds.size.toString())
         nativeList = listAds
         notifyDataSetChanged()
     }

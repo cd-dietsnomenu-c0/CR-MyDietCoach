@@ -119,7 +119,7 @@
             android:layout_marginRight="46dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
-            android:text="Допускается до двух пропусков дней. Сложность подходит для начинающих"
+            android:text="Допускается два дневных пропуска. Сложность подходит для начинающих"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -176,7 +176,7 @@
             android:layout_marginRight="46dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
-            android:text="Допускается пропуск одного дня. Сложность подходит для опытных"
+            android:text="Допускается один дневной пропуск. Сложность подходит для опытных"
             android:textColor="@color/black"
             android:textSize="12sp" />
 

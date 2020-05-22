@@ -30,7 +30,6 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
         super.onCreate(savedInstanceState)
         Ampl.openNewDiets()
         AdWorker.checkLoad()
-        //appodealBannerView.loadAd(AdRequest.Builder().build())
         val allDiets = intent.getSerializableExtra(Config.NEW_DIETS) as AllDiets
         rvListDiets.layoutManager = LinearLayoutManager(this)
         val adapter = InteractiveAdapter(allDiets, object : ItemClick{

@@ -1,6 +1,7 @@
 package com.wsoteam.mydietcoach.analytics
 
 import com.amplitude.api.Amplitude
+import com.amplitude.api.Identify
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -38,6 +39,40 @@ class Ampl {
 
         val recieve_fcm = "recieve_fcm"
         val open_from_push = "open_from_push"
+
+        val show_hard_card = "show_hard_card"
+        val choise_hard_level = "choise_hard_level"
+        val start_loading = "start_loading"
+        val end_loading = "end_loading"
+        val open_tracker = "open_tracker"
+
+        val TRACKER_STATUS = "TRACKER_STATUS"
+        val tracker_use = "tracker_use"
+
+        fun setTrackerStatus(){
+            var identify = Identify().set(TRACKER_STATUS, tracker_use)
+            Amplitude.getInstance().identify(identify)
+        }
+
+        fun showHardCard() {
+            Amplitude.getInstance().logEvent(show_hard_card)
+        }
+
+        fun choiseHardLevel() {
+            Amplitude.getInstance().logEvent(choise_hard_level)
+        }
+
+        fun startLoading() {
+            Amplitude.getInstance().logEvent(start_loading)
+        }
+
+        fun endLoading() {
+            Amplitude.getInstance().logEvent(end_loading)
+        }
+
+        fun openTracker() {
+            Amplitude.getInstance().logEvent(open_tracker)
+        }
 
         fun recieveFCM() {
             Amplitude.getInstance().logEvent(recieve_fcm)

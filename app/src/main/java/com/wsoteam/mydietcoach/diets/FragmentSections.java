@@ -75,13 +75,11 @@ public class FragmentSections extends Fragment {
                     intent.putExtra(Config.SECTION_DATA, sectionArrayList.get(position));
                 }
                 startActivity(intent);
-                AdWorker.INSTANCE.refreshNativeAd(getActivity());
             }
 
             @Override
             public void newDietsClick() {
                 startActivity(new Intent(getActivity(), NewDietsListActivity.class).putExtra(Config.NEW_DIETS, global.getAllDiets()));
-                AdWorker.INSTANCE.refreshNativeAd(getActivity());
             }
         }, new ArrayList<>());
         AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {

@@ -16,6 +16,7 @@ class AdVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup)
     : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.vh_native_main, viewGroup, false)) {
 
     init {
+        itemView.ad_view.mediaView = itemView.ad_media
         itemView.ad_view.headlineView = itemView.ad_headline
         itemView.ad_view.bodyView = itemView.ad_body
         itemView.ad_view.callToActionView = itemView.ad_call_to_action

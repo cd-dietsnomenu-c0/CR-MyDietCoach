@@ -46,7 +46,6 @@ object AdWorker {
             }
 
             override fun onAdLoaded() {
-                Log.e("LOL", "onAdLoaded")
                 super.onAdLoaded()
             }
         }
@@ -72,7 +71,6 @@ object AdWorker {
 
     private fun endLoading() {
         if (bufferAdsList.size > 0) {
-            Log.e("LOL", " endLoading")
             adsList = bufferAdsList
             bufferAdsList = arrayListOf()
             nativeSpeaker?.loadFin(adsList)
@@ -118,5 +116,17 @@ object AdWorker {
         } else {
             Counter.getInstance().adToCounter()
         }
+    }
+
+    fun showInterWithOutCounter() {
+            if (inter?.isLoaded == true) {
+                inter?.show()
+                Ampl.showAd()
+                Counter.getInstance().adToCounter()
+            } else if (isFailedLoad) {
+                counterFailed = 0
+                isFailedLoad = false
+                reload()
+            }
     }
 }

@@ -95,4 +95,15 @@
             android:textColor="@color/black"
             android:textSize="15sp" />
     </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/flAdContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include layout="@layout/settings_ad_include" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

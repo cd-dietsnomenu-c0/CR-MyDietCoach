@@ -4,13 +4,11 @@ import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
@@ -18,12 +16,14 @@ import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.mydietcoach.MainActivity
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.ad.AdWorker
+import com.wsoteam.mydietcoach.ad.AdWorker.showInter
+import com.wsoteam.mydietcoach.ad.AdWorker.showInterWithOutCounter
 import com.wsoteam.mydietcoach.ad.NativeSpeaker
+import com.wsoteam.mydietcoach.analytics.Ampl
+import kotlinx.android.synthetic.main.load_ad_include.*
 import kotlinx.android.synthetic.main.loading_activity.*
-import kotlinx.android.synthetic.main.native_include.*
 import kotlinx.android.synthetic.main.vh_native.view.*
 import kotlinx.android.synthetic.main.vh_native.view.ad_view
-import java.util.ArrayList
 
 class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
 
@@ -32,7 +32,14 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        banner.loadAd(AdRequest.Builder().build())
+        Ampl.startLoading()
+        AdWorker.observeOnNativeList(object : NativeSpeaker{
+            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                if (nativeList.size > 0) {
+                    loadNative(nativeList[0])
+                }
+            }
+        })
         animationHide = AnimationUtils.loadAnimation(this, R.anim.anim_hide_loading)
         lavLoading.loop(false)
         lavLoadingComplete.loop(false)
@@ -91,11 +98,32 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
         })
     }
 
+    private fun loadNative(nativeAd: UnifiedNativeAd) {
+        ad_view.mediaView = ad_media
+        ad_view.headlineView = ad_headline
+        ad_view.bodyView = ad_body
+        ad_view.callToActionView = ad_call_to_action
+        ad_view.iconView = ad_icon
+        (ad_view.headlineView as TextView).text = nativeAd.headline
+        (ad_view.bodyView as TextView).text = nativeAd.body
+        (ad_view.callToActionView as Button).text = nativeAd.callToAction
+        val icon = nativeAd.icon
+        if (icon == null) {
+            ad_view.iconView.visibility = View.INVISIBLE
+        } else {
+            (ad_view.iconView as ImageView).setImageDrawable(icon.drawable)
+            ad_view.iconView.visibility = View.VISIBLE
+        }
+        ad_view.setNativeAd(nativeAd)
+        flAdContainer.visibility = View.VISIBLE
+    }
 
 
     private fun startCountDown() {
         object : CountDownTimer(500, 500) {
             override fun onFinish() {
+                Ampl.setTrackerStatus()
+                Ampl.endLoading()
                 startActivity(Intent(this@LoadingActivity, MainActivity::class.java))
                 finish()
             }
