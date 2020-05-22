@@ -65,25 +65,24 @@ public class FragmentCalculators extends Fragment {
         Log.e("LOL", "calc");
     }
 
-    public void startCalculator(Integer position){
+    public void startCalculator(Integer position) {
+        Intent intent = new Intent();
         switch (position) {
             case NUMBER_OF_BROK:
-                Intent intentBrok = new Intent(getActivity(), ActivityCalculatorBrok.class);
-                startActivity(intentBrok);
+                intent = new Intent(getActivity(), ActivityCalculatorBrok.class);
                 break;
             case NUMBER_OF_LORENC:
-                Intent intentLorenc = new Intent(getActivity(), ActivityCalculatorLorenc.class);
-                startActivity(intentLorenc);
+                intent = new Intent(getActivity(), ActivityCalculatorLorenc.class);
                 break;
             case NUMBER_OF_IMT:
-                Intent intentIMT = new Intent(getActivity(), ActivityCalculatorIMT.class);
-                startActivity(intentIMT);
+                intent = new Intent(getActivity(), ActivityCalculatorIMT.class);
                 break;
             case NUMBER_OF_SPK:
-                Intent intentSPK = new Intent(getActivity(), ActivityCalculatorSPK.class);
-                startActivity(intentSPK);
+                intent = new Intent(getActivity(), ActivityCalculatorSPK.class);
                 break;
         }
+        startActivity(intent);
+        AdWorker.INSTANCE.refreshNativeAd(getActivity());
     }
 
     private void fillDataForList() {

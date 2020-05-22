@@ -65,7 +65,6 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         AdWorker.observeOnNativeList(object : NativeSpeaker {
             override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
                 adapter.insertAds(nativeList)
-                AdWorker.refreshNativeAd(this@DietAct)
             }
         })
         if (isNeedShowConnect) {

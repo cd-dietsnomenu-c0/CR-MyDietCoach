@@ -44,6 +44,7 @@ class ActivityListItems : AppCompatActivity(R.layout.activity_list_items) {
             override fun click(position: Int) {
                 intent.putExtra(Config.ITEM_DATA, subsectionArrayList!![position])
                 startActivity(intent)
+                AdWorker.refreshNativeAd(this@ActivityListItems)
             }
 
             override fun newDietsClick() {
@@ -53,7 +54,6 @@ class ActivityListItems : AppCompatActivity(R.layout.activity_list_items) {
         AdWorker.observeOnNativeList(object : NativeSpeaker{
             override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
                 adapter.insertAds(nativeList)
-                AdWorker.refreshNativeAd(this@ActivityListItems)
             }
         })
     }
