@@ -94,4 +94,5 @@
 
     <color name="trans_status_bar">#00000000</color>
     <color name="dark_status_bar">#232323</color>
+    <color name="gray_divider">#963C3C3C</color>
 </resources>

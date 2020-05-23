@@ -37,6 +37,7 @@ import com.wsoteam.mydietcoach.diets.FragmentSections;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
 import com.wsoteam.mydietcoach.tracker.FragmentTracker;
 import com.wsoteam.mydietcoach.utils.FragmentLoad;
+import com.wsoteam.mydietcoach.utils.GradeAlert;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
         additionOneToSharedPreference();
         checkFirstRun();
+        new GradeAlert().show(getSupportFragmentManager(), "");
     }
 
     private void setDietDataTC(Global t) {
