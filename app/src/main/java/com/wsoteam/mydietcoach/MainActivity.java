@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        checkDB(savedInstanceState);
         if (getIntent().getExtras() != null
                 && getIntent().getExtras().getString(Config.PUSH_TAG) != null
                 && getIntent().getExtras().getString(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)){
@@ -137,6 +138,14 @@ public class MainActivity extends AppCompatActivity {
         additionOneToSharedPreference();
         checkFirstRun();
         new GradeAlert().show(getSupportFragmentManager(), "");
+    }
+
+    private void checkDB(Bundle savedInstanceState) {
+        if (savedInstanceState != null){
+            if (App.getInstance().getDB().dietDAO().getAll() == null || App.getInstance().getDB().dietDAO().getAll().size() == 0){
+                    DBHolder.INSTANCE.setEmpty();
+            }
+        }
     }
 
     private void setDietDataTC(Global t) {
