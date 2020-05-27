@@ -43,10 +43,10 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:elevation="1dp"
-                app:layout_constraintBottom_toBottomOf="@+id/divider12"
+                app:layout_constraintBottom_toBottomOf="@+id/divider13"
                 app:layout_constraintEnd_toStartOf="@+id/divider13"
                 app:layout_constraintStart_toEndOf="@+id/divider12"
-                app:layout_constraintTop_toTopOf="@+id/divider12"
+                app:layout_constraintTop_toTopOf="@+id/divider13"
                 app:lottie_autoPlay="true"
                 app:lottie_fileName="emoji0.json"
                 app:lottie_loop="true" />
@@ -239,9 +239,9 @@
 
             <View
                 android:id="@+id/divider6"
-                android:layout_width="377dp"
+                android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="60dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
