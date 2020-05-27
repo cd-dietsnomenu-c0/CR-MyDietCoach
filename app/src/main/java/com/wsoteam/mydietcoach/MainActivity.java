@@ -39,6 +39,7 @@ import com.wsoteam.mydietcoach.tracker.FragmentTracker;
 import com.wsoteam.mydietcoach.utils.FragmentLoad;
 import com.wsoteam.mydietcoach.utils.GradeAlert;
 import com.wsoteam.mydietcoach.utils.RateAlert;
+import com.wsoteam.mydietcoach.utils.ThankToast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private List<Fragment> sections = new ArrayList<>();
     private BottomNavigationView navigationView;
+
+    private boolean isNeedShowThank = false;
 
     private BottomNavigationView.OnNavigationItemSelectedListener bnvListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
         additionOneToSharedPreference();
         checkFirstRun();
-        new GradeAlert().show(getSupportFragmentManager(), "");
+        new GradeAlert().show(getSupportFragmentManager(), "GradeAlert");
     }
 
     private void checkDB(Bundle savedInstanceState) {
@@ -195,41 +198,38 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = countOfRun.edit();
         editor.putInt(TAG_OF_COUNT_RUN, COUNT_OF_RUN + 1);
         editor.commit();
+    }
 
+    public void goToMarket(){
+        isNeedShowThank = true;
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("market://details?id=" + MainActivity.this.getPackageName()));
+        startActivity(intent);
+    }
+
+    public void rateLater(){
+        countOfRun = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = countOfRun.edit();
+        editor.putInt(TAG_OF_COUNT_RUN, 0);
+        editor.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isNeedShowThank){
+            ThankToast.INSTANCE.showThankToast(this);
+            isNeedShowThank = false;
+        }
     }
 
     private void checkFirstRun() {
         if (countOfRun.getInt(TAG_OF_COUNT_RUN, COUNT_OF_RUN) == 4) {
-            AlertDialog.Builder alertDialogGrade = new AlertDialog.Builder(this);
-            alertDialogGrade.setTitle(R.string.titleAlertDialog);
-            alertDialogGrade.setMessage(R.string.bodyAlertDialog);
-            alertDialogGrade.setIcon(R.drawable.evaluate_app);
-            alertDialogGrade.setNeutralButton(R.string.laterButtonAlert, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    countOfRun = getPreferences(MODE_PRIVATE);
-                    SharedPreferences.Editor editor = countOfRun.edit();
-                    editor.putInt(TAG_OF_COUNT_RUN, 0);
-                    editor.commit();
-                }
-            });
-            alertDialogGrade.setNegativeButton(R.string.neverButtonAlert, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //nothing to do
-                }
-            });
-            alertDialogGrade.setPositiveButton(R.string.evaluateButtonAlert, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("market://details?id=" + MainActivity.this.getPackageName()));
-                    startActivity(intent);
-                }
-            });
-            alertDialogGrade.show();
-
+            new GradeAlert().show(getSupportFragmentManager(), "GradeAlert");
         }
     }
 
+    public void sayThank() {
+        ThankToast.INSTANCE.showThankToast(this);
+    }
 }

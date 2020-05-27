@@ -2,6 +2,7 @@ package com.wsoteam.mydietcoach.utils
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -13,20 +14,23 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
 import com.airbnb.lottie.LottieAnimationView
+import com.wsoteam.mydietcoach.MainActivity
 import com.wsoteam.mydietcoach.R
 import kotlinx.android.synthetic.main.alert_grade.*
 import kotlinx.android.synthetic.main.alert_grade.view.*
 
 class GradeAlert : DialogFragment() {
 
-    private lateinit var labels : List<TextView>
-    private lateinit var lavs : List<LottieAnimationView>
+    private lateinit var labels: List<TextView>
+    private lateinit var lavs: List<LottieAnimationView>
 
-    private lateinit var increase : Animation
-    private lateinit var decrease : Animation
+    private lateinit var increase: Animation
+    private lateinit var decrease: Animation
 
-    private lateinit var showLabel : Animation
-    private lateinit var hideLabel : Animation
+    private lateinit var showLabel: Animation
+    private lateinit var hideLabel: Animation
+
+    private lateinit var showClaim: Animation
 
     private var previous = -1
     private var isProgress = false
@@ -42,13 +46,28 @@ class GradeAlert : DialogFragment() {
         decrease = AnimationUtils.loadAnimation(view.context, R.anim.grade_decrease_scale)
         showLabel = AnimationUtils.loadAnimation(view.context, R.anim.show_rate_label)
         hideLabel = AnimationUtils.loadAnimation(view.context, R.anim.hide_rate_label)
+        showClaim = AnimationUtils.loadAnimation(view.context, R.anim.show_claim_edt)
         labels = listOf<TextView>(tvFirst, tvSecond, tvThird, tvFirth, tvFifth)
         lavs = listOf<LottieAnimationView>(lav0, lav1, lav2, lav3, lav4)
         setClickListeners()
+
+        btnLater.setOnClickListener {
+            (activity as MainActivity).rateLater()
+            dismiss()
+        }
+
+        btnStop.setOnClickListener {
+            dismiss()
+        }
+
+        btnSend.setOnClickListener {
+            (activity as MainActivity).sayThank()
+            dismiss()
+        }
     }
 
     private fun setClickListeners() {
-        for (i in lavs.indices){
+        for (i in lavs.indices) {
             lavs[i].setOnClickListener {
                 if (i != previous && !isProgress) {
                     increase.setAnimationListener(object : Animation.AnimationListener {
@@ -94,12 +113,42 @@ class GradeAlert : DialogFragment() {
                         labels[previous].startAnimation(hideLabel)
                         labels[previous].visibility = View.INVISIBLE
                     }
+                    if (btnSend.visibility != View.VISIBLE) {
+                        bindRate(i)
+                    }
                 }
             }
         }
     }
 
-    fun dpToPx(dp : Float) : Float{
+    private fun bindRate(grade: Int) {
+        if (grade > 2 && PrefWorker.getRateMind() != PrefWorker.RATE_MIND_BAD) {
+            moveToMarket()
+        } else {
+            showSafety()
+        }
+    }
+
+    private fun showSafety() {
+        btnSend.startAnimation(showClaim)
+        btnSend.visibility = View.VISIBLE
+        PrefWorker.setRateMind(PrefWorker.RATE_MIND_BAD)
+    }
+
+    private fun moveToMarket() {
+        object : CountDownTimer(500, 100){
+            override fun onFinish() {
+                (activity as MainActivity).goToMarket()
+                dismiss()
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+            }
+        }.start()
+    }
+
+
+    fun dpToPx(dp: Float): Float {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
     }
 }
