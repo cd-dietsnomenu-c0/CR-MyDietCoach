@@ -26,8 +26,10 @@ class GradeAlert : DialogFragment() {
     private lateinit var decrease : Animation
 
     private lateinit var showLabel : Animation
+    private lateinit var hideLabel : Animation
 
     private var previous = -1
+    private var isProgress = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.alert_grade, container, false)
@@ -38,7 +40,8 @@ class GradeAlert : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         increase = AnimationUtils.loadAnimation(view.context, R.anim.grade_increase_scale)
         decrease = AnimationUtils.loadAnimation(view.context, R.anim.grade_decrease_scale)
-        //showLabel = AnimationUtils.loadAnimation(view.context, R.anim.show_rate_label)
+        showLabel = AnimationUtils.loadAnimation(view.context, R.anim.show_rate_label)
+        hideLabel = AnimationUtils.loadAnimation(view.context, R.anim.hide_rate_label)
         labels = listOf<TextView>(tvFirst, tvSecond, tvThird, tvFirth, tvFifth)
         lavs = listOf<LottieAnimationView>(lav0, lav1, lav2, lav3, lav4)
         setClickListeners()
@@ -47,7 +50,7 @@ class GradeAlert : DialogFragment() {
     private fun setClickListeners() {
         for (i in lavs.indices){
             lavs[i].setOnClickListener {
-                if (i != previous) {
+                if (i != previous && !isProgress) {
                     increase.setAnimationListener(object : Animation.AnimationListener {
                         override fun onAnimationRepeat(animation: Animation?) {
                         }
@@ -59,14 +62,16 @@ class GradeAlert : DialogFragment() {
                             lavs[i].clearAnimation()
                             increase.setAnimationListener(null)
                             previous = i
+                            isProgress = false
                         }
 
                         override fun onAnimationStart(animation: Animation?) {
+                            isProgress = true
                         }
                     })
                     lavs[i].startAnimation(increase)
-                    //labels[i].startAnimation(showLabel)
-                    //labels[i].visibility = View.VISIBLE
+                    labels[i].startAnimation(showLabel)
+                    labels[i].visibility = View.VISIBLE
 
                     if (previous != -1) {
                         decrease.setAnimationListener(object : Animation.AnimationListener {
@@ -86,6 +91,8 @@ class GradeAlert : DialogFragment() {
                             }
                         })
                         lavs[previous].startAnimation(decrease)
+                        labels[previous].startAnimation(hideLabel)
+                        labels[previous].visibility = View.INVISIBLE
                     }
                 }
             }
