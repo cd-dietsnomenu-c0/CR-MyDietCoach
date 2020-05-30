@@ -23,7 +23,7 @@ import com.wsoteam.mydietcoach.analytics.Ampl
 
 class FCMService : FirebaseMessagingService() {
     override fun onMessageReceived(p0: RemoteMessage) {
-        var intent = Intent(this, MainActivity::class.java)
+        var intent = Intent(this, SplashActivity::class.java)
         intent.putExtra(Config.PUSH_TAG, Config.OPEN_FROM_PUSH)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

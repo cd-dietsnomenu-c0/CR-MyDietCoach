@@ -113,11 +113,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkDB(savedInstanceState);
-        if (getIntent().getExtras() != null
-                && getIntent().getExtras().getString(Config.PUSH_TAG) != null
-                && getIntent().getExtras().getString(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)){
-            Ampl.Companion.openFromPush();
-        }
+
         fragmentManager = getSupportFragmentManager();
         FirebaseMessaging.getInstance().subscribeToTopic("news").addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

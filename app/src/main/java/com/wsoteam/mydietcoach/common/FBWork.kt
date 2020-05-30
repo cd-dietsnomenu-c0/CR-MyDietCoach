@@ -69,7 +69,7 @@ class FBWork {
             databaseReference.setValue(global)
         }
 
-        fun falseLoadEmpty() : AllDiets {
+        fun falseLoadEmpty() {
             val review = Review("",
                     "",
                     "")
@@ -126,12 +126,12 @@ class FBWork {
             listDiets.add(diet)
             listDiets.add(diet)
             listDiets.add(diet)
+            listDiets.add(diet)
+            listDiets.add(diet)
 
             var allDiets = AllDiets("", listDiets)
 
             FirebaseDatabase.getInstance().getReference("empty").setValue(allDiets)
-
-            return allDiets
         }
     }
 }

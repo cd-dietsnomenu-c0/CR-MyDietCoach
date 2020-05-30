@@ -8,12 +8,10 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.RenderMode
-import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.squareup.moshi.Moshi
 import com.wsoteam.mydietcoach.POJOS.Global
 import com.wsoteam.mydietcoach.ad.AdWorker.init
-import com.wsoteam.mydietcoach.ad.AdWorker.observeOnNativeList
-import com.wsoteam.mydietcoach.ad.NativeSpeaker
+import com.wsoteam.mydietcoach.analytics.Ampl.Companion.openFromPush
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
@@ -21,7 +19,6 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.splash_activity.*
-import java.util.*
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
@@ -41,6 +38,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (intent.extras != null && intent.extras.getString(Config.PUSH_TAG) != null && intent.extras.getString(Config.PUSH_TAG) == Config.OPEN_FROM_PUSH) {
+            openFromPush()
+        }
         loadAnimations()
         playAnim()
         loadData()
