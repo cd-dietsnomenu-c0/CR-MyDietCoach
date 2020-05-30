@@ -141,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
         additionOneToSharedPreference();
         checkFirstRun();
-        new GradeAlert().show(getSupportFragmentManager(), "GradeAlert");
     }
 
     private void checkDB(Bundle savedInstanceState) {
