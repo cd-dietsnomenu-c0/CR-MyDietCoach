@@ -48,7 +48,8 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
-            ITEM_TYPE ->(holder as InteractiveVH).bind(allDiets.dietList[getRealPosition(position)].title, allDiets.dietList[getRealPosition(position)].mainImage)
+            ITEM_TYPE ->(holder as InteractiveVH).bind(allDiets.dietList[getRealPosition(position)].title,
+                    allDiets.dietList[getRealPosition(position)].mainImage, allDiets.dietList[getRealPosition(position)].isNew)
             AD_TYPE ->(holder as NativeVH).bind(nativeList[getAdPosition()])
         }
     }

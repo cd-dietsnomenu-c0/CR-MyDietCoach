@@ -69,6 +69,15 @@ class FBWork {
             databaseReference.setValue(global)
         }
 
+        fun setNewLabels(count: Int, global: Global) {
+            for (i in 0..count){
+                global.allDiets.dietList[i].isNew = true
+            }
+            val firebaseDatabase = FirebaseDatabase.getInstance()
+            val databaseReference = firebaseDatabase.getReference("labels")
+            databaseReference.setValue(global)
+        }
+
         fun falseLoadEmpty() {
             val review = Review("",
                     "",
@@ -116,7 +125,7 @@ class FBWork {
             consList.add("")
             consList.add("")
 
-            var diet = Diet("", "", "", "", "", benList, "", consList, "", "", days, "", "", review)
+            var diet = Diet("", "", "", "", "", benList, "", consList, "", "", days, "", "", review, false)
 
             var listDiets = ArrayList<Diet>()
             listDiets.add(diet)

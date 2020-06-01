@@ -16,17 +16,13 @@ class InteractiveVH(inflater: LayoutInflater, viewGroup: ViewGroup, val itemClic
         itemView.setOnClickListener(this)
     }
 
-    fun bind(title: String, mainImage: String) {
+    fun bind(title: String, mainImage: String, isNew: Boolean) {
         Glide.with(itemView.context).load(mainImage).into(itemView.ivBackground)
         itemView.tvTitle.text = title
-        bindLabel()
-    }
-
-    private fun bindLabel() {
-        if (adapterPosition > Config.NEW_MAX){
-            itemView.ivLabelNew.visibility = View.GONE
-        }else{
+        if (isNew){
             itemView.ivLabelNew.visibility = View.VISIBLE
+        }else{
+            itemView.ivLabelNew.visibility = View.GONE
         }
     }
 
