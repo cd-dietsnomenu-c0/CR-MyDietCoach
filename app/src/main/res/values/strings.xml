@@ -50,39 +50,6 @@
   <string name="bnv_prem">Премиум</string>
   <string name="bnv_settings">Настройки</string>
 
-
-  <!--<integer-array name="images">
-        <item>@drawable/w0</item>
-        <item>@drawable/w1</item>
-        <item>@drawable/w2</item>
-        <item>@drawable/w3</item>
-        <item>@drawable/w4</item>
-        <item>@drawable/w5</item>
-        <item>@drawable/w6</item>
-        <item>@drawable/w7</item>
-        <item>@drawable/w8</item>
-        <item>@drawable/w9</item>
-        <item>@drawable/w10</item>
-        <item>@drawable/w11</item>
-        <item>@drawable/w12</item>
-        <item>@drawable/w13</item>
-        <item>@drawable/w14</item>
-        <item>@drawable/w15</item>
-        <item>@drawable/w16</item>
-        <item>@drawable/w17</item>
-        <item>@drawable/w18</item>
-        <item>@drawable/w19</item>
-        <item>@drawable/w20</item>
-        <item>@drawable/w21</item>
-        <item>@drawable/w22</item>
-        <item>@drawable/w23</item>
-        <item>@drawable/w24</item>
-        <item>@drawable/w25</item>
-        <item>@drawable/w26</item>
-        <item>@drawable/w27</item>
-    </integer-array>-->
-
-
     <string-array name="images">
         <item>https://i.ibb.co/bF4N5d6/w0.jpg</item>
         <item>https://i.ibb.co/5x4RbWd/w1.jpg</item>
