@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.formats.UnifiedNativeAd
-import com.wsoteam.mydietcoach.diets.ItemClick
 import java.util.ArrayList
 
 class CalculatingAdapter(val titles: Array<String>,

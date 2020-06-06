@@ -3,7 +3,6 @@ package com.wsoteam.mydietcoach.tracker
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -18,7 +17,7 @@ import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
-import com.wsoteam.mydietcoach.diets.items.article.interactive.DietAct
+import com.wsoteam.mydietcoach.diets.list.items.article.interactive.DietAct
 import com.wsoteam.mydietcoach.tracker.alerts.CheatMealAlert
 import com.wsoteam.mydietcoach.tracker.alerts.CongrateAlert
 import com.wsoteam.mydietcoach.tracker.alerts.ExitAlert
@@ -30,7 +29,6 @@ import com.wsoteam.mydietcoach.tracker.controller.lives.LiveAdapter
 import com.wsoteam.mydietcoach.tracker.controller.menu.IMenu
 import com.wsoteam.mydietcoach.tracker.controller.menu.MenuAdapter
 import kotlinx.android.synthetic.main.fragment_tracker.*
-import java.lang.Exception
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 

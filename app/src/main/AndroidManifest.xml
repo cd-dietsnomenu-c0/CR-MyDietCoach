@@ -51,10 +51,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".diets.items.ActivityListItems"
+            android:name="com.wsoteam.mydietcoach.diets.list.items.ActivityListItems"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".diets.items.article.ActivityArticle" />
+        <activity android:name="com.wsoteam.mydietcoach.diets.list.items.article.ActivityArticle" />
 
         <activity
             android:name=".calculators.ActivityCalculatorSPK"
@@ -73,11 +73,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".diets.items.article.interactive.DietAct"
+            android:name="com.wsoteam.mydietcoach.diets.list.items.article.interactive.DietAct"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name=".diets.items.NewDietsListActivity"
+            android:name="com.wsoteam.mydietcoach.diets.list.items.NewDietsListActivity"
             android:theme="@style/NewDiets" />
 
         <service

@@ -1,7 +1,6 @@
 package com.wsoteam.mydietcoach;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -13,43 +12,29 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.ad.AdWorker;
-import com.wsoteam.mydietcoach.ad.NativeSpeaker;
 import com.wsoteam.mydietcoach.analytics.Ampl;
 import com.wsoteam.mydietcoach.calculators.FragmentCalculators;
 import com.wsoteam.mydietcoach.common.DBHolder;
 import com.wsoteam.mydietcoach.common.FBWork;
 import com.wsoteam.mydietcoach.common.GlobalHolder;
-import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity;
-import com.wsoteam.mydietcoach.diets.FragmentSections;
+import com.wsoteam.mydietcoach.diets.FragmentTypes;
+import com.wsoteam.mydietcoach.diets.list.FragmentSections;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
 import com.wsoteam.mydietcoach.tracker.FragmentTracker;
-import com.wsoteam.mydietcoach.utils.FragmentLoad;
 import com.wsoteam.mydietcoach.utils.GradeAlert;
-import com.wsoteam.mydietcoach.utils.RateAlert;
 import com.wsoteam.mydietcoach.utils.ThankToast;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -156,20 +141,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setDietData(Global global) {
-        FragmentSections fragmentSections = FragmentSections.newInstance(global);
+        FragmentTypes fragmentTypes = FragmentTypes.Companion.newInstance(global);
         if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())) {
-            fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentSections).commit();
+            fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentTypes).commit();
             getWindow().setStatusBarColor(getResources().getColor(R.color.dark_status_bar));
         }else {
             fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new FragmentTracker()).commit();
             getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
         }
-        sections.add(fragmentSections);
+        sections.add(fragmentTypes);
         sections.add(new FragmentCalculators());
         //sections.add(new FragmentPremium());
         sections.add(new FragmentSettings());
         sections.add(new FragmentTracker());
-        FBWork.Companion.setSchema(global);
     }
 
     public static boolean hasConnection(final Context context) {
