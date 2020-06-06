@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
         //sections.add(new FragmentPremium());
         sections.add(new FragmentSettings());
         sections.add(new FragmentTracker());
+        FBWork.Companion.setSchema(global);
     }
 
     public static boolean hasConnection(final Context context) {
