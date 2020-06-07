@@ -27,7 +27,6 @@ import com.wsoteam.mydietcoach.common.DBHolder;
 import com.wsoteam.mydietcoach.common.FBWork;
 import com.wsoteam.mydietcoach.common.GlobalHolder;
 import com.wsoteam.mydietcoach.diets.FragmentTypes;
-import com.wsoteam.mydietcoach.diets.list.FragmentSections;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
 import com.wsoteam.mydietcoach.tracker.FragmentTracker;
 import com.wsoteam.mydietcoach.utils.GradeAlert;

@@ -18,4 +18,5 @@ public class Config {
     public static String PUSH_TAG = "PUSH_TAG";
     public static String OPEN_FROM_PUSH = "OPEN_FROM_PUSH";
     public static final String NEED_SHOW_CONNECT = "NEED_SHOW_CONNECT";
+    public static final String OLD_DIETS_GLOBAL = "OLD_DIETS_GLOBAL";
 }

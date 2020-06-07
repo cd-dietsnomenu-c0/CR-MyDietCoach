@@ -17,7 +17,7 @@ import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
-import com.wsoteam.mydietcoach.diets.list.items.article.interactive.DietAct
+import com.wsoteam.mydietcoach.diets.list.modern.article.DietAct
 import com.wsoteam.mydietcoach.tracker.alerts.CheatMealAlert
 import com.wsoteam.mydietcoach.tracker.alerts.CongrateAlert
 import com.wsoteam.mydietcoach.tracker.alerts.ExitAlert
