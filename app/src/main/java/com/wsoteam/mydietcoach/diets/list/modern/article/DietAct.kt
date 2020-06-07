@@ -2,6 +2,7 @@ package com.wsoteam.mydietcoach.diets.list.modern.article
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -48,7 +49,6 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         hideAnim = AnimationUtils.loadAnimation(this, R.anim.hide_start_button)
 
         AdWorker.checkLoad()
-        //appodealBannerView.loadAd(AdRequest.Builder().build())
         diet = intent.getSerializableExtra(Config.NEW_DIET) as Diet
         isNeedShowConnect = intent.getSerializableExtra(Config.NEED_SHOW_CONNECT) as Boolean
         rvDiet.layoutManager = LayoutManagerTopScroll(this)
@@ -74,8 +74,10 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
                 }
             })
         }else{
-            btnStart.visibility = View.INVISIBLE
+            flBottom.visibility = View.INVISIBLE
         }
+
+        bindLike()
         Ampl.openNewDiet(diet.title)
 
         btnStart.setOnClickListener {
@@ -87,12 +89,22 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         }
     }
 
+    private fun bindLike() {
+        lavLike.setMinFrame(45)
+        lavLike.speed = 1.5f
+        lavLike.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                lavLike.playAnimation()
+            }
+        })
+    }
+
     private fun showScrollButton() {
         if (!isShowed){
             isHided = false
             isShowed = true
-            btnStart.startAnimation(showAnim)
-            btnStart.visibility = View.VISIBLE
+            flBottom.startAnimation(showAnim)
+            flBottom.visibility = View.VISIBLE
         }
     }
 
@@ -100,8 +112,8 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         if (!isHided){
             isShowed = false
             isHided = true
-            btnStart.startAnimation(hideAnim)
-            btnStart.visibility = View.INVISIBLE
+            flBottom.startAnimation(hideAnim)
+            flBottom.visibility = View.INVISIBLE
         }
     }
 
