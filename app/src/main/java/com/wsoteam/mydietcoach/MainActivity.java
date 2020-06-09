@@ -27,6 +27,7 @@ import com.wsoteam.mydietcoach.common.DBHolder;
 import com.wsoteam.mydietcoach.common.FBWork;
 import com.wsoteam.mydietcoach.common.GlobalHolder;
 import com.wsoteam.mydietcoach.diets.FragmentTypes;
+import com.wsoteam.mydietcoach.profile.ProfileFragment;
 import com.wsoteam.mydietcoach.settings.FragmentSettings;
 import com.wsoteam.mydietcoach.tracker.FragmentTracker;
 import com.wsoteam.mydietcoach.utils.GradeAlert;
@@ -52,13 +53,11 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.bnv_main: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(0)).commit();
-                    getWindow().setStatusBarColor(getResources().getColor(R.color.dark_status_bar));
                     Ampl.Companion.openDiets();
                     return true;
                 }
                 case R.id.bnv_calclators: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(1)).commit();
-                    getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
                     Ampl.Companion.openCalculators();
                     return true;
                 }
@@ -68,14 +67,12 @@ public class MainActivity extends AppCompatActivity {
                 }*/
                 case R.id.bnv_settings: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(2)).commit();
-                    getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
                     Ampl.Companion.openSettings();
                     return true;
                 }
 
                 case R.id.bnv_tracker: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(3)).commit();
-                    getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
                     Ampl.Companion.openSettings();
                     return true;
                 }
@@ -150,8 +147,7 @@ public class MainActivity extends AppCompatActivity {
         }
         sections.add(fragmentTypes);
         sections.add(new FragmentCalculators());
-        //sections.add(new FragmentPremium());
-        sections.add(new FragmentSettings());
+        sections.add(new ProfileFragment());
         sections.add(new FragmentTracker());
     }
 

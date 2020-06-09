@@ -15,6 +15,7 @@ import com.wsoteam.mydietcoach.analytics.Ampl.Companion.openFromPush
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
+import com.wsoteam.mydietcoach.common.notifications.ScheduleSetter
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -41,6 +42,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         if (intent.extras != null && intent.extras.getString(Config.PUSH_TAG) != null && intent.extras.getString(Config.PUSH_TAG) == Config.OPEN_FROM_PUSH) {
             openFromPush()
         }
+        ScheduleSetter.setAlarm(this)
         loadAnimations()
         playAnim()
         loadData()

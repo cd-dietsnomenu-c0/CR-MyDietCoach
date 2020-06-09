@@ -84,6 +84,8 @@
             android:name="com.wsoteam.mydietcoach.diets.list.modern.NewDietsListActivity"
             android:theme="@style/NewDiets" />
 
+        <receiver android:name=".common.notifications.TrackerAlarmReceiver"/>
+
         <service
             android:name=".services.FCMService"
             android:exported="false">

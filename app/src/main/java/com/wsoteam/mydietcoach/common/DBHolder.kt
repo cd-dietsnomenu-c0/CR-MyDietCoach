@@ -96,7 +96,7 @@ object DBHolder {
         }
     }
 
-    private fun checkNotOpenedDays(days: List<DietDay>) : Boolean {
+    private fun checkNotOpenedDays(days: List<DietDay>): Boolean {
         var isLastDayHandled = false
         var currentTime = Calendar.getInstance().timeInMillis
         var diff = currentTime - dietPlanEntity.timeTrigger
@@ -171,7 +171,7 @@ object DBHolder {
         }
     }
 
-    private fun isCompletedYesterday(): Boolean {
+    fun isCompletedYesterday(): Boolean {
         return dietPlanEntity.breakfastState != NOT_CHECKED
                 && dietPlanEntity.lunchState != NOT_CHECKED
                 && dietPlanEntity.dinnerState != NOT_CHECKED

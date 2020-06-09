@@ -2,9 +2,11 @@ package com.wsoteam.mydietcoach.diets
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wsoteam.mydietcoach.App
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.Global
 import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets
