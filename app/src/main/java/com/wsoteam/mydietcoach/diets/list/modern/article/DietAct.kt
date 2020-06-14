@@ -25,6 +25,7 @@ import com.wsoteam.mydietcoach.diets.list.modern.article.dialogs.RewriteAlert
 import com.wsoteam.mydietcoach.diets.list.modern.article.controller.DietAdapter
 import com.wsoteam.mydietcoach.diets.list.modern.article.controller.IContents
 import com.wsoteam.mydietcoach.diets.list.modern.article.controller.managers.LayoutManagerTopScroll
+import com.wsoteam.mydietcoach.diets.list.modern.article.toasts.AddToast
 import com.wsoteam.mydietcoach.tracker.LoadingActivity
 import kotlinx.android.synthetic.main.diet_act.*
 import java.util.*
@@ -105,39 +106,37 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
 
     private fun setFavoriteState(){
         lavLike.frame = 160
-        lavLike.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(v: View?) {
-                lavLike.frame = 45
-                App.getInstance().db.dietDAO().deleteFavorite(diet.index)
-                setNoFavoriteState()
-            }
-        })
+        lavLike.setOnClickListener {
+            lavLike.frame = 45
+            App.getInstance().db.dietDAO().deleteFavorite(diet.index)
+            setNoFavoriteState()
+        }
     }
 
     private fun setNoFavoriteState(){
-        lavLike.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(v: View?) {
-                if (!lavLike.isAnimating) {
-                    lavLike.addAnimatorListener(object : Animator.AnimatorListener {
-                        override fun onAnimationRepeat(animation: Animator?) {
+        lavLike.setOnClickListener {
+            if (!lavLike.isAnimating) {
+                lavLike.addAnimatorListener(object : Animator.AnimatorListener {
+                    override fun onAnimationRepeat(animation: Animator?) {
 
-                        }
+                    }
 
-                        override fun onAnimationEnd(animation: Animator?) {
-                            setFavoriteState()
-                        }
+                    override fun onAnimationEnd(animation: Animator?) {
+                        setFavoriteState()
+                        lavLike.removeAllAnimatorListeners()
+                    }
 
-                        override fun onAnimationCancel(animation: Animator?) {
-                        }
+                    override fun onAnimationCancel(animation: Animator?) {
+                    }
 
-                        override fun onAnimationStart(animation: Animator?) {
-                        }
-                    })
-                    lavLike.playAnimation()
-                    App.getInstance().db.dietDAO().addFavorite(FavoriteEntity(diet.index))
-                }
+                    override fun onAnimationStart(animation: Animator?) {
+                    }
+                })
+                lavLike.playAnimation()
+                App.getInstance().db.dietDAO().addFavorite(FavoriteEntity(diet.index))
+                AddToast.showThankToast(this@DietAct)
             }
-        })
+        }
     }
 
     private fun showScrollButton() {
