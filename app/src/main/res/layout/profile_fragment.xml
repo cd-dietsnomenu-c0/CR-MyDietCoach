@@ -98,13 +98,13 @@
                 android:paddingLeft="22dp"
                 android:paddingRight="30dp"
                 android:text="Фавориты"
-                app:layout_constraintEnd_toStartOf="@+id/btnGrade"
+                app:layout_constraintEnd_toStartOf="@+id/btnTrophy"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
             <Button
-                android:id="@+id/btnGrade"
+                android:id="@+id/btnTrophy"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:background="@drawable/shape_favorites_button"

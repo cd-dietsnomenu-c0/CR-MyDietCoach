@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.common.db.entities.FavoriteEntity
+import com.wsoteam.mydietcoach.profile.dialogs.DevelopmentDialog
 import com.wsoteam.mydietcoach.profile.favorites.FavoritesActivity
 import kotlinx.android.synthetic.main.profile_fragment.*
 
@@ -21,6 +22,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
         btnFavorites.setOnClickListener {
             startActivity(Intent(activity, FavoritesActivity::class.java))
+        }
+
+        btnTrophy.setOnClickListener {
+            DevelopmentDialog().show(childFragmentManager, "DevelopmentDialog")
         }
     }
 }
