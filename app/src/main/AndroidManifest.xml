@@ -51,6 +51,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".profile.favorites.FavoritesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name="com.wsoteam.mydietcoach.diets.list.old.inside.ActivityListItems"
             android:theme="@style/AppTheme.NoActionBar" />
 
