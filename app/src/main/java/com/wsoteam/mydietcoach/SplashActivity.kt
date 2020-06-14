@@ -16,10 +16,12 @@ import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.GlobalHolder
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
 import com.wsoteam.mydietcoach.common.notifications.ScheduleSetter
+import com.wsoteam.mydietcoach.utils.PrefWorker
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.splash_activity.*
+import java.util.*
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
@@ -46,6 +48,16 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         loadAnimations()
         playAnim()
         loadData()
+        setFirstTime()
+    }
+
+    private fun setFirstTime() {
+        if (PrefWorker.getFirstTime() == ""){
+            val calendar = Calendar.getInstance()
+            var date = "${"%02d".format(calendar.get(Calendar.DAY_OF_MONTH))}.${"%02d".format(calendar.get(Calendar.MONTH) + 1)}.${calendar.get(Calendar.YEAR)}"
+            PrefWorker.setFirstTime(date)
+            Log.e("LOL", "set time")
+        }
     }
 
     private fun loadAnimations() {
@@ -129,7 +141,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         DBHolder.setEmpty()
         post()
         Log.e("LOL", "empty db")
-
     }
 
     private fun loadDietData() {
@@ -146,7 +157,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         GlobalHolder.setGlobal(t)
         post()
         Log.e("LOL", "aset")
-
     }
 
     private fun getAsyncDietData(): Global? {

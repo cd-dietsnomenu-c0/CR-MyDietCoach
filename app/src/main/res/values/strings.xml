@@ -48,7 +48,7 @@
     <string name="privacy_policy">Privacy policy</string>
   <string name="bnv_main">Диеты</string>
   <string name="bnv_prem">Премиум</string>
-  <string name="bnv_settings">Настройки</string>
+  <string name="bnv_settings">Профиль</string>
 
     <string-array name="images">
         <item>https://i.ibb.co/bF4N5d6/w0.jpg</item>
@@ -116,6 +116,7 @@
     <string name="spk_kcal">ккал</string>
     <string name="description_of_SPK">Для комфортного похудения, для избежания срывов и нанесения вреда здоровью снижать калораж рациона ниже 1200 нельзя, поэтому в случае, если Ваш нижний предел оказался ниже 1200, надо необходимые калории сжигать за счёт физических нагрузок.</string>
     <string name="main_menu">Главное меню</string>
+    <string name="together">Вместе с</string>
 
 
     <!--Calculating Brok-->

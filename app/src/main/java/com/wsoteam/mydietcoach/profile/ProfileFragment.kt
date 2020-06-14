@@ -9,6 +9,7 @@ import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.common.db.entities.FavoriteEntity
 import com.wsoteam.mydietcoach.profile.dialogs.DevelopmentDialog
 import com.wsoteam.mydietcoach.profile.favorites.FavoritesActivity
+import com.wsoteam.mydietcoach.utils.PrefWorker
 import kotlinx.android.synthetic.main.profile_fragment.*
 
 class ProfileFragment : Fragment(R.layout.profile_fragment) {
@@ -16,6 +17,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        tvDate.text = "${resources.getString(R.string.together)} ${PrefWorker.getFirstTime()}"
         cvParent.setBackgroundResource(R.drawable.shape_profile_card)
         Glide.with(activity!!).load("https://i.ibb.co/XFfWh87/back1.jpg").into(ivHeadBack)
         Glide.with(activity!!).load("https://i.ibb.co/w68jTgy/rev9.jpg").into(ivAvatar)
@@ -28,4 +30,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             DevelopmentDialog().show(childFragmentManager, "DevelopmentDialog")
         }
     }
+
+
 }
