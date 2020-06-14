@@ -8,7 +8,7 @@ data class Diet(var title: String, var shortIntroduction: String, var introducti
                 var cons: List<String>, var menuTitle: String,
                 var menuText: String, var days: List<DietDay>, var hintText: String, var resultText: String,
                 var review: Review,
-                var isNew : Boolean) : Serializable {
+                var isNew : Boolean, var index : Int) : Serializable {
 
-    constructor() : this("", "", "", "", "", listOf(), "", listOf(), "", "", listOf(), "", "", Review(), false)
+    constructor() : this("", "", "", "", "", listOf(), "", listOf(), "", "", listOf(), "", "", Review(), false, 0)
 }

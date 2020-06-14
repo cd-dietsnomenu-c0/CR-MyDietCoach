@@ -126,7 +126,7 @@ class FBWork {
             consList.add("")
             consList.add("")
 
-            var diet = Diet("", "", "", "", "", benList, "", consList, "", "", days, "", "", review, false)
+            var diet = Diet("", "", "", "", "", benList, "", consList, "", "", days, "", "", review, false, 0)
 
             var listDiets = ArrayList<Diet>()
             listDiets.add(diet)

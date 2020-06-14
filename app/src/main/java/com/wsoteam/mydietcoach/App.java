@@ -12,10 +12,12 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDexApplication;
 import androidx.room.Room;
+import androidx.room.migration.Migration;
 
 import com.amplitude.api.Amplitude;
 import com.google.android.gms.ads.MobileAds;
 import com.wsoteam.mydietcoach.common.db.DietDatabase;
+import com.wsoteam.mydietcoach.common.db.migrations.Migrations;
 
 public class App extends MultiDexApplication {
 
@@ -36,6 +38,7 @@ public class App extends MultiDexApplication {
         createNotificationChannel(getContext());
 
         db = Room.databaseBuilder(this, DietDatabase.class, "dietPlans")
+                .addMigrations(Migrations.INSTANCE.getMigration_1_2())
                 .allowMainThreadQueries()
                 .build();
     }

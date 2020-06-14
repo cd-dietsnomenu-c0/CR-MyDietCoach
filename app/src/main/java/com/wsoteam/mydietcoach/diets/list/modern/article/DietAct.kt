@@ -1,5 +1,6 @@
 package com.wsoteam.mydietcoach.diets.list.modern.article
 
+import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.wsoteam.mydietcoach.App
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.interactive.*
 import com.wsoteam.mydietcoach.R
@@ -17,6 +19,7 @@ import com.wsoteam.mydietcoach.ad.NativeSpeaker
 import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.common.DBHolder
 import com.wsoteam.mydietcoach.common.db.entities.DietPlanEntity
+import com.wsoteam.mydietcoach.common.db.entities.FavoriteEntity
 import com.wsoteam.mydietcoach.diets.list.modern.article.dialogs.DifficultyFragment
 import com.wsoteam.mydietcoach.diets.list.modern.article.dialogs.RewriteAlert
 import com.wsoteam.mydietcoach.diets.list.modern.article.controller.DietAdapter
@@ -44,13 +47,18 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         showAnim = AnimationUtils.loadAnimation(this, R.anim.show_start_button)
         hideAnim = AnimationUtils.loadAnimation(this, R.anim.hide_start_button)
 
         AdWorker.checkLoad()
         diet = intent.getSerializableExtra(Config.NEW_DIET) as Diet
         isNeedShowConnect = intent.getSerializableExtra(Config.NEED_SHOW_CONNECT) as Boolean
+
+        lavLike.speed = 1.5f
+        lavLike.setMinFrame(45)
+        lavLike.setMaxFrame(100)
+        bindFavoriteState()
+
         rvDiet.layoutManager = LayoutManagerTopScroll(this)
         var adapter = DietAdapter(diet, object : IContents {
             override fun moveTo(position: Int) {
@@ -76,8 +84,6 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         }else{
             flBottom.visibility = View.INVISIBLE
         }
-
-        bindLike()
         Ampl.openNewDiet(diet.title)
 
         btnStart.setOnClickListener {
@@ -89,12 +95,47 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         }
     }
 
-    private fun bindLike() {
-        lavLike.setMinFrame(45)
-        lavLike.speed = 1.5f
+    private fun bindFavoriteState() {
+        if (App.getInstance().db.dietDAO().getCurrentFavorite(diet.index).isNotEmpty()){
+            setFavoriteState()
+        }else{
+            setNoFavoriteState()
+        }
+    }
+
+    private fun setFavoriteState(){
+        lavLike.frame = 160
         lavLike.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
-                lavLike.playAnimation()
+                lavLike.frame = 45
+                App.getInstance().db.dietDAO().deleteFavorite(diet.index)
+                setNoFavoriteState()
+            }
+        })
+    }
+
+    private fun setNoFavoriteState(){
+        lavLike.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                if (!lavLike.isAnimating) {
+                    lavLike.addAnimatorListener(object : Animator.AnimatorListener {
+                        override fun onAnimationRepeat(animation: Animator?) {
+
+                        }
+
+                        override fun onAnimationEnd(animation: Animator?) {
+                            setFavoriteState()
+                        }
+
+                        override fun onAnimationCancel(animation: Animator?) {
+                        }
+
+                        override fun onAnimationStart(animation: Animator?) {
+                        }
+                    })
+                    lavLike.playAnimation()
+                    App.getInstance().db.dietDAO().addFavorite(FavoriteEntity(diet.index))
+                }
             }
         })
     }
