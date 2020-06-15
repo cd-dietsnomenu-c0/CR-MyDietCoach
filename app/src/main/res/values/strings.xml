@@ -215,6 +215,7 @@
     </string-array>
 
     <string name="ready">готово!</string>
+    <string name="def_name">Введите ваше имя</string>
 
     <integer-array name="pluses">
         <item>@drawable/ic_plus_green</item>

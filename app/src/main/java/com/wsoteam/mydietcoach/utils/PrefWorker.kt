@@ -10,6 +10,7 @@ object PrefWorker {
     const val RATE_MIND_GOOD = "RATE_MIND_GOOD"
     const val RATE_MIND_BAD = "RATE_MIND_BAD"
     const val FIRST_TIME = "FIRST_TIME"
+    const val USER_NAME = "USER_NAME"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -27,4 +28,7 @@ object PrefWorker {
 
     fun setFirstTime(time: String) = editor { it?.putString(FIRST_TIME, time) }
     fun getFirstTime() = getInstance()?.getString(FIRST_TIME, "")
+
+    fun setName(name: String) = editor { it?.putString(USER_NAME, name) }
+    fun getName() = getInstance()?.getString(USER_NAME, "")
 }

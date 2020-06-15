@@ -64,18 +64,20 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="16dp"
-                android:fontFamily="@font/roboto"
+                android:fontFamily="@font/roboto_medium"
                 android:gravity="center_horizontal"
-                android:text="Введите ваше имя и фамилию \n (никнейм)"
+                android:text="Как вас зовут?"
+                android:textSize="20sp"
                 android:textColor="@color/black" />
 
             <EditText
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginLeft="32dp"
                 android:inputType="textCapSentences"
                 android:layout_marginRight="32dp"
+                android:hint="Ваше имя или никнейм"
                 android:theme="@style/EditTextTheme"
                 android:focusedByDefault="false"
                 android:gravity="center_horizontal"

@@ -1,16 +1,16 @@
 package com.wsoteam.mydietcoach.profile.dialogs
 
-import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.DialogFragment
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.profile.ProfileFragment
+import com.wsoteam.mydietcoach.utils.PrefWorker
 import kotlinx.android.synthetic.main.name_dialog.*
 
 class NameDialog: DialogFragment() {
@@ -25,8 +25,17 @@ class NameDialog: DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
+        edtName.onFocusChangeListener = OnFocusChangeListener { v, hasFocus -> if (hasFocus) edtName.hint = "" else edtName.hint = "Ваше имя иди никнейм" }
+        btnCancel.setOnClickListener {
+            dismiss()
+        }
+        btnSave.setOnClickListener {
+            if (edtName.text.toString() != "") {
+                PrefWorker.setName(edtName.text.toString())
+                (targetFragment as ProfileFragment).bindName()
+            }
+            dismiss()
+        }
     }
 
 
