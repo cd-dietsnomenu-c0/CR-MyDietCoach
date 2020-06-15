@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.common.db.entities.FavoriteEntity
 import com.wsoteam.mydietcoach.profile.dialogs.DevelopmentDialog
+import com.wsoteam.mydietcoach.profile.dialogs.NameDialog
 import com.wsoteam.mydietcoach.profile.favorites.FavoritesActivity
 import com.wsoteam.mydietcoach.utils.PrefWorker
 import kotlinx.android.synthetic.main.profile_fragment.*
@@ -28,6 +29,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
         btnTrophy.setOnClickListener {
             DevelopmentDialog().show(childFragmentManager, "DevelopmentDialog")
+        }
+
+        tvName.setOnClickListener {
+            NameDialog().show(childFragmentManager, "NameDialog")
         }
     }
 

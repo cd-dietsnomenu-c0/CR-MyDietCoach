@@ -63,4 +63,10 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
         <item name="android:statusBarColor">@color/white</item>
     </style>
+
+    <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">#7C7C7C</item>
+        <item name="colorControlActivated">#7C7C7C</item>
+        <item name="colorControlHighlight">#7C7C7C</item>
+    </style>
 </resources>
