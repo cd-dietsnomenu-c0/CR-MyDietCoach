@@ -226,4 +226,29 @@
     </integer-array>
 
 
+    <string-array name="backgrounds_profile">
+        <item>https://i.ibb.co/7XXfQsg/back1.jpg</item>
+        <item>https://i.ibb.co/cLnntc8/back2.jpg</item>
+        <item>https://i.ibb.co/3dBzHVV/back3.jpg</item>
+        <item>https://i.ibb.co/VD2mNxm/back4.jpg</item>
+        <item>https://i.ibb.co/H7r0JC0/back5.jpg</item>
+        <item>https://i.ibb.co/m56Tn00/back6.jpg</item>
+        <item>https://i.ibb.co/B6hx2zW/back7.jpg</item>
+        <item>https://i.ibb.co/g6k1Vcz/back8.jpg</item>
+        <item>https://i.ibb.co/9GdNZtc/back9.jpg</item>
+        <item>https://i.ibb.co/y6fP94B/back10.jpg</item>
+        <item>https://i.ibb.co/4wrkS8z/back11.jpg</item>
+        <item>https://i.ibb.co/BZGyJwG/back12.jpg</item>
+        <item>https://i.ibb.co/CKQPMGm/back13.jpg</item>
+        <item>https://i.ibb.co/GJw2jVW/back14.jpg</item>
+        <item>https://i.ibb.co/D4gWtKp/back15.jpg</item>
+        <item>https://i.ibb.co/fn7fjGS/back16.jpg</item>
+        <item>https://i.ibb.co/fkzcdXb/back17.jpg</item>
+        <item>https://i.ibb.co/JHfq3qy/back18.jpg</item>
+        <item>https://i.ibb.co/C1fLXzK/back19.jpg</item>
+        <item>https://i.ibb.co/7zgbXZc/back20.jpg</item>
+        <item>https://i.ibb.co/ZGNf2CX/back21.jpg</item>
+        <item>https://i.ibb.co/6J5qWQ1/back22.jpg</item>
+    </string-array>
+
 </resources>
