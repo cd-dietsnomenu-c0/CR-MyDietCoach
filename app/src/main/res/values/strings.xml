@@ -253,5 +253,10 @@
     </string-array>
 
     <string name="authorise_file_provider" translatable="false">com.jundev.diets.fileprovider</string>
+    <string name="dev_email">udovoron@gmail.com</string>
+    <string name="report_title">Найдена ошибка</string>
+    <string name="report_text">Добрый день, нашли ошибку в вашем приложении ! Дело в том, что ..</string>
+    <string name="report_wait">Выберите приложение</string>
+    <string name="report_error">Нет почтовых клиентов</string>
 
 </resources>

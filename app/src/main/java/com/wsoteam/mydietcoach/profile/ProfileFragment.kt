@@ -1,7 +1,9 @@
 package com.wsoteam.mydietcoach.profile
 
 import android.app.Activity.RESULT_OK
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.Intent.*
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +12,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -19,6 +22,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.profile.controllers.BacksAdapter
 import com.wsoteam.mydietcoach.profile.controllers.IBacks
 import com.wsoteam.mydietcoach.profile.dialogs.DevelopmentDialog
@@ -40,7 +44,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     val MAX_ATEMPT_INTRO = 2
     val CAMERA_REQUEST = 0
     val CAMERA_PERMISSION_REQUEST = 1
-    lateinit var bsBehavior : BottomSheetBehavior<LinearLayout>
+    lateinit var bsBehavior: BottomSheetBehavior<LinearLayout>
 
     lateinit var uri: Uri
 
@@ -50,11 +54,22 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         cvParent.setBackgroundResource(R.drawable.shape_profile_card)
         setBack(PrefWorker.getBack()!!)
         setAvatar()
+        setClickListeners()
 
         nameDialog.setTargetFragment(this, 0)
-
         bsBehavior = BottomSheetBehavior.from(llBottomSheet)
 
+        rvBacks.layoutManager = GridLayoutManager(activity, 2)
+        rvBacks.adapter = BacksAdapter(resources.getStringArray(R.array.backgrounds_profile), object : IBacks {
+            override fun choiceBack(position: Int) {
+                PrefWorker.setBack(position)
+                setBack(position)
+                bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        })
+    }
+
+    private fun setClickListeners() {
         btnFavorites.setOnClickListener {
             startActivity(Intent(activity, FavoritesActivity::class.java))
         }
@@ -71,6 +86,44 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             PrefWorker.setCountIntro(MAX_ATEMPT_INTRO)
         }
+
+        btnGrade.setOnClickListener {
+            Ampl.openSettingsGrade()
+            var intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("market://details?id=" + activity!!.packageName)
+            startActivity(intent)
+        }
+
+        btnReport.setOnClickListener {
+            var intent = Intent(Intent(ACTION_SENDTO))
+            intent.type = "message/rfc822"
+            intent.data = Uri.parse("mailto:")
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.dev_email)));
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_title));
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.report_text));
+            try {
+                startActivity(createChooser(intent, getString(R.string.report_wait)))
+            }catch (ex : ActivityNotFoundException){
+                Toast.makeText(this.requireContext(), getString(R.string.report_error), Toast.LENGTH_LONG).show()
+            }
+        }
+
+        btnPolicy.setOnClickListener {
+            var intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(activity!!.resources.getString(R.string.url_gdpr))
+            startActivity(intent)
+        }
+
+        btnShare.setOnClickListener {
+            Ampl.openSettingsShare()
+            var intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.accompanying_text) + "\n"
+                    + "https://play.google.com/store/apps/details?id=com.jundev.weightloss")
+            startActivity(intent)
+        }
+
+
         ivCircle.setOnClickListener {
             if (isCameraForbidden()) {
                 requestPermissions(arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE), CAMERA_PERMISSION_REQUEST)
@@ -78,32 +131,24 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 runCamera()
             }
         }
-        rvBacks.layoutManager = GridLayoutManager(activity, 2)
-        rvBacks.adapter = BacksAdapter(resources.getStringArray(R.array.backgrounds_profile), object : IBacks {
-            override fun choiceBack(position: Int) {
-                PrefWorker.setBack(position)
-                setBack(position)
-                bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }
-        })
     }
 
     private fun isCameraForbidden(): Boolean = activity!!.checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
             || (ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) != PackageManager.PERMISSION_GRANTED
 
     private fun setAvatar() {
-        if (PrefWorker.getPhoto() != PrefWorker.EMPTY_PHOTO){
+        if (PrefWorker.getPhoto() != PrefWorker.EMPTY_PHOTO) {
             try {
                 ivAvatar.setImageURI(Uri.parse(PrefWorker.getPhoto()))
-            }catch (ex : Exception){
+            } catch (ex: Exception) {
                 setDefaultAvatar()
             }
-        }else{
+        } else {
             setDefaultAvatar()
         }
     }
 
-    private fun setDefaultAvatar(){
+    private fun setDefaultAvatar() {
         Glide.with(this).load(R.drawable.woman).into(ivAvatar)
     }
 
@@ -116,17 +161,16 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         var isGranted = true
-        if (requestCode == CAMERA_PERMISSION_REQUEST){
+        if (requestCode == CAMERA_PERMISSION_REQUEST) {
             grantResults.forEach {
-                if (it != PackageManager.PERMISSION_GRANTED){
+                if (it != PackageManager.PERMISSION_GRANTED) {
                     isGranted = false
                 }
             }
         }
-        Log.e("LOL", "ret")
-        if (isGranted){
+        if (isGranted) {
             runCamera()
-        }else{
+        } else {
             DeniedPermToast.show(activity!!)
         }
     }
