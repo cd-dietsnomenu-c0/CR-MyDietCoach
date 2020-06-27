@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.wsoteam.mydietcoach.POJOS.Global;
 import com.wsoteam.mydietcoach.ad.AdWorker;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener bnvListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.bnv_main: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(0)).commit();
                     Ampl.Companion.openDiets();
@@ -85,7 +86,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AdWorker.INSTANCE.showInter();
-        super.onBackPressed();
+        if (getSupportFragmentManager().findFragmentById(R.id.fragmentContainer) instanceof ProfileFragment) {
+            if (((ProfileFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainer)).bsBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
+                super.onBackPressed();
+            }else {
+                ((ProfileFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainer)).bsBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+        } else {
+            super.onBackPressed();
+        }
     }
 
 
@@ -111,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         COUNT_OF_RUN = getPreferences(MODE_PRIVATE).getInt(TAG_OF_COUNT_RUN, 0);
         navigationView = findViewById(R.id.bnv_main);
-        if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())){
+        if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())) {
             navigationView.getMenu().removeItem(R.id.bnv_tracker);
         }
         navigationView.setOnNavigationItemSelectedListener(bnvListener);
@@ -121,9 +130,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkDB(Bundle savedInstanceState) {
-        if (savedInstanceState != null){
-            if (App.getInstance().getDB().dietDAO().getAll() == null || App.getInstance().getDB().dietDAO().getAll().size() == 0){
-                    DBHolder.INSTANCE.setEmpty();
+        if (savedInstanceState != null) {
+            if (App.getInstance().getDB().dietDAO().getAll() == null || App.getInstance().getDB().dietDAO().getAll().size() == 0) {
+                DBHolder.INSTANCE.setEmpty();
             }
         }
     }
@@ -131,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
     private void setDietDataTC(Global t) {
         try {
             setDietData(t);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             finishAffinity();
         }
     }
@@ -141,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())) {
             fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentTypes).commit();
             getWindow().setStatusBarColor(getResources().getColor(R.color.dark_status_bar));
-        }else {
+        } else {
             fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new FragmentTracker()).commit();
             getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
         }
@@ -175,14 +184,14 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    public void goToMarket(){
+    public void goToMarket() {
         isNeedShowThank = true;
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("market://details?id=" + MainActivity.this.getPackageName()));
         startActivity(intent);
     }
 
-    public void rateLater(){
+    public void rateLater() {
         countOfRun = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = countOfRun.edit();
         editor.putInt(TAG_OF_COUNT_RUN, 0);
@@ -192,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (isNeedShowThank){
+        if (isNeedShowThank) {
             ThankToast.INSTANCE.showThankToast(this);
             isNeedShowThank = false;
         }

@@ -228,6 +228,8 @@
 
     <string-array name="backgrounds_profile">
         <item>https://i.ibb.co/7XXfQsg/back1.jpg</item>
+        <item>https://i.ibb.co/DbWgB8P/1.jpg</item>
+        <item>https://i.ibb.co/9GdNZtc/back9.jpg</item>
         <item>https://i.ibb.co/cLnntc8/back2.jpg</item>
         <item>https://i.ibb.co/3dBzHVV/back3.jpg</item>
         <item>https://i.ibb.co/VD2mNxm/back4.jpg</item>
@@ -235,7 +237,6 @@
         <item>https://i.ibb.co/m56Tn00/back6.jpg</item>
         <item>https://i.ibb.co/B6hx2zW/back7.jpg</item>
         <item>https://i.ibb.co/g6k1Vcz/back8.jpg</item>
-        <item>https://i.ibb.co/9GdNZtc/back9.jpg</item>
         <item>https://i.ibb.co/y6fP94B/back10.jpg</item>
         <item>https://i.ibb.co/4wrkS8z/back11.jpg</item>
         <item>https://i.ibb.co/BZGyJwG/back12.jpg</item>
@@ -250,5 +251,7 @@
         <item>https://i.ibb.co/ZGNf2CX/back21.jpg</item>
         <item>https://i.ibb.co/6J5qWQ1/back22.jpg</item>
     </string-array>
+
+    <string name="authorise_file_provider" translatable="false">com.jundev.diets.fileprovider</string>
 
 </resources>

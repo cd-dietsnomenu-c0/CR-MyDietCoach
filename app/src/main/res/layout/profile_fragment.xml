@@ -39,12 +39,14 @@
                     android:scaleType="centerCrop"
                     tools:src="@drawable/head_newdiets" />
 
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:elevation="3dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/shape_stencil_avatar" />
+                    android:src="@drawable/shape_stencil_avatar"
+                    android:id="@+id/ivCircle"/>
 
             </androidx.cardview.widget.CardView>
 

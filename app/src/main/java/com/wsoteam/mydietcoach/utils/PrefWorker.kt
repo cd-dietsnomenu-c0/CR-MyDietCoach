@@ -13,6 +13,8 @@ object PrefWorker {
     const val USER_NAME = "USER_NAME"
     const val WALLPAPER_NUMBER = "WALLPAPER_NUMBER"
     const val COUNT_INTRO = "COUNT_INTRO"
+    const val PHOTO_URI = "PHOTO_URI"
+    const val EMPTY_PHOTO = "EMPTY_PHOTO"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -39,4 +41,7 @@ object PrefWorker {
 
     fun setCountIntro(count: Int) = editor { it?.putInt(COUNT_INTRO, count) }
     fun getCountIntro() = getInstance()?.getInt(COUNT_INTRO, 0)
+
+    fun setPhoto(uri: String) = editor { it?.putString(PHOTO_URI, uri) }
+    fun getPhoto() = getInstance()?.getString(PHOTO_URI, EMPTY_PHOTO)
 }
