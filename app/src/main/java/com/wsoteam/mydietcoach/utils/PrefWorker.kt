@@ -15,6 +15,8 @@ object PrefWorker {
     const val COUNT_INTRO = "COUNT_INTRO"
     const val PHOTO_URI = "PHOTO_URI"
     const val EMPTY_PHOTO = "EMPTY_PHOTO"
+    const val FIRST_ENTER = "FIRST_ENTER"
+    const val EMPTY_FIRST_ENTER = -1L
 
 
     private fun getInstance(): SharedPreferences? {
@@ -44,4 +46,7 @@ object PrefWorker {
 
     fun setPhoto(uri: String) = editor { it?.putString(PHOTO_URI, uri) }
     fun getPhoto() = getInstance()?.getString(PHOTO_URI, EMPTY_PHOTO)
+
+    fun setFirstEnter(time: Long) = editor { it?.putLong(FIRST_ENTER, time) }
+    fun getFirstEnter() = getInstance()?.getLong(FIRST_ENTER, EMPTY_FIRST_ENTER)
 }

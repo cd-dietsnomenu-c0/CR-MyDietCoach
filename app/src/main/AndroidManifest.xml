@@ -90,6 +90,21 @@
             android:theme="@style/NewDiets" />
 
         <receiver android:name=".common.notifications.TrackerAlarmReceiver"/>
+        <receiver android:name=".common.notifications.ReactAlarmReceiver"/>
+
+        <receiver android:name=".common.notifications.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".common.notifications.BootNotificationService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
 
         <service
             android:name=".services.FCMService"

@@ -45,6 +45,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             openFromPush()
         }
         ScheduleSetter.setAlarm(this)
+        ScheduleSetter.setReactAlarm(this)
         loadAnimations()
         playAnim()
         loadData()
@@ -56,7 +57,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             val calendar = Calendar.getInstance()
             var date = "${"%02d".format(calendar.get(Calendar.DAY_OF_MONTH))}.${"%02d".format(calendar.get(Calendar.MONTH) + 1)}.${calendar.get(Calendar.YEAR)}"
             PrefWorker.setFirstTime(date)
-            Log.e("LOL", "set time")
+            PrefWorker.setFirstEnter(calendar.timeInMillis)
         }
     }
 
