@@ -50,6 +50,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Ampl.openProfile()
         tvDate.text = "${resources.getString(R.string.together)} ${PrefWorker.getFirstTime()}"
         cvParent.setBackgroundResource(R.drawable.shape_profile_card)
         setBack(PrefWorker.getBack()!!)
@@ -71,10 +72,12 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     private fun setClickListeners() {
         btnFavorites.setOnClickListener {
+            Ampl.openFavorites()
             startActivity(Intent(activity, FavoritesActivity::class.java))
         }
 
         btnTrophy.setOnClickListener {
+            Ampl.openTrophy()
             DevelopmentDialog().show(activity!!.supportFragmentManager, "DevelopmentDialog")
         }
 
@@ -83,6 +86,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
 
         ivHeadBack.setOnClickListener {
+            Ampl.openWallpapers()
             bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             PrefWorker.setCountIntro(MAX_ATEMPT_INTRO)
         }
@@ -95,6 +99,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
 
         btnReport.setOnClickListener {
+            Ampl.sendClaim()
             var intent = Intent(Intent(ACTION_SENDTO))
             intent.type = "message/rfc822"
             intent.data = Uri.parse("mailto:")
@@ -125,6 +130,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
 
         ivCircle.setOnClickListener {
+            Ampl.clickAvatar()
             if (isCameraForbidden()) {
                 requestPermissions(arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE), CAMERA_PERMISSION_REQUEST)
             } else {

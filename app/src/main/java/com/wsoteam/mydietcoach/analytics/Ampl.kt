@@ -51,10 +51,40 @@ class Ampl {
 
         val second_notify = "second_notify"
         val first_notify = "first_notify"
+        val open_profile = "open_profile"
+        val click_avatar = "click_avatar"
+        val open_favorites = "open_favorites"
+        val open_trophy = "open_trophy"
+        val open_wallpapers = "open_wallpapers"
+        val send_claim = "send_claim"
 
         fun setTrackerStatus(){
             var identify = Identify().set(TRACKER_STATUS, tracker_use)
             Amplitude.getInstance().identify(identify)
+        }
+
+        fun sendClaim() {
+            Amplitude.getInstance().logEvent(send_claim)
+        }
+
+        fun openWallpapers() {
+            Amplitude.getInstance().logEvent(open_wallpapers)
+        }
+
+        fun openTrophy() {
+            Amplitude.getInstance().logEvent(open_trophy)
+        }
+
+        fun openFavorites() {
+            Amplitude.getInstance().logEvent(open_favorites)
+        }
+
+        fun clickAvatar() {
+            Amplitude.getInstance().logEvent(click_avatar)
+        }
+
+        fun openProfile() {
+            Amplitude.getInstance().logEvent(open_profile)
         }
 
         fun showFirstNotify() {
