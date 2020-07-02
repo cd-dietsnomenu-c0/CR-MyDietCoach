@@ -1,50 +1,42 @@
 {
   "project_info": {
-    "project_number": "64518622596",
-    "firebase_url": "https://diets-b7a1e.firebaseio.com",
-    "project_id": "diets-b7a1e",
-    "storage_bucket": "diets-b7a1e.appspot.com"
+    "project_number": "7608355356",
+    "firebase_url": "https://newbigdiet.firebaseio.com",
+    "project_id": "newbigdiet",
+    "storage_bucket": "newbigdiet.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:64518622596:android:cf26ab1477f9eccd",
+        "mobilesdk_app_id": "1:7608355356:android:e49b2eb33da610515d6dd9",
         "android_client_info": {
-          "package_name": "com.jundev.diets"
+          "package_name": "com.jundev.weightloss"
         }
       },
       "oauth_client": [
         {
-          "client_id": "64518622596-lkto68jsej016dcgkou9tn23c2mp09d5.apps.googleusercontent.com",
+          "client_id": "7608355356-8541h9pfq6vqfr0jako4dcqs1ncpgqvc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.jundev.diets",
-            "certificate_hash": "9a3df1a74b48c4ee8e31bddbb54686213c5f241d"
+            "package_name": "com.jundev.weightloss",
+            "certificate_hash": "d37418faf039eb0dd135a5be5642ae0a639136fb"
           }
         },
         {
-          "client_id": "64518622596-fmuncdo5ho212mglndpfm0bl2e8er33j.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.jundev.diets",
-            "certificate_hash": "4bc011909dc2d72cedd03ce985928daba7bf1c85"
-          }
-        },
-        {
-          "client_id": "64518622596-24o0n0l4dgofeoads2mscbvjp66ce0cs.apps.googleusercontent.com",
+          "client_id": "7608355356-dne00pqqvqei35b09lgdhmkg48p0f23q.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDDuHvBG6zaKW4v59m_Qosud1mhcVHW0LY"
+          "current_key": "AIzaSyA5jRmSO_ZFIHOb9gJod5YeZC8zcYYSbWA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "64518622596-24o0n0l4dgofeoads2mscbvjp66ce0cs.apps.googleusercontent.com",
+              "client_id": "7608355356-dne00pqqvqei35b09lgdhmkg48p0f23q.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
