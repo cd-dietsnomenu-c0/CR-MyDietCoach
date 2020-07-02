@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
     private EditText edtBrokGrowth, edtBrokGirth, edtBrokAge;
     private RadioButton rbFemale, rbMale;
     private Button btnCalculate;
+    private ImageView ivBack;
     private AdView ban;
     int growth, girth, age, femaleDownFlag = 14, femaleUpFlag = 18, maleDownFlag = 17, maleUpFlag = 20, minNumber = 0;
     double idealWeight;
@@ -51,6 +53,10 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
         rbFemale = findViewById(R.id.rdBrokFemale);
         rbMale = findViewById(R.id.rdBrokMale);
         btnCalculate = findViewById(R.id.btnBrokCalculate);
+        ivBack = findViewById(R.id.ivBack);
+
+        ivBack.setOnClickListener(v ->
+                onBackPressed());
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override

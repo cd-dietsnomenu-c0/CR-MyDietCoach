@@ -10,8 +10,10 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
+import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.SplashActivity
+import com.wsoteam.mydietcoach.analytics.Ampl
 import com.wsoteam.mydietcoach.utils.PrefWorker
 import java.util.*
 
@@ -29,10 +31,19 @@ class ReactAlarmReceiver : BroadcastReceiver() {
         val ui = getUI()
         if (ui != NOTHING) {
             val notificationIntent = Intent(context, SplashActivity::class.java)
+            notificationIntent.putExtra(Config.PUSH_TAG, Config.OPEN_FROM_PUSH)
+            notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
             var collapsedView = RemoteViews(context?.packageName, R.layout.view_react_notif_first)
 
             if (ui == SECOND_UI) {
+                PrefWorker.setSecondShow()
                 collapsedView = RemoteViews(context?.packageName, R.layout.view_react_notif_second)
+                Ampl.showSecondNotify()
+            }else{
+                PrefWorker.setFirstShow()
+                Ampl.showFirstNotify()
             }
 
             val VIBRATE_PATTERN = longArrayOf(0, 500)
@@ -52,7 +63,7 @@ class ReactAlarmReceiver : BroadcastReceiver() {
             val notification = builder
                     .setAutoCancel(true)
                     .setVibrate(VIBRATE_PATTERN)
-                    .setSmallIcon(R.drawable.ic_tracker_notify)
+                    .setSmallIcon(R.drawable.ic_small_notification)
                     .setDefaults(Notification.DEFAULT_SOUND)
                     .setSound(NOTIFICATION_SOUND_URI)
                     .setContentIntent(pendingIntent).build()
@@ -89,15 +100,17 @@ class ReactAlarmReceiver : BroadcastReceiver() {
 
 
     private fun getUI(): Int {
-        return if (PrefWorker.getFirstEnter() != PrefWorker.EMPTY_FIRST_ENTER) {
+        return if (PrefWorker.getLastEnter() != PrefWorker.EMPTY_LAST_ENTER){
             val current = Calendar.getInstance().timeInMillis
-            when ((current - PrefWorker.getFirstEnter()!!) / ONE_DAY) {
-                2L -> SECOND_UI
-                1L -> FIRST_UI
-                0L -> NOTHING
-                else -> NOTHING
+            val days = (current - PrefWorker.getLastEnter()!!) / ONE_DAY
+            if (!PrefWorker.getSecondShow()!! && days == 2L){
+                SECOND_UI
+            }else if (!PrefWorker.getSecondShow()!! && days == 1L){
+                FIRST_UI
+            }else{
+                NOTHING
             }
-        } else {
+        }else{
             NOTHING
         }
     }

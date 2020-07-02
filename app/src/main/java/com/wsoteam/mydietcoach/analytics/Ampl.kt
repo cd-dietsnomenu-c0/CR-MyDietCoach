@@ -49,10 +49,22 @@ class Ampl {
         val TRACKER_STATUS = "TRACKER_STATUS"
         val tracker_use = "tracker_use"
 
+        val second_notify = "second_notify"
+        val first_notify = "first_notify"
+
         fun setTrackerStatus(){
             var identify = Identify().set(TRACKER_STATUS, tracker_use)
             Amplitude.getInstance().identify(identify)
         }
+
+        fun showFirstNotify() {
+            Amplitude.getInstance().logEvent(first_notify)
+        }
+
+        fun showSecondNotify() {
+            Amplitude.getInstance().logEvent(second_notify)
+        }
+
 
         fun showHardCard() {
             Amplitude.getInstance().logEvent(show_hard_card)

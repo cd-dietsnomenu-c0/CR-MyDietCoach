@@ -8,33 +8,50 @@
     android:background="@drawable/shape_notification_background">
 
     <ImageView
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:id="@+id/ivMain"
-        android:src="@drawable/calendar"
-        android:layout_gravity="left|center_vertical"
-        android:layout_marginLeft="16dp"/>
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:src="@drawable/shape_left_notification_gradient"/>
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvTitle"
-        android:text="SECOND"
-        android:fontFamily="@font/roboto_medium"
-        android:textColor="#FF5722"
-        android:layout_marginLeft="74dp"
-        android:textSize="14sp"
-        android:layout_marginTop="12dp"/>
+        android:src="@drawable/ic_mail"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="8dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="42dp"
+        android:layout_marginRight="36dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/ivAvatarNotification"
+            android:src="@drawable/second_notify_avatar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvNotificationTitle"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center_vertical"
+            android:text="Попробовала трекер диет - это бомба! Минус 6 кг всего за неделю :)"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="24dp"
         android:layout_height="wrap_content"
-        android:text="У вас есть неотмеченная еда"
-        android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:layout_marginLeft="74dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="30dp"/>
+        android:src="@drawable/ic_right_notification"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="8dp"/>
 
 </FrameLayout>

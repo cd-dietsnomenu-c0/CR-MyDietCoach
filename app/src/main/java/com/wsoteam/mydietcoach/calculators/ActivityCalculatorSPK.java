@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -31,6 +32,9 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
     private RadioGroup rgFemaleOrMale;
     private TextView tvTitle;
     private AdView ban;
+    private ImageView ivBack;
+
+
     @Override
     public void onBackPressed() {
         AdWorker.INSTANCE.showInter();
@@ -53,6 +57,10 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
         btnCalculate = findViewById(R.id.btnSpkCalculate);
         rgFemaleOrMale = findViewById(R.id.rgFemaleOrMaleSpk);
         tvTitle = findViewById(R.id.tvTitleOfSPK);
+        ivBack = findViewById(R.id.ivBack);
+
+        ivBack.setOnClickListener(v ->
+                onBackPressed());
 
         tvTitle.setText(getResources().getStringArray(R.array.titles_of_calculating_list)[3]);
 

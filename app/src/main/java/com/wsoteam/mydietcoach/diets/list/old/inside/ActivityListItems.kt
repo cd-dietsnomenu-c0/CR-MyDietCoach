@@ -50,5 +50,9 @@ class ActivityListItems : AppCompatActivity(R.layout.activity_list_items) {
                 adapter.insertAds(nativeList)
             }
         })
+
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

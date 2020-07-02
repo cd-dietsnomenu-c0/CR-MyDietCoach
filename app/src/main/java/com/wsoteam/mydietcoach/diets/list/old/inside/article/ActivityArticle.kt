@@ -33,5 +33,9 @@ class ActivityArticle : AppCompatActivity(R.layout.fr_article) {
 
         rvArticle.layoutManager = LinearLayoutManager(this)
         rvArticle.adapter = PartAdapter(subsection.arrayOfItemOfSubsection as ArrayList<ItemOfSubsection>)
+
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

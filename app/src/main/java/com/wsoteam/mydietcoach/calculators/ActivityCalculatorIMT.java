@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,13 +29,13 @@ public class ActivityCalculatorIMT extends AppCompatActivity {
     private Button btnCalculate;
     private EditText edtHeight, edtWeight;
     private double weight, height;
+    private ImageView ivBack;
 
     @Override
     public void onBackPressed() {
         AdWorker.INSTANCE.showInter();
         super.onBackPressed();
     }
-
 
 
     @Override
@@ -48,6 +49,10 @@ public class ActivityCalculatorIMT extends AppCompatActivity {
         btnCalculate = findViewById(R.id.btnIMTCalculate);
         edtHeight = findViewById(R.id.edtIMTHeight);
         edtWeight = findViewById(R.id.edtIMTWeight);
+        ivBack = findViewById(R.id.ivBack);
+
+        ivBack.setOnClickListener(v ->
+                onBackPressed());
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +66,8 @@ public class ActivityCalculatorIMT extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     private ArrayList<String> countIMT() {

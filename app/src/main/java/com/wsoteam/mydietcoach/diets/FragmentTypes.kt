@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.mydietcoach.App
 import com.wsoteam.mydietcoach.Config
 import com.wsoteam.mydietcoach.POJOS.Global
@@ -13,6 +14,8 @@ import com.wsoteam.mydietcoach.POJOS.interactive.AllDiets
 import com.wsoteam.mydietcoach.POJOS.interactive.Diet
 import com.wsoteam.mydietcoach.POJOS.schema.Schema
 import com.wsoteam.mydietcoach.R
+import com.wsoteam.mydietcoach.ad.AdWorker
+import com.wsoteam.mydietcoach.ad.NativeSpeaker
 import com.wsoteam.mydietcoach.diets.controller.TypesAdapter
 import com.wsoteam.mydietcoach.diets.list.modern.NewDietsListActivity
 import com.wsoteam.mydietcoach.diets.list.old.OldDietsActivity
@@ -37,13 +40,18 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         global = arguments!!.getSerializable(KEY) as Global
-        adapter = TypesAdapter(global.schemas, object : IClick{
+        adapter = TypesAdapter(global.schemas, arrayListOf(), object : IClick{
             override fun click(position: Int) {
                 openList(position)
             }
         })
         rvTypes.layoutManager = LinearLayoutManager(view.context)
         rvTypes.adapter = adapter
+        AdWorker.observeOnNativeList(object : NativeSpeaker {
+            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                adapter.insertAds(nativeList)
+            }
+        })
     }
 
     private fun openList(position: Int) {

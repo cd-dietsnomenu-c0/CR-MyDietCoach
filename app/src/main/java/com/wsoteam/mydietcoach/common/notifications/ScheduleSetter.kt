@@ -12,8 +12,8 @@ object ScheduleSetter {
     fun setAlarm(context: Context){
         val calendar = Calendar.getInstance()
         val now = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, 19)
-        calendar.set(Calendar.MINUTE, 5)
+        calendar.set(Calendar.HOUR_OF_DAY, 20)
+        calendar.set(Calendar.MINUTE, 0)
         calendar.set(Calendar.SECOND, 0)
 
         if (now.after(calendar)) {
@@ -32,8 +32,8 @@ object ScheduleSetter {
     fun setReactAlarm(context: Context){
         val calendar = Calendar.getInstance()
         val now = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, 18)
-        calendar.set(Calendar.MINUTE, 7)
+        calendar.set(Calendar.HOUR_OF_DAY, 20)
+        calendar.set(Calendar.MINUTE, 22)
         calendar.set(Calendar.SECOND, 0)
 
         if (now.after(calendar)) {

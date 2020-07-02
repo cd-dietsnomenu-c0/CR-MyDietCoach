@@ -7,8 +7,6 @@ import android.content.Intent
 class BootReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        context?.let {
-            BootNotificationService.enqueueWork(it, Intent())
-        }
+       BootNotificationService.enqueueWork(context!!, Intent())
     }
 }

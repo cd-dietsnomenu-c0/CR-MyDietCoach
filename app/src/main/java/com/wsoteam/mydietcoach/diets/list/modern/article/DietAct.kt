@@ -94,6 +94,10 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
                 showNewDietAlert()
             }
         }
+
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun bindFavoriteState() {

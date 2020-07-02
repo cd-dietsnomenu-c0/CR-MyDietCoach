@@ -13,6 +13,9 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!--optional-->
     <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.QUICKBOOT_POWERON" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name="com.wsoteam.mydietcoach.App"
@@ -57,29 +60,29 @@
 
         <activity
             android:name="com.wsoteam.mydietcoach.diets.list.old.inside.ActivityListItems"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/NewDiets" />
 
         <activity
             android:name=".diets.list.old.OldDietsActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/NewDiets" />
 
         <activity android:name="com.wsoteam.mydietcoach.diets.list.old.inside.article.ActivityArticle" />
 
         <activity
             android:name=".calculators.ActivityCalculatorSPK"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/NewDiets" />
 
         <activity
             android:name=".calculators.ActivityCalculatorBrok"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/NewDiets" />
 
         <activity
             android:name=".calculators.ActivityCalculatorIMT"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/NewDiets" />
 
         <activity
             android:name=".calculators.ActivityCalculatorLorenc"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/NewDiets" />
 
         <activity
             android:name="com.wsoteam.mydietcoach.diets.list.modern.article.DietAct"
@@ -93,8 +96,8 @@
         <receiver android:name=".common.notifications.ReactAlarmReceiver"/>
 
         <receiver android:name=".common.notifications.BootReceiver"
-            android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
 

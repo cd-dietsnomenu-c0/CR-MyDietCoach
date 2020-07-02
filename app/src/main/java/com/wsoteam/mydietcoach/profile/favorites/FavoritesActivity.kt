@@ -1,6 +1,7 @@
 package com.wsoteam.mydietcoach.profile.favorites
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,13 @@ class FavoritesActivity : AppCompatActivity(R.layout.favorites_activity) {
 
     lateinit var adapter: FavoritesAdapter
     lateinit var dietList : MutableList<Diet>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
+    }
 
     override fun onResume() {
         super.onResume()

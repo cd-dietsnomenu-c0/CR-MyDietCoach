@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkDB(savedInstanceState);
-
+        checkIntent();
         fragmentManager = getSupportFragmentManager();
         FirebaseMessaging.getInstance().subscribeToTopic("news").addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -127,6 +127,12 @@ public class MainActivity extends AppCompatActivity {
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
         additionOneToSharedPreference();
         checkFirstRun();
+    }
+
+    private void checkIntent() {
+        if (getIntent().getStringExtra(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)){
+            AdWorker.INSTANCE.getShow();
+        }
     }
 
     private void checkDB(Bundle savedInstanceState) {

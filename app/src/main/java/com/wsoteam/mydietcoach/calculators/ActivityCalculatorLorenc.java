@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class ActivityCalculatorLorenc extends AppCompatActivity {
     EditText edtLorencHeight;
     Button btnCalculate;
     private AdView ban;
+    private ImageView ivBack;
 
     @Override
     public void onBackPressed() {
@@ -40,6 +42,11 @@ public class ActivityCalculatorLorenc extends AppCompatActivity {
         ban.loadAd(new AdRequest.Builder().build());
         edtLorencHeight = findViewById(R.id.edtLorencHeight);
         btnCalculate = findViewById(R.id.btnLorencCalculate);
+        ivBack = findViewById(R.id.ivBack);
+
+        ivBack.setOnClickListener(v ->
+                onBackPressed());
+
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override

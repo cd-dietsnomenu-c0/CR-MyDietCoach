@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="bnv_profile" />
-                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\avatar.svg" />
+                            <entry key="outputName" value="ic_circle" />
+                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\circle.svg" />
                           </map>
                         </option>
                       </PersistentState>

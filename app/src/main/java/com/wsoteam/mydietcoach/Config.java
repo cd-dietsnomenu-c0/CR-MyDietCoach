@@ -1,5 +1,6 @@
 package com.wsoteam.mydietcoach;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class Config {
@@ -21,4 +22,6 @@ public class Config {
     public static final String OLD_DIETS_GLOBAL = "OLD_DIETS_GLOBAL";
 
     public static final String AVATAR_PATH = "avatar_diets";
+    public static final String ENTER_FROM = "ENTER_FROM";
+    public static final String FROM_REACT = "FROM_REACT";
 }

@@ -21,6 +21,7 @@ object AdWorker {
     var bufferAdsList: ArrayList<UnifiedNativeAd> = arrayListOf()
     var adLoader: AdLoader? = null
     var nativeSpeaker: NativeSpeaker? = null
+    var isNeedShowNow = false
 
 
     fun init(context: Context) {
@@ -47,6 +48,11 @@ object AdWorker {
 
             override fun onAdLoaded() {
                 super.onAdLoaded()
+                if (isNeedShowNow){
+                    isNeedShowNow = false
+                    inter?.show()
+                    Ampl.showAd()
+                }
             }
         }
     }
@@ -118,15 +124,11 @@ object AdWorker {
         }
     }
 
-    fun showInterWithOutCounter() {
-            if (inter?.isLoaded == true) {
-                inter?.show()
-                Ampl.showAd()
-                Counter.getInstance().adToCounter()
-            } else if (isFailedLoad) {
-                counterFailed = 0
-                isFailedLoad = false
-                reload()
-            }
+    fun getShow(){
+        if (inter?.isLoaded == true){
+            inter?.show()
+        }else{
+            isNeedShowNow = true
+        }
     }
 }

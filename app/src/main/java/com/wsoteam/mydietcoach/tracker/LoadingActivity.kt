@@ -17,7 +17,6 @@ import com.wsoteam.mydietcoach.MainActivity
 import com.wsoteam.mydietcoach.R
 import com.wsoteam.mydietcoach.ad.AdWorker
 import com.wsoteam.mydietcoach.ad.AdWorker.showInter
-import com.wsoteam.mydietcoach.ad.AdWorker.showInterWithOutCounter
 import com.wsoteam.mydietcoach.ad.NativeSpeaker
 import com.wsoteam.mydietcoach.analytics.Ampl
 import kotlinx.android.synthetic.main.load_ad_include.*

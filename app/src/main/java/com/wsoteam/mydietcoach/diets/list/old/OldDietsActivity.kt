@@ -54,5 +54,9 @@ class OldDietsActivity : AppCompatActivity(R.layout.old_diets_activity) {
         })
         rvDiets.layoutManager = LinearLayoutManager(this)
         rvDiets.adapter = adapter
+
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

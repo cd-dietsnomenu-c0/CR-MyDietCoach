@@ -2,6 +2,8 @@ package com.wsoteam.mydietcoach.common.notifications
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
+import android.widget.Toast
 import androidx.core.app.JobIntentService
 
 class BootNotificationService : JobIntentService() {

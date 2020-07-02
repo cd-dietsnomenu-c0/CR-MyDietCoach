@@ -47,5 +47,9 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
                 adapter.insertAds(nativeList)
             }
         })
+
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 }
