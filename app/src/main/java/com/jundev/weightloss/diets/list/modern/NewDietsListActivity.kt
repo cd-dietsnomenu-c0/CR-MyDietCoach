@@ -29,6 +29,7 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
         Ampl.openNewDiets()
         AdWorker.checkLoad()
         val allDiets = intent.getSerializableExtra(Config.NEW_DIETS) as AllDiets
+        val typeName = intent.getStringExtra(Config.TYPE_NAME)
         rvListDiets.layoutManager = LinearLayoutManager(this)
         val adapter = InteractiveAdapter(allDiets, object : ItemClick {
             override fun click(position: Int) {
@@ -40,7 +41,7 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
 
             override fun newDietsClick() {
             }
-        }, arrayListOf())
+        }, arrayListOf(), typeName)
         rvListDiets.adapter = adapter
         AdWorker.observeOnNativeList(object : NativeSpeaker{
             override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {

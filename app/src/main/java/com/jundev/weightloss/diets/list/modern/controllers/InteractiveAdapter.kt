@@ -9,7 +9,7 @@ import com.jundev.weightloss.Config
 import com.jundev.weightloss.POJOS.interactive.AllDiets
 import com.jundev.weightloss.diets.list.ItemClick
 
-class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var nativeList : ArrayList<UnifiedNativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var nativeList: ArrayList<UnifiedNativeAd>, val typeName: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val ITEM_TYPE = 0
     val AD_TYPE = 1
     var counter = 0
@@ -50,7 +50,8 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
         when(getItemViewType(position)){
             ITEM_TYPE ->(holder as InteractiveVH).bind(allDiets.dietList[getRealPosition(position)].title,
                     allDiets.dietList[getRealPosition(position)].mainImage, allDiets.dietList[getRealPosition(position)].isNew,
-                    allDiets.dietList[getRealPosition(position)].shortIntroduction, allDiets.dietList[getRealPosition(position)].days.size)
+                    allDiets.dietList[getRealPosition(position)].shortIntroduction, allDiets.dietList[getRealPosition(position)].days.size,
+                    typeName)
             AD_TYPE ->(holder as NativeVH).bind(nativeList[getAdPosition()])
         }
     }

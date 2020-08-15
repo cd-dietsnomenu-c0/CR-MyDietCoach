@@ -56,7 +56,9 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
         if (global.schemas[position].isOld){
             startActivity(Intent(activity, OldDietsActivity::class.java).putExtra(Config.OLD_DIETS_GLOBAL, global))
         }else{
-            startActivity(Intent(activity, NewDietsListActivity::class.java).putExtra(Config.NEW_DIETS, getNewDiets(global.schemas[position])))
+            startActivity(Intent(activity, NewDietsListActivity::class.java)
+                    .putExtra(Config.NEW_DIETS, getNewDiets(global.schemas[position]))
+                    .putExtra(Config.TYPE_NAME, global.schemas[position].title))
         }
     }
 
