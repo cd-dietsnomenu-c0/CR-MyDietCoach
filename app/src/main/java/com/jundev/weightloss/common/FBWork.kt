@@ -145,12 +145,12 @@ class FBWork {
         }
 
         fun setSchema(global: Global){
-            var listSchemas = listOf<Schema>(Schema("", "Низкоуглеводные диеты", 1, true, true, listOf(0, 4, 5, 7, 10, 15, 16, 18, 20, 21, 22, 24, 29), false, -1),
-                    Schema("", "Монодиеты", 1, true, true,listOf(1, 6, 8, 9, 13, 26, 27, 28), false, -1),
-                    Schema("", "Экстремальные диеты", 2, true, true, listOf(2, 12, 17, 19, 23, 25), false, -1),
-                    Schema("", "Лечебные диеты", 0, true, true, listOf(14), false, -1),
-                    Schema("", "Сбалансированные диеты", 0, true, true, listOf(3, 11), false, -1),
-                    Schema("", "Старые диеты", 1, false, false, listOf(), true, 24))
+            var listSchemas = listOf<Schema>(Schema("", "Низкоуглеводные диеты", "", 1, true, true, listOf(0, 4, 5, 7, 10, 15, 16, 18, 20, 21, 22, 24, 29), false, -1),
+                    Schema("", "Монодиеты", "", 1, true, true,listOf(1, 6, 8, 9, 13, 26, 27, 28), false, -1),
+                    Schema("", "Экстремальные диеты","", 2, true, true, listOf(2, 12, 17, 19, 23, 25), false, -1),
+                    Schema("", "Лечебные диеты","", 0, true, true, listOf(14), false, -1),
+                    Schema("", "Сбалансированные диеты","", 0, true, true, listOf(3, 11), false, -1),
+                    Schema("", "Старые диеты","", 1, false, false, listOf(), true, 24))
 
             global.schemas = listSchemas
             FirebaseDatabase.getInstance().getReference("withSchema").setValue(global)

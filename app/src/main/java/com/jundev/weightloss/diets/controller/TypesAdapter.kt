@@ -19,8 +19,12 @@ class TypesAdapter(val listSchemas: List<com.jundev.weightloss.POJOS.schema.Sche
         val li = LayoutInflater.from(parent.context)
         return when(viewType){
             BODY_TYPE -> TypesVH(li, parent, object : IClick{
-                override fun click(position: Int) {
-                    iClick.click(getRealPosition(position))
+                override fun clickOpen(position: Int) {
+                    iClick.clickOpen(getRealPosition(position))
+                }
+
+                override fun clickProperties(position: Int) {
+                    iClick.clickProperties(getRealPosition(position))
                 }
             })
             AD_TYPE -> ADVH(li, parent)
