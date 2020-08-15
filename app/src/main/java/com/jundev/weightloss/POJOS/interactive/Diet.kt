@@ -2,7 +2,7 @@ package com.jundev.weightloss.POJOS.interactive
 
 import java.io.Serializable
 
-data class Diet(var title: String, var shortIntroduction: String, var introduction: String,
+data class Diet(var title: String, var kcal : Int, var shortIntroduction: String, var introduction: String,
                 var mainImage: String, var benefitsTitle: String,
                 var benefits: List<String>, var consTitle: String,
                 var cons: List<String>, var menuTitle: String,
@@ -10,5 +10,5 @@ data class Diet(var title: String, var shortIntroduction: String, var introducti
                 var review: Review,
                 var isNew : Boolean, var index : Int) : Serializable {
 
-    constructor() : this("", "", "", "", "", listOf(), "", listOf(), "", "", listOf(), "", "", Review(), false, 0)
+    constructor() : this("", 0, "", "", "", "", listOf(), "", listOf(), "", "", listOf(), "", "", Review(), false, 0)
 }
