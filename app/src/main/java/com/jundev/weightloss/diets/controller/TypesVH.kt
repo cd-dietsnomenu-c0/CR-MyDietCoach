@@ -10,15 +10,7 @@ import com.jundev.weightloss.R
 import com.jundev.weightloss.diets.IClick
 import kotlinx.android.synthetic.main.vh_types.view.*
 
-class TypesVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val iClick: IClick) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.vh_types, viewGroup, false)), View.OnClickListener {
-
-    init {
-        itemView.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View?) {
-        iClick.click(adapterPosition)
-    }
+class TypesVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val iClick: IClick) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.vh_types, viewGroup, false)) {
 
     fun bind(schema: Schema) {
         Glide.with(itemView.context).load(schema.headImage).into(itemView.ivHead)
@@ -28,6 +20,12 @@ class TypesVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val iClick: 
             setOldVH(schema)
         } else {
             setNewVH(schema)
+        }
+        itemView.btnOpen.setOnClickListener {
+            iClick.clickOpen(adapterPosition)
+        }
+        itemView.tvProp.setOnClickListener {
+            iClick.clickProperties(adapterPosition)
         }
     }
 

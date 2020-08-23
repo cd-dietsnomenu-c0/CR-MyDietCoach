@@ -1,5 +1,6 @@
 package com.jundev.weightloss.diets
 
 interface IClick {
-    fun click(position : Int)
+    fun clickOpen(position : Int)
+    fun clickProperties(position : Int)
 }

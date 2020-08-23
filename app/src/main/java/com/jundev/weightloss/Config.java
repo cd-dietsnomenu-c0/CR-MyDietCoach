@@ -1,5 +1,7 @@
 package com.jundev.weightloss;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Config {
     public static final String ID_SECTIONS_ARGS = "id_sec_args";
     public static final String ID_SUBSECTIONS_ARGS= "id_sub_sec_args";
@@ -21,4 +23,5 @@ public class Config {
     public static final String AVATAR_PATH = "avatar_diets";
     public static final String ENTER_FROM = "ENTER_FROM";
     public static final String FROM_REACT = "FROM_REACT";
+    public static final String TYPE_NAME = "TYPE_NAME";
 }

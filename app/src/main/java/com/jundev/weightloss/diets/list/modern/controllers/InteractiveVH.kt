@@ -15,14 +15,13 @@ class InteractiveVH(inflater: LayoutInflater, viewGroup: ViewGroup, val itemClic
         itemView.setOnClickListener(this)
     }
 
-    fun bind(title: String, mainImage: String, isNew: Boolean) {
+    fun bind(title: String, mainImage: String, isNew: Boolean, shortIntroduction: String, size: Int, typeName: String, kcal: Int) {
         Glide.with(itemView.context).load(mainImage).into(itemView.ivBackground)
         itemView.tvTitle.text = title
-        if (isNew){
-            itemView.ivLabelNew.visibility = View.VISIBLE
-        }else{
-            itemView.ivLabelNew.visibility = View.GONE
-        }
+        itemView.tvSubTitle.text = shortIntroduction
+        itemView.tvCountDays.text = itemView.resources.getQuantityString(R.plurals.days_plur, size, size)
+        itemView.tvType.text = typeName
+        itemView.tvCountKcal.text = "$kcal ккал"
     }
 
     override fun onClick(p0: View?) {

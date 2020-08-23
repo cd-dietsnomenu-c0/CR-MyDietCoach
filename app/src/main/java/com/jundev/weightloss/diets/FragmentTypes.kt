@@ -15,6 +15,7 @@ import com.jundev.weightloss.R
 import com.jundev.weightloss.ad.AdWorker
 import com.jundev.weightloss.ad.NativeSpeaker
 import com.jundev.weightloss.diets.controller.TypesAdapter
+import com.jundev.weightloss.diets.dialogs.PropertiesFragment
 import com.jundev.weightloss.diets.list.modern.NewDietsListActivity
 import com.jundev.weightloss.diets.list.old.OldDietsActivity
 import kotlinx.android.synthetic.main.fr_types.*
@@ -39,8 +40,12 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
         super.onViewCreated(view, savedInstanceState)
         global = arguments!!.getSerializable(KEY) as Global
         adapter = TypesAdapter(global.schemas, arrayListOf(), object : IClick{
-            override fun click(position: Int) {
+            override fun clickOpen(position: Int) {
                 openList(position)
+            }
+
+            override fun clickProperties(position: Int) {
+                PropertiesFragment.newInstance(global.schemas[position].title, global.schemas[position].prop, global.schemas[position].headImage).show(childFragmentManager, "")
             }
         })
         rvTypes.layoutManager = LinearLayoutManager(view.context)
@@ -56,7 +61,9 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
         if (global.schemas[position].isOld){
             startActivity(Intent(activity, OldDietsActivity::class.java).putExtra(Config.OLD_DIETS_GLOBAL, global))
         }else{
-            startActivity(Intent(activity, NewDietsListActivity::class.java).putExtra(Config.NEW_DIETS, getNewDiets(global.schemas[position])))
+            startActivity(Intent(activity, NewDietsListActivity::class.java)
+                    .putExtra(Config.NEW_DIETS, getNewDiets(global.schemas[position]))
+                    .putExtra(Config.TYPE_NAME, global.schemas[position].title))
         }
     }
 

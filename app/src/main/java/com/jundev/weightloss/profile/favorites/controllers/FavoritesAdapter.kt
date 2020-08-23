@@ -50,7 +50,7 @@ class FavoritesAdapter(val allDiets: MutableList<Diet>, var itemClick: ItemClick
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
             ITEM_TYPE ->(holder as InteractiveVH).bind(allDiets[getRealPosition(position)].title,
-                    allDiets[getRealPosition(position)].mainImage, allDiets[getRealPosition(position)].isNew)
+                    allDiets[getRealPosition(position)].mainImage, allDiets[getRealPosition(position)].isNew, allDiets[getRealPosition(position)].shortIntroduction, allDiets[getRealPosition(position)].days.size, "Фавориты", allDiets[getRealPosition(position)].kcal)
             AD_TYPE ->(holder as NativeVH).bind(nativeList[getAdPosition()])
         }
     }
