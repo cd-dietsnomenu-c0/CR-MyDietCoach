@@ -13,7 +13,7 @@ class HeadVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerVie
 
     fun bind() {
         Glide.with(itemView.context).load("https://i.ibb.co/ZVQVk62/head01.jpg").into(itemView.ivHeadBack)
-        itemView.cvBack.setBackgroundResource(R.drawable.shape_dukan)
+        //itemView.cvBack.setBackgroundResource(R.drawable.shape_dukan)
     }
 
 

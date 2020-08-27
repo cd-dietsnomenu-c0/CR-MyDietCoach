@@ -41,7 +41,7 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
 
             override fun newDietsClick() {
             }
-        }, arrayListOf(), typeName)
+        }, arrayListOf(), typeName, true)
         rvListDiets.adapter = adapter
         AdWorker.observeOnNativeList(object : NativeSpeaker{
             override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
