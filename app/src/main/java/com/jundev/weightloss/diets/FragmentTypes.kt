@@ -60,13 +60,18 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
 
     private fun openList(position: Int) {
         if (global.schemas[position].isOld){
-            startActivity(Intent(activity, OldDietsActivity::class.java).putExtra(Config.OLD_DIETS_GLOBAL, global))
+            startActivity(Intent(activity, OldDietsActivity::class.java)
+                    .putExtra(Config.OLD_DIETS_GLOBAL, getSections(global)))
         }else{
             startActivity(Intent(activity, NewDietsListActivity::class.java)
                     .putExtra(Config.NEW_DIETS, getNewDiets(global.schemas[position]))
                     .putExtra(Config.TYPE_NAME, global.schemas[position].title)
                     .putExtra(Config.HEADER_TAG, global.schemas[position].plan))
         }
+    }
+
+    private fun getSections(global: Global): Global {
+        return Global(global.sectionsArray, null, null, null)
     }
 
     private fun getNewDiets(schema: Schema): AllDiets {

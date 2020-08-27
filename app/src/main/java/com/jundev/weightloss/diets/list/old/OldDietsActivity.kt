@@ -21,16 +21,11 @@ import kotlin.collections.ArrayList
 
 class OldDietsActivity : AppCompatActivity(R.layout.old_diets_activity) {
 
-    lateinit var global: Global
-    lateinit var adapter : SectionAdapter
-    lateinit var list : ArrayList<Section>
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        global = intent.getSerializableExtra(Config.OLD_DIETS_GLOBAL) as Global
-        list = global.sectionsArray as ArrayList<Section>
-        adapter = SectionAdapter(list, resources.getStringArray(R.array.images), object : ItemClick {
+        val global = intent.getSerializableExtra(Config.OLD_DIETS_GLOBAL) as Global
+        var list = global.sectionsArray as ArrayList<Section>
+        var adapter = SectionAdapter(list, resources.getStringArray(R.array.images), object : ItemClick {
             override fun click(position: Int) {
                 var intent = Intent(this@OldDietsActivity, ActivityListItems::class.java)
                 if (list[position].arrayOfSubSections.size == 1) {
