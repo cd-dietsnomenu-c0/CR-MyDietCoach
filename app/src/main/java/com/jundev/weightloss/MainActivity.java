@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setDietData(Global global) {
-        FragmentTypes fragmentTypes = FragmentTypes.Companion.newInstance(global);
+        FragmentTypes fragmentTypes = new FragmentTypes();
         if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())) {
             fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentTypes).commit();
             getWindow().setStatusBarColor(getResources().getColor(R.color.dark_status_bar));

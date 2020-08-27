@@ -12,6 +12,7 @@ import com.jundev.weightloss.diets.list.ItemClick
 class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var nativeList: ArrayList<UnifiedNativeAd>, val typeName: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val ITEM_TYPE = 0
     val AD_TYPE = 1
+    val HEAD_TYPE = 2
     var counter = 0
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var inflater = LayoutInflater.from(parent.context)
@@ -24,6 +25,7 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
                 override fun newDietsClick() {
                 }
             })
+            HEAD_TYPE -> HeadVH(inflater, parent)
             AD_TYPE -> NativeVH(inflater, parent)
             else -> InteractiveVH(inflater, parent, itemClick)
         }
@@ -39,7 +41,9 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if ((position + 1) % Config.WHICH_AD_NEW_DIETS == 0 && position > 0 && nativeList.isNotEmpty()) {
+        return if (position == 0) {
+                HEAD_TYPE
+        }else if ((position + 1) % Config.WHICH_AD_NEW_DIETS == 0 && position > 0 && nativeList.isNotEmpty()) {
             AD_TYPE
         } else {
             ITEM_TYPE
@@ -53,6 +57,7 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
                     allDiets.dietList[getRealPosition(position)].shortIntroduction, allDiets.dietList[getRealPosition(position)].days.size,
                     typeName, allDiets.dietList[getRealPosition(position)].kcal)
             AD_TYPE ->(holder as NativeVH).bind(nativeList[getAdPosition()])
+            HEAD_TYPE -> (holder as HeadVH).bind()
         }
     }
 

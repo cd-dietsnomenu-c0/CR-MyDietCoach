@@ -14,6 +14,7 @@ import com.jundev.weightloss.POJOS.schema.Schema
 import com.jundev.weightloss.R
 import com.jundev.weightloss.ad.AdWorker
 import com.jundev.weightloss.ad.NativeSpeaker
+import com.jundev.weightloss.common.GlobalHolder
 import com.jundev.weightloss.diets.controller.TypesAdapter
 import com.jundev.weightloss.diets.dialogs.PropertiesFragment
 import com.jundev.weightloss.diets.list.modern.NewDietsListActivity
@@ -38,7 +39,7 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        global = arguments!!.getSerializable(KEY) as Global
+        global = GlobalHolder.getGlobal()
         adapter = TypesAdapter(global.schemas, arrayListOf(), object : IClick{
             override fun clickOpen(position: Int) {
                 openList(position)
