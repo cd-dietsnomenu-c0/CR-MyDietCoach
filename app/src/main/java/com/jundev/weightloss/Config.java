@@ -24,4 +24,5 @@ public class Config {
     public static final String ENTER_FROM = "ENTER_FROM";
     public static final String FROM_REACT = "FROM_REACT";
     public static final String TYPE_NAME = "TYPE_NAME";
+    public static final String HEADER_TAG = "HEADER_TAG";
 }

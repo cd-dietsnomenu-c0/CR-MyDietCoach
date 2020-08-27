@@ -11,6 +11,7 @@ public class Global implements Serializable {
     private String name;
     private AllDiets allDiets;
     private List<Schema> schemas;
+    private Boolean plan;
 
     public Global() {
     }

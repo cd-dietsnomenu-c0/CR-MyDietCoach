@@ -18,6 +18,7 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
 
     init {
         if (isHasHead) {
+            Log.e("LOL", "erw")
             diff++
         }
     }

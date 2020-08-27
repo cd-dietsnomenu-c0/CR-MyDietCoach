@@ -64,7 +64,8 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
         }else{
             startActivity(Intent(activity, NewDietsListActivity::class.java)
                     .putExtra(Config.NEW_DIETS, getNewDiets(global.schemas[position]))
-                    .putExtra(Config.TYPE_NAME, global.schemas[position].title))
+                    .putExtra(Config.TYPE_NAME, global.schemas[position].title)
+                    .putExtra(Config.HEADER_TAG, global.schemas[position].plan))
         }
     }
 
