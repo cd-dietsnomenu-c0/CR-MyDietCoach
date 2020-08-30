@@ -19,6 +19,7 @@ object PrefWorker {
     const val EMPTY_LAST_ENTER = -1L
     const val FIRST_REACT = "FIRST_REACT"
     const val SECOND_REACT = "SECOND_REACT"
+    const val VERSION = "VERSION"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -57,4 +58,7 @@ object PrefWorker {
 
     fun setSecondShow() = editor { it?.putBoolean(SECOND_REACT, true) }
     fun getSecondShow() = getInstance()?.getBoolean(SECOND_REACT, false)
+
+    fun setVersion(version : String) = editor { it?.putString(VERSION, version) }
+    fun getVersion() = getInstance()?.getString(VERSION, ABConfig.A)
 }

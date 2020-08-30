@@ -28,6 +28,7 @@ import com.jundev.weightloss.common.DBHolder;
 import com.jundev.weightloss.common.FBWork;
 import com.jundev.weightloss.common.GlobalHolder;
 import com.jundev.weightloss.diets.FragmentTypes;
+import com.jundev.weightloss.onboarding.OnboardActivity;
 import com.jundev.weightloss.profile.ProfileFragment;
 import com.jundev.weightloss.tracker.FragmentTracker;
 import com.jundev.weightloss.utils.GradeAlert;
@@ -126,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
         additionOneToSharedPreference();
         checkFirstRun();
+
+        startActivity(new Intent(this, OnboardActivity.class));
     }
 
     private void checkIntent() {
