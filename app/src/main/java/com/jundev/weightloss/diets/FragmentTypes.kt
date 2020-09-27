@@ -2,6 +2,7 @@ package com.jundev.weightloss.diets
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -56,6 +57,8 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
                 adapter.insertAds(nativeList)
             }
         })
+
+
     }
 
     private fun openList(position: Int) {
