@@ -8,14 +8,18 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.RenderMode
+import com.amplitude.api.Amplitude
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.squareup.moshi.Moshi
 import com.jundev.weightloss.POJOS.Global
 import com.jundev.weightloss.ad.AdWorker.init
+import com.jundev.weightloss.analytics.Ampl
 import com.jundev.weightloss.analytics.Ampl.Companion.openFromPush
 import com.jundev.weightloss.common.DBHolder
 import com.jundev.weightloss.common.GlobalHolder
 import com.jundev.weightloss.common.db.entities.DietPlanEntity
 import com.jundev.weightloss.common.notifications.ScheduleSetter
+import com.jundev.weightloss.utils.ABConfig
 import com.jundev.weightloss.utils.PrefWorker
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -29,7 +33,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     lateinit var alpha: Animation
     lateinit var alphaText: Animation
     var goCounter = 0
-    var maxGoCounter = 3
+    var maxGoCounter = 4
     var openFrom = ""
 
     fun post() {
@@ -47,12 +51,36 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             openFromPush()
         }
         PrefWorker.setLastEnter(Calendar.getInstance().timeInMillis)
+        bindTest()
         ScheduleSetter.setAlarm(this)
         ScheduleSetter.setReactAlarm(this)
         loadAnimations()
         playAnim()
         loadData()
         setFirstTime()
+    }
+
+    private fun bindTest() {
+        val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+        firebaseRemoteConfig.setDefaults(R.xml.default_config)
+
+        firebaseRemoteConfig.fetch(3600).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                firebaseRemoteConfig.activateFetched()
+                Amplitude.getInstance().logEvent("norm_ab")
+            } else {
+                Amplitude.getInstance().logEvent("crash_ab")
+            }
+            setABTestConfig(firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING))
+        }
+    }
+
+    private fun setABTestConfig(version: String) {
+        Log.e("LOL", version)
+        PrefWorker.setVersion(version)
+        Ampl.setABVersion(version)
+        Ampl.setVersion()
+        post()
     }
 
     private fun setFirstTime() {
@@ -137,7 +165,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         DBHolder.set(t)
         post()
         Log.e("LOL", "db")
-
     }
 
     private fun saveEmptyDiet() {

@@ -13,27 +13,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/diOnboard"
-        android:layout_gravity="bottom|start"
+        android:layout_gravity="bottom|center_horizontal"
         app:dot_drawable="@drawable/img_fill_dot"
         app:dot_drawable_unselected="@drawable/img_unfill_dot"
         app:dot_height="8dp"
         app:dot_width="8dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginBottom="10dp"/>
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:text="начать"
+        android:layout_height="40dp"
+        android:text="далее"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/white"
         android:background="@drawable/shape_button_start"
-        android:drawableRight="@drawable/img_next_btn"
-        android:paddingHorizontal="20dp"
-        android:drawablePadding="8dp"
+        android:paddingStart="36dp"
+        android:paddingEnd="36dp"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        android:id="@+id/btnStart"
+        android:layout_gravity="bottom|end"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSkip"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:text="пропустить"
+        android:textAllCaps="true"
+        android:textSize="12sp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="12dp"
+        android:paddingTop="24dp"
+        android:paddingStart="24dp"
+        android:textColor="#2196F3"
+        android:visibility="visible"
+        android:fontFamily="@font/roboto_medium"/>
 
 
 

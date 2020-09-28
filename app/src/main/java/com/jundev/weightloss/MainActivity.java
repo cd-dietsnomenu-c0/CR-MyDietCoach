@@ -31,7 +31,9 @@ import com.jundev.weightloss.diets.FragmentTypes;
 import com.jundev.weightloss.onboarding.OnboardActivity;
 import com.jundev.weightloss.profile.ProfileFragment;
 import com.jundev.weightloss.tracker.FragmentTracker;
+import com.jundev.weightloss.utils.ABConfig;
 import com.jundev.weightloss.utils.GradeAlert;
+import com.jundev.weightloss.utils.PrefWorker;
 import com.jundev.weightloss.utils.ThankToast;
 
 import java.util.ArrayList;
@@ -128,7 +130,9 @@ public class MainActivity extends AppCompatActivity {
         additionOneToSharedPreference();
         checkFirstRun();
 
-        startActivity(new Intent(this, OnboardActivity.class));
+        if (PrefWorker.INSTANCE.getVersion() != ABConfig.C) {
+            startActivity(new Intent(this, OnboardActivity.class));
+        }
     }
 
     private void checkIntent() {

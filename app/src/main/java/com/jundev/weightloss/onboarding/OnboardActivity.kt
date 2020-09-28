@@ -1,8 +1,10 @@
 package com.jundev.weightloss.onboarding
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.jundev.weightloss.POJOS.onboard.OnboardUI
 import com.jundev.weightloss.R
 import com.jundev.weightloss.utils.ABConfig
@@ -23,6 +25,30 @@ class OnboardActivity : AppCompatActivity(R.layout.onboard_activity) {
         vpOnboard.adapter = OnboardAdapter(supportFragmentManager, list)
         diOnboard.setViewPager(vpOnboard)
         vpOnboard.adapter?.registerDataSetObserver(diOnboard.dataSetObserver)
+        vpOnboard.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                if (position == 2 && btnStart.visibility == View.INVISIBLE){
+                    btnStart.visibility = View.VISIBLE
+                    tvSkip.visibility = View.INVISIBLE
+                }else if (position < 2 && btnStart.visibility == View.VISIBLE){
+                    btnStart.visibility = View.INVISIBLE
+                    tvSkip.visibility = View.VISIBLE
+                }
+            }
+        })
+
+        btnStart.setOnClickListener {
+            onBackPressed()
+        }
+        tvSkip.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun fillA() : List<Fragment> {

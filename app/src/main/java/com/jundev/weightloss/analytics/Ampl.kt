@@ -58,6 +58,19 @@ class Ampl {
         val open_wallpapers = "open_wallpapers"
         val send_claim = "send_claim"
 
+        val set_ver = "set_ver"
+        val AB = "AB"
+
+
+        fun setVersion() {
+            Amplitude.getInstance().logEvent(set_ver)
+        }
+
+        fun setABVersion(version : String){
+            var identify = Identify().setOnce(AB, version)
+            Amplitude.getInstance().identify(identify)
+        }
+
         fun setTrackerStatus(){
             var identify = Identify().set(TRACKER_STATUS, tracker_use)
             Amplitude.getInstance().identify(identify)
