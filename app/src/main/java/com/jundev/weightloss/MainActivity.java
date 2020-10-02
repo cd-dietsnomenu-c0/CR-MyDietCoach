@@ -129,10 +129,6 @@ public class MainActivity extends AppCompatActivity {
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
         additionOneToSharedPreference();
         checkFirstRun();
-
-        if (PrefWorker.INSTANCE.getVersion() != ABConfig.C) {
-            startActivity(new Intent(this, OnboardActivity.class));
-        }
     }
 
     private void checkIntent() {

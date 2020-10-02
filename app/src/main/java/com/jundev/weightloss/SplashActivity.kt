@@ -19,6 +19,7 @@ import com.jundev.weightloss.common.DBHolder
 import com.jundev.weightloss.common.GlobalHolder
 import com.jundev.weightloss.common.db.entities.DietPlanEntity
 import com.jundev.weightloss.common.notifications.ScheduleSetter
+import com.jundev.weightloss.onboarding.OnboardActivity
 import com.jundev.weightloss.utils.ABConfig
 import com.jundev.weightloss.utils.PrefWorker
 import io.reactivex.Single
@@ -35,11 +36,18 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     var goCounter = 0
     var maxGoCounter = 4
     var openFrom = ""
+    var isFirstTime = false
 
     fun post() {
         goCounter += 1
         if (goCounter >= maxGoCounter){
-            startActivity(Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom))
+            var intent = Intent()
+            if(PrefWorker.getVersion() != ABConfig.C && isFirstTime){
+                intent = Intent(this, OnboardActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
+            }else{
+                intent = Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
+            }
+            startActivity(intent)
             finish()
         }
     }
@@ -85,6 +93,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun setFirstTime() {
         if (PrefWorker.getFirstTime() == ""){
+            isFirstTime = true
             val calendar = Calendar.getInstance()
             var date = "${"%02d".format(calendar.get(Calendar.DAY_OF_MONTH))}.${"%02d".format(calendar.get(Calendar.MONTH) + 1)}.${calendar.get(Calendar.YEAR)}"
             PrefWorker.setFirstTime(date)
