@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="3dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        android:thicknessRatio="1.9">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/llDrinkParent"
+            android:orientation="vertical">
+            
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:id="@+id/ivImgDrink"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/ivRing"/>
+
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/tvDrinkName"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/roboto_medium"
+        android:layout_gravity="center_horizontal|bottom"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="4dp"/>
+
+</LinearLayout>

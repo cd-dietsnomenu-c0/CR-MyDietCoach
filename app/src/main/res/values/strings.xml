@@ -2,16 +2,16 @@
     <string name="app_name">Диеты</string>
     <string name="check_your_connect">Check your internet</string>
 
-    <string name="admob_key" translatable="false">ca-app-pub-2555056002292788~2196488278</string>
+    <!--<string name="admob_key" translatable="false">ca-app-pub-2555056002292788~2196488278</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-2555056002292788/2565401391</string>
     <string name="banner_id" translatable="false">ca-app-pub-2555056002292788/5191564733</string>
-    <string name="native_ad" translatable="false">ca-app-pub-2555056002292788/5432421082</string>
+    <string name="native_ad" translatable="false">ca-app-pub-2555056002292788/5432421082</string>-->
 
     <!--Test-->
-    <!--<string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>-->
+    <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
 
     <string name="title_activity_drawer">DrawerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -266,5 +266,77 @@
         <item quantity="many">%1$d дней</item>
         <item quantity="other">%1$d дней</item>
     </plurals>
+
+    <integer-array name="water_drinks_imgs">
+        <item>@drawable/ic_track_1</item>
+        <item>@drawable/ic_track_2</item>
+        <item>@drawable/ic_track_3</item>
+        <item>@drawable/ic_track_4</item>
+        <item>@drawable/ic_track_5</item>
+        <item>@drawable/ic_track_6</item>
+        <item>@drawable/ic_track_7</item>
+        <item>@drawable/ic_track_8</item>
+        <item>@drawable/ic_track_9</item>
+        <item>@drawable/ic_track_10</item>
+        <item>@drawable/ic_track_11</item>
+        <item>@drawable/ic_track_12</item>
+        <item>@drawable/ic_track_13</item>
+        <item>@drawable/ic_track_14</item>
+        <item>@drawable/ic_track_15</item>
+    </integer-array>
+
+    <string-array name="water_drinks_names">
+        <item>Вода</item>
+        <item>Вода с газом</item>
+        <item>Кофе</item>
+        <item>Энергетик</item>
+        <item>Черный чай</item>
+        <item>Зеленый чай</item>
+        <item>Крепкий алкоголь</item>
+        <item>Молоко</item>
+        <item>Газировка</item>
+        <item>Алкогольный коктейль</item>
+        <item>Пиво</item>
+        <item>Вино</item>
+        <item>Айран</item>
+        <item>Сок</item>
+        <item>Молочный коктейль</item>
+    </string-array>
+
+    <integer-array name="water_drinks_factor">
+        <item>100</item>
+        <item>80</item>
+        <item>30</item>
+        <item>-80</item>
+        <item>80</item>
+        <item>80</item>
+        <item>-180</item>
+        <item>80</item>
+        <item>-40</item>
+        <item>-60</item>
+        <item>-50</item>
+        <item>-60</item>
+        <item>-20</item>
+        <item>80</item>
+        <item>-30</item>
+    </integer-array>
+
+    <integer-array name="water_drinks_gradients">
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/water_gradient_1</item>
+    </integer-array>
 
 </resources>

@@ -35,6 +35,7 @@ import com.jundev.weightloss.utils.ABConfig;
 import com.jundev.weightloss.utils.GradeAlert;
 import com.jundev.weightloss.utils.PrefWorker;
 import com.jundev.weightloss.utils.ThankToast;
+import com.jundev.weightloss.water.FragmentWaterTracker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,13 +74,16 @@ public class MainActivity extends AppCompatActivity {
                     Ampl.Companion.openSettings();
                     return true;
                 }
-
                 case R.id.bnv_tracker: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(3)).commit();
                     Ampl.Companion.openSettings();
                     return true;
                 }
-
+                case R.id.bnv_water: {
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(4)).commit();
+                    Ampl.Companion.openCalculators();
+                    return true;
+                }
             }
             return false;
         }
@@ -167,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
         sections.add(new FragmentCalculators());
         sections.add(new ProfileFragment());
         sections.add(new FragmentTracker());
+        sections.add(new FragmentWaterTracker());
     }
 
     public static boolean hasConnection(final Context context) {

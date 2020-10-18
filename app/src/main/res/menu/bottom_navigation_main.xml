@@ -16,6 +16,11 @@
       android:icon="@drawable/bnv_calulators"
       android:title="@string/bnv_calc"/>
 
+  <item
+      android:id="@+id/bnv_water"
+      android:icon="@drawable/bnv_water"
+      android:title="Питье"/>
+
   <!--<item
       android:id="@+id/bnv_premium"
       android:icon="@drawable/bnv_prem"
