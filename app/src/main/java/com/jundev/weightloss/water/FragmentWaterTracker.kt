@@ -14,8 +14,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvDrinks.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        adapter = DrinkAdapter(resources.getIntArray(R.array.water_drinks_imgs), resources.getStringArray(R.array.water_drinks_names),
-                resources.getIntArray(R.array.water_drinks_gradients), resources.getIntArray(R.array.water_drinks_factor))
+        adapter = DrinkAdapter( resources.getStringArray(R.array.water_drinks_names), resources.getIntArray(R.array.water_drinks_factor))
         rvDrinks.adapter = adapter
 
     }

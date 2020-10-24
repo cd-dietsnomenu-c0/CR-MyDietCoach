@@ -285,6 +285,24 @@
         <item>@drawable/ic_track_15</item>
     </integer-array>
 
+    <integer-array name="water_drinks_imgs_color">
+        <item>@drawable/ic_wt_1</item>
+        <item>@drawable/ic_wt_2</item>
+        <item>@drawable/ic_wt_3</item>
+        <item>@drawable/ic_wt_4</item>
+        <item>@drawable/ic_wt_5</item>
+        <item>@drawable/ic_wt_6</item>
+        <item>@drawable/ic_wt_7</item>
+        <item>@drawable/ic_wt_8</item>
+        <item>@drawable/ic_wt_9</item>
+        <item>@drawable/ic_wt_10</item>
+        <item>@drawable/ic_wt_11</item>
+        <item>@drawable/ic_wt_12</item>
+        <item>@drawable/ic_wt_13</item>
+        <item>@drawable/ic_wt_14</item>
+        <item>@drawable/ic_wt_15</item>
+    </integer-array>
+
     <string-array name="water_drinks_names">
         <item>Вода</item>
         <item>Вода с газом</item>
@@ -322,21 +340,21 @@
     </integer-array>
 
     <integer-array name="water_drinks_gradients">
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
-        <item>@drawable/water_gradient_1</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
+        <item>@drawable/shape_circle_drinks</item>
     </integer-array>
 
 </resources>

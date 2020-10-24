@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.item_eat.view.*
 
 class DrinkVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_drink, viewGroup, false)) {
     fun bind(imageId : Int, name : String, gradientId : Int, hydroFactor : Int){
-        itemView.llDrinkParent.setBackgroundResource(getBackground(gradientId))
-        Glide.with(itemView.context).load(R.drawable.ic_track_1).into(itemView.ivImgDrink)
+        //itemView.llDrinkParent.setBackgroundResource(getBackground(gradientId))
+        Glide.with(itemView.context).load(getImageDrink(imageId)).into(itemView.ivImgDrink)
         itemView.tvDrinkName.text = name
     }
 
@@ -20,5 +20,12 @@ class DrinkVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerVi
                 .resources
                 .obtainTypedArray(R.array.water_drinks_gradients)
                 .getResourceId(gradientId, -1)
+    }
+
+    private fun getImageDrink(imageId: Int): Int {
+        return itemView
+                .resources
+                .obtainTypedArray(R.array.water_drinks_imgs_color)
+                .getResourceId(imageId, -1)
     }
 }

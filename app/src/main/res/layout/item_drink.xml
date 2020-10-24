@@ -11,28 +11,18 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         app:cardCornerRadius="32dp"
-        app:cardElevation="3dp"
-        android:innerRadius="0dp"
-        android:shape="ring"
-        android:thicknessRatio="1.9">
+        app:cardElevation="3dp">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/llDrinkParent"
-            android:orientation="vertical">
+            android:id="@+id/llDrinkParent">
             
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_gravity="center"
                 android:id="@+id/ivImgDrink"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/ivRing"/>
-
 
         </FrameLayout>
     </androidx.cardview.widget.CardView>
