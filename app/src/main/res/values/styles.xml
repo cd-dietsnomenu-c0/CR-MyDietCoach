@@ -85,4 +85,9 @@
         <item name="android:statusBarColor">@color/white</item>
     </style>
 
+    <style name="SeekbarWater" parent="Widget.AppCompat.SeekBar.Discrete">
+        <item name="android:progressDrawable">@drawable/progress_drawable_water</item>
+        <item name="tickMark">@drawable/progress_water_tick_mark</item>
+    </style>
+
 </resources>
