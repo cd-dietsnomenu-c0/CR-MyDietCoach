@@ -2,6 +2,9 @@ package com.jundev.weightloss.views
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatSeekBar
@@ -35,6 +38,11 @@ class FixedSeekbar @JvmOverloads constructor(
 
     private fun drawTickMarks(canvas: Canvas) {
         if (mTickMark != null) {
+
+            var textPaint = Paint()
+            textPaint.color = Color.rgb(0, 0, 0)
+            textPaint.textSize = 34f
+
             val count = max
 
             val w = mTickMark!!.intrinsicWidth
@@ -46,10 +54,20 @@ class FixedSeekbar @JvmOverloads constructor(
             val spacing = (width - paddingLeft - paddingRight + thumbOffset * 2 - halfThumbW * 2) / count.toFloat()
             val saveCount = canvas.save()
             canvas.translate((paddingLeft - thumbOffset + halfThumbW).toFloat(), (height / 2).toFloat())
+
             for (i in 0..count) {
-                if (i != progress)
+                canvas.save()
+                canvas.rotate(90f, textPaint.strokeWidth / 2, -h.toFloat() * 2.5f)
+                canvas.drawText("${50 + i * 50} мл", -w.toFloat(), -h.toFloat() * 2.5f, textPaint)
+                canvas.restore()
+                if (i != progress) {
+                    canvas.save()
+                    canvas.rotate(90f)
                     mTickMark!!.draw(canvas)
+                    canvas.restore()
+                }
                 canvas.translate(spacing, 0F)
+
             }
             canvas.restoreToCount(saveCount)
         }

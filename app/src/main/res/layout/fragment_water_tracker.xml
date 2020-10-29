@@ -1,31 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rvDrinks"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="150dp"/>
+        android:layout_height="match_parent">
 
 
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <com.jundev.weightloss.views.FixedSeekbar
-        android:id="@+id/seekBar2"
-        style="@style/SeekbarWater"
-        android:maxHeight="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="50dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:thumb="@drawable/ic_water_drop_scrubber"
-        android:max="9"
-        android:progress="3" />
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="50dp" />
 
 
-</FrameLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="100dp"
+                android:visibility="gone"
+                app:cardCornerRadius="150dp"
+                app:cardElevation="3dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.scwang.wave.MultiWaveHeader
+                        android:id="@+id/waveHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_gravity="bottom"
+                        android:scaleY="-1"
+                        app:mwhWaveHeight="30dp" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:lottie_fileName="bubble.json"
+                        app:lottie_loop="true"
+                        app:lottie_speed="0.5" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/shape_border_water_main_control" />
+
+                </FrameLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+    </ScrollView>
+    <include layout="@layout/bottom_water_settings" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
