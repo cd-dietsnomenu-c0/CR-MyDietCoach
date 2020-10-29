@@ -88,6 +88,7 @@ dependencies {
 
     implementation 'com.github.tizisdeepan:dots:1.0.1'
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-andx'
+    implementation 'com.shawnlin:number-picker:2.4.11'
 }
 
 apply plugin: 'com.google.gms.google-services'

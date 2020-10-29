@@ -17,6 +17,8 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     var bsWaterSettings: BottomSheetBehavior<LinearLayout>? = null
     var adapter: DrinkAdapter? = null
     var progress = 0.0f
+    var listValues = arrayOf("50 мл", "100 мл", "150 мл", "200 мл",
+            "250 мл", "300 мл", "350 мл", "400 мл", "450 мл", "500 мл")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,5 +32,11 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         btn.setOnClickListener {
             bsWaterSettings!!.state = BottomSheetBehavior.STATE_EXPANDED
         }
+
+        npValues.minValue = 0
+        npValues.maxValue = listValues.size
+        npValues.displayedValues = listValues
+        npValues.minValue = 1
+
     }
 }

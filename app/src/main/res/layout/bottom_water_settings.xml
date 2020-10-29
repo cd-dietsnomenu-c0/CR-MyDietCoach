@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llBSWatersettings"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="500dp"
     android:orientation="horizontal"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
@@ -28,15 +28,23 @@
             android:layout_marginTop="8dp"
             android:src="@drawable/shape_view_bottom" />
 
-        <include layout="@layout/seekbar_layout" />
-
-
+            <com.shawnlin.numberpicker.NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/npValues"
+                app:np_order="descending"
+                android:layout_marginTop="16dp"
+                app:np_dividerColor="@color/picker_active"
+                app:np_textColor="@color/picker_inactive"
+                app:np_selectedTextColor="@color/picker_active"
+                android:layout_gravity="end"
+                android:layout_marginEnd="32dp"/>
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvDrinks"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"/>
 
         </LinearLayout>
