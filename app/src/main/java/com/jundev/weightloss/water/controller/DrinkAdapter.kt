@@ -4,11 +4,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class DrinkAdapter(val names: Array<String>, val hydroFactors: IntArray) : RecyclerView.Adapter<DrinkVH>() {
+class DrinkAdapter(val names: Array<String>, var selectedItem: Int, val iDrinkAdapter: IDrinkAdapter) : RecyclerView.Adapter<DrinkVH>() {
+
+    var lastSelect = 0
+
+    init {
+        lastSelect = selectedItem
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinkVH {
         val inflater = LayoutInflater.from(parent.context)
-        return DrinkVH(inflater, parent)
+        return DrinkVH(inflater, parent, object : IDrinkAdapter{
+            override fun select(newSelect: Int, oldSelect: Int) {
+                iDrinkAdapter.select(newSelect, lastSelect)
+                lastSelect = newSelect
+            }
+        })
     }
 
     override fun getItemCount(): Int {
@@ -16,6 +27,10 @@ class DrinkAdapter(val names: Array<String>, val hydroFactors: IntArray) : Recyc
     }
 
     override fun onBindViewHolder(holder: DrinkVH, position: Int) {
-        holder.bind(position, names[position], position, hydroFactors[position])
+        holder.bind(position, names[position], position == lastSelect)
+    }
+
+    fun unSelect(oldSelect: Int) {
+        notifyItemChanged(oldSelect)
     }
 }

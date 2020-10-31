@@ -7,18 +7,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jundev.weightloss.R
 import kotlinx.android.synthetic.main.item_drink.view.*
-import kotlinx.android.synthetic.main.item_eat.view.*
 
-class DrinkVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_drink, viewGroup, false)), View.OnClickListener {
+class DrinkVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val iDrinkVH: IDrinkAdapter) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_drink, viewGroup, false)), View.OnClickListener {
 
     init {
         itemView.setOnClickListener(this)
         itemView.lavCircleComplete.speed = 5f
     }
 
-    fun bind(imageId : Int, name : String, gradientId : Int, hydroFactor : Int){
+    fun bind(imageId : Int, name : String, isNeedSelect : Boolean){
         Glide.with(itemView.context).load(getImageDrink(imageId)).into(itemView.ivImgDrink)
         itemView.tvDrinkName.text = name
+        if (isNeedSelect){
+            itemView.lavCircleComplete.progress = 1f
+            itemView.lavTick.progress = 1f
+            itemView.lavCircleComplete.visibility = View.VISIBLE
+            itemView.lavTick.visibility = View.VISIBLE
+        }else{
+            itemView.lavCircleComplete.visibility = View.INVISIBLE
+            itemView.lavTick.visibility = View.INVISIBLE
+            itemView.lavCircleComplete.progress = 0f
+            itemView.lavTick.progress = 0f
+        }
     }
 
 
@@ -30,7 +40,10 @@ class DrinkVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerVi
     }
 
     override fun onClick(v: View?) {
-        itemView.lavTick.playAnimation()
+        itemView.lavCircleComplete.visibility = View.VISIBLE
+        itemView.lavTick.visibility = View.VISIBLE
         itemView.lavCircleComplete.playAnimation()
+        itemView.lavTick.playAnimation()
+        iDrinkVH.select(adapterPosition, -1)
     }
 }
