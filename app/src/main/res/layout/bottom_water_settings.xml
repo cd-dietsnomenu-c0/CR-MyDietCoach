@@ -38,6 +38,7 @@
                 app:np_textColor="@color/picker_inactive"
                 app:np_selectedTextColor="@color/picker_active"
                 android:layout_gravity="end"
+                app:np_dividerLength="700dp"
                 android:layout_marginEnd="32dp"/>
 
 
