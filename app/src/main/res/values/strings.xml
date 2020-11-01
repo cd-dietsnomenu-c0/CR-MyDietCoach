@@ -339,22 +339,30 @@
         <item>-30</item>
     </integer-array>
 
-    <integer-array name="water_drinks_gradients">
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-        <item>@drawable/shape_circle_drinks</item>
-    </integer-array>
 
+    <string-array name="drink_capacity_names">
+        <item>Чашечка</item>
+        <item>Маленький тетра-пак</item>
+        <item>Чашка</item>
+        <item>Стакан</item>
+        <item>Бумажный стакан</item>
+        <item>Кружка</item>
+        <item>Жестяная банка</item>
+        <item>Большая кружка</item>
+        <item>Термокружка</item>
+        <item>Маленькая бутылка</item>
+    </string-array>
+
+    <integer-array name="drink_capacity_icons">
+        <item>@drawable/ic_50_ml</item>
+        <item>@drawable/ic_100_ml</item>
+        <item>@drawable/ic_150_ml</item>
+        <item>@drawable/ic_200_ml</item>
+        <item>@drawable/ic_250_ml</item>
+        <item>@drawable/ic_300_ml</item>
+        <item>@drawable/ic_350_ml</item>
+        <item>@drawable/ic_400_ml</item>
+        <item>@drawable/ic_450_ml</item>
+        <item>@drawable/ic_500_ml</item>
+    </integer-array>
 </resources>

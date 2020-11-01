@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llBSWatersettings"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -21,36 +22,98 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="5dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/shape_view_bottom" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/shape_view_bottom" />
 
-            <com.shawnlin.numberpicker.NumberPicker
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/npValues"
-                app:np_order="descending"
-                android:layout_marginTop="16dp"
-                app:np_dividerColor="@color/picker_active"
-                app:np_textColor="@color/picker_inactive"
-                app:np_selectedTextColor="@color/picker_active"
-                android:layout_gravity="end"
-                app:np_dividerLength="700dp"
-                android:layout_marginEnd="32dp"/>
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Настройки напитка"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <View
+                    android:id="@+id/divider20"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="2dp"
+                    android:background="?android:attr/listDivider" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/ivCapacity"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"
+                    android:text="Чашка кофе"
+                    android:textColor="@color/picker_active"
+                    android:id="@+id/tvCapacity"
+                    android:textSize="24dp"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="~"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/picker_active"
+                    android:textSize="42dp"/>
+
+
+                <com.shawnlin.numberpicker.NumberPicker
+                    android:id="@+id/npValues"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:np_dividerColor="@color/picker_active"
+                    app:np_dividerLength="700dp"
+                    android:layout_marginStart="16dp"
+                    app:np_order="descending"
+                    app:np_selectedTextColor="@color/picker_active"
+                    app:np_textColor="@color/picker_inactive" />
+
+
+
+
+            </LinearLayout>
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvDrinks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp" />
 
         </LinearLayout>
-
-
 
 
     </androidx.cardview.widget.CardView>

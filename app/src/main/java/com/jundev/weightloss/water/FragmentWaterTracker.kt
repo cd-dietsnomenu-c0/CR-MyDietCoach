@@ -26,8 +26,8 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
         bsWaterSettings = BottomSheetBehavior.from(llBSWatersettings)
         rvDrinks.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        adapter = DrinkAdapter( resources.getStringArray(R.array.water_drinks_names), 1, object : IDrinkAdapter{
-            override fun select(newSelect: Int, oldSelect : Int) {
+        adapter = DrinkAdapter(resources.getStringArray(R.array.water_drinks_names), 1, object : IDrinkAdapter {
+            override fun select(newSelect: Int, oldSelect: Int) {
                 adapter!!.unSelect(oldSelect)
             }
         })
@@ -42,5 +42,18 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         npValues.displayedValues = listValues
         npValues.minValue = 1
 
+        npValues.setOnScrollListener { view, scrollState ->
+            if (scrollState == 0) {
+                changeCapacity(view.value)
+            }
+        }
+
+    }
+
+    private fun changeCapacity(value: Int) {
+        tvCapacity.text = resources.getStringArray(R.array.drink_capacity_names)[value - 1]
+        ivCapacity.setImageResource(resources
+                .obtainTypedArray(R.array.drink_capacity_icons)
+                .getResourceId(value - 1, -1))
     }
 }
