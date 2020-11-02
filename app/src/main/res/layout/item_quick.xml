@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
-    android:layout_height="140dp"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
-        app:cardCornerRadius="12dp"
+        app:cardCornerRadius="20dp"
         app:cardElevation="3dp">
 
         <LinearLayout
@@ -18,34 +18,52 @@
             android:orientation="vertical">
 
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:id="@+id/ivQuick"
-            android:src="@drawable/ic_wt_1"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="3dp">
 
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/llDrinkParent">
 
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/ivQuick"
+                        android:src="@drawable/ic_wt_1"/>
 
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Вода"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/roboto"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp"/>
 
-            <View
-                android:id="@+id/divider23"
+
+            <Button
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="?android:attr/listDivider" />
+                android:layout_height="32dp"
+                android:text="добавить"
+                android:textSize="10sp"
+                android:background="@drawable/shape_quick_add"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="16dp"/>
 
 
 
