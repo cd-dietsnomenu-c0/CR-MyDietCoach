@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class DrinkAdapter(val names: Array<String>, var selectedItem: Int, val iDrinkAdapter: IDrinkAdapter) : RecyclerView.Adapter<DrinkVH>() {
 
-    var lastSelect = 0
+    private var lastSelect = 0
 
     init {
         lastSelect = selectedItem
@@ -32,5 +32,10 @@ class DrinkAdapter(val names: Array<String>, var selectedItem: Int, val iDrinkAd
 
     fun unSelect(oldSelect: Int) {
         notifyItemChanged(oldSelect)
+    }
+
+    fun selectNew(position: Int){
+        lastSelect = position
+        notifyDataSetChanged()
     }
 }

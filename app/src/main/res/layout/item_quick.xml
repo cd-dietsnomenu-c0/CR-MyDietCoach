@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="180dp"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -17,55 +18,79 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginTop="8dp"
-                android:layout_gravity="center_horizontal"
-                app:cardCornerRadius="32dp"
-                app:cardElevation="3dp">
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/llDrinkParent">
+                <ImageView
+                    android:id="@+id/ivHead"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    tools:src = "@drawable/ic_wt_3"/>
 
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_gravity="center"
-                        android:id="@+id/ivQuick"
-                        android:src="@drawable/ic_wt_1"/>
 
-                </FrameLayout>
-            </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:paddingStart="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/ic_edit_water"
+                    android:id="@+id/ivSettings"/>
+
+            </FrameLayout>
+
+            <View
+                android:id="@+id/divider23"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="?android:attr/listDivider" />
 
             <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                tools:text="Алкогольный коктейль"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/tvCapacity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Вода"
-                android:textSize="18sp"
                 android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/black"
-                android:layout_marginTop="4dp"/>
-
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="2dp"
+                tools:text = "100 мл"
+                android:textSize="10sp" />
 
             <Button
+                android:id="@+id/btnAdd"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:text="добавить"
-                android:textSize="10sp"
-                android:background="@drawable/shape_quick_add"
-                android:textColor="@color/white"
-                android:fontFamily="@font/roboto_bold"
-                android:layout_marginEnd="4dp"
                 android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
                 android:layout_marginBottom="4dp"
-                android:layout_marginTop="16dp"/>
-
-
+                android:background="@drawable/shape_quick_add"
+                android:fontFamily="@font/roboto_bold"
+                android:text="добавить"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
 
 
         </LinearLayout>

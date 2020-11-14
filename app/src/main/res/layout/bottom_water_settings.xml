@@ -107,7 +107,7 @@
                     android:gravity="center_horizontal"
                     android:text="Чашка кофе"
                     android:textColor="@color/picker_active"
-                    android:id="@+id/tvCapacity"
+                    android:id="@+id/tvCurrentCapacity"
                     android:textSize="24dp"/>
 
 

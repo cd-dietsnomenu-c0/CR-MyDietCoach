@@ -16,55 +16,88 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_gravity="top|center_horizontal"
-                android:layout_marginTop="100dp"
-                app:cardCornerRadius="150dp"
-                app:cardElevation="3dp">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="450dp"
+                    android:layout_height="450dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="tracker_circle.json"
+                    app:lottie_loop="true"
+                    app:lottie_renderMode="hardware"
+                    app:lottie_speed="0.1" />
 
-                    <com.scwang.wave.MultiWaveHeader
-                        android:id="@+id/waveHeader"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_gravity="bottom"
-                        android:scaleY="-1"
-                        app:mwhWaveHeight="30dp" />
-
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:lottie_fileName="bubble.json"
-                        app:lottie_loop="true"
-                        app:lottie_speed="0.5" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/shape_border_water_main_control" />
-
-                </FrameLayout>
-
-
-            </androidx.cardview.widget.CardView>
-
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="24dp"
-                    android:id="@+id/rvQuickDrink"/>
+                    android:layout_marginTop="80dp"
+                    android:layout_marginBottom="80dp"
+                    app:cardCornerRadius="150dp"
+                    app:cardElevation="3dp">
 
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.scwang.wave.MultiWaveHeader
+                            android:id="@+id/waveHeader"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_gravity="bottom"
+                            android:scaleY="-1"
+                            app:mwhWaveHeight="30dp" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:lottie_fileName="bubble.json"
+                            app:lottie_loop="true"
+                            app:lottie_speed="0.5" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/shape_border_water_main_control" />
+
+
+
+                        <com.jundev.weightloss.views.BorderText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="center"
+                            android:text="90%"
+                            android:textColor="#4988F4"
+                            android:textSize="60sp"
+                            app:outerShadowRadius="10dp"
+                            app:strokeColor="#FFFFFF"
+                            app:strokeJoinStyle="miter"
+                            app:strokeWidth="1.5dp"/>
+
+                    </FrameLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            </FrameLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvQuickDrink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp" />
 
 
         </LinearLayout>
     </ScrollView>
+
     <include layout="@layout/bottom_water_settings" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

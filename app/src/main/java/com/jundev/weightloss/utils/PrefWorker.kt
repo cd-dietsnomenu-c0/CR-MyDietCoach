@@ -21,6 +21,9 @@ object PrefWorker {
     const val SECOND_REACT = "SECOND_REACT"
     const val VERSION = "VERSION"
 
+    private const val QUICK_PREFIX = "QUICK_PREFIX_"
+    private const val CAPACITY_PREFIX = "CAPACITY_PREFIX"
+
 
     private fun getInstance(): SharedPreferences? {
         val sp = App.getInstance().getSharedPreferences(
@@ -59,6 +62,22 @@ object PrefWorker {
     fun setSecondShow() = editor { it?.putBoolean(SECOND_REACT, true) }
     fun getSecondShow() = getInstance()?.getBoolean(SECOND_REACT, false)
 
-    fun setVersion(version : String) = editor { it?.putString(VERSION, version) }
+    fun setVersion(version: String) = editor { it?.putString(VERSION, version) }
     fun getVersion() = getInstance()?.getString(VERSION, ABConfig.A)
+
+
+    /*data -- id from data array for img and hydratation count*/
+
+    fun setQuickData(data: Int, index: Int) = editor {
+        it?.putInt("$QUICK_PREFIX$index", data)
+    }
+
+    fun getQuickData(index: Int) = getInstance()?.getInt("$QUICK_PREFIX$index", -1)
+
+    fun setCapacityIndex(capacityIndex: Int, index: Int) = editor {
+        it?.putInt("$CAPACITY_PREFIX$index", capacityIndex)
+    }
+
+    fun getCapacityIndex(index: Int) = getInstance()?.getInt("$CAPACITY_PREFIX$index", -1)
+
 }

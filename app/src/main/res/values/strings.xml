@@ -353,6 +353,19 @@
         <item>Маленькая бутылка</item>
     </string-array>
 
+    <string-array name="drink_capacity_values">
+        <item>50 мл</item>
+        <item>100 мл</item>
+        <item>150 мл</item>
+        <item>200 мл</item>
+        <item>250 мл</item>
+        <item>300 мл</item>
+        <item>350 мл</item>
+        <item>400 мл</item>
+        <item>450 мл</item>
+        <item>500 мл</item>
+    </string-array>
+
     <integer-array name="drink_capacity_icons">
         <item>@drawable/ic_50_ml</item>
         <item>@drawable/ic_100_ml</item>
