@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -10,8 +11,7 @@
         android:layout_height="match_parent">
 
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -20,11 +20,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
+
+                    <ImageView
+                        android:id="@+id/ivNotifSettings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_notif_water"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:padding="16dp"/>
+
+                    <ImageView
+                        android:id="@+id/ivParams"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_measure_change"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginStart="16dp"
+                        android:padding="16dp"/>
+
+
+
                 <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="450dp"
                     android:layout_height="450dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="-3dp"
                     app:lottie_autoPlay="true"
                     app:lottie_fileName="tracker_circle.json"
                     app:lottie_loop="true"
@@ -35,8 +58,7 @@
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginBottom="80dp"
+                    android:layout_marginTop="60dp"
                     app:cardCornerRadius="150dp"
                     app:cardElevation="3dp">
 
@@ -64,21 +86,48 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/shape_border_water_main_control" />
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:translationY="100dp"
+                            android:layout_gravity="bottom|center_horizontal"
+                            app:cardCornerRadius="100dp"
+                            app:cardElevation="3dp">
 
 
-                        <com.jundev.weightloss.views.BorderText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/roboto_bold"
-                            android:gravity="center"
-                            android:text="90%"
-                            android:textColor="#4988F4"
-                            android:textSize="60sp"
-                            app:outerShadowRadius="10dp"
-                            app:strokeColor="#FFFFFF"
-                            app:strokeJoinStyle="miter"
-                            app:strokeWidth="1.5dp"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+
+                                <TextView
+                                    android:id="@+id/tvPercent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:text="90%"
+                                    android:layout_marginTop="12dp"
+                                    android:textColor="#397EF3"
+                                    android:textSize="36sp"/>
+
+                                <TextView
+                                    android:id="@+id/tvCapacityDay"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:text="1200/2000"
+                                    android:textColor="#397EF3"
+                                    android:textSize="16sp"/>
+
+
+                            </LinearLayout>
+
+
+
+                        </androidx.cardview.widget.CardView>
 
                     </FrameLayout>
 
@@ -92,8 +141,10 @@
                 android:id="@+id/rvQuickDrink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp" />
+                android:layout_marginTop="-48dp"
+                android:layout_gravity="center_horizontal" />
+
+
 
 
         </LinearLayout>
