@@ -101,4 +101,5 @@
 
     <color name="violet_cards">#8c80e8</color>
     <color name="violet_cards_back">#e4dfff</color>
+    <color name="active_water_blue">#4f65de</color>
 </resources>

@@ -15,7 +15,9 @@
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"
         app:cardCornerRadius="12dp"
-        app:cardElevation="3dp">
+        app:cardElevation="3dp"
+        android:translationY="15dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,41 +25,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="30dp"
+                android:layout_width="40dp"
                 android:layout_height="5dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/shape_view_bottom" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginStart="36dp"
-                android:layout_marginEnd="36dp"
-                android:layout_marginTop="8dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Настройка напитка"
-                    android:textSize="16sp"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="16dp"
-                    android:drawablePadding="16dp"
-                    android:drawableStart="@drawable/ic_water_settings"/>
-
-                <View
-                    android:id="@+id/divider21"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"
-                    android:layout_marginTop="8dp"/>
-
-            </LinearLayout>
 
 
 
@@ -87,54 +59,13 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCapacities"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="8dp" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:id="@+id/ivCapacity"
-                    android:layout_gravity="center_vertical"/>
-
-                <TextView
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_horizontal"
-                    android:text="Чашка кофе"
-                    android:textColor="@color/picker_active"
-                    android:id="@+id/tvCurrentCapacity"
-                    android:textSize="24dp"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="~"
-                    android:layout_marginStart="16dp"
-                    android:textColor="@color/picker_active"
-                    android:textSize="42dp"/>
-
-
-                <com.shawnlin.numberpicker.NumberPicker
-                    android:id="@+id/npValues"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    app:np_dividerColor="@color/picker_active"
-                    app:np_dividerLength="700dp"
-                    android:layout_marginStart="16dp"
-                    app:np_order="descending"
-                    app:np_selectedTextColor="@color/picker_active"
-                    app:np_textColor="@color/picker_inactive" />
-
-
-            </LinearLayout>
 
             <View
                 android:id="@+id/divider22"
@@ -149,7 +80,8 @@
                 android:id="@+id/rvDrinks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="30dp"/>
 
         </LinearLayout>
 
