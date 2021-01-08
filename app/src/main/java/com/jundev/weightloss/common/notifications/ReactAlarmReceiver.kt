@@ -14,7 +14,7 @@ import com.jundev.weightloss.Config
 import com.jundev.weightloss.R
 import com.jundev.weightloss.SplashActivity
 import com.jundev.weightloss.analytics.Ampl
-import com.jundev.weightloss.utils.PrefWorker
+import com.jundev.weightloss.utils.PreferenceProvider
 import java.util.*
 
 class ReactAlarmReceiver : BroadcastReceiver() {
@@ -38,11 +38,11 @@ class ReactAlarmReceiver : BroadcastReceiver() {
             var collapsedView = RemoteViews(context?.packageName, R.layout.view_react_notif_first)
 
             if (ui == SECOND_UI) {
-                PrefWorker.setSecondShow()
+                PreferenceProvider.setSecondShow()
                 collapsedView = RemoteViews(context?.packageName, R.layout.view_react_notif_second)
                 Ampl.showSecondNotify()
             }else{
-                PrefWorker.setFirstShow()
+                PreferenceProvider.setFirstShow()
                 Ampl.showFirstNotify()
             }
 
@@ -100,12 +100,12 @@ class ReactAlarmReceiver : BroadcastReceiver() {
 
 
     private fun getUI(): Int {
-        return if (PrefWorker.getLastEnter() != PrefWorker.EMPTY_LAST_ENTER){
+        return if (PreferenceProvider.getLastEnter() != PreferenceProvider.EMPTY_LAST_ENTER){
             val current = Calendar.getInstance().timeInMillis
-            val days = (current - PrefWorker.getLastEnter()!!) / ONE_DAY
-            if (!PrefWorker.getSecondShow()!! && days == 2L){
+            val days = (current - PreferenceProvider.getLastEnter()!!) / ONE_DAY
+            if (!PreferenceProvider.getSecondShow()!! && days == 2L){
                 SECOND_UI
-            }else if (!PrefWorker.getSecondShow()!! && days == 1L){
+            }else if (!PreferenceProvider.getSecondShow()!! && days == 1L){
                 FIRST_UI
             }else{
                 NOTHING

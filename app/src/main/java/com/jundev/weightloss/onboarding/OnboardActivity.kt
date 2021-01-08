@@ -11,7 +11,7 @@ import com.jundev.weightloss.MainActivity
 import com.jundev.weightloss.POJOS.onboard.OnboardUI
 import com.jundev.weightloss.R
 import com.jundev.weightloss.utils.ABConfig
-import com.jundev.weightloss.utils.PrefWorker
+import com.jundev.weightloss.utils.PreferenceProvider
 import kotlinx.android.synthetic.main.onboard_activity.*
 
 class OnboardActivity : AppCompatActivity(R.layout.onboard_activity) {
@@ -19,7 +19,7 @@ class OnboardActivity : AppCompatActivity(R.layout.onboard_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var list = if (PrefWorker.getVersion() == ABConfig.A){
+        var list = if (PreferenceProvider.getVersion() == ABConfig.A){
             fillA()
         }else{
             fillB()

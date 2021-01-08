@@ -76,7 +76,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun showCheatAlert() {
-            cheatMealAlert.show(activity!!.supportFragmentManager, CHEAT_TAG)
+        cheatMealAlert.show(activity!!.supportFragmentManager, CHEAT_TAG)
     }
 
 

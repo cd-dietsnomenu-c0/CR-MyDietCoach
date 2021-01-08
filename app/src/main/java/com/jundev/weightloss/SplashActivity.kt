@@ -21,7 +21,7 @@ import com.jundev.weightloss.common.db.entities.DietPlanEntity
 import com.jundev.weightloss.common.notifications.ScheduleSetter
 import com.jundev.weightloss.onboarding.OnboardActivity
 import com.jundev.weightloss.utils.ABConfig
-import com.jundev.weightloss.utils.PrefWorker
+import com.jundev.weightloss.utils.PreferenceProvider
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -42,7 +42,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         goCounter += 1
         if (goCounter >= maxGoCounter){
             var intent = Intent()
-            if(PrefWorker.getVersion() != ABConfig.C && isFirstTime){
+            if(PreferenceProvider.getVersion() != ABConfig.C && isFirstTime){
                 intent = Intent(this, OnboardActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             }else{
                 intent = Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
@@ -58,7 +58,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             openFrom = Config.OPEN_FROM_PUSH
             openFromPush()
         }
-        PrefWorker.setLastEnter(Calendar.getInstance().timeInMillis)
+        PreferenceProvider.setLastEnter(Calendar.getInstance().timeInMillis)
         bindTest()
         ScheduleSetter.setAlarm(this)
         ScheduleSetter.setReactAlarm(this)
@@ -85,18 +85,18 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun setABTestConfig(version: String) {
         Log.e("LOL", version)
-        PrefWorker.setVersion(version)
+        PreferenceProvider.setVersion(version)
         Ampl.setABVersion(version)
         Ampl.setVersion()
         post()
     }
 
     private fun setFirstTime() {
-        if (PrefWorker.getFirstTime() == ""){
+        if (PreferenceProvider.getFirstTime() == ""){
             isFirstTime = true
             val calendar = Calendar.getInstance()
             var date = "${"%02d".format(calendar.get(Calendar.DAY_OF_MONTH))}.${"%02d".format(calendar.get(Calendar.MONTH) + 1)}.${calendar.get(Calendar.YEAR)}"
-            PrefWorker.setFirstTime(date)
+            PreferenceProvider.setFirstTime(date)
         }
     }
 

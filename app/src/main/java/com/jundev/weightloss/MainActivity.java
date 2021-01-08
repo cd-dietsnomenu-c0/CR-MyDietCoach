@@ -28,12 +28,9 @@ import com.jundev.weightloss.common.DBHolder;
 import com.jundev.weightloss.common.FBWork;
 import com.jundev.weightloss.common.GlobalHolder;
 import com.jundev.weightloss.diets.FragmentTypes;
-import com.jundev.weightloss.onboarding.OnboardActivity;
 import com.jundev.weightloss.profile.ProfileFragment;
 import com.jundev.weightloss.tracker.FragmentTracker;
-import com.jundev.weightloss.utils.ABConfig;
 import com.jundev.weightloss.utils.GradeAlert;
-import com.jundev.weightloss.utils.PrefWorker;
 import com.jundev.weightloss.utils.ThankToast;
 import com.jundev.weightloss.water.FragmentWaterTracker;
 

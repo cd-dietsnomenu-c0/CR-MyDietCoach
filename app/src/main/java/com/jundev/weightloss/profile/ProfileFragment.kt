@@ -28,7 +28,7 @@ import com.jundev.weightloss.profile.dialogs.NameDialog
 import com.jundev.weightloss.profile.favorites.FavoritesActivity
 import com.jundev.weightloss.profile.toasts.DeniedPermToast
 import com.jundev.weightloss.profile.toasts.IntroToast
-import com.jundev.weightloss.utils.PrefWorker
+import com.jundev.weightloss.utils.PreferenceProvider
 import kotlinx.android.synthetic.main.bottom_sheet_backs.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import java.io.File
@@ -48,9 +48,9 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Ampl.openProfile()
-        tvDate.text = "${resources.getString(R.string.together)} ${PrefWorker.getFirstTime()}"
+        tvDate.text = "${resources.getString(R.string.together)} ${PreferenceProvider.getFirstTime()}"
         cvParent.setBackgroundResource(R.drawable.shape_profile_card)
-        setBack(PrefWorker.getBack()!!)
+        setBack(PreferenceProvider.getBack()!!)
         setAvatar()
         setClickListeners()
 
@@ -60,7 +60,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         rvBacks.layoutManager = GridLayoutManager(activity, 2)
         rvBacks.adapter = BacksAdapter(resources.getStringArray(R.array.backgrounds_profile), object : IBacks {
             override fun choiceBack(position: Int) {
-                PrefWorker.setBack(position)
+                PreferenceProvider.setBack(position)
                 setBack(position)
                 bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
@@ -85,7 +85,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         ivHeadBack.setOnClickListener {
             Ampl.openWallpapers()
             bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-            PrefWorker.setCountIntro(MAX_ATEMPT_INTRO)
+            PreferenceProvider.setCountIntro(MAX_ATEMPT_INTRO)
         }
 
         btnGrade.setOnClickListener {
@@ -140,9 +140,9 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             || (ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) != PackageManager.PERMISSION_GRANTED
 
     private fun setAvatar() {
-        if (PrefWorker.getPhoto() != PrefWorker.EMPTY_PHOTO) {
+        if (PreferenceProvider.getPhoto() != PreferenceProvider.EMPTY_PHOTO) {
             try {
-                ivAvatar.setImageURI(Uri.parse(PrefWorker.getPhoto()))
+                ivAvatar.setImageURI(Uri.parse(PreferenceProvider.getPhoto()))
             } catch (ex: Exception) {
                 setDefaultAvatar()
             }
@@ -199,7 +199,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             ivAvatar.setImageURI(uri)
-            PrefWorker.setPhoto(uri.toString())
+            PreferenceProvider.setPhoto(uri.toString())
         }
     }
 
@@ -209,21 +209,21 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
     fun bindName() {
-        if (PrefWorker.getName() == "") {
+        if (PreferenceProvider.getName() == "") {
             tvName.text = resources.getString(R.string.def_name)
         } else {
-            tvName.text = PrefWorker.getName()
+            tvName.text = PreferenceProvider.getName()
         }
     }
 
     override fun onResume() {
         super.onResume()
         bindName()
-        if (PrefWorker.getCountIntro()!! < MAX_ATEMPT_INTRO) {
+        if (PreferenceProvider.getCountIntro()!! < MAX_ATEMPT_INTRO) {
             IntroToast.show(activity!!)
-            var count = PrefWorker.getCountIntro()!!
+            var count = PreferenceProvider.getCountIntro()!!
             count++
-            PrefWorker.setCountIntro(count)
+            PreferenceProvider.setCountIntro(count)
         }
     }
 

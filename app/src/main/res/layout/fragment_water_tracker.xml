@@ -359,4 +359,5 @@
         android:id="@+id/ivDimBackground"/>
 
     <include layout="@layout/bottom_water_settings" />
+    <include layout="@layout/bottom_begin_meas" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

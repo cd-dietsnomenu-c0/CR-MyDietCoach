@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.jundev.weightloss.App
 
-object PrefWorker {
+object PreferenceProvider {
 
     private const val RATE_MIND = "RATE_MIND"
     const val RATE_MIND_GOOD = "RATE_MIND_GOOD"
@@ -23,6 +23,12 @@ object PrefWorker {
 
     private const val QUICK_PREFIX = "QUICK_PREFIX_"
     private const val CAPACITY_PREFIX = "CAPACITY_PREFIX"
+
+    private const val SEX_TYPE = "SEX_TYPE"
+    private const val SEX_TYPE_MALE = 1
+    private const val SEX_TYPE_FEMALE = 0
+    private const val WEIGHT = "WEIGHT"
+    const val EMPTY = -1
 
 
     private fun getInstance(): SharedPreferences? {
@@ -79,5 +85,11 @@ object PrefWorker {
     }
 
     fun getCapacityIndex(index: Int) = getInstance()?.getInt("$CAPACITY_PREFIX$index", -1)
+
+    fun setWeight(weight : Int) = editor { it?.putInt(WEIGHT, weight) }
+    fun getWeight() = getInstance()?.getInt(WEIGHT, EMPTY)
+
+    fun setSex(type : Int) = editor { it?.putInt(SEX_TYPE, type) }
+    fun getSex() = getInstance()?.getInt(SEX_TYPE, EMPTY)
 
 }

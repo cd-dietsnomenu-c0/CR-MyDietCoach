@@ -119,7 +119,7 @@ class GradeAlert : DialogFragment() {
     }
 
     private fun bindRate(grade: Int) {
-        if (grade > 2 && PrefWorker.getRateMind() != PrefWorker.RATE_MIND_BAD) {
+        if (grade > 2 && PreferenceProvider.getRateMind() != PreferenceProvider.RATE_MIND_BAD) {
             moveToMarket()
         } else {
             showSafety()
@@ -129,7 +129,7 @@ class GradeAlert : DialogFragment() {
     private fun showSafety() {
         btnSend.startAnimation(showClaim)
         btnSend.visibility = View.VISIBLE
-        PrefWorker.setRateMind(PrefWorker.RATE_MIND_BAD)
+        PreferenceProvider.setRateMind(PreferenceProvider.RATE_MIND_BAD)
     }
 
     private fun moveToMarket() {

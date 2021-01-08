@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jundev.weightloss.App
 import com.jundev.weightloss.R
-import com.jundev.weightloss.utils.PrefWorker
+import com.jundev.weightloss.utils.PreferenceProvider
 
 class QuickAdapter(val iQuick: IQuick) : RecyclerView.Adapter<QuickVH>() {
 
@@ -15,9 +15,9 @@ class QuickAdapter(val iQuick: IQuick) : RecyclerView.Adapter<QuickVH>() {
 
     init {
         for (i in 0..3) {
-            imgsIndexes.add(PrefWorker.getQuickData(i)!!)
-            titles.add(App.getContext().resources.getStringArray(R.array.water_drinks_names)[PrefWorker.getQuickData(i)!!])
-            capacities.add(App.getContext().resources.getStringArray(R.array.drink_capacity_values)[PrefWorker.getCapacityIndex(i)!!])
+            imgsIndexes.add(PreferenceProvider.getQuickData(i)!!)
+            titles.add(App.getContext().resources.getStringArray(R.array.water_drinks_names)[PreferenceProvider.getQuickData(i)!!])
+            capacities.add(App.getContext().resources.getStringArray(R.array.drink_capacity_values)[PreferenceProvider.getCapacityIndex(i)!!])
         }
     }
 

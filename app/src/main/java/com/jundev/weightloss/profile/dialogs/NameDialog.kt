@@ -10,7 +10,7 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.jundev.weightloss.R
 import com.jundev.weightloss.profile.ProfileFragment
-import com.jundev.weightloss.utils.PrefWorker
+import com.jundev.weightloss.utils.PreferenceProvider
 import kotlinx.android.synthetic.main.name_dialog.*
 
 class NameDialog: DialogFragment() {
@@ -31,7 +31,7 @@ class NameDialog: DialogFragment() {
         }
         btnSave.setOnClickListener {
             if (edtName.text.toString() != "") {
-                PrefWorker.setName(edtName.text.toString())
+                PreferenceProvider.setName(edtName.text.toString())
                 (targetFragment as ProfileFragment).bindName()
             }
             dismiss()
