@@ -38,4 +38,8 @@ class CapacityAdapter(val capacitiesValues: Array<String>, val imgsIds: ArrayLis
         lastSelect = position
         notifyDataSetChanged()
     }
+
+    fun getSelectedNumber() : Int{
+        return lastSelect
+    }
 }

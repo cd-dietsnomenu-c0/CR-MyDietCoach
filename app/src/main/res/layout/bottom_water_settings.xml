@@ -12,7 +12,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="3dp"
@@ -21,7 +21,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
@@ -31,48 +31,60 @@
                 android:layout_marginTop="8dp"
                 android:src="@drawable/shape_view_bottom" />
 
-
-
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Настройки напитка"
+                android:layout_marginTop="12dp"
+                android:textColor="#25265e"
                 android:layout_gravity="center_horizontal"
-                android:visibility="gone"
-                android:orientation="vertical">
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="18sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="Настройки напитка"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
 
-                <View
-                    android:id="@+id/divider20"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
-                    android:background="?android:attr/listDivider" />
 
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Объем"
+                android:layout_marginTop="24dp"
+                android:textColor="#25265e"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14sp"/>
+
+            <View
+                android:id="@+id/divider20"
+                android:layout_width="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCapacities"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="4dp" />
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Вид напитка"
+                android:layout_marginTop="36dp"
+                android:textColor="#25265e"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14sp"/>
 
             <View
-                android:id="@+id/divider22"
+                android:id="@+id/divider21"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_height="1dp"
                 android:background="?android:attr/listDivider" />
 
 
@@ -80,8 +92,25 @@
                 android:id="@+id/rvDrinks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginTop="4dp"/>
+
+            <Button
+                android:id="@+id/btnSaveQuick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="сохранить"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_save_btn_begin_meas"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/white"
+                android:paddingEnd="58dp"
+                android:paddingStart="58dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
 
         </LinearLayout>
 

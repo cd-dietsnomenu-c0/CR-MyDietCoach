@@ -3,6 +3,7 @@ package com.jundev.weightloss.water
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +16,7 @@ import com.jundev.weightloss.water.controller.capacities.CapacityAdapter
 import com.jundev.weightloss.water.controller.capacities.ICapacityAdapter
 import com.jundev.weightloss.water.controller.quick.IQuick
 import com.jundev.weightloss.water.controller.quick.QuickAdapter
-import com.jundev.weightloss.water.dialogs.StartMeasurmentDialog
+import com.jundev.weightloss.water.toasts.FillMeasToast
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
@@ -24,11 +25,13 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     var bsWaterSettings: BottomSheetBehavior<LinearLayout>? = null
     var bsBeginMeas: BottomSheetBehavior<LinearLayout>? = null
-    var adapter: DrinkAdapter? = null
+    var drinkTypeAdapter: DrinkAdapter? = null
     var capacityAdapter: CapacityAdapter? = null
     var quickAdapter: QuickAdapter? = null
     var progress = 0.0f
     var listValues: Array<String>? = null
+
+    var sexType = PreferenceProvider.SEX_TYPE_FEMALE
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,9 +42,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             lavTraining.playAnimation()
         }
 
-
-
-        if (PreferenceProvider.getWeight() == PreferenceProvider.EMPTY){
+        if (PreferenceProvider.getWeight() == PreferenceProvider.EMPTY) {
             showBeginMeasBS()
         }
 
@@ -75,11 +76,64 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             override fun onStateChanged(p0: View, p1: Int) {
                 if (p1 == BottomSheetBehavior.STATE_COLLAPSED) {
                     ivDimBackground.visibility = View.GONE
+                } else if (p1 == BottomSheetBehavior.STATE_DRAGGING) {
+                    bsBeginMeas!!.state = BottomSheetBehavior.STATE_EXPANDED
                 }
             }
         })
         bsBeginMeas!!.state = BottomSheetBehavior.STATE_EXPANDED
+
+        flFemale.setOnClickListener {
+            lavCircleFemale.frame = 0
+            lavTickFemale.frame = 0
+            lavCircleFemale.visibility = View.VISIBLE
+            lavCircleFemale.playAnimation()
+            lavTickFemale.visibility = View.VISIBLE
+            lavTickFemale.playAnimation()
+
+            lavTickMale.visibility = View.INVISIBLE
+            lavCircleMale.visibility = View.INVISIBLE
+
+            sexType = PreferenceProvider.SEX_TYPE_FEMALE
+        }
+
+        flMale.setOnClickListener {
+            lavCircleMale.frame = 0
+            lavTickMale.frame = 0
+            lavCircleMale.visibility = View.VISIBLE
+            lavCircleMale.playAnimation()
+            lavTickMale.visibility = View.VISIBLE
+            lavTickMale.playAnimation()
+
+            lavTickFemale.visibility = View.INVISIBLE
+            lavCircleFemale.visibility = View.INVISIBLE
+
+            sexType = PreferenceProvider.SEX_TYPE_MALE
+        }
+
+        btnContinue.setOnClickListener {
+            var weight = 50
+            if (edtWeight.text.toString() != "" && edtWeight.text.toString() != " ") {
+                weight = edtWeight.text.toString().toInt()
+                if (weight in 21..199) {
+                    PreferenceProvider.setWeight(weight)
+                    PreferenceProvider.setSex(sexType)
+                    bsBeginMeas!!.state = BottomSheetBehavior.STATE_COLLAPSED
+                    FillMeasToast.show(activity!!)
+                    fillTrackerUI()
+                } else {
+                    Toast.makeText(activity, getString(R.string.input_error_not_in_limit), Toast.LENGTH_LONG).show()
+                }
+            } else {
+                Toast.makeText(activity, getString(R.string.input_error_empty), Toast.LENGTH_LONG).show()
+            }
+        }
     }
+
+    private fun fillTrackerUI() {
+
+    }
+
 
     private fun fillQuick() {
         rvQuickDrink.layoutManager = GridLayoutManager(activity, 2)
@@ -98,8 +152,18 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     }
 
     private fun prepareBS(position: Int, quickData: Int, capacityIndex: Int) {
-        adapter!!.selectNew(quickData)
+        drinkTypeAdapter!!.selectNew(quickData)
+        capacityAdapter!!.selectNew(capacityIndex)
         rvDrinks.scrollToPosition(quickData)
+        rvCapacities.scrollToPosition(capacityIndex)
+
+        btnSaveQuick.setOnClickListener(null)
+        btnSaveQuick.setOnClickListener {
+            PreferenceProvider.setQuickData(drinkTypeAdapter!!.getSelectedNumber(), position)
+            PreferenceProvider.setCapacityIndex(capacityAdapter!!.getSelectedNumber(), position)
+            quickAdapter!!.notifyDataSetChanged()
+            bsWaterSettings!!.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
     }
 
     private fun checkFirstStart() {
@@ -121,12 +185,12 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     private fun fillBS() {
         bsWaterSettings = BottomSheetBehavior.from(llBSWatersettings)
         rvDrinks.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        adapter = DrinkAdapter(resources.getStringArray(R.array.water_drinks_names), 1, object : IDrinkAdapter {
+        drinkTypeAdapter = DrinkAdapter(resources.getStringArray(R.array.water_drinks_names), 1, object : IDrinkAdapter {
             override fun select(newSelect: Int, oldSelect: Int) {
-                adapter!!.unSelect(oldSelect)
+                drinkTypeAdapter!!.unSelect(oldSelect)
             }
         })
-        rvDrinks.adapter = adapter
+        rvDrinks.adapter = drinkTypeAdapter
 
         rvCapacities.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         capacityAdapter = CapacityAdapter(resources.getStringArray(R.array.drink_capacity_values),

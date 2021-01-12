@@ -38,4 +38,8 @@ class DrinkAdapter(val names: Array<String>, var selectedItem: Int, val iDrinkAd
         lastSelect = position
         notifyDataSetChanged()
     }
+
+    fun getSelectedNumber() : Int{
+        return lastSelect
+    }
 }

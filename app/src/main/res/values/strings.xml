@@ -258,6 +258,8 @@
     <string name="report_text">Добрый день, нашли ошибку в вашем приложении ! Дело в том, что ..</string>
     <string name="report_wait">Выберите приложение</string>
     <string name="report_error">Нет почтовых клиентов</string>
+    <string name="input_error_not_in_limit">Пожалуйста введите свой реальный вес</string>
+    <string name="input_error_empty">Пожалуйста введите свой вес</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>
@@ -365,6 +367,7 @@
         <item>450 мл</item>
         <item>500 мл</item>
     </string-array>
+
 
     <integer-array name="drink_capacity_icons">
         <item>@drawable/ic_50_ml</item>

@@ -25,8 +25,8 @@ object PreferenceProvider {
     private const val CAPACITY_PREFIX = "CAPACITY_PREFIX"
 
     private const val SEX_TYPE = "SEX_TYPE"
-    private const val SEX_TYPE_MALE = 1
-    private const val SEX_TYPE_FEMALE = 0
+    const val SEX_TYPE_MALE = 1
+    const val SEX_TYPE_FEMALE = 0
     private const val WEIGHT = "WEIGHT"
     const val EMPTY = -1
 
@@ -72,7 +72,7 @@ object PreferenceProvider {
     fun getVersion() = getInstance()?.getString(VERSION, ABConfig.A)
 
 
-    /*data -- id from data array for img and hydratation count*/
+    /*data -- id (number) from data array for img and hydratation count*/
 
     fun setQuickData(data: Int, index: Int) = editor {
         it?.putInt("$QUICK_PREFIX$index", data)
@@ -86,10 +86,10 @@ object PreferenceProvider {
 
     fun getCapacityIndex(index: Int) = getInstance()?.getInt("$CAPACITY_PREFIX$index", -1)
 
-    fun setWeight(weight : Int) = editor { it?.putInt(WEIGHT, weight) }
+    fun setWeight(weight: Int) = editor { it?.putInt(WEIGHT, weight) }
     fun getWeight() = getInstance()?.getInt(WEIGHT, EMPTY)
 
-    fun setSex(type : Int) = editor { it?.putInt(SEX_TYPE, type) }
+    fun setSex(type: Int) = editor { it?.putInt(SEX_TYPE, type) }
     fun getSex() = getInstance()?.getInt(SEX_TYPE, EMPTY)
 
 }
