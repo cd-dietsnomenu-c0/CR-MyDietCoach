@@ -369,6 +369,22 @@
     </string-array>
 
 
+    <integer-array name="drink_capacity_quantity">
+        <item>50</item>
+        <item>100</item>
+        <item>150</item>
+        <item>200</item>
+        <item>250</item>
+        <item>300</item>
+        <item>350</item>
+        <item>400</item>
+        <item>450</item>
+        <item>500</item>
+    </integer-array>
+
+
+
+
     <integer-array name="drink_capacity_icons">
         <item>@drawable/ic_50_ml</item>
         <item>@drawable/ic_100_ml</item>

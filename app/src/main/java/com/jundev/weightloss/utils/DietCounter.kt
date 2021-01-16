@@ -1,8 +1,7 @@
 package com.jundev.weightloss.utils
 
 import android.util.Log
-import com.jundev.weightloss.POJOS.schema.Schema
-import com.jundev.weightloss.common.GlobalHolder
+import com.jundev.weightloss.model.schema.Schema
 
 object DietCounter {
 

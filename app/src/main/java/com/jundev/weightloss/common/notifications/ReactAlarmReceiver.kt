@@ -13,7 +13,7 @@ import androidx.core.app.NotificationCompat
 import com.jundev.weightloss.Config
 import com.jundev.weightloss.R
 import com.jundev.weightloss.SplashActivity
-import com.jundev.weightloss.analytics.Ampl
+import com.jundev.weightloss.utils.analytics.Ampl
 import com.jundev.weightloss.utils.PreferenceProvider
 import java.util.*
 

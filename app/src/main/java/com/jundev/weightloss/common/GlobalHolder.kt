@@ -2,7 +2,7 @@ package com.jundev.weightloss.common
 
 import com.squareup.moshi.Moshi
 import com.jundev.weightloss.App
-import com.jundev.weightloss.POJOS.Global
+import com.jundev.weightloss.model.Global
 
 object GlobalHolder {
 

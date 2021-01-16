@@ -2,7 +2,7 @@ package com.jundev.weightloss.common
 
 import android.util.Log
 import com.jundev.weightloss.App
-import com.jundev.weightloss.POJOS.interactive.DietDay
+import com.jundev.weightloss.model.interactive.DietDay
 import com.jundev.weightloss.common.db.entities.DietPlanEntity
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
