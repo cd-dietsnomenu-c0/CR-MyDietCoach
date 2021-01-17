@@ -202,16 +202,38 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                         changeDailyRate(it)
                     } else {
                         tvRate.text = "$it"
+                        setPercent()
                         isNeedAnimateDailyRate = true
                     }
                 })
     }
 
+    private fun setPercent() {
+        var percentValue = (tvCapacity.text.toString().toFloat() / tvRate.text.toString().toFloat() * 100).toInt()
+        tvPercent.text = "$percentValue%"
+    }
+
     private fun changeDailyRate(it: Int) {
         var oldValue = tvRate.text.toString().toInt()
         var animator = ValueAnimator.ofInt(oldValue, it)
+        changePercentAnim(it)
         animator.addUpdateListener {
             tvRate.text = "${it.animatedValue}"
+        }
+        animator.start()
+    }
+
+    private fun changePercentAnim(it: Int) {
+        var oldValue = tvPercent.text.toString().split("%")[0].toInt()
+        var newValue = (tvCapacity.text.toString().toFloat() / it.toFloat() * 100).toInt()
+
+        if (newValue > 100) {
+            newValue = 100
+        }
+
+        var animator = ValueAnimator.ofInt(oldValue, newValue)
+        animator.addUpdateListener {
+            tvPercent.text = "${it.animatedValue}%"
         }
         animator.start()
     }
