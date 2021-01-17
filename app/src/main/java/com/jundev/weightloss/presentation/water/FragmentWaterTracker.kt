@@ -1,6 +1,7 @@
 package com.jundev.weightloss.presentation.water
 
 import android.animation.Animator
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -41,9 +42,11 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     lateinit var vm: WaterVM
 
-     var mediumFrame = 24
-     var startFrame = 0
-     var endFrame = 60
+    var mediumFrame = 24
+    var startFrame = 0
+    var endFrame = 60
+
+    var isNeedAnimateDailyRate = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -72,51 +75,31 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 }
             }
         })
+
+
     }
 
+
     private fun setExtraViews() {
-        if (PreferenceProvider.getTrainingFactor()!!){
+        if (PreferenceProvider.getTrainingFactor()!!) {
             setTrainingStateOn()
-        }else{
+        } else {
             setTrainingStateOff()
         }
 
-        if (PreferenceProvider.getHotFactor()!!){
+        if (PreferenceProvider.getHotFactor()!!) {
             setHotStateOn()
-        }else{
+        } else {
             setHotStateOff()
         }
     }
 
-    private fun setHotStateOff() {
+    private fun setHotStateOn() {
         lavHot.setMinAndMaxFrame(mediumFrame, endFrame)
         lavHot.frame = mediumFrame
         cvHot.setOnClickListener {
-            lavHot.addAnimatorListener(object : Animator.AnimatorListener{
-                override fun onAnimationRepeat(animation: Animator?) {
-                }
-
-                override fun onAnimationEnd(animation: Animator?) {
-                    lavHot.removeAllAnimatorListeners()
-                    setHotStateOn()
-                }
-
-                override fun onAnimationCancel(animation: Animator?) {
-                }
-
-                override fun onAnimationStart(animation: Animator?) {
-                }
-            })
-            lavHot.playAnimation()
-        }
-        PreferenceProvider.setHotFactor(false)
-    }
-
-    private fun setHotStateOn() {
-        lavHot.setMinAndMaxFrame(startFrame, mediumFrame)
-        lavHot.frame = startFrame
-        cvHot.setOnClickListener {
-            lavHot.addAnimatorListener(object : Animator.AnimatorListener{
+            vm.changeHotFactor(false)
+            lavHot.addAnimatorListener(object : Animator.AnimatorListener {
                 override fun onAnimationRepeat(animation: Animator?) {
                 }
 
@@ -133,14 +116,38 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             })
             lavHot.playAnimation()
         }
-        PreferenceProvider.setHotFactor(true)
+    }
+
+    private fun setHotStateOff() {
+        lavHot.setMinAndMaxFrame(startFrame, mediumFrame)
+        lavHot.frame = startFrame
+        cvHot.setOnClickListener {
+            vm.changeHotFactor(true)
+            lavHot.addAnimatorListener(object : Animator.AnimatorListener {
+                override fun onAnimationRepeat(animation: Animator?) {
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    lavHot.removeAllAnimatorListeners()
+                    setHotStateOn()
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                }
+
+                override fun onAnimationStart(animation: Animator?) {
+                }
+            })
+            lavHot.playAnimation()
+        }
     }
 
     private fun setTrainingStateOn() {
         lavTraining.setMinAndMaxFrame(mediumFrame, endFrame)
         lavTraining.frame = mediumFrame
         cvTraining.setOnClickListener {
-            lavTraining.addAnimatorListener(object : Animator.AnimatorListener{
+            vm.changeTrainingFactor(false)
+            lavTraining.addAnimatorListener(object : Animator.AnimatorListener {
                 override fun onAnimationRepeat(animation: Animator?) {
                 }
 
@@ -157,14 +164,14 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             })
             lavTraining.playAnimation()
         }
-        PreferenceProvider.setTrainingFactor(true)
     }
 
     private fun setTrainingStateOff() {
         lavTraining.setMinAndMaxFrame(startFrame, mediumFrame)
         lavTraining.frame = startFrame
         cvTraining.setOnClickListener {
-            lavTraining.addAnimatorListener(object : Animator.AnimatorListener{
+            vm.changeTrainingFactor(true)
+            lavTraining.addAnimatorListener(object : Animator.AnimatorListener {
                 override fun onAnimationRepeat(animation: Animator?) {
                 }
 
@@ -181,15 +188,54 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             })
             lavTraining.playAnimation()
         }
-        PreferenceProvider.setTrainingFactor(false)
     }
 
     override fun onResume() {
         super.onResume()
-        vm.getLD().observe(this,
+        vm.getQuickLD().observe(this,
                 Observer {
                     fillQuick(it)
                 })
+        vm.getDailyRate().observe(this,
+                Observer {
+                    if (isNeedAnimateDailyRate) {
+                        changeDailyRate(it)
+                    } else {
+                        setFirstWaterPair(it)
+                        isNeedAnimateDailyRate = true
+                    }
+                })
+    }
+
+    private fun changeDailyRate(it: Pair<Int, Int>) {
+        var oldValue = tvCapacityDay.text.toString().split("/")[1].toInt()
+        var capacity = tvCapacityDay.text.toString().split("/")[0].toInt()
+        var animator = ValueAnimator.ofInt(oldValue, it.second)
+        animator.addUpdateListener {
+            tvCapacityDay.text = "$capacity/${it.animatedValue}"
+        }
+        animator.start()
+    }
+
+    private fun setFirstWaterPair(waterPair: Pair<Int, Int>) {
+        tvCapacityDay.text = "${waterPair.first}/${waterPair.second}"
+
+
+        /*var animator = ValueAnimator.ofInt(0, 100)
+        animator.duration = 2_000
+        animator.addUpdateListener {
+            tvPercent.text = "${it.animatedValue} %"
+        }
+
+
+        var animatorValue = ValueAnimator.ofInt(0, 1200)
+        animatorValue.duration = 2_000
+        animatorValue.addUpdateListener {
+            tvCapacityDay.text = "${it.animatedValue}/2000"
+        }
+
+        animator.start()
+        animatorValue.start()*/
     }
 
 
