@@ -201,41 +201,19 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                     if (isNeedAnimateDailyRate) {
                         changeDailyRate(it)
                     } else {
-                        setFirstWaterPair(it)
+                        tvRate.text = "$it"
                         isNeedAnimateDailyRate = true
                     }
                 })
     }
 
-    private fun changeDailyRate(it: Pair<Int, Int>) {
-        var oldValue = tvCapacityDay.text.toString().split("/")[1].toInt()
-        var capacity = tvCapacityDay.text.toString().split("/")[0].toInt()
-        var animator = ValueAnimator.ofInt(oldValue, it.second)
+    private fun changeDailyRate(it: Int) {
+        var oldValue = tvRate.text.toString().toInt()
+        var animator = ValueAnimator.ofInt(oldValue, it)
         animator.addUpdateListener {
-            tvCapacityDay.text = "$capacity/${it.animatedValue}"
+            tvRate.text = "${it.animatedValue}"
         }
         animator.start()
-    }
-
-    private fun setFirstWaterPair(waterPair: Pair<Int, Int>) {
-        tvCapacityDay.text = "${waterPair.first}/${waterPair.second}"
-
-
-        /*var animator = ValueAnimator.ofInt(0, 100)
-        animator.duration = 2_000
-        animator.addUpdateListener {
-            tvPercent.text = "${it.animatedValue} %"
-        }
-
-
-        var animatorValue = ValueAnimator.ofInt(0, 1200)
-        animatorValue.duration = 2_000
-        animatorValue.addUpdateListener {
-            tvCapacityDay.text = "${it.animatedValue}/2000"
-        }
-
-        animator.start()
-        animatorValue.start()*/
     }
 
 

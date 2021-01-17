@@ -12,7 +12,7 @@ import com.jundev.weightloss.utils.PreferenceProvider
 class WaterVM(application: Application) : AndroidViewModel(application) {
 
     private var quickWaterData: MutableLiveData<QuickWaterList>? = null
-    private var dailyRate: MutableLiveData<Pair<Int, Int>>? = null  // current capacity and daily rate
+    private var dailyRate: MutableLiveData<Int>? = null  // current capacity and daily rate
 
     private val FEMALE_FACTOR = 31
     private val MALE_FACTOR = 35
@@ -81,7 +81,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         return quickWaterData!!
     }
 
-    fun getDailyRate() : MutableLiveData<Pair<Int, Int>>{
+    fun getDailyRate() : MutableLiveData<Int>{
         if (dailyRate == null) {
             dailyRate = MutableLiveData()
             countWaterRateDefault()
@@ -129,6 +129,6 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         }
 
         waterRate += trainingDiff + hotDiff
-        dailyRate!!.value = Pair(0, waterRate)
+        dailyRate!!.value = waterRate
     }
 }
