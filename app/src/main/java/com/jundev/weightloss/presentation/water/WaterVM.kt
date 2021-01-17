@@ -13,7 +13,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
 
     private var quickWaterData: MutableLiveData<QuickWaterList>? = null
 
-    fun reloadQuickLD() {
+    private fun reloadQuickLD() {
         if (PreferenceProvider.getQuickData(0) == -1) {
             PreferenceProvider.setQuickData(0, 0)
             PreferenceProvider.setCapacityIndex(1, 0)
@@ -72,5 +72,11 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
             reloadQuickLD()
         }
         return quickWaterData!!
+    }
+
+    fun saveNewQuickItem(selectedCapacity : Int, selectedDrinkType : Int, numberQuickItem : Int){
+        PreferenceProvider.setQuickData(selectedDrinkType, numberQuickItem)
+        PreferenceProvider.setCapacityIndex(selectedCapacity, numberQuickItem)
+        reloadQuickLD()
     }
 }

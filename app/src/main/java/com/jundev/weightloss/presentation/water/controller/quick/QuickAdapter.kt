@@ -10,11 +10,6 @@ import com.jundev.weightloss.utils.PreferenceProvider
 
 class QuickAdapter(val iQuick: IQuick, var waterList: QuickWaterList) : RecyclerView.Adapter<QuickVH>() {
 
-    var imgsIndexes = arrayListOf<Int>()
-    var titles = arrayListOf<String>()
-    var capacities = arrayListOf<String>()
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuickVH {
         val inflater = LayoutInflater.from(parent.context)
         return QuickVH(inflater, parent, iQuick)
@@ -28,8 +23,8 @@ class QuickAdapter(val iQuick: IQuick, var waterList: QuickWaterList) : Recycler
         holder.bind(waterList.list[position].imgId, waterList.list[position].name, waterList.list[position].capacity)
     }
 
-    fun setNewData(waterList: QuickWaterList){
+    fun setNewData(waterList: QuickWaterList, numberItem : Int){
         this.waterList = waterList
-        notifyDataSetChanged()
+        notifyItemChanged(numberItem)
     }
 }

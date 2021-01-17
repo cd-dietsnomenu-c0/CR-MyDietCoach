@@ -28,11 +28,13 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     var bsWaterSettings: BottomSheetBehavior<LinearLayout>? = null
     var bsBeginMeas: BottomSheetBehavior<LinearLayout>? = null
+
     var drinkTypeAdapter: DrinkAdapter? = null
     var capacityAdapter: CapacityAdapter? = null
     var quickAdapter: QuickAdapter? = null
+
     var progress = 0.0f
-    var listValues: Array<String>? = null
+    var lastChangeQuickItem = -1
 
     var sexType = PreferenceProvider.SEX_TYPE_FEMALE
 
@@ -40,15 +42,15 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bsWaterSettings = BottomSheetBehavior.from(llBSWatersettings)
+
         rvQuickDrink.layoutManager = GridLayoutManager(activity, 2)
+        rvDrinks.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        rvCapacities.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
         vm = ViewModelProviders.of(this).get(WaterVM::class.java)
 
-        fillReadyUI()
-        lavTraining.frame = 17
-
-        cvTraining.setOnClickListener {
-            lavTraining.playAnimation()
-        }
+        fillWaterSettingsBS()
 
         if (PreferenceProvider.getWeight() == PreferenceProvider.EMPTY) {
             showBeginMeasBS()
@@ -74,9 +76,6 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 })
     }
 
-    private fun fillReadyUI() {
-        fillBS()
-    }
 
     private fun showBeginMeasBS() {
         ivDimBackground.visibility = View.VISIBLE
@@ -132,7 +131,6 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                     PreferenceProvider.setSex(sexType)
                     bsBeginMeas!!.state = BottomSheetBehavior.STATE_COLLAPSED
                     FillMeasToast.show(activity!!)
-                    fillTrackerUI()
                 } else {
                     Toast.makeText(activity, getString(R.string.input_error_not_in_limit), Toast.LENGTH_LONG).show()
                 }
@@ -142,13 +140,8 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         }
     }
 
-    private fun fillTrackerUI() {
-
-    }
-
-
     private fun fillQuick(it: QuickWaterList) {
-        if (quickAdapter == null){
+        if (quickAdapter == null) {
             quickAdapter = QuickAdapter(object : IQuick {
                 override fun onAdd(position: Int) {
 
@@ -156,17 +149,17 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
                 override fun onSettings(position: Int) {
                     ivDimBackground.visibility = View.VISIBLE
-                    prepareBS(position, PreferenceProvider.getQuickData(position)!!, PreferenceProvider.getCapacityIndex(position)!!)
+                    prepareWaterSettingsBS(position, PreferenceProvider.getQuickData(position)!!, PreferenceProvider.getCapacityIndex(position)!!)
                     bsWaterSettings!!.state = BottomSheetBehavior.STATE_EXPANDED
                 }
             }, it)
             rvQuickDrink.adapter = quickAdapter
-        }else{
-            quickAdapter!!.setNewData(it)
+        } else {
+            quickAdapter!!.setNewData(it, lastChangeQuickItem)
         }
     }
 
-    private fun prepareBS(position: Int, quickData: Int, capacityIndex: Int) {
+    private fun prepareWaterSettingsBS(position: Int, quickData: Int, capacityIndex: Int) {
         drinkTypeAdapter!!.selectNew(quickData)
         capacityAdapter!!.selectNew(capacityIndex)
         rvDrinks.scrollToPosition(quickData)
@@ -174,17 +167,15 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
         btnSaveQuick.setOnClickListener(null)
         btnSaveQuick.setOnClickListener {
-            PreferenceProvider.setQuickData(drinkTypeAdapter!!.getSelectedNumber(), position)
-            PreferenceProvider.setCapacityIndex(capacityAdapter!!.getSelectedNumber(), position)
-            vm.reloadQuickLD()
+            lastChangeQuickItem = position
             bsWaterSettings!!.state = BottomSheetBehavior.STATE_COLLAPSED
+            vm.saveNewQuickItem(capacityAdapter!!.getSelectedNumber(), drinkTypeAdapter!!.getSelectedNumber(), position)
         }
     }
 
 
-    private fun fillBS() {
-        bsWaterSettings = BottomSheetBehavior.from(llBSWatersettings)
-        rvDrinks.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+    private fun fillWaterSettingsBS() {
+
         drinkTypeAdapter = DrinkAdapter(resources.getStringArray(R.array.water_drinks_names), 1, object : IDrinkAdapter {
             override fun select(newSelect: Int, oldSelect: Int) {
                 drinkTypeAdapter!!.unSelect(oldSelect)
@@ -192,7 +183,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         })
         rvDrinks.adapter = drinkTypeAdapter
 
-        rvCapacities.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
         capacityAdapter = CapacityAdapter(resources.getStringArray(R.array.drink_capacity_values),
                 convertImgsIds(resources.getIntArray(R.array.drink_capacity_icons)), object : ICapacityAdapter {
             override fun select(newSelect: Int, oldSelect: Int) {
