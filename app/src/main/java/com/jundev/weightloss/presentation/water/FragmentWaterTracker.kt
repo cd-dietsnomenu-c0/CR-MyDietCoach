@@ -1,5 +1,6 @@
 package com.jundev.weightloss.presentation.water
 
+import android.animation.Animator
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -40,6 +41,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     lateinit var vm: WaterVM
 
+     var mediumFrame = 24
+     var startFrame = 0
+     var endFrame = 60
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bsWaterSettings = BottomSheetBehavior.from(llBSWatersettings)
@@ -51,6 +56,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         vm = ViewModelProviders.of(this).get(WaterVM::class.java)
 
         fillWaterSettingsBS()
+        setExtraViews()
 
         if (PreferenceProvider.getWeight() == PreferenceProvider.EMPTY) {
             showBeginMeasBS()
@@ -66,6 +72,116 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 }
             }
         })
+    }
+
+    private fun setExtraViews() {
+        if (PreferenceProvider.getTrainingFactor()!!){
+            setTrainingStateOn()
+        }else{
+            setTrainingStateOff()
+        }
+
+        if (PreferenceProvider.getHotFactor()!!){
+            setHotStateOn()
+        }else{
+            setHotStateOff()
+        }
+    }
+
+    private fun setHotStateOff() {
+        lavHot.setMinAndMaxFrame(mediumFrame, endFrame)
+        lavHot.frame = mediumFrame
+        cvHot.setOnClickListener {
+            lavHot.addAnimatorListener(object : Animator.AnimatorListener{
+                override fun onAnimationRepeat(animation: Animator?) {
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    lavHot.removeAllAnimatorListeners()
+                    setHotStateOn()
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                }
+
+                override fun onAnimationStart(animation: Animator?) {
+                }
+            })
+            lavHot.playAnimation()
+        }
+        PreferenceProvider.setHotFactor(false)
+    }
+
+    private fun setHotStateOn() {
+        lavHot.setMinAndMaxFrame(startFrame, mediumFrame)
+        lavHot.frame = startFrame
+        cvHot.setOnClickListener {
+            lavHot.addAnimatorListener(object : Animator.AnimatorListener{
+                override fun onAnimationRepeat(animation: Animator?) {
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    lavHot.removeAllAnimatorListeners()
+                    setHotStateOff()
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                }
+
+                override fun onAnimationStart(animation: Animator?) {
+                }
+            })
+            lavHot.playAnimation()
+        }
+        PreferenceProvider.setHotFactor(true)
+    }
+
+    private fun setTrainingStateOn() {
+        lavTraining.setMinAndMaxFrame(mediumFrame, endFrame)
+        lavTraining.frame = mediumFrame
+        cvTraining.setOnClickListener {
+            lavTraining.addAnimatorListener(object : Animator.AnimatorListener{
+                override fun onAnimationRepeat(animation: Animator?) {
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    lavTraining.removeAllAnimatorListeners()
+                    setTrainingStateOff()
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                }
+
+                override fun onAnimationStart(animation: Animator?) {
+                }
+            })
+            lavTraining.playAnimation()
+        }
+        PreferenceProvider.setTrainingFactor(true)
+    }
+
+    private fun setTrainingStateOff() {
+        lavTraining.setMinAndMaxFrame(startFrame, mediumFrame)
+        lavTraining.frame = startFrame
+        cvTraining.setOnClickListener {
+            lavTraining.addAnimatorListener(object : Animator.AnimatorListener{
+                override fun onAnimationRepeat(animation: Animator?) {
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    lavTraining.removeAllAnimatorListeners()
+                    setTrainingStateOn()
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                }
+
+                override fun onAnimationStart(animation: Animator?) {
+                }
+            })
+            lavTraining.playAnimation()
+        }
+        PreferenceProvider.setTrainingFactor(false)
     }
 
     override fun onResume() {

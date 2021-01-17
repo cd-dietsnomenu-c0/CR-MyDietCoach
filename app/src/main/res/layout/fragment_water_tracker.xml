@@ -207,18 +207,18 @@
                                 </LinearLayout>
 
                                 <com.airbnb.lottie.LottieAnimationView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_gravity="bottom|end"
-                                    android:layout_marginEnd="4dp"
-                                    android:layout_marginBottom="4dp"
                                     android:id="@+id/lavTraining"
                                     app:lottie_fileName="complete_water.json"
+                                    app:lottie_speed="2"
                                     />
 
                             </androidx.cardview.widget.CardView>
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cvHot"
                                 android:layout_width="90dp"
                                 android:layout_height="80dp"
                                 android:layout_gravity="center_horizontal"
@@ -252,6 +252,15 @@
                                         android:layout_marginTop="4dp"/>
 
                                 </LinearLayout>
+
+                                <com.airbnb.lottie.LottieAnimationView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="bottom|end"
+                                    android:id="@+id/lavHot"
+                                    app:lottie_speed="2"
+                                    app:lottie_fileName="complete_water.json"
+                                    />
 
                             </androidx.cardview.widget.CardView>
 

@@ -30,6 +30,9 @@ object PreferenceProvider {
     private const val WEIGHT = "WEIGHT"
     const val EMPTY = -1
 
+    const val TRAINING_TAG = "TRAINING_TAG"
+    const val HOT_TAG = "HOT_TAG"
+
 
     private fun getInstance(): SharedPreferences? {
         val sp = App.getInstance().getSharedPreferences(
@@ -91,5 +94,11 @@ object PreferenceProvider {
 
     fun setSex(type: Int) = editor { it?.putInt(SEX_TYPE, type) }
     fun getSex() = getInstance()?.getInt(SEX_TYPE, EMPTY)
+
+    fun setTrainingFactor(isTurnOn: Boolean) = editor { it?.putBoolean(TRAINING_TAG, isTurnOn) }
+    fun getTrainingFactor() = getInstance()?.getBoolean(TRAINING_TAG, true)
+
+    fun setHotFactor(isTurnOn: Boolean) = editor { it?.putBoolean(HOT_TAG, isTurnOn) }
+    fun getHotFactor() = getInstance()?.getBoolean(HOT_TAG, true)
 
 }
