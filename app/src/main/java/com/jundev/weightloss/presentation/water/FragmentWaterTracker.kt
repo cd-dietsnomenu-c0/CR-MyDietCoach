@@ -245,6 +245,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     private fun setPercent() {
         var percentValue = (tvCapacity.text.toString().toFloat() / tvRate.text.toString().toFloat() * 100f).roundToInt()
         tvPercent.text = "$percentValue%"
+        wvProgress.progress = percentValue.toFloat() / 100
     }
 
     private fun changePercentAnim(capacity : Int, dailyRate : Int) {
@@ -260,6 +261,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             tvPercent.text = "${it.animatedValue}%"
         }
         animator.start()
+        wvProgress.progress = newValue.toFloat() / 100
     }
 
 
