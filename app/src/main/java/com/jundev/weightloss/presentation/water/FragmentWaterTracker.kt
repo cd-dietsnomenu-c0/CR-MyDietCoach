@@ -220,10 +220,24 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         })
     }
 
+    private fun setNegativeValueColor(){
+        tvPercent.setTextColor(resources.getColor(R.color.water_negative))
+        tvDivider.setTextColor(resources.getColor(R.color.water_negative))
+        tvRate.setTextColor(resources.getColor(R.color.water_negative))
+        tvCapacity.setTextColor(resources.getColor(R.color.water_negative))
+    }
+
+    private fun setPositiveValueColor(){
+        tvPercent.setTextColor(resources.getColor(R.color.water_positive))
+        tvDivider.setTextColor(resources.getColor(R.color.water_positive))
+        tvRate.setTextColor(resources.getColor(R.color.water_positive))
+        tvCapacity.setTextColor(resources.getColor(R.color.water_positive))
+    }
+
     private fun changeCurrentCapacity(it: Int) {
         var oldValue = tvCapacity.text.toString().toInt()
         var animator = ValueAnimator.ofInt(oldValue, it)
-        changePercentAnim(it, tvRate.text.toString().toInt())
+        changePercentAnim(it, tvRate.text.toString().toInt(), true)
         animator.addUpdateListener {
             tvCapacity.text = "${it.animatedValue}"
         }
@@ -234,7 +248,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     private fun changeDailyRate(it: Int) {
         var oldValue = tvRate.text.toString().toInt()
         var animator = ValueAnimator.ofInt(oldValue, it)
-        changePercentAnim(tvCapacity.text.toString().toInt(), it)
+        changePercentAnim(tvCapacity.text.toString().toInt(), it, false)
         animator.addUpdateListener {
             tvRate.text = "${it.animatedValue}"
         }
@@ -246,9 +260,14 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         var percentValue = (tvCapacity.text.toString().toFloat() / tvRate.text.toString().toFloat() * 100f).roundToInt()
         tvPercent.text = "$percentValue%"
         wvProgress.progress = percentValue.toFloat() / 100
+        if (percentValue < 0){
+            setNegativeValueColor()
+        }else{
+            setPositiveValueColor()
+        }
     }
 
-    private fun changePercentAnim(capacity : Int, dailyRate : Int) {
+    private fun changePercentAnim(capacity : Int, dailyRate : Int, isNeedAnimateBubbles : Boolean) {
         var oldValue = tvPercent.text.toString().split("%")[0].toInt()
         var newValue = (capacity.toFloat() / dailyRate.toFloat() * 100f).roundToInt()
 
@@ -260,8 +279,37 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         animator.addUpdateListener {
             tvPercent.text = "${it.animatedValue}%"
         }
+
+        if (newValue < 0){
+            setNegativeValueColor()
+        }else{
+            setPositiveValueColor()
+        }
+
         animator.start()
         wvProgress.progress = newValue.toFloat() / 100
+        if (isNeedAnimateBubbles){
+            playBubblesAnim()
+        }
+    }
+
+    private fun playBubblesAnim() {
+        lavBubbles.addAnimatorListener(object : Animator.AnimatorListener{
+            override fun onAnimationRepeat(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                lavBubbles.removeAllAnimatorListeners()
+                lavBubbles.frame = 0
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+        })
+        lavBubbles.playAnimation()
     }
 
 

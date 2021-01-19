@@ -106,12 +106,13 @@
                                     android:scaleY="-1"
                                     app:mwhWaveHeight="10dp" />
 
+
                                 <com.airbnb.lottie.LottieAnimationView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    app:lottie_fileName="bubble.json"
-                                    app:lottie_loop="true"
-                                    app:lottie_speed="0.5" />
+                                    android:layout_gravity="center"
+                                    android:id="@+id/lavBubbles"
+                                    app:lottie_fileName="bubble.json"/>
 
                                 <ImageView
                                     android:layout_width="match_parent"
@@ -140,8 +141,8 @@
                                             android:layout_gravity="center_horizontal"
                                             android:layout_marginTop="12dp"
                                             android:fontFamily="@font/roboto_bold"
-                                            android:text="90%"
-                                            android:textColor="#397EF3"
+                                            android:text="0%"
+                                            android:textColor="@color/water_positive"
                                             android:textSize="24sp" />
 
                                         <LinearLayout
@@ -155,16 +156,17 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:fontFamily="@font/roboto_medium"
-                                                android:text="1200"
-                                                android:textColor="#397EF3"
+                                                android:text="0"
+                                                android:textColor="@color/water_positive"
                                                 android:textSize="16sp" />
 
                                             <TextView
+                                                android:id="@+id/tvDivider"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:fontFamily="@font/roboto_medium"
                                                 android:text="/"
-                                                android:textColor="#397EF3"
+                                                android:textColor="@color/water_positive"
                                                 android:textSize="16sp" />
 
                                             <TextView
@@ -172,8 +174,8 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:fontFamily="@font/roboto_medium"
-                                                android:text="1200"
-                                                android:textColor="#397EF3"
+                                                android:text="0"
+                                                android:textColor="@color/water_positive"
                                                 android:textSize="16sp" />
 
 
