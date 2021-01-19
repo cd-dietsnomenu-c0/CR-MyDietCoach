@@ -12,7 +12,8 @@ import com.jundev.weightloss.utils.PreferenceProvider
 class WaterVM(application: Application) : AndroidViewModel(application) {
 
     private var quickWaterData: MutableLiveData<QuickWaterList>? = null
-    private var dailyRate: MutableLiveData<Int>? = null  // current capacity and daily rate
+    private var dailyRate: MutableLiveData<Int>? = null  // current daily rate
+    private var currentCapacity: MutableLiveData<Int>? = null  // current capacity
 
     private val FEMALE_FACTOR = 31
     private val MALE_FACTOR = 35
@@ -88,6 +89,16 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         }
         return dailyRate!!
     }
+
+    fun getCurrentCapacity() : MutableLiveData<Int>{
+        if (currentCapacity == null) {
+            currentCapacity = MutableLiveData()
+            currentCapacity!!.value = 0
+        }
+        return currentCapacity!!
+    }
+
+
     fun saveNewQuickItem(selectedCapacity: Int, selectedDrinkType: Int, numberQuickItem: Int) {
         PreferenceProvider.setQuickData(selectedDrinkType, numberQuickItem)
         PreferenceProvider.setCapacityIndex(selectedCapacity, numberQuickItem)
@@ -130,5 +141,11 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
 
         waterRate += trainingDiff + hotDiff
         dailyRate!!.value = waterRate
+    }
+
+    fun addWater(position: Int) {
+        var quickDrink = getQuickLD().value!!.list[position]
+        var clearWater = (quickDrink.capacity * quickDrink.drinkFactor).toInt()
+        currentCapacity!!.value = currentCapacity!!.value!! + clearWater
     }
 }

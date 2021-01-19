@@ -3,6 +3,7 @@ package com.jundev.weightloss.presentation.water
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -25,6 +26,7 @@ import com.jundev.weightloss.presentation.water.toasts.FillMeasToast
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
+import kotlin.math.roundToInt
 
 class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
@@ -47,6 +49,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     var endFrame = 60
 
     var isNeedAnimateDailyRate = false
+    var isNeedAnimateCapacity = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -206,26 +209,47 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                         isNeedAnimateDailyRate = true
                     }
                 })
+        vm.getCurrentCapacity().observe(this, Observer {
+            if (isNeedAnimateCapacity) {
+                changeCurrentCapacity(it)
+            } else {
+                tvCapacity.text = "$it"
+                setPercent()
+                isNeedAnimateCapacity = true
+            }
+        })
     }
 
-    private fun setPercent() {
-        var percentValue = (tvCapacity.text.toString().toFloat() / tvRate.text.toString().toFloat() * 100).toInt()
-        tvPercent.text = "$percentValue%"
+    private fun changeCurrentCapacity(it: Int) {
+        var oldValue = tvCapacity.text.toString().toInt()
+        var animator = ValueAnimator.ofInt(oldValue, it)
+        changePercentAnim(it, tvRate.text.toString().toInt())
+        animator.addUpdateListener {
+            tvCapacity.text = "${it.animatedValue}"
+        }
+        animator.start()
     }
+
 
     private fun changeDailyRate(it: Int) {
         var oldValue = tvRate.text.toString().toInt()
         var animator = ValueAnimator.ofInt(oldValue, it)
-        changePercentAnim(it)
+        changePercentAnim(tvCapacity.text.toString().toInt(), it)
         animator.addUpdateListener {
             tvRate.text = "${it.animatedValue}"
         }
         animator.start()
     }
 
-    private fun changePercentAnim(it: Int) {
+
+    private fun setPercent() {
+        var percentValue = (tvCapacity.text.toString().toFloat() / tvRate.text.toString().toFloat() * 100f).roundToInt()
+        tvPercent.text = "$percentValue%"
+    }
+
+    private fun changePercentAnim(capacity : Int, dailyRate : Int) {
         var oldValue = tvPercent.text.toString().split("%")[0].toInt()
-        var newValue = (tvCapacity.text.toString().toFloat() / it.toFloat() * 100).toInt()
+        var newValue = (capacity.toFloat() / dailyRate.toFloat() * 100f).roundToInt()
 
         if (newValue > 100) {
             newValue = 100
@@ -306,7 +330,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         if (quickAdapter == null) {
             quickAdapter = QuickAdapter(object : IQuick {
                 override fun onAdd(position: Int) {
-
+                    vm.addWater(position)
                 }
 
                 override fun onSettings(position: Int) {
@@ -337,7 +361,6 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
 
     private fun fillWaterSettingsBS() {
-
         drinkTypeAdapter = DrinkAdapter(resources.getStringArray(R.array.water_drinks_names), 1, object : IDrinkAdapter {
             override fun select(newSelect: Int, oldSelect: Int) {
                 drinkTypeAdapter!!.unSelect(oldSelect)
