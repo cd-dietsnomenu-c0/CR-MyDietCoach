@@ -3,6 +3,7 @@ package com.jundev.weightloss.common.db.dao
 import androidx.room.*
 import com.jundev.weightloss.common.db.entities.DietPlanEntity
 import com.jundev.weightloss.common.db.entities.FavoriteEntity
+import com.jundev.weightloss.common.db.entities.WaterIntake
 
 @Dao
 interface DietDAO {
@@ -28,4 +29,10 @@ interface DietDAO {
     @Query("delete from FavoriteEntity where id = :index")
     fun deleteFavorite(index : Int)
 
+
+    @Insert
+    fun addWater(intake : WaterIntake)
+
+    @Query("select * from WaterIntake")
+    fun getAllWaterIntakes() : List<WaterIntake>
 }

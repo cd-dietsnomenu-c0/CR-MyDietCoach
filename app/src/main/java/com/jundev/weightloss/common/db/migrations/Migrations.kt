@@ -10,4 +10,10 @@ object Migrations {
             database.execSQL("create table FavoriteEntity (id int (10) NOT NULL, PRIMARY KEY (id));")
         }
     }
+
+    val migration_2_3 = object : Migration(2,3){
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("create table WaterIntake (id int (10) NOT NULL, typeId int (10) NOT NULL, dirtyCapacity int (10) NOT NULL, clearCapacity int (10) NOT NULL, PRIMARY KEY (id));")
+        }
+    }
 }

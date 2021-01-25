@@ -1,13 +1,16 @@
 package com.jundev.weightloss.presentation.water
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.jundev.weightloss.App
 import com.jundev.weightloss.R
+import com.jundev.weightloss.common.db.entities.WaterIntake
 import com.jundev.weightloss.model.water.QuickWater
 import com.jundev.weightloss.model.water.QuickWaterList
 import com.jundev.weightloss.utils.PreferenceProvider
+import java.util.*
 
 class WaterVM(application: Application) : AndroidViewModel(application) {
 
@@ -42,9 +45,19 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         var waterList = QuickWaterList(arrayListOf())
         for (i in 0..3) {
             var index = PreferenceProvider.getQuickData(i)!!
-            waterList.list.add(QuickWater(getQuickName(index), getImgId(index), getDrinkFactor(index), getCapacity(i)))
+            waterList.list.add(QuickWater(getQuickName(index), getImgId(index), getDrinkFactor(index), getCapacity(i), index))
         }
         quickWaterData!!.value = waterList
+        Log.e("LOL", "get list")
+
+        showAllWaters()
+    }
+
+    private fun showAllWaters() {
+        var list = App.getInstance().db.dietDAO().getAllWaterIntakes()
+        for (i in list.indices){
+            Log.e("LOL", list[i].toString())
+        }
     }
 
     private fun getDrinkFactor(index: Int): Float {
@@ -147,5 +160,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         var quickDrink = getQuickLD().value!!.list[position]
         var clearWater = (quickDrink.capacity * quickDrink.drinkFactor).toInt()
         currentCapacity!!.value = currentCapacity!!.value!! + clearWater
+
+        App.getInstance().db.dietDAO().addWater(WaterIntake(Calendar.getInstance().timeInMillis.toInt(), quickDrink.typeId, quickDrink.capacity, clearWater))
     }
 }
