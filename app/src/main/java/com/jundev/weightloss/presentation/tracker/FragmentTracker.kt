@@ -123,26 +123,28 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
 
     private fun bindTracker() {
-        isCompleteAlertShowed = false
-        isDayCompleted = false
-        if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
-            dietState = DBHolder.bindNewDay(getDietDays()!!)
-        }
-        /*if (true) {
+        if(DBHolder.getIfExist().name != DBHolder.NO_DIET_YET) {
+            isCompleteAlertShowed = false
+            isDayCompleted = false
+            if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
+                dietState = DBHolder.bindNewDay(getDietDays()!!)
+            }
+            /*if (true) {
             dietState = DBHolder.bindNewDay(getDietDays()!!)
         }*/
-        if (dietState == DBHolder.DIET_COMPLETED) {
-            showCompletedAlert()
-        } else if (dietState == DBHolder.DIET_LOSE) {
-            showLosedAlert()
+            if (dietState == DBHolder.DIET_COMPLETED) {
+                showCompletedAlert()
+            } else if (dietState == DBHolder.DIET_LOSE) {
+                showLosedAlert()
+            }
+            tvTrackerTitle.text = DBHolder.get().name
+            currentDay = DBHolder.get().currentDay
+            bindLives(DBHolder.get().difficulty, DBHolder.get().missingDays)
+            bindEats(getDietDays()?.get(currentDay))
+            bindMenu()
+            bindDays()
+            bindDayView()
         }
-        tvTrackerTitle.text = DBHolder.get().name
-        currentDay = DBHolder.get().currentDay
-        bindLives(DBHolder.get().difficulty, DBHolder.get().missingDays)
-        bindEats(getDietDays()?.get(currentDay))
-        bindMenu()
-        bindDays()
-        bindDayView()
     }
 
     private fun showLosedAlert() {

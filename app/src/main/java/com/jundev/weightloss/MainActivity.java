@@ -48,17 +48,25 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isNeedShowThank = false;
 
+    private int lastSectionNumber = 0;
+
+    private final int MAIN = 0;
+    private final int CALCULATORS = 1;
+    private final int SETTINGS = 2;
+    private final int EAT_TRACKER = 3;
+    private final int WATER_TRACKER = 4;
+
     private BottomNavigationView.OnNavigationItemSelectedListener bnvListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.bnv_main: {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(0)).commit();
+                    openSection(MAIN);
                     Ampl.Companion.openDiets();
                     return true;
                 }
                 case R.id.bnv_calclators: {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(1)).commit();
+                    openSection(CALCULATORS);
                     Ampl.Companion.openCalculators();
                     return true;
                 }
@@ -67,17 +75,17 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }*/
                 case R.id.bnv_settings: {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(2)).commit();
+                    openSection(SETTINGS);
                     Ampl.Companion.openSettings();
                     return true;
                 }
                 case R.id.bnv_tracker: {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(3)).commit();
-                    Ampl.Companion.openSettings();
+                    openSection(EAT_TRACKER);
+                    Ampl.Companion.openTracker();
                     return true;
                 }
                 case R.id.bnv_water: {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(4)).commit();
+                    openSection(WATER_TRACKER);
                     Ampl.Companion.openCalculators();
                     return true;
                 }
@@ -85,6 +93,12 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    private void openSection(int numberSection) {
+        fragmentManager.beginTransaction().hide(sections.get(lastSectionNumber)).commit();
+        fragmentManager.beginTransaction().show(sections.get(numberSection)).commit();
+        lastSectionNumber = numberSection;
+    }
 
     @Override
     public void onBackPressed() {
@@ -149,26 +163,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void setDietDataTC(Global t) {
         try {
-            setDietData(t);
+            setDietData();
         } catch (Exception ex) {
             finishAffinity();
         }
     }
 
-    private void setDietData(Global global) {
-        FragmentTypes fragmentTypes = new FragmentTypes();
-        if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())) {
-            fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentTypes).commit();
-            getWindow().setStatusBarColor(getResources().getColor(R.color.dark_status_bar));
-        } else {
-            fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new FragmentTracker()).commit();
-            getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
-        }
-        sections.add(fragmentTypes);
+    private void setDietData() {
+        sections.add(new FragmentTypes());
         sections.add(new FragmentCalculators());
         sections.add(new ProfileFragment());
         sections.add(new FragmentTracker());
         sections.add(new FragmentWaterTracker());
+
+        for (int i = 0; i < sections.size(); i++) {
+            fragmentManager.beginTransaction().add(R.id.fragmentContainer, sections.get(i)).hide(sections.get(i)).commit();
+        }
+
+        if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())) {
+            fragmentManager.beginTransaction().show(sections.get(MAIN)).commit();
+            getWindow().setStatusBarColor(getResources().getColor(R.color.dark_status_bar));
+            lastSectionNumber = MAIN;
+        } else {
+            fragmentManager.beginTransaction().show(sections.get(EAT_TRACKER)).commit();
+            getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
+            lastSectionNumber = EAT_TRACKER;
+        }
+
     }
 
     public static boolean hasConnection(final Context context) {
