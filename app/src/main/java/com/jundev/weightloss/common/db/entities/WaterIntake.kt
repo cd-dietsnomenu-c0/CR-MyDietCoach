@@ -4,5 +4,5 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class WaterIntake(@PrimaryKey var id : Int, var typeId : Int, var dirtyCapacity : Int, var clearCapacity : Int) {
+data class WaterIntake(@PrimaryKey var id : Long, var typeId : Int, var dirtyCapacity : Int, var clearCapacity : Int) {
 }

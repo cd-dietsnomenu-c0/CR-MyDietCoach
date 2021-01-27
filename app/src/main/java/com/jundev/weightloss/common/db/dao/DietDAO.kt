@@ -35,4 +35,7 @@ interface DietDAO {
 
     @Query("select * from WaterIntake")
     fun getAllWaterIntakes() : List<WaterIntake>
+
+    @Query("select * from WaterIntake where id >= :min and id <= :max")
+    fun getCurrentWaterIntakes(min : Long, max : Long) : List<WaterIntake>
 }

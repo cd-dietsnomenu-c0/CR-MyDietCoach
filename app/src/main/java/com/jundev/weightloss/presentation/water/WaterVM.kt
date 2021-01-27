@@ -48,16 +48,6 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
             waterList.list.add(QuickWater(getQuickName(index), getImgId(index), getDrinkFactor(index), getCapacity(i), index))
         }
         quickWaterData!!.value = waterList
-        Log.e("LOL", "get list")
-
-        showAllWaters()
-    }
-
-    private fun showAllWaters() {
-        var list = App.getInstance().db.dietDAO().getAllWaterIntakes()
-        for (i in list.indices){
-            Log.e("LOL", list[i].toString())
-        }
     }
 
     private fun getDrinkFactor(index: Int): Float {
@@ -106,9 +96,41 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     fun getCurrentCapacity() : MutableLiveData<Int>{
         if (currentCapacity == null) {
             currentCapacity = MutableLiveData()
-            currentCapacity!!.value = 0
+            calculateCurrentCapacity()
         }
         return currentCapacity!!
+    }
+
+    private fun calculateCurrentCapacity() {
+        var cal = Calendar.getInstance()
+        cal.set(Calendar.HOUR_OF_DAY, 0)
+        cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
+        cal.set(Calendar.MILLISECOND, 0)
+
+        var min = cal.timeInMillis
+
+        cal.set(Calendar.HOUR_OF_DAY, 23)
+        cal.set(Calendar.MINUTE, 59)
+        cal.set(Calendar.SECOND, 59)
+        cal.set(Calendar.MILLISECOND, 59)
+
+        var max = cal.timeInMillis
+
+        var allIntakes = App.getInstance().db.dietDAO().getCurrentWaterIntakes(min, max)
+        if (allIntakes != null){
+            currentCapacity!!.value = calulateCapacity(allIntakes)
+        }else{
+            currentCapacity!!.value = 0
+        }
+    }
+
+    private fun calulateCapacity(allIntakes: List<WaterIntake>): Int {
+        var sum = 0
+        for (i in allIntakes.indices){
+            sum += allIntakes[i].clearCapacity
+        }
+        return sum
     }
 
 
@@ -161,6 +183,10 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         var clearWater = (quickDrink.capacity * quickDrink.drinkFactor).toInt()
         currentCapacity!!.value = currentCapacity!!.value!! + clearWater
 
-        App.getInstance().db.dietDAO().addWater(WaterIntake(Calendar.getInstance().timeInMillis.toInt(), quickDrink.typeId, quickDrink.capacity, clearWater))
+        App
+                .getInstance()
+                .db
+                .dietDAO()
+                .addWater(WaterIntake(Calendar.getInstance().timeInMillis, quickDrink.typeId, quickDrink.capacity, clearWater))
     }
 }
