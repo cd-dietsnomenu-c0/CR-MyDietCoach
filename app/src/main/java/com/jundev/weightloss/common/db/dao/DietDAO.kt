@@ -2,6 +2,7 @@ package com.jundev.weightloss.common.db.dao
 
 import androidx.room.*
 import com.jundev.weightloss.common.db.entities.DietPlanEntity
+import com.jundev.weightloss.common.db.entities.DrinksCapacities
 import com.jundev.weightloss.common.db.entities.FavoriteEntity
 import com.jundev.weightloss.common.db.entities.WaterIntake
 
@@ -29,7 +30,6 @@ interface DietDAO {
     @Query("delete from FavoriteEntity where id = :index")
     fun deleteFavorite(index : Int)
 
-
     @Insert
     fun addWater(intake : WaterIntake)
 
@@ -38,4 +38,13 @@ interface DietDAO {
 
     @Query("select * from WaterIntake where id >= :min and id <= :max")
     fun getCurrentWaterIntakes(min : Long, max : Long) : List<WaterIntake>
+
+    @Query("select * from DrinksCapacities where typeDrink = :typeDrink")
+    fun getChoiceDrink(typeDrink : Int) : List<DrinksCapacities>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertTypeDrink(drinksCapacities: DrinksCapacities)
+
+    @Query("select * from DrinksCapacities where dirtyCapacity = (select max(dirtyCapacity) from DrinksCapacities)")
+    fun getBiggestDrink() : List<DrinksCapacities>
 }

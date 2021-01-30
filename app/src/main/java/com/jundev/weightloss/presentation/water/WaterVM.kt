@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.jundev.weightloss.App
 import com.jundev.weightloss.R
+import com.jundev.weightloss.common.db.entities.DrinksCapacities
 import com.jundev.weightloss.common.db.entities.WaterIntake
 import com.jundev.weightloss.model.water.QuickWater
 import com.jundev.weightloss.model.water.QuickWaterList
@@ -16,8 +17,8 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     private var quickWaterData: MutableLiveData<QuickWaterList>? = null
     private var dailyRate: MutableLiveData<Int>? = null  // current daily rate
     private var currentCapacity: MutableLiveData<Int>? = null  // current capacity
-
     private var globalWaterCapacity: MutableLiveData<Int>? = null
+    private var frequentDrink: MutableLiveData<String>? = null
 
     private val FEMALE_FACTOR = 31
     private val MALE_FACTOR = 35
@@ -110,6 +111,14 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         return globalWaterCapacity!!
     }
 
+    fun getFrequentDrink() : MutableLiveData<String>{
+        if (frequentDrink == null){
+            frequentDrink = MutableLiveData()
+            identifyFrequentDrink()
+        }
+        return frequentDrink!!
+    }
+
 
     private fun calculateCurrentCapacity() {
         var cal = Calendar.getInstance()
@@ -193,13 +202,31 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         var clearWater = (quickDrink.capacity * quickDrink.drinkFactor).toInt()
         currentCapacity!!.value = currentCapacity!!.value!! + clearWater
 
-        /*App
+        App
                 .getInstance()
                 .db
                 .dietDAO()
-                .addWater(WaterIntake(Calendar.getInstance().timeInMillis, quickDrink.typeId, quickDrink.capacity, clearWater))*/
+                .addWater(WaterIntake(Calendar.getInstance().timeInMillis, quickDrink.typeId, quickDrink.capacity, clearWater))
 
         increaseGlobalWater(clearWater)
+
+        var drinksCapacities = App.getInstance().db.dietDAO().getChoiceDrink(quickDrink.typeId)
+        var capacity = 0L
+        if (drinksCapacities?.size > 0){
+            for (i in drinksCapacities.indices){
+                capacity += drinksCapacities[i].dirtyCapacity
+            }
+        }
+        capacity += quickDrink.capacity
+        App.getInstance().db.dietDAO().insertTypeDrink(DrinksCapacities(quickDrink.typeId, capacity))
+        identifyFrequentDrink()
+    }
+
+    private fun identifyFrequentDrink() {
+        var drinkCapacity = App.getInstance().db.dietDAO().getBiggestDrink()
+        if (drinkCapacity?.size > 0){
+            frequentDrink?.value = getApplication<App>().applicationContext.resources.getStringArray(R.array.water_drinks_names)[drinkCapacity[0].typeDrink]
+        }
     }
 
     private fun increaseGlobalWater(clearWater: Int) {

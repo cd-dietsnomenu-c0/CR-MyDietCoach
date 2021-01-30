@@ -53,11 +53,14 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     var isNeedAnimateCapacity = false
     var isLockAdding = false
 
+    val Y_TRANSLITION_ANIM = -66f
+    val Y_TRANSLITION_SHOWCASE_HIDE = 385f
+    val Y_TRANSLITION_SHOWCASE_SHOW = 165f
+    val END_FRAME_DONE = 60
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bsWaterSettings = BottomSheetBehavior.from(llBSWatersettings)
-
-        Log.e("LOL", "${cvWaterShowcase.translationY} лулул")
 
         rvQuickDrink.layoutManager = GridLayoutManager(activity, 2)
         rvDrinks.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -84,6 +87,44 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         })
 
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        vm.getQuickLD().observe(this,
+                Observer {
+                    fillQuick(it)
+                })
+
+        vm.getDailyRate().observe(this,
+                Observer {
+                    if (isNeedAnimateDailyRate) {
+                        changeDailyRate(it)
+                    } else {
+                        tvRate.text = "$it"
+                        isNeedAnimateDailyRate = true
+                    }
+                })
+
+        vm.getCurrentCapacity().observe(this, Observer {
+            if (isNeedAnimateCapacity) {
+                changeCurrentCapacity(it)
+            } else {
+                tvCapacity.text = "$it"
+                setPercent()
+                isNeedAnimateCapacity = true
+            }
+        })
+
+        vm.getGlobalWaterCapacity().observe(this, Observer {
+            changeGlobalCapacity(it)
+        })
+
+        vm.getFrequentDrink().observe(this, Observer {
+            tvFrequentDrink.text = it
+        })
+    }
+
 
 
     private fun setExtraViews() {
@@ -196,35 +237,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        vm.getQuickLD().observe(this,
-                Observer {
-                    fillQuick(it)
-                })
-        vm.getDailyRate().observe(this,
-                Observer {
-                    if (isNeedAnimateDailyRate) {
-                        changeDailyRate(it)
-                    } else {
-                        tvRate.text = "$it"
-                        setPercent()
-                        isNeedAnimateDailyRate = true
-                    }
-                })
-        vm.getCurrentCapacity().observe(this, Observer {
-            if (isNeedAnimateCapacity) {
-                changeCurrentCapacity(it)
-            } else {
-                tvCapacity.text = "$it"
-                setPercent()
-                isNeedAnimateCapacity = true
-            }
-        })
-        vm.getGlobalWaterCapacity().observe(this, Observer {
-            changeGlobalCapacity(it)
-        })
-    }
+
 
     private fun changeGlobalCapacity(it: Int) {
         if (tvGlobalWater.text == ""){
@@ -277,12 +290,25 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     private fun setPercent() {
         var percentValue = (tvCapacity.text.toString().toFloat() / tvRate.text.toString().toFloat() * 100f).roundToInt()
+
+        if (percentValue > 100){
+            percentValue = 100
+        }
+
         tvPercent.text = "$percentValue%"
-        wvProgress.progress = percentValue.toFloat() / 100
+        wvProgress.progress = percentValue.toFloat() / 100f
         if (percentValue < 0) {
             setNegativeValueColor()
         } else {
             setPositiveValueColor()
+        }
+
+        if (percentValue == 100){
+            isLockAdding = true
+            lavDone.frame = END_FRAME_DONE
+            lavDone.translationY = Y_TRANSLITION_ANIM
+            tvDone.alpha = 1f
+            cvWaterShowcase.translationY = Y_TRANSLITION_SHOWCASE_HIDE
         }
     }
 
@@ -322,7 +348,8 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     private fun unlockAdding() {
         if (isLockAdding){
-            var moveToTop = ValueAnimator.ofFloat(cvWaterShowcase.translationY, 165f)
+
+            var moveToTop = ValueAnimator.ofFloat(cvWaterShowcase.translationY, Y_TRANSLITION_SHOWCASE_SHOW)
             moveToTop.addUpdateListener {
                 cvWaterShowcase.translationY = it.animatedValue.toString().toFloat()
             }
@@ -346,10 +373,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     private fun lockAdding() {
         if (!isLockAdding){
-            var animator = ValueAnimator.ofFloat(cvWaterShowcase.translationY, 385f)
+            var animator = ValueAnimator.ofFloat(cvWaterShowcase.translationY, Y_TRANSLITION_SHOWCASE_HIDE)
             animator.addUpdateListener {
                 cvWaterShowcase.translationY = it.animatedValue.toString().toFloat()
-                if (it.animatedValue.toString().toFloat() == 385f){
+                if (it.animatedValue.toString().toFloat() == Y_TRANSLITION_SHOWCASE_HIDE){
                     lavDone.playAnimation()
                 }
             }
@@ -360,10 +387,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 tvDone.alpha = it.animatedValue.toString().toFloat()
             }
 
-            var moveToTopAnimator = ValueAnimator.ofFloat(lavDone.translationY, -66f)
+            var moveToTopAnimator = ValueAnimator.ofFloat(lavDone.translationY, Y_TRANSLITION_ANIM)
             moveToTopAnimator.addUpdateListener {
                 lavDone.translationY = it.animatedValue.toString().toFloat()
-                if (it.animatedValue.toString().toFloat() == -66f){
+                if (it.animatedValue.toString().toFloat() == Y_TRANSLITION_ANIM){
                     alphaShow.start()
                 }
             }
