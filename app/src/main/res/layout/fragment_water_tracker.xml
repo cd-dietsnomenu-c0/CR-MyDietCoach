@@ -114,12 +114,34 @@
                                     android:id="@+id/lavBubbles"
                                     app:lottie_fileName="bubble.json"/>
 
+                                <com.airbnb.lottie.LottieAnimationView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    app:lottie_fileName="water_done.json"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/lavDone" />
+
+                                <TextView
+                                    android:id="@+id/tvDone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="24dp"
+                                    android:text="Норма на сегодня выполнена!\n Вы молодец 🏆"
+                                    android:textColor="@color/white"
+                                    android:gravity="center"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:alpha="0"/>
+
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/shape_border_water_main_control" />
 
                                 <androidx.cardview.widget.CardView
+                                    android:id="@+id/cvWaterShowcase"
                                     android:layout_width="140dp"
                                     android:layout_height="140dp"
                                     android:layout_gravity="bottom|center_horizontal"
@@ -359,6 +381,7 @@
 
 
                         <TextView
+                            android:id="@+id/tvGlobalWater"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -366,7 +389,6 @@
                             android:layout_marginStart="36dp"
                             android:drawableTop="@drawable/ic_all_water"
                             android:fontFamily="@font/roboto_medium"
-                            android:text="110 л"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 

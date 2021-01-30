@@ -1,7 +1,6 @@
 package com.jundev.weightloss.presentation.water
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.jundev.weightloss.App
@@ -17,6 +16,8 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     private var quickWaterData: MutableLiveData<QuickWaterList>? = null
     private var dailyRate: MutableLiveData<Int>? = null  // current daily rate
     private var currentCapacity: MutableLiveData<Int>? = null  // current capacity
+
+    private var globalWaterCapacity: MutableLiveData<Int>? = null
 
     private val FEMALE_FACTOR = 31
     private val MALE_FACTOR = 35
@@ -85,7 +86,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         return quickWaterData!!
     }
 
-    fun getDailyRate() : MutableLiveData<Int>{
+    fun getDailyRate(): MutableLiveData<Int> {
         if (dailyRate == null) {
             dailyRate = MutableLiveData()
             countWaterRateDefault()
@@ -93,13 +94,22 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         return dailyRate!!
     }
 
-    fun getCurrentCapacity() : MutableLiveData<Int>{
+    fun getCurrentCapacity(): MutableLiveData<Int> {
         if (currentCapacity == null) {
             currentCapacity = MutableLiveData()
             calculateCurrentCapacity()
         }
         return currentCapacity!!
     }
+
+    fun getGlobalWaterCapacity(): MutableLiveData<Int> {
+        if (globalWaterCapacity == null) {
+            globalWaterCapacity = MutableLiveData()
+            calculateGlobalCapacity()
+        }
+        return globalWaterCapacity!!
+    }
+
 
     private fun calculateCurrentCapacity() {
         var cal = Calendar.getInstance()
@@ -118,16 +128,16 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         var max = cal.timeInMillis
 
         var allIntakes = App.getInstance().db.dietDAO().getCurrentWaterIntakes(min, max)
-        if (allIntakes != null){
+        if (allIntakes != null) {
             currentCapacity!!.value = calulateCapacity(allIntakes)
-        }else{
+        } else {
             currentCapacity!!.value = 0
         }
     }
 
     private fun calulateCapacity(allIntakes: List<WaterIntake>): Int {
         var sum = 0
-        for (i in allIntakes.indices){
+        for (i in allIntakes.indices) {
             sum += allIntakes[i].clearCapacity
         }
         return sum
@@ -140,7 +150,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         reloadQuickLD()
     }
 
-    fun changeHotFactor(isHotOn: Boolean){
+    fun changeHotFactor(isHotOn: Boolean) {
         PreferenceProvider.setHotFactor(isHotOn)
         countWaterRateDefault()
     }
@@ -150,15 +160,15 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
                 PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!)
     }
 
-    fun changeTrainingFactor(isTrainingOn: Boolean){
+    fun changeTrainingFactor(isTrainingOn: Boolean) {
         PreferenceProvider.setTrainingFactor(isTrainingOn)
         countWaterRateDefault()
     }
 
-    private fun countWaterRate(gender: Int, isTrainingOn : Boolean, isHotOn : Boolean, weight : Int){
-        var factor = if (gender == PreferenceProvider.SEX_TYPE_FEMALE){
+    private fun countWaterRate(gender: Int, isTrainingOn: Boolean, isHotOn: Boolean, weight: Int) {
+        var factor = if (gender == PreferenceProvider.SEX_TYPE_FEMALE) {
             FEMALE_FACTOR
-        }else{
+        } else {
             MALE_FACTOR
         }
 
@@ -166,11 +176,11 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         var trainingDiff = 0
         var hotDiff = 0
 
-        if (isHotOn){
+        if (isHotOn) {
             hotDiff = (waterRate * HOT_FACTOR).toInt()
         }
 
-        if (isTrainingOn){
+        if (isTrainingOn) {
             trainingDiff = (waterRate * TRAINING_FACTOR).toInt()
         }
 
@@ -183,10 +193,26 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         var clearWater = (quickDrink.capacity * quickDrink.drinkFactor).toInt()
         currentCapacity!!.value = currentCapacity!!.value!! + clearWater
 
-        App
+        /*App
                 .getInstance()
                 .db
                 .dietDAO()
-                .addWater(WaterIntake(Calendar.getInstance().timeInMillis, quickDrink.typeId, quickDrink.capacity, clearWater))
+                .addWater(WaterIntake(Calendar.getInstance().timeInMillis, quickDrink.typeId, quickDrink.capacity, clearWater))*/
+
+        increaseGlobalWater(clearWater)
     }
+
+    private fun increaseGlobalWater(clearWater: Int) {
+        var capacity = PreferenceProvider.getGlobalWaterCount()!!
+        capacity += clearWater
+        PreferenceProvider.setGlobalWaterCount(capacity)
+
+        globalWaterCapacity!!.value = capacity / 1000
+    }
+
+    private fun calculateGlobalCapacity() {
+        var capacity = PreferenceProvider.getGlobalWaterCount()!!
+        globalWaterCapacity!!.value = capacity / 1000
+    }
+
 }

@@ -26,6 +26,7 @@ import com.jundev.weightloss.presentation.water.toasts.FillMeasToast
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
+import kotlinx.android.synthetic.main.vh_ad.*
 import kotlin.math.roundToInt
 
 class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
@@ -50,10 +51,13 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     var isNeedAnimateDailyRate = false
     var isNeedAnimateCapacity = false
+    var isLockAdding = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bsWaterSettings = BottomSheetBehavior.from(llBSWatersettings)
+
+        Log.e("LOL", "${cvWaterShowcase.translationY} лулул")
 
         rvQuickDrink.layoutManager = GridLayoutManager(activity, 2)
         rvDrinks.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -78,7 +82,6 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 }
             }
         })
-
 
     }
 
@@ -218,16 +221,32 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 isNeedAnimateCapacity = true
             }
         })
+        vm.getGlobalWaterCapacity().observe(this, Observer {
+            changeGlobalCapacity(it)
+        })
     }
 
-    private fun setNegativeValueColor(){
+    private fun changeGlobalCapacity(it: Int) {
+        if (tvGlobalWater.text == ""){
+            tvGlobalWater.text = "$it л"
+        }else{
+            var oldCapacity = tvGlobalWater.text.toString().split(" ")[0].toInt()
+            var animator = ValueAnimator.ofInt(oldCapacity, it)
+            animator.addUpdateListener {
+                tvGlobalWater.text = "${it.animatedValue.toString().toInt()} л"
+            }
+            animator.start()
+        }
+    }
+
+    private fun setNegativeValueColor() {
         tvPercent.setTextColor(resources.getColor(R.color.water_negative))
         tvDivider.setTextColor(resources.getColor(R.color.water_negative))
         tvRate.setTextColor(resources.getColor(R.color.water_negative))
         tvCapacity.setTextColor(resources.getColor(R.color.water_negative))
     }
 
-    private fun setPositiveValueColor(){
+    private fun setPositiveValueColor() {
         tvPercent.setTextColor(resources.getColor(R.color.water_positive))
         tvDivider.setTextColor(resources.getColor(R.color.water_positive))
         tvRate.setTextColor(resources.getColor(R.color.water_positive))
@@ -260,14 +279,14 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         var percentValue = (tvCapacity.text.toString().toFloat() / tvRate.text.toString().toFloat() * 100f).roundToInt()
         tvPercent.text = "$percentValue%"
         wvProgress.progress = percentValue.toFloat() / 100
-        if (percentValue < 0){
+        if (percentValue < 0) {
             setNegativeValueColor()
-        }else{
+        } else {
             setPositiveValueColor()
         }
     }
 
-    private fun changePercentAnim(capacity : Int, dailyRate : Int, isNeedAnimateBubbles : Boolean) {
+    private fun changePercentAnim(capacity: Int, dailyRate: Int, isNeedAnimateBubbles: Boolean) {
         var oldValue = tvPercent.text.toString().split("%")[0].toInt()
         var newValue = (capacity.toFloat() / dailyRate.toFloat() * 100f).roundToInt()
 
@@ -280,21 +299,97 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             tvPercent.text = "${it.animatedValue}%"
         }
 
-        if (newValue < 0){
+        if (newValue < 0) {
             setNegativeValueColor()
-        }else{
+        } else {
             setPositiveValueColor()
         }
 
         animator.start()
         wvProgress.progress = newValue.toFloat() / 100
-        if (isNeedAnimateBubbles){
+        if(newValue == 100){
+            lockAdding()
+            isLockAdding = true
+        }else{
+            unlockAdding()
+            isLockAdding = false
+        }
+
+        if (isNeedAnimateBubbles && !isLockAdding) {
             playBubblesAnim()
         }
     }
 
+    private fun unlockAdding() {
+        if (isLockAdding){
+            var moveToTop = ValueAnimator.ofFloat(cvWaterShowcase.translationY, 165f)
+            moveToTop.addUpdateListener {
+                cvWaterShowcase.translationY = it.animatedValue.toString().toFloat()
+            }
+
+            var alphaAnimator = ValueAnimator.ofFloat(1f, 0f)
+            alphaAnimator.addUpdateListener {
+                lavDone.alpha = it.animatedValue.toString().toFloat()
+                tvDone.alpha = it.animatedValue.toString().toFloat()
+                if (it.animatedValue.toString().toFloat() == 0f){
+                    lavDone.frame = 0
+                    lavDone.alpha = 1f
+                    lavDone.translationY = 0f
+                    moveToTop.start()
+                }
+            }
+
+            alphaAnimator.start()
+
+        }
+    }
+
+    private fun lockAdding() {
+        if (!isLockAdding){
+            var animator = ValueAnimator.ofFloat(cvWaterShowcase.translationY, 385f)
+            animator.addUpdateListener {
+                cvWaterShowcase.translationY = it.animatedValue.toString().toFloat()
+                if (it.animatedValue.toString().toFloat() == 385f){
+                    lavDone.playAnimation()
+                }
+            }
+            animator.duration = 1000
+
+            var alphaShow = ValueAnimator.ofFloat(0f, 1f)
+            alphaShow.addUpdateListener {
+                tvDone.alpha = it.animatedValue.toString().toFloat()
+            }
+
+            var moveToTopAnimator = ValueAnimator.ofFloat(lavDone.translationY, -66f)
+            moveToTopAnimator.addUpdateListener {
+                lavDone.translationY = it.animatedValue.toString().toFloat()
+                if (it.animatedValue.toString().toFloat() == -66f){
+                    alphaShow.start()
+                }
+            }
+
+            lavDone.addAnimatorListener(object : Animator.AnimatorListener{
+                override fun onAnimationRepeat(animation: Animator?) {
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    lavDone.removeAllAnimatorListeners()
+                    moveToTopAnimator.start()
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                }
+
+                override fun onAnimationStart(animation: Animator?) {
+                }
+            })
+
+            animator.start()
+        }
+    }
+
     private fun playBubblesAnim() {
-        lavBubbles.addAnimatorListener(object : Animator.AnimatorListener{
+        lavBubbles.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {
             }
 
@@ -380,7 +475,11 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         if (quickAdapter == null) {
             quickAdapter = QuickAdapter(object : IQuick {
                 override fun onAdd(position: Int) {
-                    vm.addWater(position)
+                    if (!isLockAdding){
+                        vm.addWater(position)
+                    }else{
+                        Toast.makeText(activity, "keke", Toast.LENGTH_LONG).show()
+                    }
                 }
 
                 override fun onSettings(position: Int) {
@@ -394,6 +493,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             quickAdapter!!.setNewData(it, lastChangeQuickItem)
         }
     }
+
 
     private fun prepareWaterSettingsBS(position: Int, quickData: Int, capacityIndex: Int) {
         drinkTypeAdapter!!.selectNew(quickData)

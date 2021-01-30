@@ -30,8 +30,9 @@ object PreferenceProvider {
     private const val WEIGHT = "WEIGHT"
     const val EMPTY = -1
 
-    const val TRAINING_TAG = "TRAINING_TAG"
-    const val HOT_TAG = "HOT_TAG"
+    private const val TRAINING_TAG = "TRAINING_TAG"
+    private const val HOT_TAG = "HOT_TAG"
+    private const val GLOBAL_WATER_COUNT_TAG = "GLOBAL_WATER_COUNT"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -100,5 +101,8 @@ object PreferenceProvider {
 
     fun setHotFactor(isTurnOn: Boolean) = editor { it?.putBoolean(HOT_TAG, isTurnOn) }
     fun getHotFactor() = getInstance()?.getBoolean(HOT_TAG, true)
+
+    fun setGlobalWaterCount(diff: Int) = editor { it?.putInt(GLOBAL_WATER_COUNT_TAG, diff) }
+    fun getGlobalWaterCount() = getInstance()?.getInt(GLOBAL_WATER_COUNT_TAG, 0)
 
 }
