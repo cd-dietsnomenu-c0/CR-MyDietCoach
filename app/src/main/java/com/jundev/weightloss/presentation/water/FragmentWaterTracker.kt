@@ -3,7 +3,6 @@ package com.jundev.weightloss.presentation.water
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -22,11 +21,11 @@ import com.jundev.weightloss.presentation.water.controller.capacities.CapacityAd
 import com.jundev.weightloss.presentation.water.controller.capacities.ICapacityAdapter
 import com.jundev.weightloss.presentation.water.controller.quick.IQuick
 import com.jundev.weightloss.presentation.water.controller.quick.QuickAdapter
+import com.jundev.weightloss.presentation.water.dialogs.GlobalCapacityDialog
 import com.jundev.weightloss.presentation.water.toasts.FillMeasToast
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
-import kotlinx.android.synthetic.main.vh_ad.*
 import kotlin.math.roundToInt
 
 class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
@@ -58,6 +57,11 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     val Y_TRANSLITION_SHOWCASE_SHOW = 165f
     val END_FRAME_DONE = 60
 
+    val CAPACITY_INFO_TAG = "CAPACITY_INFO_TAG"
+
+
+    lateinit var capacityInfoDialog: GlobalCapacityDialog
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bsWaterSettings = BottomSheetBehavior.from(llBSWatersettings)
@@ -85,6 +89,17 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 }
             }
         })
+
+        bindDialogs()
+    }
+
+    private fun bindDialogs() {
+        capacityInfoDialog = GlobalCapacityDialog()
+        capacityInfoDialog.setTargetFragment(this, 0)
+
+        tvGlobalWater.setOnClickListener {
+            capacityInfoDialog.show(activity!!.supportFragmentManager, CAPACITY_INFO_TAG)
+        }
 
     }
 

@@ -260,6 +260,7 @@
     <string name="report_error">Нет почтовых клиентов</string>
     <string name="input_error_not_in_limit">Пожалуйста введите свой реальный вес</string>
     <string name="input_error_empty">Пожалуйста введите свой вес</string>
+    <string name="alert_clear_water">Здесь показано, сколько чистой воды вы выпили за все время.</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>
