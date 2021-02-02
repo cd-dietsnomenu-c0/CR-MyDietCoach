@@ -21,6 +21,7 @@ import com.jundev.weightloss.presentation.water.controller.capacities.CapacityAd
 import com.jundev.weightloss.presentation.water.controller.capacities.ICapacityAdapter
 import com.jundev.weightloss.presentation.water.controller.quick.IQuick
 import com.jundev.weightloss.presentation.water.controller.quick.QuickAdapter
+import com.jundev.weightloss.presentation.water.dialogs.FrequentDrinkDialog
 import com.jundev.weightloss.presentation.water.dialogs.GlobalCapacityDialog
 import com.jundev.weightloss.presentation.water.toasts.FillMeasToast
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
@@ -58,9 +59,11 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     val END_FRAME_DONE = 60
 
     val CAPACITY_INFO_TAG = "CAPACITY_INFO_TAG"
+    val FREQUENT_INFO_TAG = "FREQUENT_INFO_TAG"
 
 
     lateinit var capacityInfoDialog: GlobalCapacityDialog
+    lateinit var frequentDrink: FrequentDrinkDialog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -101,6 +104,15 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             capacityInfoDialog.show(activity!!.supportFragmentManager, CAPACITY_INFO_TAG)
         }
 
+        tvFrequentDrink.setOnClickListener {
+            frequentDrink = if (vm.getFrequentDrink().value != null){
+                FrequentDrinkDialog.newInstance(vm.getFrequentDrink().value!!.name, vm.getFrequentDrink().value!!.capacity)
+            }else{
+                FrequentDrinkDialog.newInstance(WaterConfig.EMPTY_FREQUENT_DRINK_NAME, "")
+            }
+            frequentDrink.setTargetFragment(this, 0)
+            frequentDrink.show(activity!!.supportFragmentManager, FREQUENT_INFO_TAG)
+        }
     }
 
     override fun onResume() {
@@ -136,7 +148,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         })
 
         vm.getFrequentDrink().observe(this, Observer {
-            tvFrequentDrink.text = it
+            tvFrequentDrink.text = it.name
         })
     }
 

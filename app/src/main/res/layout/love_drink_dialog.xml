@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <androidx.cardview.widget.CardView
@@ -24,12 +24,12 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="36dp"
-                app:srcCompat="@drawable/ic_water_glass_big" />
+                app:srcCompat="@drawable/ic_like_water_dialog" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Чистая вода"
+                android:text="Любимый напиток"
                 android:textColor="#333333"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="24dp"
@@ -41,11 +41,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:fontFamily="@font/roboto"
-                android:text="@string/alert_clear_water"
+                tools:text="@string/frequent_drink_text"
                 android:gravity="center_horizontal"
                 android:textColor="#807F7F" />
 
@@ -57,8 +57,8 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
-                android:background="@drawable/shape_understand_water"
-                android:text="понятно"
+                android:background="@drawable/shape_understand_water_freq"
+                android:text="хорошо"
                 android:layout_marginTop="30dp"
                 android:paddingHorizontal="22dp"
                 android:textColor="@color/white"

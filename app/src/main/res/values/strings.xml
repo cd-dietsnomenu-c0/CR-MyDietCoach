@@ -261,6 +261,8 @@
     <string name="input_error_not_in_limit">Пожалуйста введите свой реальный вес</string>
     <string name="input_error_empty">Пожалуйста введите свой вес</string>
     <string name="alert_clear_water">Здесь показано, сколько чистой воды вы выпили за все время.</string>
+    <string name="frequent_drink_text">Тут вы можете увидеть какой напиток вы употребляли чаще всего. Сейчас ваш любимый напиток это - %s, его вы выпили уже %s</string>
+    <string name="frequent_drink_text_empty">Тут вы можете увидеть какой напиток вы употребляли чаще всего. Пока у вас нет любимого напитка</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>

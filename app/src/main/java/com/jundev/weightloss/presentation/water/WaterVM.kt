@@ -9,6 +9,7 @@ import com.jundev.weightloss.common.db.entities.DrinksCapacities
 import com.jundev.weightloss.common.db.entities.WaterIntake
 import com.jundev.weightloss.model.water.QuickWater
 import com.jundev.weightloss.model.water.QuickWaterList
+import com.jundev.weightloss.model.water.ReadableFrequentDrink
 import com.jundev.weightloss.utils.PreferenceProvider
 import java.util.*
 
@@ -18,7 +19,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     private var dailyRate: MutableLiveData<Int>? = null  // current daily rate
     private var currentCapacity: MutableLiveData<Int>? = null  // current capacity
     private var globalWaterCapacity: MutableLiveData<Int>? = null
-    private var frequentDrink: MutableLiveData<String>? = null
+    private var frequentDrink: MutableLiveData<ReadableFrequentDrink>? = null
 
     private val FEMALE_FACTOR = 31
     private val MALE_FACTOR = 35
@@ -111,7 +112,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         return globalWaterCapacity!!
     }
 
-    fun getFrequentDrink() : MutableLiveData<String>{
+    fun getFrequentDrink() : MutableLiveData<ReadableFrequentDrink>{
         if (frequentDrink == null){
             frequentDrink = MutableLiveData()
             identifyFrequentDrink()
@@ -225,7 +226,9 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     private fun identifyFrequentDrink() {
         var drinkCapacity = App.getInstance().db.dietDAO().getBiggestDrink()
         if (drinkCapacity?.size > 0){
-            frequentDrink?.value = getApplication<App>().applicationContext.resources.getStringArray(R.array.water_drinks_names)[drinkCapacity[0].typeDrink]
+            var name = getApplication<App>().applicationContext.resources.getStringArray(R.array.water_drinks_names)[drinkCapacity[0].typeDrink]
+            var capacity = "${(drinkCapacity[0].dirtyCapacity.toFloat() / 1000)} л"
+            frequentDrink?.value = ReadableFrequentDrink(name, capacity)
         }
     }
 
