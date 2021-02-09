@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -26,6 +27,7 @@ import com.jundev.weightloss.presentation.profile.controllers.IBacks
 import com.jundev.weightloss.presentation.profile.dialogs.DevelopmentDialog
 import com.jundev.weightloss.presentation.profile.dialogs.NameDialog
 import com.jundev.weightloss.presentation.profile.favorites.FavoritesActivity
+import com.jundev.weightloss.presentation.profile.measurments.MeasActivity
 import com.jundev.weightloss.presentation.profile.toasts.DeniedPermToast
 import com.jundev.weightloss.presentation.profile.toasts.IntroToast
 import com.jundev.weightloss.utils.PreferenceProvider
@@ -65,6 +67,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
         })
+
     }
 
     private fun setClickListeners() {
@@ -105,7 +108,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.report_text));
             try {
                 startActivity(createChooser(intent, getString(R.string.report_wait)))
-            }catch (ex : ActivityNotFoundException){
+            } catch (ex: ActivityNotFoundException) {
                 Toast.makeText(this.requireContext(), getString(R.string.report_error), Toast.LENGTH_LONG).show()
             }
         }
@@ -134,6 +137,20 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 runCamera()
             }
         }
+
+        flWater.setOnClickListener {
+            openMeasActivity()
+        }
+        flGender.setOnClickListener {
+            openMeasActivity()
+        }
+        flWeight.setOnClickListener {
+            openMeasActivity()
+        }
+    }
+
+    private fun openMeasActivity() {
+        startActivity(Intent(activity!!, MeasActivity::class.java))
     }
 
     private fun isCameraForbidden(): Boolean = activity!!.checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED

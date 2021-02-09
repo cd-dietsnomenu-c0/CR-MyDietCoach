@@ -106,4 +106,8 @@
 
     <color name="water_positive">#397EF3</color>
     <color name="water_negative">#ff6464</color>
+
+    <color name="label_color">#b2b2ba</color>
+    <color name="edt_text_color">#52515f</color>
+    <color name="meas_main">#2e2c5c</color>
 </resources>

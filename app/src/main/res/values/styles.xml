@@ -23,6 +23,18 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Meas" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#2C2C2C</item>
+        <item name="colorPrimaryDark">#d1d1d1</item>
+        <item name="colorAccent">#2C2C2C</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+
     <style name="AppTheme.NoActionBarChange">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -96,6 +108,8 @@
         <item name="colorPrimaryDark">#25265e</item>
         <item name="colorAccent">#25265e</item>
     </style>
+
+
 
 
 </resources>

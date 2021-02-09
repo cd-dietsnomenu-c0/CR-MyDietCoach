@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -42,12 +42,12 @@
 
 
                 <ImageView
+                    android:id="@+id/ivCircle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:elevation="3dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/shape_stencil_avatar"
-                    android:id="@+id/ivCircle"/>
+                    android:src="@drawable/shape_stencil_avatar" />
 
             </androidx.cardview.widget.CardView>
 
@@ -90,17 +90,17 @@
                         android:drawableRight="@drawable/ic_pencil"
                         android:drawablePadding="12dp"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Вадим Казак"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Вадим Казак" />
 
                     <Button
                         android:id="@+id/btnFavorites"
-                        android:layout_width="wrap_content"
+                        android:layout_width="170dp"
                         android:layout_height="40dp"
-                        android:layout_marginTop="48dp"
+                        android:layout_marginTop="44dp"
                         android:background="@drawable/shape_favorites_button"
                         android:drawableLeft="@drawable/ic_favorites_button"
                         android:drawablePadding="8dp"
@@ -114,7 +114,7 @@
 
                     <Button
                         android:id="@+id/btnTrophy"
-                        android:layout_width="wrap_content"
+                        android:layout_width="170dp"
                         android:layout_height="40dp"
                         android:background="@drawable/shape_favorites_button"
                         android:drawableRight="@drawable/ic_treasure"
@@ -127,18 +127,245 @@
                         app:layout_constraintStart_toEndOf="@+id/btnFavorites"
                         app:layout_constraintTop_toTopOf="@+id/btnFavorites" />
 
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView6"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp"
+                        app:layout_constraintEnd_toEndOf="@+id/btnFavorites"
+                        app:layout_constraintStart_toStartOf="@+id/btnFavorites"
+                        app:layout_constraintTop_toBottomOf="@+id/btnFavorites">
+
+                        <FrameLayout
+                            android:id="@+id/flWeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="?selectableItemBackground">
+
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical">
+
+
+                                <ImageView
+                                    android:layout_width="34dp"
+                                    android:layout_height="34dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="16dp"
+                                    android:src="@drawable/ic_weight_scale_profile" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="68dp"
+                                    android:orientation="vertical">
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="Вес"
+                                        android:textSize="12sp" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+
+                                        <TextView
+                                            android:id="@+id/tvWeight"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:text=" - "
+                                            android:textColor="@color/black"
+                                            android:textSize="24sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="4dp"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:text="кг"
+                                            android:textColor="@color/black"
+                                            android:textSize="18sp" />
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </FrameLayout>
+
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView8"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp"
+                        app:layout_constraintEnd_toEndOf="@+id/btnTrophy"
+                        app:layout_constraintStart_toStartOf="@+id/btnTrophy"
+                        app:layout_constraintTop_toBottomOf="@+id/btnFavorites">
+
+                        <FrameLayout
+                            android:id="@+id/flWater"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="?selectableItemBackground">
+
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical">
+
+
+                                <ImageView
+                                    android:layout_width="34dp"
+                                    android:layout_height="34dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="16dp"
+                                    android:src="@drawable/ic_water_drop_profile" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="68dp"
+                                    android:orientation="vertical">
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="Норма воды"
+                                        android:textSize="12sp" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+
+                                        <TextView
+                                            android:id="@+id/tvWater"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:text=" - "
+                                            android:textColor="@color/black"
+                                            android:textSize="24sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="4dp"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:text="л"
+                                            android:textColor="@color/black"
+                                            android:textSize="18sp" />
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </FrameLayout>
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView61"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp"
+                        app:layout_constraintEnd_toEndOf="@+id/cardView8"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/btnFavorites"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView6">
+
+                        <FrameLayout
+                            android:id="@+id/flGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="?selectableItemBackground">
+
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical">
+
+
+                                <ImageView
+                                    android:layout_width="34dp"
+                                    android:layout_height="34dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="16dp"
+                                    android:src="@drawable/ic_gender_profile" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="68dp"
+                                    android:orientation="vertical">
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="Пол"
+                                        android:textSize="12sp" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+
+                                        <TextView
+                                            android:id="@+id/tvGender"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:text="-"
+                                            android:textColor="@color/black"
+                                            android:textSize="24sp" />
+
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </FrameLayout>
+
+                        </FrameLayout>
+
+                    </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="4dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/btnFavorites">
+                        app:layout_constraintTop_toBottomOf="@+id/cardView61">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -164,14 +391,14 @@
                             <Button
                                 android:id="@+id/btnGrade"
                                 android:layout_width="match_parent"
-                                android:gravity="left|center_vertical"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="16dp"
-                                android:layout_marginRight="16dp"
                                 android:layout_marginTop="12dp"
+                                android:layout_marginRight="16dp"
                                 android:background="?selectableItemBackground"
                                 android:drawableLeft="@drawable/ic_grade_button_profile"
                                 android:drawablePadding="12dp"
+                                android:gravity="left|center_vertical"
                                 android:text="Оценить приложение"
                                 android:textColor="@color/black"
                                 android:textSize="10dp" />
@@ -179,14 +406,14 @@
                             <Button
                                 android:id="@+id/btnShare"
                                 android:layout_width="match_parent"
-                                android:gravity="left|center_vertical"
-                                android:background="?selectableItemBackground"
-                                android:layout_marginRight="16dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginTop="2dp"
+                                android:layout_marginRight="16dp"
+                                android:background="?selectableItemBackground"
                                 android:drawableLeft="@drawable/ic_share_profile"
                                 android:drawablePadding="12dp"
+                                android:gravity="left|center_vertical"
                                 android:text="Поделиться с друзьями"
                                 android:textColor="@color/black"
                                 android:textSize="10dp" />
@@ -195,15 +422,15 @@
                             <Button
                                 android:id="@+id/btnReport"
                                 android:layout_width="match_parent"
-                                android:gravity="left|center_vertical"
-                                android:background="?selectableItemBackground"
-                                android:layout_marginRight="16dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginTop="2dp"
+                                android:layout_marginRight="16dp"
                                 android:layout_marginBottom="8dp"
+                                android:background="?selectableItemBackground"
                                 android:drawableLeft="@drawable/ic_report_profile"
                                 android:drawablePadding="12dp"
+                                android:gravity="left|center_vertical"
                                 android:text="Сообщить об ошибке"
                                 android:textColor="@color/black"
                                 android:textSize="10dp" />
@@ -249,15 +476,15 @@
                             <Button
                                 android:id="@+id/btnPolicy"
                                 android:layout_width="match_parent"
-                                android:gravity="left|center_vertical"
-                                android:background="?selectableItemBackground"
-                                android:layout_marginRight="16dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginTop="12dp"
+                                android:layout_marginRight="16dp"
                                 android:layout_marginBottom="8dp"
+                                android:background="?selectableItemBackground"
                                 android:drawableLeft="@drawable/ic_privacy_police"
                                 android:drawablePadding="12dp"
+                                android:gravity="left|center_vertical"
                                 android:text="Политика конфиденциальности"
                                 android:textColor="@color/black"
                                 android:textSize="10dp" />

@@ -96,6 +96,10 @@
             android:name="com.jundev.weightloss.presentation.diets.list.modern.NewDietsListActivity"
             android:theme="@style/NewDiets" />
 
+        <activity
+            android:name=".presentation.profile.measurments.MeasActivity"
+            android:theme="@style/Meas" />
+
         <receiver android:name="com.jundev.weightloss.common.notifications.TrackerAlarmReceiver"/>
         <receiver android:name="com.jundev.weightloss.common.notifications.ReactAlarmReceiver"/>
 

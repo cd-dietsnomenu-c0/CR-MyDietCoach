@@ -11,6 +11,7 @@ import com.jundev.weightloss.model.water.QuickWater
 import com.jundev.weightloss.model.water.QuickWaterList
 import com.jundev.weightloss.model.water.ReadableFrequentDrink
 import com.jundev.weightloss.utils.PreferenceProvider
+import com.jundev.weightloss.utils.counter.Water
 import java.util.*
 
 class WaterVM(application: Application) : AndroidViewModel(application) {
@@ -112,8 +113,8 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         return globalWaterCapacity!!
     }
 
-    fun getFrequentDrink() : MutableLiveData<ReadableFrequentDrink>{
-        if (frequentDrink == null){
+    fun getFrequentDrink(): MutableLiveData<ReadableFrequentDrink> {
+        if (frequentDrink == null) {
             frequentDrink = MutableLiveData()
             identifyFrequentDrink()
         }
@@ -166,7 +167,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     }
 
     private fun countWaterRateDefault() {
-        countWaterRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
+        dailyRate!!.value = Water.countDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
                 PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!)
     }
 
@@ -175,28 +176,6 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         countWaterRateDefault()
     }
 
-    private fun countWaterRate(gender: Int, isTrainingOn: Boolean, isHotOn: Boolean, weight: Int) {
-        var factor = if (gender == PreferenceProvider.SEX_TYPE_FEMALE) {
-            FEMALE_FACTOR
-        } else {
-            MALE_FACTOR
-        }
-
-        var waterRate = weight * factor
-        var trainingDiff = 0
-        var hotDiff = 0
-
-        if (isHotOn) {
-            hotDiff = (waterRate * HOT_FACTOR).toInt()
-        }
-
-        if (isTrainingOn) {
-            trainingDiff = (waterRate * TRAINING_FACTOR).toInt()
-        }
-
-        waterRate += trainingDiff + hotDiff
-        dailyRate!!.value = waterRate
-    }
 
     fun addWater(position: Int) {
         var quickDrink = getQuickLD().value!!.list[position]
@@ -213,8 +192,8 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
 
         var drinksCapacities = App.getInstance().db.dietDAO().getChoiceDrink(quickDrink.typeId)
         var capacity = 0L
-        if (drinksCapacities?.size > 0){
-            for (i in drinksCapacities.indices){
+        if (drinksCapacities?.size > 0) {
+            for (i in drinksCapacities.indices) {
                 capacity += drinksCapacities[i].dirtyCapacity
             }
         }
@@ -225,7 +204,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
 
     private fun identifyFrequentDrink() {
         var drinkCapacity = App.getInstance().db.dietDAO().getBiggestDrink()
-        if (drinkCapacity?.size > 0){
+        if (drinkCapacity?.size > 0) {
             var name = getApplication<App>().applicationContext.resources.getStringArray(R.array.water_drinks_names)[drinkCapacity[0].typeDrink]
             var capacity = "${(drinkCapacity[0].dirtyCapacity.toFloat() / 1000)} л"
             frequentDrink?.value = ReadableFrequentDrink(name, capacity)
