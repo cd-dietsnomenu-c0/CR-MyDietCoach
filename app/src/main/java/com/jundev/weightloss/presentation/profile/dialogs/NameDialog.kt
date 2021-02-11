@@ -32,7 +32,7 @@ class NameDialog: DialogFragment() {
         btnSave.setOnClickListener {
             if (edtName.text.toString() != "") {
                 PreferenceProvider.setName(edtName.text.toString())
-                (targetFragment as ProfileFragment).bindName()
+                //(targetFragment as ProfileFragment).bindName()
             }
             dismiss()
         }

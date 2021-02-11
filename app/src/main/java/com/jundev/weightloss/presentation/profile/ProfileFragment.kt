@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -31,6 +30,7 @@ import com.jundev.weightloss.presentation.profile.measurments.MeasActivity
 import com.jundev.weightloss.presentation.profile.toasts.DeniedPermToast
 import com.jundev.weightloss.presentation.profile.toasts.IntroToast
 import com.jundev.weightloss.utils.PreferenceProvider
+import com.jundev.weightloss.utils.counter.Water
 import kotlinx.android.synthetic.main.bottom_sheet_backs.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import java.io.File
@@ -43,6 +43,9 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     val MAX_ATEMPT_INTRO = 2
     val CAMERA_REQUEST = 0
     val CAMERA_PERMISSION_REQUEST = 1
+
+    val EMPTY_MEAS = " - "
+
     lateinit var bsBehavior: BottomSheetBehavior<LinearLayout>
 
     lateinit var uri: Uri
@@ -82,7 +85,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
 
         tvName.setOnClickListener {
-            nameDialog.show(activity!!.supportFragmentManager, "NameDialog")
+            //nameDialog.show(activity!!.supportFragmentManager, "NameDialog")
+            openMeasActivity()
         }
 
         ivHeadBack.setOnClickListener {
@@ -225,22 +229,55 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         Glide.with(this).load(url).into(ivHeadBack)
     }
 
-    fun bindName() {
-        if (PreferenceProvider.getName() == "") {
-            tvName.text = resources.getString(R.string.def_name)
-        } else {
-            tvName.text = PreferenceProvider.getName()
-        }
-    }
+
 
     override fun onResume() {
         super.onResume()
-        bindName()
+        bindFields()
+        bindInfoToast()
+    }
+
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) {
+            bindFields()
+            bindInfoToast()
+        }
+    }
+
+    private fun bindInfoToast() {
         if (PreferenceProvider.getCountIntro()!! < MAX_ATEMPT_INTRO) {
             IntroToast.show(activity!!)
             var count = PreferenceProvider.getCountIntro()!!
             count++
             PreferenceProvider.setCountIntro(count)
+        }
+    }
+
+    private fun bindFields() {
+        if (PreferenceProvider.getWeight()!! != PreferenceProvider.EMPTY){
+            tvWeight.text = PreferenceProvider.getWeight()!!.toString()
+            tvWater.text = Water.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!).toString()
+        }else{
+            tvWeight.text = EMPTY_MEAS
+            tvWater.text = EMPTY_MEAS
+        }
+
+        if (PreferenceProvider.getSex() != PreferenceProvider.EMPTY){
+            if (PreferenceProvider.getSex() == PreferenceProvider.SEX_TYPE_MALE){
+                tvGender.text = getString(R.string.male_gender)
+            }else{
+                tvGender.text = getString(R.string.female_gender)
+            }
+        }else{
+            tvGender.text = EMPTY_MEAS
+        }
+
+        if (PreferenceProvider.getName() == "") {
+            tvName.text = resources.getString(R.string.def_name)
+        } else {
+            tvName.text = PreferenceProvider.getName()
         }
     }
 

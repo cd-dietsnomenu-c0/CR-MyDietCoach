@@ -6,6 +6,8 @@ import com.jundev.weightloss.App
 
 object PreferenceProvider {
 
+    const val EMPTY = -1
+
     private const val RATE_MIND = "RATE_MIND"
     const val RATE_MIND_GOOD = "RATE_MIND_GOOD"
     const val RATE_MIND_BAD = "RATE_MIND_BAD"
@@ -28,11 +30,14 @@ object PreferenceProvider {
     const val SEX_TYPE_MALE = 1
     const val SEX_TYPE_FEMALE = 0
     private const val WEIGHT = "WEIGHT"
-    const val EMPTY = -1
+
 
     private const val TRAINING_TAG = "TRAINING_TAG"
     private const val HOT_TAG = "HOT_TAG"
     private const val GLOBAL_WATER_COUNT_TAG = "GLOBAL_WATER_COUNT"
+
+    private const val MANUAL_CHANGING_WATER_RATE = "MANUAL_CHANGING_WATER_RATE"
+
 
 
     private fun getInstance(): SharedPreferences? {
@@ -104,5 +109,8 @@ object PreferenceProvider {
 
     fun setGlobalWaterCount(diff: Int) = editor { it?.putInt(GLOBAL_WATER_COUNT_TAG, diff) }
     fun getGlobalWaterCount() = getInstance()?.getInt(GLOBAL_WATER_COUNT_TAG, 0)
+
+    fun setWaterRateChangedManual(rate: Int) = editor { it?.putInt(MANUAL_CHANGING_WATER_RATE, rate) }
+    fun getWaterRateChangedManual() = getInstance()?.getInt(MANUAL_CHANGING_WATER_RATE, EMPTY)
 
 }

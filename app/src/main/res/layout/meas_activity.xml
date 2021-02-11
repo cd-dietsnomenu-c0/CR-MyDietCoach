@@ -82,7 +82,7 @@
                 android:hint="Как вас зовут ?"
                 android:inputType="textPersonName"
                 android:maxLength="20"
-                android:textColor="@color/edt_text_color" />
+                android:textColor="@color/black" />
 
 
         </FrameLayout>
@@ -95,6 +95,66 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/roboto"
+                android:text="Дневная норма воды"
+                android:textColor="@color/label_color" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="4dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="12dp"
+                        android:src="@drawable/ic_water_drop_profile" />
+
+                    <EditText
+                        android:id="@+id/edtWater"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="48dp"
+                        android:layout_marginEnd="24dp"
+                        android:background="@color/transparent"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center_horizontal"
+                        android:hint="мл"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:textColor="@color/black" />
+
+
+                </FrameLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -146,7 +206,7 @@
                         android:hint="кг"
                         android:inputType="number"
                         android:maxLength="3"
-                        android:textColor="@color/edt_text_color" />
+                        android:textColor="@color/black" />
 
                 </FrameLayout>
 
@@ -156,88 +216,44 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDefaultRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+
+        <Switch
+            android:id="@+id/swtDefaultRate"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical">
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:checked="true"
+            android:text="Авторасчет нормы воды" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/roboto"
-                android:text="Дневная норма воды"
-                android:textColor="@color/label_color" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="4dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="2dp">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="12dp"
-                        android:src="@drawable/ic_water_drop_profile" />
-
-                    <EditText
-                        android:id="@+id/edtWater"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="48dp"
-                        android:layout_marginEnd="48dp"
-                        android:background="@color/transparent"
-                        android:fontFamily="@font/roboto"
-                        android:gravity="center_horizontal"
-                        android:hint="мл"
-                        android:inputType="number"
-                        android:maxLength="4"
-                        android:textColor="@color/edt_text_color" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_marginEnd="16dp"
-                        android:src="@drawable/ic_refresh_water" />
-
-                </FrameLayout>
-
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
 
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Пол"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/roboto"
-        android:textColor="@color/label_color"
-        android:layout_gravity="center_horizontal"/>
+        android:text="Пол"
+        android:textColor="@color/label_color" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
 
         <FrameLayout
             android:id="@+id/flFemale"
@@ -248,51 +264,49 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                app:cardCornerRadius="50dp"
-                android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
-                android:elevation="3dp">
+                android:layout_marginTop="8dp"
+                android:elevation="3dp"
+                app:cardCornerRadius="50dp">
 
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/img_woman_choise"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_woman_choise" />
 
             </androidx.cardview.widget.CardView>
 
             <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavCircleFemale"
                 android:layout_width="116dp"
                 android:layout_height="116dp"
-                android:visibility="visible"
-                app:lottie_autoPlay="true"
-                app:lottie_speed="5"
-                app:lottie_fileName="circle_complete.json"
                 android:layout_gravity="center_horizontal"
-                android:id="@+id/lavCircleFemale"/>
+                android:visibility="visible"
+                app:lottie_fileName="circle_complete.json"
+                app:lottie_speed="5" />
 
 
             <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavTickFemale"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:id="@+id/lavTickFemale"
-                android:elevation="4dp"
-                app:lottie_autoPlay="true"
                 android:layout_gravity="end|bottom"
                 android:layout_marginBottom="40dp"
+                android:elevation="4dp"
                 android:visibility="visible"
-                app:lottie_fileName="tick_water.json"/>
+                app:lottie_fileName="tick_water.json" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Женский"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/black"
                 android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/roboto"
+                android:text="Женский"
+                android:textColor="@color/black" />
 
         </FrameLayout>
 
@@ -306,54 +320,51 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                app:cardCornerRadius="50dp"
-                android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
-                android:elevation="3dp">
+                android:layout_marginTop="8dp"
+                android:elevation="3dp"
+                app:cardCornerRadius="50dp">
 
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/img_man_choise"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_man_choise" />
 
             </androidx.cardview.widget.CardView>
 
             <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavCircleMale"
                 android:layout_width="116dp"
                 android:layout_height="116dp"
-                android:visibility="invisible"
-                app:lottie_autoPlay="true"
-                app:lottie_speed="5"
-                app:lottie_fileName="circle_complete.json"
                 android:layout_gravity="center_horizontal"
-                android:id="@+id/lavCircleMale"/>
+                android:visibility="invisible"
+                app:lottie_fileName="circle_complete.json"
+                app:lottie_speed="5" />
 
 
             <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavTickMale"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:id="@+id/lavTickMale"
-                android:elevation="4dp"
-                app:lottie_autoPlay="true"
                 android:layout_gravity="end|bottom"
-                android:visibility="invisible"
                 android:layout_marginBottom="40dp"
-                app:lottie_fileName="tick_water.json"/>
+                android:elevation="4dp"
+                android:visibility="invisible"
+                app:lottie_fileName="tick_water.json" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Мужской"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/black"
                 android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/roboto"
+                android:text="Мужской"
+                android:textColor="@color/black" />
 
         </FrameLayout>
     </LinearLayout>
-
 
 
     <Button
@@ -361,11 +372,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/shape_save_meas"
-        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_bold"
         android:text="сохранить"
-        android:textColor="@color/white"
-        android:fontFamily="@font/roboto_bold"/>
+        android:textColor="@color/white" />
 
 </LinearLayout>

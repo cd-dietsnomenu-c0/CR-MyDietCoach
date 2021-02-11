@@ -10,7 +10,16 @@ object Water {
     private val TRAINING_FACTOR = 0.1f
     private val HOT_FACTOR = 0.15f
 
-    fun countDailyRate(gender: Int, isTrainingOn: Boolean, isHotOn: Boolean, weight: Int) : Int{
+    fun getWaterDailyRate(gender: Int, isTrainingOn: Boolean, isHotOn: Boolean, weight: Int): Int {
+        return if (PreferenceProvider.getWaterRateChangedManual()!! != PreferenceProvider.EMPTY) {
+            PreferenceProvider.getWaterRateChangedManual()!!
+        } else {
+            countRate(gender, isTrainingOn, isHotOn, weight)
+        }
+
+    }
+
+    fun countRate(gender: Int, isTrainingOn: Boolean, isHotOn: Boolean, weight: Int): Int {
         var factor = if (gender == PreferenceProvider.SEX_TYPE_FEMALE) {
             FEMALE_FACTOR
         } else {

@@ -167,7 +167,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     }
 
     private fun countWaterRateDefault() {
-        dailyRate!!.value = Water.countDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
+        dailyRate!!.value = Water.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
                 PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!)
     }
 
