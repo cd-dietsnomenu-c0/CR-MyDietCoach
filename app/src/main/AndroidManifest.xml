@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jundev.weightloss">
+    package="com.diets.weightloss">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="com.jundev.weightloss.App"
+        android:name="com.diets.weightloss.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_foreground"
@@ -37,7 +37,7 @@
         </activity>-->
 
         <activity
-            android:name="com.jundev.weightloss.SplashActivity"
+            android:name="com.diets.weightloss.SplashActivity"
             android:theme="@style/Theme.AppCompat.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,59 +47,59 @@
         </activity>
 
         <activity
-            android:name=".onboarding.OnboardActivity"
+            android:name="com.diets.weightloss.onboarding.OnboardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.jundev.weightloss.tracker.LoadingActivity"
+            android:name="com.diets.weightloss.tracker.LoadingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.jundev.weightloss.MainActivity"
+            android:name="com.diets.weightloss.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.jundev.weightloss.profile.favorites.FavoritesActivity"
+            android:name="com.diets.weightloss.profile.favorites.FavoritesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.jundev.weightloss.diets.list.old.inside.ActivityListItems"
+            android:name="com.diets.weightloss.diets.list.old.inside.ActivityListItems"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name="com.jundev.weightloss.diets.list.old.OldDietsActivity"
+            android:name="com.diets.weightloss.diets.list.old.OldDietsActivity"
             android:theme="@style/NewDiets" />
 
-        <activity android:name="com.jundev.weightloss.diets.list.old.inside.article.ActivityArticle" />
+        <activity android:name="com.diets.weightloss.diets.list.old.inside.article.ActivityArticle" />
 
         <activity
-            android:name="com.jundev.weightloss.calculators.ActivityCalculatorSPK"
-            android:theme="@style/NewDiets" />
-
-        <activity
-            android:name="com.jundev.weightloss.calculators.ActivityCalculatorBrok"
+            android:name="com.diets.weightloss.calculators.ActivityCalculatorSPK"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name="com.jundev.weightloss.calculators.ActivityCalculatorIMT"
+            android:name="com.diets.weightloss.calculators.ActivityCalculatorBrok"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name="com.jundev.weightloss.calculators.ActivityCalculatorLorenc"
+            android:name="com.diets.weightloss.calculators.ActivityCalculatorIMT"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name="com.jundev.weightloss.diets.list.modern.article.DietAct"
+            android:name="com.diets.weightloss.calculators.ActivityCalculatorLorenc"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name="com.jundev.weightloss.diets.list.modern.NewDietsListActivity"
+            android:name="com.diets.weightloss.diets.list.modern.article.DietAct"
             android:theme="@style/NewDiets" />
 
-        <receiver android:name="com.jundev.weightloss.common.notifications.TrackerAlarmReceiver"/>
-        <receiver android:name="com.jundev.weightloss.common.notifications.ReactAlarmReceiver"/>
+        <activity
+            android:name="com.diets.weightloss.diets.list.modern.NewDietsListActivity"
+            android:theme="@style/NewDiets" />
 
-        <receiver android:name="com.jundev.weightloss.common.notifications.BootReceiver"
+        <receiver android:name="com.diets.weightloss.common.notifications.TrackerAlarmReceiver"/>
+        <receiver android:name="com.diets.weightloss.common.notifications.ReactAlarmReceiver"/>
+
+        <receiver android:name="com.diets.weightloss.common.notifications.BootReceiver"
             android:exported="true"
             android:enabled="true">
             <intent-filter>
@@ -110,11 +110,11 @@
         </receiver>
 
         <service
-            android:name="com.jundev.weightloss.common.notifications.BootNotificationService"
+            android:name="com.diets.weightloss.common.notifications.BootNotificationService"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
 
         <service
-            android:name="com.jundev.weightloss.services.FCMService"
+            android:name="com.diets.weightloss.services.FCMService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

@@ -72,6 +72,7 @@
         app:adSize="SMART_BANNER"
         app:adUnitId="@string/banner_id"
         android:layout_gravity="bottom"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
