@@ -2,9 +2,10 @@ package com.jundev.weightloss.common.db.dao
 
 import androidx.room.*
 import com.jundev.weightloss.common.db.entities.DietPlanEntity
-import com.jundev.weightloss.common.db.entities.DrinksCapacities
+import com.jundev.weightloss.common.db.entities.water.DrinksCapacities
 import com.jundev.weightloss.common.db.entities.FavoriteEntity
-import com.jundev.weightloss.common.db.entities.WaterIntake
+import com.jundev.weightloss.common.db.entities.water.WaterIntake
+import com.jundev.weightloss.common.db.entities.water.WaterRate
 
 @Dao
 interface DietDAO {
@@ -47,4 +48,7 @@ interface DietDAO {
 
     @Query("select * from DrinksCapacities where dirtyCapacity = (select max(dirtyCapacity) from DrinksCapacities)")
     fun getBiggestDrink() : List<DrinksCapacities>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addNewRate(waterRate: WaterRate)
 }

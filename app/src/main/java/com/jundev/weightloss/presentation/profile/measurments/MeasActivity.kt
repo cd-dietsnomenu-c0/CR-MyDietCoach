@@ -1,10 +1,8 @@
 package com.jundev.weightloss.presentation.profile.measurments
 
-import android.animation.ValueAnimator
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +10,8 @@ import com.jundev.weightloss.R
 import com.jundev.weightloss.presentation.profile.measurments.toasts.RefreshToast
 import com.jundev.weightloss.utils.FieldsWorker
 import com.jundev.weightloss.utils.PreferenceProvider
-import com.jundev.weightloss.utils.counter.Water
+import com.jundev.weightloss.utils.water.WaterCounter
+import com.jundev.weightloss.utils.water.WaterRateProvider
 import kotlinx.android.synthetic.main.meas_activity.*
 
 class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
@@ -25,8 +24,8 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
         edtName.setText(PreferenceProvider.getName()!!)
         if (PreferenceProvider.getWeight()!! != PreferenceProvider.EMPTY){
             edtWeight.setText(PreferenceProvider.getWeight()!!.toString())
-            edtWater.setText(Water.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
-                    PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!).toString())
+            edtWater.setText(WaterCounter.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
+                    PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!, false).toString())
         }
 
         bindGenderViews()
@@ -90,7 +89,7 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
         edtWater.isEnabled = false
         edtWater.setTextColor(resources.getColor(R.color.label_color))
         if (edtWeight.text.toString() != "" && edtWeight.text.toString() != " ") {
-            edtWater.setText(Water.countRate(sexType, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, edtWeight.text.toString().toInt()).toString())
+            edtWater.setText(WaterCounter.countRate(sexType, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, edtWeight.text.toString().toInt()).toString())
         } else {
             edtWater.setText("0")
         }
@@ -134,6 +133,7 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
                     }else{
                         PreferenceProvider.setWaterRateChangedManual(PreferenceProvider.EMPTY)
                     }
+                    WaterRateProvider.addNewRate(edtWater.text.toString().toInt())
                     if (FieldsWorker.isCorrect(edtName.text.toString())){
                         PreferenceProvider.setName(edtName.text.toString())
                     }
@@ -191,6 +191,6 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
     }
 
     private fun calculateWaterRate() {
-        edtWater.setText(Water.countRate(sexType, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, edtWeight.text.toString().toInt()).toString())
+        edtWater.setText(WaterCounter.countRate(sexType, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, edtWeight.text.toString().toInt()).toString())
     }
 }

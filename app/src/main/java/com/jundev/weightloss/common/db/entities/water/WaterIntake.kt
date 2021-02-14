@@ -1,4 +1,4 @@
-package com.jundev.weightloss.common.db.entities
+package com.jundev.weightloss.common.db.entities.water
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

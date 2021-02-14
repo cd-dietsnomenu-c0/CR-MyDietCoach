@@ -3,6 +3,7 @@ package com.jundev.weightloss.presentation.water
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -24,6 +25,7 @@ import com.jundev.weightloss.presentation.water.controller.quick.QuickAdapter
 import com.jundev.weightloss.presentation.water.dialogs.FrequentDrinkDialog
 import com.jundev.weightloss.presentation.water.dialogs.GlobalCapacityDialog
 import com.jundev.weightloss.presentation.water.toasts.FillMeasToast
+import com.jundev.weightloss.utils.FieldsWorker
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
@@ -115,9 +117,8 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
 
+    private fun observeAll() {
         vm.getQuickLD().observe(this,
                 Observer {
                     fillQuick(it)
@@ -152,7 +153,22 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         })
     }
 
+    private fun unObserverAll(){
+        vm.getQuickLD().removeObservers(this)
+        vm.getDailyRate().removeObservers(this)
+        vm.getCurrentCapacity().removeObservers(this)
+        vm.getGlobalWaterCapacity().removeObservers(this)
+        vm.getFrequentDrink().removeObservers(this)
+    }
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (hidden){
+            unObserverAll()
+        }else{
+            observeAll()
+        }
+    }
 
     private fun setExtraViews() {
         if (PreferenceProvider.getTrainingFactor()!!) {
@@ -508,12 +524,12 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         }
 
         btnContinue.setOnClickListener {
-            var weight = 50
-            if (edtWeight.text.toString() != "" && edtWeight.text.toString() != " ") {
-                weight = edtWeight.text.toString().toInt()
+            if (FieldsWorker.isCorrect(edtWeight.text.toString())) {
+                var weight = edtWeight.text.toString().toInt()
                 if (weight in 21..199) {
                     PreferenceProvider.setWeight(weight)
                     PreferenceProvider.setSex(sexType)
+                    vm.firstCalculateWaterRate()
                     bsBeginMeas!!.state = BottomSheetBehavior.STATE_COLLAPSED
                     FillMeasToast.show(activity!!)
                 } else {

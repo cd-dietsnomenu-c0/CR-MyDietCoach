@@ -5,13 +5,14 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.jundev.weightloss.App
 import com.jundev.weightloss.R
-import com.jundev.weightloss.common.db.entities.DrinksCapacities
-import com.jundev.weightloss.common.db.entities.WaterIntake
+import com.jundev.weightloss.common.db.entities.water.DrinksCapacities
+import com.jundev.weightloss.common.db.entities.water.WaterIntake
 import com.jundev.weightloss.model.water.QuickWater
 import com.jundev.weightloss.model.water.QuickWaterList
 import com.jundev.weightloss.model.water.ReadableFrequentDrink
 import com.jundev.weightloss.utils.PreferenceProvider
-import com.jundev.weightloss.utils.counter.Water
+import com.jundev.weightloss.utils.water.WaterCounter
+import com.jundev.weightloss.utils.water.WaterRateProvider
 import java.util.*
 
 class WaterVM(application: Application) : AndroidViewModel(application) {
@@ -22,11 +23,6 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     private var globalWaterCapacity: MutableLiveData<Int>? = null
     private var frequentDrink: MutableLiveData<ReadableFrequentDrink>? = null
 
-    private val FEMALE_FACTOR = 31
-    private val MALE_FACTOR = 35
-
-    private val TRAINING_FACTOR = 0.1f
-    private val HOT_FACTOR = 0.15f
 
     private fun reloadQuickLD() {
         if (PreferenceProvider.getQuickData(0) == -1) {
@@ -92,8 +88,8 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     fun getDailyRate(): MutableLiveData<Int> {
         if (dailyRate == null) {
             dailyRate = MutableLiveData()
-            countWaterRateDefault()
         }
+        countWaterRateDefault()
         return dailyRate!!
     }
 
@@ -163,17 +159,24 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
 
     fun changeHotFactor(isHotOn: Boolean) {
         PreferenceProvider.setHotFactor(isHotOn)
-        countWaterRateDefault()
+        WaterRateProvider.addNewRate(countWaterRateDefault())
     }
 
-    private fun countWaterRateDefault() {
-        dailyRate!!.value = Water.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
-                PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!)
+    private fun countWaterRateDefault() : Int{
+        var value = WaterCounter.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
+                PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!, true)
+
+        dailyRate!!.value = value
+        return value
     }
 
     fun changeTrainingFactor(isTrainingOn: Boolean) {
         PreferenceProvider.setTrainingFactor(isTrainingOn)
-        countWaterRateDefault()
+        WaterRateProvider.addNewRate(countWaterRateDefault())
+    }
+
+    fun firstCalculateWaterRate() {
+        WaterRateProvider.addNewRate(countWaterRateDefault())
     }
 
 

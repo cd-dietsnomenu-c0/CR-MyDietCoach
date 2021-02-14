@@ -47,7 +47,7 @@ object AdWorker {
 
             override fun onAdLoaded() {
                 super.onAdLoaded()
-                if (isNeedShowNow){
+                if (isNeedShowNow && !Config.FOR_TEST){
                     isNeedShowNow = false
                     inter?.show()
                     Ampl.showAd()
@@ -57,21 +57,23 @@ object AdWorker {
     }
 
     private fun loadNative(context: Context) {
-        adLoader = AdLoader
-                .Builder(context, context.getString(R.string.native_ad))
-                .forUnifiedNativeAd { nativeAD ->
-                    bufferAdsList.add(nativeAD)
-                    if (!adLoader!!.isLoading) {
-                        endLoading()
-                    }
-                }.withAdListener(object : AdListener() {
-                    override fun onAdFailedToLoad(p0: Int) {
+        if (!Config.FOR_TEST) {
+            adLoader = AdLoader
+                    .Builder(context, context.getString(R.string.native_ad))
+                    .forUnifiedNativeAd { nativeAD ->
+                        bufferAdsList.add(nativeAD)
                         if (!adLoader!!.isLoading) {
                             endLoading()
                         }
-                    }
-                }).build()
-        adLoader?.loadAds(AdRequest.Builder().build(), Config.NATIVE_ITEMS_MAX)
+                    }.withAdListener(object : AdListener() {
+                        override fun onAdFailedToLoad(p0: Int) {
+                            if (!adLoader!!.isLoading) {
+                                endLoading()
+                            }
+                        }
+                    }).build()
+            adLoader?.loadAds(AdRequest.Builder().build(), Config.NATIVE_ITEMS_MAX)
+        }
     }
 
     private fun endLoading() {

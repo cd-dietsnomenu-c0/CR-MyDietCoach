@@ -30,7 +30,7 @@ import com.jundev.weightloss.presentation.profile.measurments.MeasActivity
 import com.jundev.weightloss.presentation.profile.toasts.DeniedPermToast
 import com.jundev.weightloss.presentation.profile.toasts.IntroToast
 import com.jundev.weightloss.utils.PreferenceProvider
-import com.jundev.weightloss.utils.counter.Water
+import com.jundev.weightloss.utils.water.WaterCounter
 import kotlinx.android.synthetic.main.bottom_sheet_backs.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import java.io.File
@@ -96,40 +96,48 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
 
         btnGrade.setOnClickListener {
-            Ampl.openSettingsGrade()
-            var intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("market://details?id=" + activity!!.packageName)
-            startActivity(intent)
+            if (!Config.FOR_TEST) {
+                Ampl.openSettingsGrade()
+                var intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse("market://details?id=" + activity!!.packageName)
+                startActivity(intent)
+            }
         }
 
         btnReport.setOnClickListener {
-            Ampl.sendClaim()
-            var intent = Intent(Intent(ACTION_SENDTO))
-            intent.type = "message/rfc822"
-            intent.data = Uri.parse("mailto:")
-            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.dev_email)));
-            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_title));
-            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.report_text));
-            try {
-                startActivity(createChooser(intent, getString(R.string.report_wait)))
-            } catch (ex: ActivityNotFoundException) {
-                Toast.makeText(this.requireContext(), getString(R.string.report_error), Toast.LENGTH_LONG).show()
+            if (!Config.FOR_TEST) {
+                Ampl.sendClaim()
+                var intent = Intent(Intent(ACTION_SENDTO))
+                intent.type = "message/rfc822"
+                intent.data = Uri.parse("mailto:")
+                intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.dev_email)));
+                intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_title));
+                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.report_text));
+                try {
+                    startActivity(createChooser(intent, getString(R.string.report_wait)))
+                } catch (ex: ActivityNotFoundException) {
+                    Toast.makeText(this.requireContext(), getString(R.string.report_error), Toast.LENGTH_LONG).show()
+                }
             }
         }
 
         btnPolicy.setOnClickListener {
-            var intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(activity!!.resources.getString(R.string.url_gdpr))
-            startActivity(intent)
+            if (!Config.FOR_TEST) {
+                var intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(activity!!.resources.getString(R.string.url_gdpr))
+                startActivity(intent)
+            }
         }
 
         btnShare.setOnClickListener {
-            Ampl.openSettingsShare()
-            var intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.accompanying_text) + "\n"
-                    + "https://play.google.com/store/apps/details?id=com.jundev.weightloss")
-            startActivity(intent)
+            if (!Config.FOR_TEST) {
+                Ampl.openSettingsShare()
+                var intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.accompanying_text) + "\n"
+                        + "https://play.google.com/store/apps/details?id=com.jundev.weightloss")
+                startActivity(intent)
+            }
         }
 
 
@@ -234,7 +242,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     override fun onResume() {
         super.onResume()
         bindFields()
-        bindInfoToast()
     }
 
 
@@ -258,7 +265,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private fun bindFields() {
         if (PreferenceProvider.getWeight()!! != PreferenceProvider.EMPTY){
             tvWeight.text = PreferenceProvider.getWeight()!!.toString()
-            tvWater.text = Water.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!).toString()
+            tvWater.text = WaterCounter.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!, false).toString()
         }else{
             tvWeight.text = EMPTY_MEAS
             tvWater.text = EMPTY_MEAS

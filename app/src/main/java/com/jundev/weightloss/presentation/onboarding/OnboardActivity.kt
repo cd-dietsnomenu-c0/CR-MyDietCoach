@@ -55,6 +55,7 @@ class OnboardActivity : AppCompatActivity(R.layout.onboard_activity) {
 
     private fun openMainActivity() {
         startActivity(Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, intent.getStringExtra(Config.PUSH_TAG)))
+        finish()
     }
 
     private fun fillA() : List<Fragment> {
