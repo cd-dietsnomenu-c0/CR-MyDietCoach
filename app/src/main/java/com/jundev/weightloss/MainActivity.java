@@ -33,6 +33,7 @@ import com.jundev.weightloss.presentation.tracker.FragmentTracker;
 import com.jundev.weightloss.utils.GradeAlert;
 import com.jundev.weightloss.utils.ThankToast;
 import com.jundev.weightloss.presentation.water.FragmentWaterTracker;
+import com.jundev.weightloss.utils.res.TextCutActvity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -144,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
         additionOneToSharedPreference();
         checkFirstRun();
+
+        //startActivity(new Intent(this, TextCutActvity.class));
     }
 
     private void checkIntent() {
