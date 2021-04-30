@@ -4,7 +4,7 @@
   <item
       android:id="@+id/bnv_tracker"
       android:icon="@drawable/bnv_tracker"
-      android:title="Трекер" />
+      android:title="@string/tracker" />
 
   <item
       android:id="@+id/bnv_main"

@@ -40,13 +40,13 @@ class TypesVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val iClick: 
         } else {
             Glide.with(itemView.context).load(R.drawable.types_unchecked).into(itemView.ivMenu)
         }
-        itemView.tvDietCount.text = "${schema.reverseDietIndexes.size} шт"
+        itemView.tvDietCount.text = "${schema.reverseDietIndexes.size} ${itemView.resources.getString(R.string.sht)}"
     }
 
     private fun setOldVH(schema: Schema) {
         Glide.with(itemView.context).load(R.drawable.types_unchecked).into(itemView.ivTracker)
         Glide.with(itemView.context).load(R.drawable.types_unchecked).into(itemView.ivMenu)
-        itemView.tvDietCount.text = "${schema.countOldDiets} шт"
+        itemView.tvDietCount.text = "${schema.countOldDiets} ${itemView.resources.getString(R.string.sht)}"
     }
 
     private fun setHardLevel(hardLevel: Int) {

@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:layout_gravity="center_horizontal"
-            android:text="Начать"
+            android:text="@string/start"
             android:drawableLeft="@drawable/ic_start_button"
             android:paddingHorizontal="40dp"
             android:fontFamily="@font/roboto_medium"

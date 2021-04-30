@@ -25,7 +25,7 @@ class NameDialog: DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        edtName.onFocusChangeListener = OnFocusChangeListener { v, hasFocus -> if (hasFocus) edtName.hint = "" else edtName.hint = "Ваше имя иди никнейм" }
+        edtName.onFocusChangeListener = OnFocusChangeListener { v, hasFocus -> if (hasFocus) edtName.hint = "" else edtName.hint = "Ваше имя или никнейм" }
         btnCancel.setOnClickListener {
             dismiss()
         }
