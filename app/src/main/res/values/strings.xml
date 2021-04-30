@@ -2,16 +2,16 @@
     <string name="app_name">Диеты</string>
     <string name="check_your_connect">Check your internet</string>
 
-    <!--<string name="admob_key" translatable="false">ca-app-pub-2555056002292788~2196488278</string>
-    <string name="interstitial_id" translatable="false">ca-app-pub-2555056002292788/2565401391</string>
-    <string name="banner_id" translatable="false">ca-app-pub-2555056002292788/5191564733</string>
-    <string name="native_ad" translatable="false">ca-app-pub-2555056002292788/5432421082</string>-->
+    <string name="admob_key" translatable="false">ca-app-pub-2555056002292788~3750621051</string>
+    <string name="interstitial_id" translatable="false">ca-app-pub-2555056002292788/3064241259</string>
+    <string name="banner_id" translatable="false">ca-app-pub-2555056002292788/9629649606</string>
+    <string name="native_ad" translatable="false">ca-app-pub-2555056002292788/3938339229</string>
 
     <!--Test-->
-    <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <!--<string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
+    <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>-->
 
     <!--Profile-->
     <string name="url_gdpr" translatable="false">https://www.freeprivacypolicy.com/privacy/view/272200879b5cf29dd1b4fcd0f0299409</string>

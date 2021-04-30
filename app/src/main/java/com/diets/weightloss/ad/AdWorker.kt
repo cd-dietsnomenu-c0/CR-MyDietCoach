@@ -24,7 +24,7 @@ object AdWorker {
 
 
     fun init(context: Context) {
-        /*inter = InterstitialAd(context)
+        inter = InterstitialAd(context)
         inter?.adUnitId = context.getString(R.string.interstitial_id)
         inter?.loadAd(AdRequest.Builder().build())
         loadNative(context)
@@ -53,11 +53,11 @@ object AdWorker {
                     Ampl.showAd()
                 }
             }
-        }*/
+        }
     }
 
     private fun loadNative(context: Context) {
-        /*adLoader = AdLoader
+        adLoader = AdLoader
                 .Builder(context, context.getString(R.string.native_ad))
                 .forUnifiedNativeAd { nativeAD ->
                     bufferAdsList.add(nativeAD)
@@ -71,44 +71,44 @@ object AdWorker {
                         }
                     }
                 }).build()
-        adLoader?.loadAds(AdRequest.Builder().build(), Config.NATIVE_ITEMS_MAX)*/
+        adLoader?.loadAds(AdRequest.Builder().build(), Config.NATIVE_ITEMS_MAX)
     }
 
     private fun endLoading() {
-        /*if (bufferAdsList.size > 0) {
+        if (bufferAdsList.size > 0) {
             adsList = bufferAdsList
             bufferAdsList = arrayListOf()
             nativeSpeaker?.loadFin(adsList)
-        }*/
+        }
     }
 
     fun observeOnNativeList(nativeSpeaker: NativeSpeaker) {
-        /*if (adsList.size > 0) {
+        if (adsList.size > 0) {
             nativeSpeaker.loadFin(adsList)
         } else {
             this.nativeSpeaker = nativeSpeaker
-        }*/
+        }
     }
 
     fun refreshNativeAd(context: Context) {
-        /*nativeSpeaker = null
-        loadNative(context)*/
+        nativeSpeaker = null
+        loadNative(context)
     }
 
     private fun reload() {
-        //inter?.loadAd(AdRequest.Builder().build())
+        inter?.loadAd(AdRequest.Builder().build())
     }
 
     fun checkLoad() {
-        /*if (isFailedLoad) {
+        if (isFailedLoad) {
             counterFailed = 0
             isFailedLoad = false
             reload()
-        }*/
+        }
     }
 
     fun showInter() {
-        /*if (Counter.getInstance().getCounter() % MAX_REQUEST_AD == 0) {
+        if (Counter.getInstance().getCounter() % MAX_REQUEST_AD == 0) {
             if (inter?.isLoaded == true) {
                 inter?.show()
                 Ampl.showAd()
@@ -120,14 +120,14 @@ object AdWorker {
             }
         } else {
             Counter.getInstance().adToCounter()
-        }*/
+        }
     }
 
     fun getShow(){
-        /*if (inter?.isLoaded == true){
+        if (inter?.isLoaded == true){
             inter?.show()
         }else{
             isNeedShowNow = true
-        }*/
+        }
     }
 }
