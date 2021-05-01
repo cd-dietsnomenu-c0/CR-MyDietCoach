@@ -70,7 +70,7 @@ public class ActivityCalculatorLorenc extends AppCompatActivity {
         View view = getLayoutInflater().inflate(R.layout.alert_dialog_weight, null);
         tvAlertDialogWeight = view.findViewById(R.id.tvAlertDialogWeight);
         btnOk = view.findViewById(R.id.btnAlertDialogOk);
-        tvAlertDialogWeight.setText(String.valueOf(calculate) + " кг");
+        tvAlertDialogWeight.setText(String.valueOf(calculate) + " " + getString(R.string.kg_brok));
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

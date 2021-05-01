@@ -285,6 +285,16 @@
     <string name="res">РЕЗУЛЬТАТЫ</string>
     <string name="rev">ОТЗЫВЫ</string>
     <string name="desc_vh">ОПИСАНИЕ</string>
+    <string name="kg_brok"> кг</string>
+    <string name="your_imt">Ваш ИМТ - </string>
+    <string name="fiz_level">Уровень физических нагрузок</string>
+    <string name="weight_in_kg">Ваш вес в килограммах</string>
+    <string name="prot_spk">Белки - </string>
+    <string name="fat_spk">Жиры - </string>
+    <string name="carbo_spk">Углеводы - </string>
+    <string name="gramm"> г</string>
+    <string name="cancel_spk">отмена</string>
+    <string name="ok_spk">ок</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>

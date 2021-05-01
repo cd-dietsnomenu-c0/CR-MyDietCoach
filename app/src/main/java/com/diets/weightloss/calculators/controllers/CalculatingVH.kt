@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.R
 import kotlinx.android.synthetic.main.item_of_list_calculating.view.*
 
-class CalculatingVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, var clicker : ClickItem) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_of_list_calculating, viewGroup, false)), View.OnClickListener {
+class CalculatingVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, var clicker: ClickItem)
+    : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_of_list_calculating, viewGroup, false)), View.OnClickListener {
 
     init {
         itemView.setOnClickListener(this)
@@ -17,7 +18,7 @@ class CalculatingVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, var cl
         clicker.click(adapterPosition)
     }
 
-    fun bind(title: String, description : String, gradient : Int){
+    fun bind(title: String, description: String, gradient: Int) {
         itemView.tvTitleOfItemListCalculating.text = title
         itemView.tvDescriptionOfItemListCalculating.text = description
         itemView.llParent.setBackgroundResource(gradient)

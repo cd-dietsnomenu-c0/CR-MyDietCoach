@@ -129,7 +129,7 @@ public class ActivityCalculatorIMT extends AppCompatActivity {
         TextView tvIMTAdDescription = view.findViewById(R.id.tvIMTAdDescription);
         TextView tvIMTAdIndex = view.findViewById(R.id.tvIMTAdIndex);
         FloatingActionButton floatingActionButton = view.findViewById(R.id.floatingActionButton);
-        tvIMTAdIndex.setText("Ваш ИМТ - " + IMT);
+        tvIMTAdIndex.setText(getString(R.string.your_imt) + " " + IMT);
         tvIMTAdName.setText(bodyType);
         tvIMTAdDescription.setText(description);
 

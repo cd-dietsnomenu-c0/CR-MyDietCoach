@@ -177,9 +177,9 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
         tvCalInDay.setText(String.valueOf(((int) SPK)) + " " + getString(R.string.spk_kcal));
         tvDownLine.setText(String.valueOf(((int) downLineSPK)) + " " + getString(R.string.spk_kcal) + " - "
                 + String.valueOf(((int) upLineSPK)) + " " + getString(R.string.spk_kcal));
-        tvBGU.setText("Белки - " + String.valueOf(((int) protein))
-                + " г" + "\n" + "Жиры - " + String.valueOf(((int) fat))
-                + " г" + "\n" + "Углеводы - " + String.valueOf(((int) carbohydrate)) + " г");
+        tvBGU.setText(getString(R.string.prot_spk) + String.valueOf(((int) protein))
+                + " " + getString(R.string.gramm) + "\n" + getString(R.string.fat_spk) + String.valueOf(((int) fat))
+                + " " + getString(R.string.gramm) + "\n" + getString(R.string.carbo_spk) + String.valueOf(((int) carbohydrate)) + " " + getString(R.string.gramm));
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,7 +197,7 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
         final View view = View.inflate(this, R.layout.alert_dialog_level, null);
         final RadioGroup rgLevelLoad = view.findViewById(R.id.rgLevelLoad);
         builder.setView(view);
-        builder.setPositiveButton("ок", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.ok_spk, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (rgLevelLoad.getCheckedRadioButtonId() != -1) {
@@ -206,7 +206,7 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
                 }
             }
         });
-        builder.setNeutralButton("отмена", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton(R.string.cancel_spk, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

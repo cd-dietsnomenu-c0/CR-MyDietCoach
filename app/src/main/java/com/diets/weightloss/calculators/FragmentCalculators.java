@@ -57,7 +57,6 @@ public class FragmentCalculators extends Fragment {
                 adapter.insertAds(nativeList);
             }
         });
-        Log.e("LOL", "calc");
     }
 
     public void startCalculator(Integer position) {
