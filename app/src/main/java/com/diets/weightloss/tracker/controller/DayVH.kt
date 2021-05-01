@@ -11,7 +11,8 @@ import com.airbnb.lottie.LottieAnimationView
 import com.diets.weightloss.R
 import kotlinx.android.synthetic.main.item_tracker_day.view.*
 
-class DayVH(var layoutInflater: LayoutInflater, var viewGroup: ViewGroup) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_tracker_day, viewGroup, false)) {
+class DayVH(var layoutInflater: LayoutInflater, var viewGroup: ViewGroup)
+    : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_tracker_day, viewGroup, false)) {
 
     var listCV : List<CardView>
     var listTexts : List<TextView>
