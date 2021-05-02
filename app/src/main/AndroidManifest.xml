@@ -134,6 +134,10 @@
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_small_notification" />
 
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".SplashActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="@string/authorise_file_provider"
