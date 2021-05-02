@@ -203,7 +203,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         var moshi = Moshi.Builder().build()
         var jsonAdapter = moshi.adapter(Global::class.java)
         try {
-            var inputStream = assets.open("adb.json")
+            var inputStream = assets.open("adb_en.json")
             var size = inputStream.available()
             var buffer = ByteArray(size)
             inputStream.read(buffer)
