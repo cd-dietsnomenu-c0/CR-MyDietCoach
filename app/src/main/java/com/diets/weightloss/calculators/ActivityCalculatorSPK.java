@@ -177,9 +177,9 @@ public class ActivityCalculatorSPK extends AppCompatActivity {
         tvCalInDay.setText(String.valueOf(((int) SPK)) + " " + getString(R.string.spk_kcal));
         tvDownLine.setText(String.valueOf(((int) downLineSPK)) + " " + getString(R.string.spk_kcal) + " - "
                 + String.valueOf(((int) upLineSPK)) + " " + getString(R.string.spk_kcal));
-        tvBGU.setText(getString(R.string.prot_spk) + String.valueOf(((int) protein))
-                + " " + getString(R.string.gramm) + "\n" + getString(R.string.fat_spk) + String.valueOf(((int) fat))
-                + " " + getString(R.string.gramm) + "\n" + getString(R.string.carbo_spk) + String.valueOf(((int) carbohydrate)) + " " + getString(R.string.gramm));
+        tvBGU.setText(getString(R.string.prot_spk) + " " + String.valueOf(((int) protein))
+                +  getString(R.string.gramm) + "\n" + getString(R.string.fat_spk) + " " + String.valueOf(((int) fat))
+                +  getString(R.string.gramm) + "\n" + getString(R.string.carbo_spk) + " " + String.valueOf(((int) carbohydrate)) +  getString(R.string.gramm));
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

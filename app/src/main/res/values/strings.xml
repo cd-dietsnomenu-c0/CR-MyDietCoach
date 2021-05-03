@@ -326,6 +326,15 @@
     <string name="day">день</string>
     <string name="cheatmeal">Читмил</string>
     <string name="shedule">Расписание</string>
+    <string name="atten_not">Внимание!</string>
+    <string name="text_atten_not">У вас есть неотмеченная еда</string>
+    <string name="results_calc">Итоги расчета</string>
+    <string name="desc_calc">Описание:</string>
+    <string name="fix_act">Физическая активность</string>
+    <string name="results_spk">Результаты</string>
+    <string name="day_value">Суточная потребность</string>
+    <string name="interval">Интервал для похудения</string>
+    <string name="bgu">БЖУ</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>

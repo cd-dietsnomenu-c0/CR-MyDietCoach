@@ -239,7 +239,7 @@
     <string name="what_is_your_name">What is your name?</string>
     <string name="your_name">Your name or nickname</string>
     <string name="cancel_btn">cancel</string>
-    <string name="save_button">save this</string>
+    <string name="save_button">save</string>
     <string name="ok_diets">cancel</string>
     <string name="sht">pc</string>
     <string name="count">Amount</string>
@@ -277,7 +277,7 @@
     <string name="weight_in_kg">Your weight in kilograms</string>
     <string name="prot_spk">Proteins - </string>
     <string name="fat_spk">Fats - </string>
-    <string name="carbo_spk">Carbohydrates - </string>
+    <string name="carbo_spk">Carbo - </string>
     <string name="gramm"> g</string>
     <string name="cancel_spk">cancel</string>
     <string name="ok_spk">ок</string>
@@ -317,6 +317,15 @@
     <string name="day">day</string>
     <string name="cheatmeal">Cheat meal</string>
     <string name="shedule">Schedule</string>
+    <string name="atten_not">Attention!</string>
+    <string name="text_atten_not">You have unmarked food</string>
+    <string name="results_calc">Calculation results</string>
+    <string name="desc_calc">Description:</string>
+    <string name="fix_act">Physical activity</string>
+    <string name="results_spk">Results</string>
+    <string name="day_value">Daily requirement</string>
+    <string name="interval">Slimming interval</string>
+    <string name="bgu">PFC</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d day</item>

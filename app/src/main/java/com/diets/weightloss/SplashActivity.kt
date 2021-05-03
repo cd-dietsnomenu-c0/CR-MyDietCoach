@@ -61,7 +61,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         PrefWorker.setLastEnter(Calendar.getInstance().timeInMillis)
         bindTest()
         ScheduleSetter.setAlarm(this)
-        ScheduleSetter.setReactAlarm(this)
         loadAnimations()
         playAnim()
         loadData()

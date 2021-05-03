@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvTitle"
-        android:text="Внимание!"
+        android:text="@string/atten_not"
         android:fontFamily="@font/roboto_medium"
         android:textColor="#FF5722"
         android:layout_marginLeft="74dp"
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="У вас есть неотмеченная еда"
+        android:text="@string/text_atten_not"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/black"
         android:textSize="12sp"
