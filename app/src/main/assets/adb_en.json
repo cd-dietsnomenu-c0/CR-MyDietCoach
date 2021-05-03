@@ -5498,7 +5498,7 @@
         "hintText": "Include any foods in your diet. Or keep eating the Fastening menu. This is the best way to keep your body in shape and protect it from overweight.",
         "introduction": "During the Stabilization stage and even earlier, you may lose the feeling of being on a diet. Sometimes there are situations that allowed foods are not available to you, for example, at a corporate event or a family party. Remember that you can have a feast for yourself. not prohibited. But after relaxing, return to the protein menu for one day. ",
         "mainImage": "https://i.ibb.co/j6D8cFR/53.jpg",
-        "menuText": "This phase is no longer directly related to the diet itself - this diet is for life. There are only four simple restrictions to follow:   n every day you must drink at least 1.5 liters of plain (non-carbonated and non-mineralized) water   It is imperative to add 3 tablespoons of oat bran to food every day    every day any amount of protein food, vegetables and fruits, a slice of cheese, two slices of bread, any two foods with a high starch content   one of the days of the week should be spent on the menu from the first phase (protein day) ",
+        "menuText": "This phase is no longer directly related to the diet itself - this diet is for life. There are only four simple restrictions to follow:\n every day you must drink at least 1.5 liters of plain (non-carbonated and non-mineralized) water\n It is imperative to add 3 tablespoons of oat bran to food every day\n every day any amount of protein food, vegetables and fruits, a slice of cheese, two slices of bread, any two foods with a high starch content\n one of the days of the week should be spent on the menu from the first phase (protein day) ",
         "menuTitle": "Menu for the fourth phase",
         "new": true,
         "resultText": "Weight loss will be insignificant, this phase is aimed at consolidating the lost weight and it will save you from gaining unwanted pounds",
@@ -5553,7 +5553,7 @@
               }
             ],
             "image": "",
-            "title": "Day 1 - Anchoring"
+            "title": "Day 1 - Consolidation"
           },
           {
             "eats": [
@@ -5575,7 +5575,7 @@
               }
             ],
             "image": "",
-            "title": "Day 2 - Anchoring"
+            "title": "Day 2 - Consolidation"
           },
           {
             "eats": [
@@ -5597,7 +5597,7 @@
               }
             ],
             "image": "",
-            "title": "Day 3 - Anchoring"
+            "title": "Day 3 - Consolidation"
           },
           {
             "eats": [
@@ -5619,7 +5619,7 @@
               }
             ],
             "image": "",
-            "title": "Day 4 - Anchoring"
+            "title": "Day 4 - Consolidation"
           },
           {
             "eats": [
@@ -5641,7 +5641,7 @@
               }
             ],
             "image": "",
-            "title": "Day 5 - Anchoring"
+            "title": "Day 5 - Consolidation"
           },
           {
             "eats": [
@@ -5663,7 +5663,7 @@
               }
             ],
             "image": "",
-            "title": "Day 6 - Anchoring"
+            "title": "Day 6 - Consolidation"
           },
           {
             "eats": [
@@ -5685,13 +5685,13 @@
               }
             ],
             "image": "",
-            "title": "Day 7 - Anchoring"
+            "title": "Day 7 - Consolidation"
           }
         ],
         "hintText": "At this stage, you can use the usual recipes that made up your diet earlier. Cutlets, meatballs, meatballs, all types of baked and stewed meat, fish, seafood are supplemented with vegetables, fruits and berries. In fact, the diet ceases to be perceived as - or food restriction. ",
         "introduction": "The duration of the stage is individual. According to the reviews of those losing weight, you have to spend a lot of time on Fastening. But the presence of new and such familiar products, the ability to move away from the diet a little eliminate the psychological discomfort of the stage. The duration is calculated by the formula - 10 days for each lost kilogram in the second stage. That is, if you lost 8 kilograms on the Alternation, you will have to spend 80 days in the Fixation phase. ",
         "mainImage": "https://i.ibb.co/dPGCT0y/52.jpg",
-        "menuText": "Here are a few things about the Fixing step.   nAdd starchy foods. Your diet may gradually add foods that you have traditionally eaten before, such as regular bread, pasta and potatoes. But they should be consumed in moderation, not constantly.   Increase the volume of bran. Raise the daily norm to three tablespoons of this valuable component.   Eating honey. A new element of the nutrition system that will brighten up the complete absence of sweets in the diet. Now you are allowed to eat up to three teaspoons of this healthy and tasty product.   Setting up Holidays! The return of the usual diet, according to the author, is impossible without some indulgences to yourself. Holidays or feasts are meals during which you eat whatever you want. Absolutely any food in any quantity. remember that the feast is one meal, not the whole day. And you can repeat it only twice a week and not for two days in a row.   Return Xia to Attack. This should be done once a week. You can choose any day you like and any menu from the first phase. ",
+        "menuText": "Here are a few things about the Fixing step.\n Add starchy foods. Your diet may gradually add foods that you have traditionally eaten before, such as regular bread, pasta and potatoes. But they should be consumed in moderation, not constantly.\n Increase the volume of bran. Raise the daily norm to three tablespoons of this valuable component.\n Eating honey. A new element of the nutrition system that will brighten up the complete absence of sweets in the diet. Now you are allowed to eat up to three teaspoons of this healthy and tasty product.\n Setting up Holidays! The return of the usual diet, according to the author, is impossible without some indulgences to yourself. Holidays or feasts are meals during which you eat whatever you want. Absolutely any food in any quantity. remember that the feast is one meal, not the whole day. And you can repeat it only twice a week and not for two days in a row.\n Return Xia to Attack. This should be done once a week. You can choose any day you like and any menu from the first phase. ",
         "menuTitle": "Menu for the third phase",
         "new": true,
         "resultText": "At this stage, weight loss is slow. On average, weight loss is 0.4 kilograms per week.",
@@ -5701,7 +5701,7 @@
           "text": "Though slowly, but damn it, I don't feel any infringements in terms of food, I eat as much as I want, and the hated kilos are slowly leaving)) Soon to move on to stage 4, wish good luck. I really like this diet))"
         },
         "shortIntroduction": "The third stage of the Ducan diet - Consolidation ",
-        "title": "Pinning",
+        "title": "Consolidation",
         "kcal": 950,
         "index": 52
       },
@@ -5948,9 +5948,9 @@
           }
         ],
         "hintText": "This ration is suitable for alternating five through five. After finishing, repeat until desired result is achieved.",
-        "introduction": "This phase is where the main weight loss occurs. There is no fixed duration. In theory, you should stick to it until your weight is ideal.   nHere are the basic principles of this phase.   nAdd vegetables. To a purely protein diet, fiber-rich foods are added. These are vegetables and greens. In total, Dr. Ducan allows the addition of twenty-eight new foods, which makes the diet more balanced and varied.    Alternating protein days with mixed ones. Protein days are periods when you continue to eat only animal proteins are used in food Mixed - when vegetable proteins are added to protein foods Alternation patterns are selected individually To determine your alternation scheme, use the following: Up to ten kg excess weight - 1 (protein-vegetable day) / 1 (pure protein days). twenty kg - 3/3. Up to 30 and more kg - 5/5. ",
+        "introduction": "This phase is where the main weight loss occurs. There is no fixed duration. In theory, you should stick to it until your weight is ideal.\n nHere are the basic principles of this phase.\n Add vegetables. To a purely protein diet, fiber-rich foods are added. These are vegetables and greens. In total, Dr. Ducan allows the addition of twenty-eight new foods, which makes the diet more balanced and varied.\n Alternating protein days with mixed ones. Protein days are periods when you continue to eat only animal proteins are used in food Mixed - when vegetable proteins are added to protein foods Alternation patterns are selected individually To determine your alternation scheme, use the following: Up to ten kg excess weight - 1 (protein-vegetable day) / 1 (pure protein days). twenty kg - 3/3. Up to 30 and more kg - 5/5. ",
         "mainImage": "https://i.ibb.co/NsKh0Bx/51.jpg",
-        "menuText": "You can continue to eat all the products familiar from the previous stage. The new one adds vegetables and all types of greens, without exception.   nAdd seasonal vegetables to your diet: cucumbers and tomatoes, eggplants and zucchini, all types of cabbage, beets and carrots. Eat all types of onions, mushrooms, celery and asparagus. Try those vegetables that you were indifferent to before, such as turnips and pumpkin, chicory, radishes, green beans. Healthy and tasty greens: spinach, sorrel, lettuce, cilantro, dill, parsley, green onions.   nDespite the fact that all vegetables are healthy, some of them are prohibited, as they contain a lot of starch, therefore, they are too high in calories. This applies to peas and beans, potatoes, corn.   The diet contains everything spices that you can use in cooking. Add new products to them:   nfat-free cocoa - one of the products from Ducan, in our stores it is impossible to find it;   starch - will help in cooking dishes from vegetables;   cream - ordinary fat content up to four percent or soy;   cheese - up to six percent fat, an incredibly rare product;   white and red wine - up to three tablespoons;   ketchup.   You can consume no more than two new foods during the day. The norm for each is up to two tablespoons per day. ",
+        "menuText": "You can continue to eat all the products familiar from the previous stage. The new one adds vegetables and all types of greens, without exception.\n Add seasonal vegetables to your diet: cucumbers and tomatoes, eggplants and zucchini, all types of cabbage, beets and carrots. Eat all types of onions, mushrooms, celery and asparagus. Try those vegetables that you were indifferent to before, such as turnips and pumpkin, chicory, radishes, green beans. Healthy and tasty greens: spinach, sorrel, lettuce, cilantro, dill, parsley, green onions\n Despite the fact that all vegetables are healthy, some of them are prohibited, as they contain a lot of starch, therefore, they are too high in calories. This applies to peas and beans, potatoes, corn. \n  The diet contains everything spices that you can use in cooking. Add new products to them:\n fat-free cocoa - one of the products from Ducan, in our stores it is impossible to find it;\n starch - will help in cooking dishes from vegetables;\n cream - ordinary fat content up to four percent or soy;\n cheese - up to six percent fat, an incredibly rare product;\n white and red wine - up to three tablespoons;\n ketchup.\n You can consume no more than two new foods during the day. The norm for each is up to two tablespoons per day. ",
         "menuTitle": "Menu for the second phase 5/5",
         "new": true,
         "resultText": "During the Alternation phase, weight loss is stable, but not intense. The average is one kilogram per week. Therefore, you will need to diet in this phase from several weeks to several months.",
@@ -6119,9 +6119,9 @@
           }
         ],
         "hintText": "This ration is suitable for alternating three through three. After finishing, repeat until the desired result is achieved",
-        "introduction": "This phase is where the main weight loss occurs. There is no fixed duration. In theory, you should stick to it until your weight is ideal.   nHere are the basic principles of this phase.   nAdd vegetables. To a purely protein diet, fiber-rich foods are added. These are vegetables and greens. In total, Dr. Ducan allows the addition of twenty-eight new foods, which makes the diet more balanced and varied.    Alternating protein days with mixed ones. Protein days are periods when you continue to eat only animal proteins are used in food Mixed - when vegetable proteins are added to protein foods Alternation patterns are selected individually To determine your alternation scheme, use the following: Up to ten kg excess weight - 1 (protein-vegetable day) / 1 (pure protein days). twenty kg - 3/3. Up to 30 and more kg - 5/5. ",
+        "introduction": "This phase is where the main weight loss occurs. There is no fixed duration. In theory, you should stick to it until your weight is ideal.\n Here are the basic principles of this phase.\n Add vegetables. To a purely protein diet, fiber-rich foods are added. These are vegetables and greens. In total, Dr. Ducan allows the addition of twenty-eight new foods, which makes the diet more balanced and varied.\n Alternating protein days with mixed ones. Protein days are periods when you continue to eat only animal proteins are used in food Mixed - when vegetable proteins are added to protein foods Alternation patterns are selected individually To determine your alternation scheme, use the following: Up to ten kg excess weight - 1 (protein-vegetable day) / 1 (pure protein days). twenty kg - 3/3. Up to 30 and more kg - 5/5. ",
         "mainImage": "https://i.ibb.co/VNx5FpB/50.jpg",
-        "menuText": "You can continue to eat all the products familiar from the previous stage. The new one adds vegetables and all types of greens, without exception.   nAdd seasonal vegetables to your diet: cucumbers and tomatoes, eggplants and zucchini, all types of cabbage, beets and carrots. Eat all types of onions, mushrooms, celery and asparagus. Try those vegetables that you were indifferent to before, such as turnips and pumpkin, chicory, radishes, green beans. Healthy and tasty greens: spinach, sorrel, lettuce, cilantro, dill, parsley, green onions.   nDespite the fact that all vegetables are healthy, some of them are prohibited, as they contain a lot of starch, therefore, they are too high in calories. This applies to peas and beans, potatoes, corn.   The diet contains everything spices that you can use in cooking. Add new products to them:   nfat-free cocoa - one of the products from Ducan, in our stores it is impossible to find it;   starch - will help in cooking dishes from vegetables;   cream - ordinary fat content up to four percent or soy;   cheese - up to six percent fat, an incredibly rare product;   white and red wine - up to three tablespoons;   ketchup.   You can consume no more than two new foods during the day. The norm for each is up to two tablespoons per day. ",
+        "menuText": "You can continue to eat all the products familiar from the previous stage. The new one adds vegetables and all types of greens, without exception.\n Add seasonal vegetables to your diet: cucumbers and tomatoes, eggplants and zucchini, all types of cabbage, beets and carrots. Eat all types of onions, mushrooms, celery and asparagus. Try those vegetables that you were indifferent to before, such as turnips and pumpkin, chicory, radishes, green beans. Healthy and tasty greens: spinach, sorrel, lettuce, cilantro, dill, parsley, green onions.\n Despite the fact that all vegetables are healthy, some of them are prohibited, as they contain a lot of starch, therefore, they are too high in calories. This applies to peas and beans, potatoes, corn.\n The diet contains everything spices that you can use in cooking. Add new products to them:\n fat-free cocoa - one of the products from Ducan, in our stores it is impossible to find it;\n starch - will help in cooking dishes from vegetables;\n cream - ordinary fat content up to four percent or soy;\n cheese - up to six percent fat, an incredibly rare product;\n white and red wine - up to three tablespoons;\n ketchup.\n You can consume no more than two new foods during the day. The norm for each is up to two tablespoons per day. ",
         "menuTitle": "Menu for the second phase 3/3",
         "new": true,
         "resultText": "During the Alternation phase, weight loss is stable, but not intense. The average is one kilogram per week. Therefore, you will need to diet in this phase from several weeks to several months.",
@@ -6131,7 +6131,7 @@
           "text": "My excess weight fell into this interval. In the first phase it was wow, kilos were melting before our eyes and it charges with positive and motivation - here I lasted 10 (!!) weeks, since I did not feel any discomfort))"
         },
         "shortIntroduction": "The second stage of the Ducan diet - Alternation 3/3 (up to 20 kg)",
-        "title": "Interleave 3/3",
+        "title": "Alternation 3/3",
         "kcal": 950,
         "index": 50
       },
@@ -6312,9 +6312,9 @@
           }
         ],
         "hintText": "This ration is suitable for alternating one after one. After finishing, repeat until the desired result is achieved.",
-        "introduction": "This phase is where the main weight loss occurs. There is no fixed duration. In theory, you should stick to it until your weight is ideal.   nHere are the basic principles of this phase.   nAdd vegetables. To a purely protein diet, fiber-rich foods are added. These are vegetables and herbs. In total, Dr. Dukan allows the addition of twenty-eight new foods, which makes the diet more balanced and varied.    Alternating protein days with mixed ones. Protein days are periods when you continue to eat only animal proteins are used in food Mixed - when vegetable proteins are added to protein foods Alternation patterns are selected individually To determine your alternation scheme, use the following: Up to ten kg - 1/1 Up to twenty kg - 3/3 Up to 30 kg or more - 5/5. ",
+        "introduction": "This phase is where the main weight loss occurs. There is no fixed duration. In theory, you should stick to it until your weight is ideal.\n Here are the basic principles of this phase.\n Add vegetables. To a purely protein diet, fiber-rich foods are added. These are vegetables and herbs. In total, Dr. Dukan allows the addition of twenty-eight new foods, which makes the diet more balanced and varied.\n Alternating protein days with mixed ones. Protein days are periods when you continue to eat only animal proteins are used in food Mixed - when vegetable proteins are added to protein foods Alternation patterns are selected individually To determine your alternation scheme, use the following: Up to ten kg - 1/1 Up to twenty kg - 3/3 Up to 30 kg or more - 5/5. ",
         "mainImage": "https://i.ibb.co/0FSW8S9/49.jpg",
-        "menuText": "You can continue to eat all the products familiar from the previous stage. The new one adds vegetables and all types of greens, without exception.   nAdd seasonal vegetables to your diet: cucumbers and tomatoes, eggplants and zucchini, all types of cabbage, beets and carrots. Eat all types of onions, mushrooms, celery and asparagus. Try those vegetables that you were indifferent to before, such as turnips and pumpkin, chicory, radishes, green beans. Healthy and tasty greens: spinach, sorrel, lettuce, cilantro, dill, parsley, green onions.   nDespite the fact that all vegetables are healthy, some of them are prohibited, as they contain a lot of starch, therefore, they are too high in calories. This applies to peas and beans, potatoes, corn.   The diet contains everything spices that you can use in cooking. Add new products to them:   nfat-free cocoa - one of the products from Ducan, in our stores it is impossible to find it;   starch - will help in cooking dishes from vegetables;   cream - ordinary fat content up to four percent or soy;   cheese - up to six percent fat, an incredibly rare product;   white and red wine - up to three tablespoons;   ketchup.   You can consume no more than two new foods during the day. The norm for each is up to two tablespoons per day. ",
+        "menuText": "You can continue to eat all the products familiar from the previous stage. The new one adds vegetables and all types of greens, without exception.\n Add seasonal vegetables to your diet: cucumbers and tomatoes, eggplants and zucchini, all types of cabbage, beets and carrots. Eat all types of onions, mushrooms, celery and asparagus. Try those vegetables that you were indifferent to before, such as turnips and pumpkin, chicory, radishes, green beans. Healthy and tasty greens: spinach, sorrel, lettuce, cilantro, dill, parsley, green onions.\n Despite the fact that all vegetables are healthy, some of them are prohibited, as they contain a lot of starch, therefore, they are too high in calories. This applies to peas and beans, potatoes, corn.\n The diet contains everything spices that you can use in cooking. Add new products to them:\n fat-free cocoa - one of the products from Ducan, in our stores it is impossible to find it;\n starch - will help in cooking dishes from vegetables;\n cream - ordinary fat content up to four percent or soy;\n cheese - up to six percent fat, an incredibly rare product;\n white and red wine - up to three tablespoons; \n ketchup. \n You can consume no more than two new foods during the day. The norm for each is up to two tablespoons per day. ",
         "menuTitle": "Menu for the second phase",
         "new": true,
         "resultText": "During the Alternation phase, weight loss is stable, but not intense. The average is one kilogram per week. Therefore, you will need to diet in this phase from several weeks to several months.",
@@ -6507,7 +6507,7 @@
         "hintText": "Sugar is prohibited, salt can be consumed in small quantities.",
         "introduction": "The first stage of the Ducan diet is Attack. The list of recommended foods almost completely lacks foods that contain fats and carbohydrates. This allows you to achieve weight loss due to lack of glucose. To provide itself with energy, the body is forced to burn its own fat deposits . ",
         "mainImage": "https://i.ibb.co/j45Ltgr/48.jpg",
-        "menuText": "ALLOWED PRODUCTS AT THE ATTACK STAGE    Rabbit meat, poultry, turkey, beef, veal, chicken or veal ham.   Any seafood, fish.    Canned meat and fish without adding tomato sauce, butter, sugar.   Eggs. But no more than 2 yolks per week.   Sub-products.   Kefir, fermented baked milk, yogurt, cottage cheese, soft cheeses with low fat content.   Tofu cheese.   Mineral water, coffee, tea, chicory. ",
+        "menuText": "ALLOWED PRODUCTS AT THE ATTACK STAGE \n Rabbit meat, poultry, turkey, beef, veal, chicken or veal ham.\n Any seafood, fish.\n Canned meat and fish without adding tomato sauce, butter, sugar.\n Eggs. But no more than 2 yolks per week.\n Sub-products.\n Kefir, fermented baked milk, yogurt, cottage cheese, soft cheeses with low fat content.\n Tofu cheese.\n Mineral water, coffee, tea, chicory. ",
         "menuTitle": "Menu for the first phase",
         "new": true,
         "resultText": "The plumb line of the first phase of the diet, if all the rules and recommendations are followed - 5 kg",
