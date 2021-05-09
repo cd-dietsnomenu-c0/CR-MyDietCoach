@@ -24,6 +24,7 @@ import com.diets.weightloss.analytics.Ampl
 import com.diets.weightloss.profile.controllers.BacksAdapter
 import com.diets.weightloss.profile.controllers.IBacks
 import com.diets.weightloss.profile.dialogs.DevelopmentDialog
+import com.diets.weightloss.profile.dialogs.LanguageWarningDialog
 import com.diets.weightloss.profile.dialogs.NameDialog
 import com.diets.weightloss.profile.favorites.FavoritesActivity
 import com.diets.weightloss.profile.language.ChoiceLangActivity
@@ -137,7 +138,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
 
         btnLanguage.setOnClickListener {
-            startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
+            LanguageWarningDialog().show(childFragmentManager, "")
+            //startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
         }
     }
 

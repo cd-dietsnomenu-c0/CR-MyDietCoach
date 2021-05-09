@@ -338,6 +338,10 @@
     <string name="locale">Локализация</string>
     <string name="lang_title">Язык</string>
     <string name="change_lang">Сменить язык</string>
+    <string name="war_cont_text">После изменения языка, активированные диеты станут недоступны</string>
+    <string name="atten_lang">Внимание</string>
+    <string name="cancel_lang">Отмена</string>
+    <string name="cont_lang">Продолжить</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>
