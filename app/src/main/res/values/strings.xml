@@ -335,6 +335,9 @@
     <string name="day_value">Суточная потребность</string>
     <string name="interval">Интервал для похудения</string>
     <string name="bgu">БЖУ</string>
+    <string name="locale">Локализация</string>
+    <string name="lang_title">Язык</string>
+    <string name="change_lang">Сменить язык</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>
@@ -343,5 +346,10 @@
         <item quantity="many">%1$d дней</item>
         <item quantity="other">%1$d дней</item>
     </plurals>
+
+    <string-array name="langs">
+        <item>Русский</item>
+        <item>English</item>
+    </string-array>
 
 </resources>

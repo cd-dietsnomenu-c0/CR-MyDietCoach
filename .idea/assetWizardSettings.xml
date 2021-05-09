@@ -19,7 +19,7 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="img_back_btn" />
+                            <entry key="outputName" value="ic_arrow_back" />
                             <entry key="sourceFile" value="C:\Users\wadim\Desktop\left-arrow.svg" />
                           </map>
                         </option>

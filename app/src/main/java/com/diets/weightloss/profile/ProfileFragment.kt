@@ -26,6 +26,7 @@ import com.diets.weightloss.profile.controllers.IBacks
 import com.diets.weightloss.profile.dialogs.DevelopmentDialog
 import com.diets.weightloss.profile.dialogs.NameDialog
 import com.diets.weightloss.profile.favorites.FavoritesActivity
+import com.diets.weightloss.profile.language.ChoiceLangActivity
 import com.diets.weightloss.profile.toasts.DeniedPermToast
 import com.diets.weightloss.profile.toasts.IntroToast
 import com.diets.weightloss.utils.PrefWorker
@@ -133,6 +134,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             } else {
                 runCamera()
             }
+        }
+
+        btnLanguage.setOnClickListener {
+            startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
         }
     }
 

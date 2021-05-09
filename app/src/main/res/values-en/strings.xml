@@ -326,6 +326,9 @@
     <string name="day_value">Daily requirement</string>
     <string name="interval">Slimming interval</string>
     <string name="bgu">PFC</string>
+    <string name="locale">Localization</string>
+    <string name="lang_title">Language</string>
+    <string name="change_lang">Change language</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d day</item>

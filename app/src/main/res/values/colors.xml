@@ -98,4 +98,7 @@
 
     <color name="violet_cards">#8c80e8</color>
     <color name="violet_cards_back">#e4dfff</color>
+
+    <color name="lang_text_active">#2b81e6</color>
+    <color name="lang_text_inactive">#030303</color>
 </resources>
