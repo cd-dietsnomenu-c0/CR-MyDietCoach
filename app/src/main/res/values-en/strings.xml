@@ -329,6 +329,12 @@
     <string name="locale">Localization</string>
     <string name="lang_title">Language</string>
     <string name="change_lang">Change language</string>
+    <string name="war_cont_text">After changing the language, activated diets will become unavailable</string>
+    <string name="atten_lang">Attention</string>
+    <string name="cancel_lang">Cancel</string>
+    <string name="cont_lang">Continue</string>
+    <string name="adb_path">adb_en.json</string>
+    <string name="splash_lang">Changing the language</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d day</item>
@@ -337,5 +343,12 @@
         <item quantity="many">%1$d days</item>
         <item quantity="other">%1$d days</item>
     </plurals>
+
+
+    <string-array name="langs">
+        <item>Default</item>
+        <item>Russian</item>
+        <item>English</item>
+    </string-array>
 
 </resources>

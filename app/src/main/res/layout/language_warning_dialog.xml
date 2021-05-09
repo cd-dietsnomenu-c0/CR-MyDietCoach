@@ -70,6 +70,7 @@
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/shape_warning_dialog"
@@ -78,13 +79,14 @@
                     android:textSize="12sp" />
 
                 <Button
-                    android:id="@+id/btnClose"
+                    android:id="@+id/btnOk"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="16dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="4dp"
                     android:background="@drawable/shape_warning_ok_dialog"
                     android:text="@string/cont_lang"
                     android:textColor="@color/white"

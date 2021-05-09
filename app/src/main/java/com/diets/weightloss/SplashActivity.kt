@@ -1,7 +1,11 @@
 package com.diets.weightloss
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
@@ -9,8 +13,6 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.RenderMode
 import com.amplitude.api.Amplitude
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.squareup.moshi.Moshi
 import com.diets.weightloss.POJOS.Global
 import com.diets.weightloss.ad.AdWorker.init
 import com.diets.weightloss.analytics.Ampl
@@ -20,13 +22,17 @@ import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.common.notifications.ScheduleSetter
 import com.diets.weightloss.onboarding.OnboardActivity
+import com.diets.weightloss.profile.ProfileFragment
 import com.diets.weightloss.utils.ABConfig
 import com.diets.weightloss.utils.PrefWorker
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.squareup.moshi.Moshi
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.splash_activity.*
 import java.util.*
+
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
@@ -40,11 +46,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     fun post() {
         goCounter += 1
-        if (goCounter >= maxGoCounter){
+        if (goCounter >= maxGoCounter) {
             var intent = Intent()
-            if(PrefWorker.getVersion() != ABConfig.C && isFirstTime){
+            if (PrefWorker.getVersion() != ABConfig.C && isFirstTime) {
                 intent = Intent(this, OnboardActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
-            }else{
+            } else {
                 intent = Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             }
             startActivity(intent)
@@ -54,6 +60,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bindLocale()
         if (intent.extras != null && intent.extras!!.getString(Config.PUSH_TAG) != null && intent.extras!!.getString(Config.PUSH_TAG) == Config.OPEN_FROM_PUSH) {
             openFrom = Config.OPEN_FROM_PUSH
             openFromPush()
@@ -66,6 +73,17 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         loadData()
         setFirstTime()
     }
+
+    private fun bindLocale() {
+        if (PrefWorker.locale != PrefWorker.DEFAULT_LOCALE) {
+            val res: Resources = resources
+            val dm: DisplayMetrics = res.displayMetrics
+            val conf: Configuration = res.configuration
+            conf.locale = Locale(PrefWorker.locale.toLowerCase())
+            res.updateConfiguration(conf, dm)
+        }
+    }
+
 
     private fun bindTest() {
         val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
@@ -91,7 +109,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun setFirstTime() {
-        if (PrefWorker.getFirstTime() == ""){
+        if (PrefWorker.getFirstTime() == "") {
             isFirstTime = true
             val calendar = Calendar.getInstance()
             var date = "${"%02d".format(calendar.get(Calendar.DAY_OF_MONTH))}.${"%02d".format(calendar.get(Calendar.MONTH) + 1)}.${calendar.get(Calendar.YEAR)}"
@@ -202,7 +220,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         var moshi = Moshi.Builder().build()
         var jsonAdapter = moshi.adapter(Global::class.java)
         try {
-            var inputStream = assets.open("adb_en.json")
+            var inputStream = assets.open(getString(R.string.adb_path))
             var size = inputStream.available()
             var buffer = ByteArray(size)
             inputStream.read(buffer)
@@ -212,5 +230,16 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         } catch (e: Exception) {
         }
         return null
+    }
+
+
+    companion object{
+        private const val CHANGE_LANG_TAG = "CHANGE_LANG_TAG"
+
+        fun getIntent(isChangedLang : Boolean, context: Context) : Intent{
+            return Intent(context, SplashActivity::class.java).apply {
+                putExtra(CHANGE_LANG_TAG, true)
+            }
+        }
     }
 }

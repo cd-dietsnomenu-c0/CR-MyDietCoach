@@ -2,6 +2,7 @@ package com.diets.weightloss.profile
 
 import android.app.Activity.RESULT_OK
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.content.Intent.*
 import android.content.pm.PackageManager
@@ -37,7 +38,7 @@ import java.io.File
 import java.lang.Exception
 
 
-class ProfileFragment : Fragment(R.layout.profile_fragment) {
+class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDialog.Callbacks {
 
     var nameDialog = NameDialog()
     val MAX_ATEMPT_INTRO = 2
@@ -138,8 +139,16 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
 
         btnLanguage.setOnClickListener {
-            LanguageWarningDialog().show(childFragmentManager, "")
-            //startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
+            if (PrefWorker.isShowLangWarning){
+                startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
+            }else{
+                LanguageWarningDialog().apply {
+                    setTargetFragment(this@ProfileFragment, -1)
+                    show(this@ProfileFragment.requireFragmentManager(), "")
+                }
+            }
+
+
         }
     }
 
@@ -232,6 +241,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             count++
             PrefWorker.setCountIntro(count)
         }
+    }
+
+    override fun openChangeLangActivity() {
+        startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
     }
 
 

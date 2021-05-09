@@ -59,6 +59,19 @@ object PrefWorker {
     fun setSecondShow() = editor { it?.putBoolean(SECOND_REACT, true) }
     fun getSecondShow() = getInstance()?.getBoolean(SECOND_REACT, false)
 
-    fun setVersion(version : String) = editor { it?.putString(VERSION, version) }
+    fun setVersion(version: String) = editor { it?.putString(VERSION, version) }
     fun getVersion() = getInstance()?.getString(VERSION, ABConfig.A)
+
+    private const val LANG_TAG = "LANG_TAG"
+    const val DEFAULT_LOCALE = "DEFAULT_LOCALE"
+
+    var locale: String
+        get() = getInstance()?.getString(LANG_TAG, DEFAULT_LOCALE)!!
+        set(value) = editor { it?.putString(LANG_TAG, value) }!!
+
+    private const val LANG_WARNING_TAG = "LANG_WARNING_TAG"
+
+    var isShowLangWarning: Boolean
+        get() = getInstance()?.getBoolean(LANG_WARNING_TAG, false)!!
+        set(value) = editor { it?.putBoolean(LANG_WARNING_TAG, value) }!!
 }

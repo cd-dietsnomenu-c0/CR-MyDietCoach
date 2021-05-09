@@ -342,6 +342,8 @@
     <string name="atten_lang">Внимание</string>
     <string name="cancel_lang">Отмена</string>
     <string name="cont_lang">Продолжить</string>
+    <string name="adb_path">adb.json</string>
+    <string name="splash_lang">Меняем язык</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>
@@ -352,8 +354,9 @@
     </plurals>
 
     <string-array name="langs">
+        <item>Системный</item>
         <item>Русский</item>
-        <item>English</item>
+        <item>Английский</item>
     </string-array>
 
 </resources>
