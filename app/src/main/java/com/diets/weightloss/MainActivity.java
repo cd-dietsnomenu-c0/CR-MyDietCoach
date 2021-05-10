@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.diets.weightloss.utils.PrefWorker;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -104,13 +105,7 @@ public class MainActivity extends AppCompatActivity {
         checkDB(savedInstanceState);
         checkIntent();
         fragmentManager = getSupportFragmentManager();
-        FirebaseMessaging.getInstance().subscribeToTopic("news").addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.e("LOL", "onSuccess");
-            }
-        });
-        FBWork.Companion.getFCMToken();
+
         Ampl.Companion.run();
 
         if (!hasConnection(this)) {
@@ -127,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         additionOneToSharedPreference();
         checkFirstRun();
     }
+
 
     private void checkIntent() {
         if (getIntent().getStringExtra(Config.PUSH_TAG) != null

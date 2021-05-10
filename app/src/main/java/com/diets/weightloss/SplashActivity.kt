@@ -18,13 +18,15 @@ import com.diets.weightloss.ad.AdWorker.init
 import com.diets.weightloss.analytics.Ampl
 import com.diets.weightloss.analytics.Ampl.Companion.openFromPush
 import com.diets.weightloss.common.DBHolder
+import com.diets.weightloss.common.FBWork.Companion.getFCMToken
 import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.common.notifications.ScheduleSetter
 import com.diets.weightloss.onboarding.OnboardActivity
-import com.diets.weightloss.profile.ProfileFragment
 import com.diets.weightloss.utils.ABConfig
+import com.diets.weightloss.utils.LangChoicer
 import com.diets.weightloss.utils.PrefWorker
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.squareup.moshi.Moshi
 import io.reactivex.Single
@@ -32,6 +34,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.splash_activity.*
 import java.util.*
+import java.util.prefs.PreferenceChangeEvent
 
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
@@ -61,6 +64,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindLocale()
+        bindFCM()
         if (intent.extras != null && intent.extras!!.getString(Config.PUSH_TAG) != null && intent.extras!!.getString(Config.PUSH_TAG) == Config.OPEN_FROM_PUSH) {
             openFrom = Config.OPEN_FROM_PUSH
             openFromPush()
@@ -74,6 +78,31 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         setFirstTime()
     }
 
+    private fun bindFCM() {
+        var locale = PrefWorker.locale
+
+        if (locale == PrefWorker.DEFAULT_LOCALE){
+           locale = resources.configuration.locale.toString().split("_")[0]
+        }
+
+        when(locale){
+            LangChoicer.RU -> {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(Config.NEWS_EN).addOnSuccessListener { }
+                FirebaseMessaging.getInstance().subscribeToTopic(Config.NEWS_RU).addOnSuccessListener { }
+            }
+            LangChoicer.EN -> {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(Config.NEWS_RU).addOnSuccessListener { }
+                FirebaseMessaging.getInstance().subscribeToTopic(Config.NEWS_EN).addOnSuccessListener { }
+            }
+            else -> {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(Config.NEWS_EN).addOnSuccessListener { }
+                FirebaseMessaging.getInstance().subscribeToTopic(Config.NEWS_RU).addOnSuccessListener { }
+            }
+        }
+
+        getFCMToken()
+    }
+
     private fun bindLocale() {
         if (PrefWorker.locale != PrefWorker.DEFAULT_LOCALE) {
             val res: Resources = resources
@@ -82,6 +111,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             conf.locale = Locale(PrefWorker.locale.toLowerCase())
             res.updateConfiguration(conf, dm)
         }
+        Log.e("LOL", "${getResources().getConfiguration().locale}")
     }
 
 

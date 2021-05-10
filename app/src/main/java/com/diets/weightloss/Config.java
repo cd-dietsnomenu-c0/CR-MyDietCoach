@@ -23,4 +23,7 @@ public class Config {
     public static final String FROM_REACT = "FROM_REACT";
     public static final String TYPE_NAME = "TYPE_NAME";
     public static final String HEADER_TAG = "HEADER_TAG";
+
+    public static final String NEWS_RU = "news";
+    public static final String NEWS_EN = "news_en";
 }

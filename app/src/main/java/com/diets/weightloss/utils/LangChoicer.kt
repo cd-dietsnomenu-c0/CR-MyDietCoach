@@ -2,8 +2,8 @@ package com.diets.weightloss.utils
 
 object LangChoicer {
 
-    private const val RU = "ru"
-    private const val EN = "en"
+    const val RU = "ru"
+    const val EN = "en"
 
     fun getNumber(localeCode: String): Int {
         return when (localeCode) {
