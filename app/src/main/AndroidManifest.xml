@@ -64,11 +64,11 @@
         </activity>
 
         <activity
-            android:name="com.diets.weightloss.onboarding.OnboardActivity"
+            android:name="com.diets.weightloss.presentation.onboarding.OnboardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.diets.weightloss.tracker.LoadingActivity"
+            android:name="com.diets.weightloss.presentation.tracker.LoadingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
@@ -76,45 +76,45 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.diets.weightloss.profile.favorites.FavoritesActivity"
+            android:name="com.diets.weightloss.presentation.profile.favorites.FavoritesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".profile.language.ChoiceLangActivity"
+            android:name="com.diets.weightloss.presentation.profile.language.ChoiceLangActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.diets.weightloss.diets.list.old.inside.ActivityListItems"
+            android:name="com.diets.weightloss.presentation.diets.list.old.inside.ActivityListItems"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name="com.diets.weightloss.diets.list.old.OldDietsActivity"
+            android:name="com.diets.weightloss.presentation.diets.list.old.OldDietsActivity"
             android:theme="@style/NewDiets" />
 
-        <activity android:name="com.diets.weightloss.diets.list.old.inside.article.ActivityArticle" />
+        <activity android:name="com.diets.weightloss.presentation.diets.list.old.inside.article.ActivityArticle" />
 
         <activity
-            android:name="com.diets.weightloss.calculators.ActivityCalculatorSPK"
-            android:theme="@style/NewDiets" />
-
-        <activity
-            android:name="com.diets.weightloss.calculators.ActivityCalculatorBrok"
+            android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorSPK"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name="com.diets.weightloss.calculators.ActivityCalculatorIMT"
+            android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorBrok"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name="com.diets.weightloss.calculators.ActivityCalculatorLorenc"
+            android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorIMT"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name="com.diets.weightloss.diets.list.modern.article.DietAct"
+            android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorLorenc"
             android:theme="@style/NewDiets" />
 
         <activity
-            android:name="com.diets.weightloss.diets.list.modern.NewDietsListActivity"
+            android:name="com.diets.weightloss.presentation.diets.list.modern.article.DietAct"
+            android:theme="@style/NewDiets" />
+
+        <activity
+            android:name="com.diets.weightloss.presentation.diets.list.modern.NewDietsListActivity"
             android:theme="@style/NewDiets" />
 
         <receiver android:name="com.diets.weightloss.common.notifications.TrackerAlarmReceiver"/>
@@ -135,7 +135,7 @@
             android:permission="android.permission.BIND_JOB_SERVICE"/>
 
         <service
-            android:name="com.diets.weightloss.services.FCMService"
+            android:name="com.diets.weightloss.utils.notif.services.FCMService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

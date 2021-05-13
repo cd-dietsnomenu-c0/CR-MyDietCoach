@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -16,21 +15,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.diets.weightloss.utils.PrefWorker;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.diets.weightloss.POJOS.Global;
-import com.diets.weightloss.ad.AdWorker;
-import com.diets.weightloss.analytics.Ampl;
-import com.diets.weightloss.calculators.FragmentCalculators;
+import com.diets.weightloss.model.Global;
+import com.diets.weightloss.utils.ad.AdWorker;
+import com.diets.weightloss.utils.analytics.Ampl;
+import com.diets.weightloss.presentation.calculators.FragmentCalculators;
 import com.diets.weightloss.common.DBHolder;
-import com.diets.weightloss.common.FBWork;
 import com.diets.weightloss.common.GlobalHolder;
-import com.diets.weightloss.diets.FragmentTypes;
-import com.diets.weightloss.profile.ProfileFragment;
-import com.diets.weightloss.tracker.FragmentTracker;
+import com.diets.weightloss.presentation.diets.FragmentTypes;
+import com.diets.weightloss.presentation.profile.ProfileFragment;
+import com.diets.weightloss.presentation.tracker.FragmentTracker;
 import com.diets.weightloss.utils.GradeAlert;
 import com.diets.weightloss.utils.ThankToast;
 

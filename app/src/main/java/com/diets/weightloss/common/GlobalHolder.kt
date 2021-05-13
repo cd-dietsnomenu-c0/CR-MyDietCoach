@@ -2,7 +2,7 @@ package com.diets.weightloss.common
 
 import com.squareup.moshi.Moshi
 import com.diets.weightloss.App
-import com.diets.weightloss.POJOS.Global
+import com.diets.weightloss.model.Global
 import com.diets.weightloss.R
 
 object GlobalHolder {

@@ -1,7 +1,7 @@
 package com.diets.weightloss.utils
 
 import android.util.Log
-import com.diets.weightloss.POJOS.schema.Schema
+import com.diets.weightloss.model.schema.Schema
 
 object DietCounter {
 

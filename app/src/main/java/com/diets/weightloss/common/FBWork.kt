@@ -7,9 +7,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.iid.FirebaseInstanceId
-import com.diets.weightloss.POJOS.Global
-import com.diets.weightloss.POJOS.interactive.*
-import com.diets.weightloss.POJOS.schema.Schema
+import com.diets.weightloss.model.Global
+import com.diets.weightloss.model.interactive.*
+import com.diets.weightloss.model.schema.Schema
 import java.util.*
 
 class FBWork {

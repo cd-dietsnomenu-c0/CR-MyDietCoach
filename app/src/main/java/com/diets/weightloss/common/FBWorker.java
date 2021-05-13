@@ -1,7 +1,7 @@
 package com.diets.weightloss.common;
 
 import com.google.firebase.database.FirebaseDatabase;
-import com.diets.weightloss.POJOS.Global;
+import com.diets.weightloss.model.Global;
 
 public class FBWorker {
 

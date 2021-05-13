@@ -1,7 +1,7 @@
 package com.diets.weightloss.common.db.entities
 
 import androidx.room.*
-import com.diets.weightloss.POJOS.interactive.Diet
+import com.diets.weightloss.model.interactive.Diet
 import com.diets.weightloss.common.db.DayLoseConverter
 
 @Entity

@@ -13,19 +13,19 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.RenderMode
 import com.amplitude.api.Amplitude
-import com.diets.weightloss.POJOS.Global
-import com.diets.weightloss.ad.AdWorker.init
-import com.diets.weightloss.analytics.Ampl
-import com.diets.weightloss.analytics.Ampl.Companion.openFromPush
+import com.diets.weightloss.model.Global
+import com.diets.weightloss.utils.ad.AdWorker.init
+import com.diets.weightloss.utils.analytics.Ampl
+import com.diets.weightloss.utils.analytics.Ampl.Companion.openFromPush
 import com.diets.weightloss.common.DBHolder
 import com.diets.weightloss.common.FBWork.Companion.getFCMToken
 import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.common.notifications.ScheduleSetter
-import com.diets.weightloss.onboarding.OnboardActivity
+import com.diets.weightloss.presentation.onboarding.OnboardActivity
 import com.diets.weightloss.utils.ABConfig
 import com.diets.weightloss.utils.LangChoicer
-import com.diets.weightloss.utils.PrefWorker
+import com.diets.weightloss.utils.PreferenceProvider
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.squareup.moshi.Moshi
@@ -34,7 +34,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.splash_activity.*
 import java.util.*
-import java.util.prefs.PreferenceChangeEvent
 
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
@@ -51,7 +50,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         goCounter += 1
         if (goCounter >= maxGoCounter) {
             var intent = Intent()
-            if (PrefWorker.getVersion() != ABConfig.C && isFirstTime) {
+            if (PreferenceProvider.getVersion() != ABConfig.C && isFirstTime) {
                 intent = Intent(this, OnboardActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             } else {
                 intent = Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
@@ -69,7 +68,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             openFrom = Config.OPEN_FROM_PUSH
             openFromPush()
         }
-        PrefWorker.setLastEnter(Calendar.getInstance().timeInMillis)
+        PreferenceProvider.setLastEnter(Calendar.getInstance().timeInMillis)
         bindTest()
         ScheduleSetter.setAlarm(this)
         loadAnimations()
@@ -79,9 +78,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun bindFCM() {
-        var locale = PrefWorker.locale
+        var locale = PreferenceProvider.locale
 
-        if (locale == PrefWorker.DEFAULT_LOCALE) {
+        if (locale == PreferenceProvider.DEFAULT_LOCALE) {
             locale = resources.configuration.locale.toString().split("_")[0]
         }
 
@@ -104,11 +103,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun bindLocale() {
-        if (PrefWorker.locale != PrefWorker.DEFAULT_LOCALE) {
+        if (PreferenceProvider.locale != PreferenceProvider.DEFAULT_LOCALE) {
             val res: Resources = resources
             val dm: DisplayMetrics = res.displayMetrics
             val conf: Configuration = res.configuration
-            conf.locale = Locale(PrefWorker.locale.toLowerCase())
+            conf.locale = Locale(PreferenceProvider.locale.toLowerCase())
             res.updateConfiguration(conf, dm)
         }
     }
@@ -131,18 +130,18 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun setABTestConfig(version: String) {
         Log.e("LOL", version)
-        PrefWorker.setVersion(version)
+        PreferenceProvider.setVersion(version)
         Ampl.setABVersion(version)
         Ampl.setVersion()
         post()
     }
 
     private fun setFirstTime() {
-        if (PrefWorker.getFirstTime() == "") {
+        if (PreferenceProvider.getFirstTime() == "") {
             isFirstTime = true
             val calendar = Calendar.getInstance()
             var date = "${"%02d".format(calendar.get(Calendar.DAY_OF_MONTH))}.${"%02d".format(calendar.get(Calendar.MONTH) + 1)}.${calendar.get(Calendar.YEAR)}"
-            PrefWorker.setFirstTime(date)
+            PreferenceProvider.setFirstTime(date)
         }
     }
 
