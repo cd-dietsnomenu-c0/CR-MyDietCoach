@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diets.weightloss.R
 import com.diets.weightloss.SplashActivity
+import com.diets.weightloss.common.DBHolder
 import com.diets.weightloss.profile.language.controllers.ISelectLang
 import com.diets.weightloss.profile.language.controllers.LanguagesAdapter
 import com.diets.weightloss.utils.LangChoicer
@@ -36,6 +37,7 @@ class ChoiceLangActivity : AppCompatActivity(R.layout.choice_lang_activity) {
 
     override fun onBackPressed() {
         if (oldLocale != PrefWorker.locale) {
+            DBHolder.delete()
             startActivity(SplashActivity.getIntent(true, this))
             finishAffinity()
         } else {
