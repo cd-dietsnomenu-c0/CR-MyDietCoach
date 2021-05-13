@@ -5,7 +5,7 @@
     android:layout_gravity="end|top"
     android:layout_marginTop="28dp">
 
-    <com.jundev.weightloss.views.FixedSeekbar
+    <com.diets.weightloss.views.FixedSeekbar
         android:id="@+id/seekBar2"
         style="@style/SeekbarWater"
         android:layout_width="450dp"
