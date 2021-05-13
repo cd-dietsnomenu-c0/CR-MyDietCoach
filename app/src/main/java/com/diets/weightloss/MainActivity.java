@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -16,23 +15,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.diets.weightloss.model.Global;
-import com.diets.weightloss.utils.ad.AdWorker;
-import com.diets.weightloss.utils.analytics.Ampl;
-import com.diets.weightloss.presentation.calculators.FragmentCalculators;
 import com.diets.weightloss.common.DBHolder;
-import com.diets.weightloss.common.FBWork;
 import com.diets.weightloss.common.GlobalHolder;
+import com.diets.weightloss.model.Global;
+import com.diets.weightloss.presentation.calculators.FragmentCalculators;
 import com.diets.weightloss.presentation.diets.FragmentTypes;
 import com.diets.weightloss.presentation.profile.ProfileFragment;
 import com.diets.weightloss.presentation.tracker.FragmentTracker;
+import com.diets.weightloss.presentation.water.FragmentWaterTracker;
 import com.diets.weightloss.utils.GradeAlert;
 import com.diets.weightloss.utils.ThankToast;
-import com.diets.weightloss.presentation.water.FragmentWaterTracker;
+import com.diets.weightloss.utils.ad.AdWorker;
+import com.diets.weightloss.utils.analytics.Ampl;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,13 +118,7 @@ public class MainActivity extends AppCompatActivity {
         checkDB(savedInstanceState);
         checkIntent();
         fragmentManager = getSupportFragmentManager();
-        FirebaseMessaging.getInstance().subscribeToTopic("news").addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.e("LOL", "onSuccess");
-            }
-        });
-        FBWork.Companion.getFCMToken();
+
         Ampl.Companion.run();
 
         if (!hasConnection(this)) {
@@ -147,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
         //startActivity(new Intent(this, TextCutActvity.class));
     }
+
 
     private void checkIntent() {
         if (getIntent().getStringExtra(Config.PUSH_TAG) != null

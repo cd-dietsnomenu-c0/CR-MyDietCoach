@@ -2,6 +2,7 @@ package com.diets.weightloss.common
 
 import com.squareup.moshi.Moshi
 import com.diets.weightloss.App
+import com.diets.weightloss.R
 import com.diets.weightloss.model.Global
 
 object GlobalHolder {
@@ -25,7 +26,7 @@ object GlobalHolder {
         var moshi = Moshi.Builder().build()
         var jsonAdapter = moshi.adapter(Global::class.java)
         try {
-            var inputStream = App.getContext().assets.open("adb.json")
+            var inputStream = App.getContext().assets.open(App.getContext().getString(R.string.adb_path))
             var size = inputStream.available()
             var buffer = ByteArray(size)
             inputStream.read(buffer)

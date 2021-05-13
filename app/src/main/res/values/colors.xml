@@ -110,4 +110,7 @@
     <color name="label_color">#b2b2ba</color>
     <color name="edt_text_color">#52515f</color>
     <color name="meas_main">#2e2c5c</color>
+
+    <color name="lang_text_active">#2b81e6</color>
+    <color name="lang_text_inactive">#030303</color>
 </resources>

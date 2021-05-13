@@ -1,42 +1,33 @@
 {
   "project_info": {
-    "project_number": "7608355356",
-    "firebase_url": "https://newbigdiet.firebaseio.com",
-    "project_id": "newbigdiet",
-    "storage_bucket": "newbigdiet.appspot.com"
+    "project_number": "438271434584",
+    "project_id": "diets-57623",
+    "storage_bucket": "diets-57623.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:7608355356:android:e49b2eb33da610515d6dd9",
+        "mobilesdk_app_id": "1:438271434584:android:232a87dd2123b660d0cf2d",
         "android_client_info": {
-          "package_name": "com.jundev.weightloss"
+          "package_name": "com.diets.weightloss"
         }
       },
       "oauth_client": [
         {
-          "client_id": "7608355356-8541h9pfq6vqfr0jako4dcqs1ncpgqvc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.jundev.weightloss",
-            "certificate_hash": "d37418faf039eb0dd135a5be5642ae0a639136fb"
-          }
-        },
-        {
-          "client_id": "7608355356-dne00pqqvqei35b09lgdhmkg48p0f23q.apps.googleusercontent.com",
+          "client_id": "438271434584-88si0amcrord5usqv09pbuoha77hdtb2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA5jRmSO_ZFIHOb9gJod5YeZC8zcYYSbWA"
+          "current_key": "AIzaSyC2YKBpnB6j33td254t92lE78w5Llh_R-k"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "7608355356-dne00pqqvqei35b09lgdhmkg48p0f23q.apps.googleusercontent.com",
+              "client_id": "438271434584-88si0amcrord5usqv09pbuoha77hdtb2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

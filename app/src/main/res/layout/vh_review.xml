@@ -2,7 +2,8 @@
 <FrameLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <TextView
@@ -69,7 +70,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Я за сбалансированный рацион, когда в достаточном количестве присутствуют белки, жиры и сложные углеводы; есть ротация продуктов (то есть питание разнообразное и не применяются моно-диеты). И, конечно, рацион должен быть простым, из доступных и привычных продуктов продуктов."
+            tools:text="Я за сбалансированный рацион, когда в достаточном количестве присутствуют белки, жиры и сложные углеводы; есть ротация продуктов (то есть питание разнообразное и не применяются моно-диеты). И, конечно, рацион должен быть простым, из доступных и привычных продуктов продуктов."
             android:layout_marginLeft="16dp"
             android:layout_marginTop="35dp"
             android:layout_marginRight="16dp"

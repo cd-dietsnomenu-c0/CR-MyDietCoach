@@ -49,8 +49,8 @@ public class App extends MultiDexApplication {
                     .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                     .build();
 
-            String channelId = "com.jundev.diets";
-            String channelName = "com.jundev.diets";
+            String channelId = "com.weightloss.diets";
+            String channelName = "com.weightloss.diets";
             NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             channel.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.notification), att);
             channel.setLightColor(Color.parseColor("#4B8A08"));

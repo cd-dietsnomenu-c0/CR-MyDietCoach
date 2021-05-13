@@ -55,7 +55,7 @@
             android:id="@+id/tvCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ОТМЕНА"
+            android:text="@string/cancel_diff"
             android:gravity="center_horizontal"
             android:paddingBottom="6dp"
             android:paddingTop="6dp"
@@ -74,7 +74,7 @@
         android:fontFamily="@font/roboto"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:text="ВЫБЕРИТЕ СЛОЖНОСТЬ"
+        android:text="@string/choice_diff"
         app:layout_constraintBottom_toTopOf="@+id/cvEasy"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView" />
@@ -98,7 +98,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Легкая"
+            android:text="@string/easy_diff"
             android:textColor="@color/level_one"
             android:textSize="18sp" />
 
@@ -119,7 +119,7 @@
             android:layout_marginRight="46dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
-            android:text="Допускается два дневных пропуска. Сложность подходит для начинающих"
+            android:text="@string/easy_diff_desc"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -155,7 +155,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Средняя"
+            android:text="@string/med_diff_desc"
             android:textColor="@color/level_two"
             android:textSize="18sp" />
 
@@ -176,7 +176,7 @@
             android:layout_marginRight="46dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
-            android:text="Допускается один дневной пропуск. Сложность подходит для опытных"
+            android:text="@string/med_diff_desc_prop"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -211,7 +211,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Тяжелая"
+            android:text="@string/hard_diff"
             android:textColor="@color/level_thre"
             android:textSize="18sp" />
 
@@ -232,7 +232,7 @@
             android:layout_marginRight="46dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
-            android:text="Пропуск равен провалу диеты. Наградой за усилия будет максимальная эффективность диеты"
+            android:text="@string/hard_diff_desc"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -249,50 +249,5 @@
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/btnEasy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Easy"
-        android:visibility="gone"
-        tools:layout_editor_absoluteX="323dp"
-        tools:layout_editor_absoluteY="383dp" />
 
-    <Button
-        android:id="@+id/btnMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/btnHard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEasy" />
-
-    <Button
-        android:id="@+id/btnHard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hard"
-        android:visibility="gone"
-
-        app:layout_constraintBottom_toTopOf="@+id/btnCancel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMedium" />
-
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:visibility="gone"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnHard" />
 </androidx.constraintlayout.widget.ConstraintLayout>

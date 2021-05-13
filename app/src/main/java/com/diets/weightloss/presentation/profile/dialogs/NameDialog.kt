@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.diets.weightloss.R
+import com.diets.weightloss.presentation.profile.ProfileFragment
 import com.diets.weightloss.utils.PreferenceProvider
 import kotlinx.android.synthetic.main.name_dialog.*
 
@@ -24,7 +25,7 @@ class NameDialog: DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        edtName.onFocusChangeListener = OnFocusChangeListener { v, hasFocus -> if (hasFocus) edtName.hint = "" else edtName.hint = "Ваше имя иди никнейм" }
+        edtName.onFocusChangeListener = OnFocusChangeListener { v, hasFocus -> if (hasFocus) edtName.hint = "" else edtName.hint = "Ваше имя или никнейм" }
         btnCancel.setOnClickListener {
             dismiss()
         }

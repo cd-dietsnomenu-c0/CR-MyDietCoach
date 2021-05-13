@@ -20,7 +20,7 @@ import java.util.*
 class ReactAlarmReceiver : BroadcastReceiver() {
 
     companion object {
-        private val CHANNEL_ID = "com.wsoteam.mydietcoach.channelIdReact"
+        private val CHANNEL_ID = "com.weightloss.mydietcoach.channelIdReact"
         const val ONE_DAY = 86400000L
         const val FIRST_UI = 0
         const val SECOND_UI = 1

@@ -216,6 +216,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:adSize="SMART_BANNER"
+            android:visibility="gone"
             app:adUnitId="@string/banner_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

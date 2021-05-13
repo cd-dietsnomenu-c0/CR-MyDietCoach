@@ -36,7 +36,7 @@ class FCMService : FirebaseMessagingService() {
         collapsedView.setTextViewText(R.id.tvNotificationTitle, p0.data["title"])
 
         var largeIcon = BitmapFactory.decodeResource(resources, R.drawable.ic_notification)
-        var notificationBuilder = NotificationCompat.Builder(this, "com.jundev.diets")
+        var notificationBuilder = NotificationCompat.Builder(this, "com.weightloss.diets")
                 .setSmallIcon(R.drawable.ic_small_notification)
                 .setLargeIcon(largeIcon)
                 .setAutoCancel(true)

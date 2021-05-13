@@ -1,6 +1,5 @@
 package com.diets.weightloss.presentation.diets.list.modern.controllers
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +17,6 @@ class InteractiveAdapter(val allDiets: AllDiets, var itemClick: ItemClick, var n
 
     init {
         if (isHasHead) {
-            Log.e("LOL", "erw")
             diff++
         }
     }

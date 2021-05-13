@@ -21,7 +21,7 @@ class InteractiveVH(inflater: LayoutInflater, viewGroup: ViewGroup, val itemClic
         itemView.tvSubTitle.text = shortIntroduction
         itemView.tvCountDays.text = itemView.resources.getQuantityString(R.plurals.days_plur, size, size)
         itemView.tvType.text = typeName
-        itemView.tvCountKcal.text = "$kcal ккал"
+        itemView.tvCountKcal.text = "$kcal ${itemView.resources.getString(R.string.spk_kcal)}"
     }
 
     override fun onClick(p0: View?) {

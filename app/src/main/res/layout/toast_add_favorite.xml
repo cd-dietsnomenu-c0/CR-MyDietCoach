@@ -36,7 +36,7 @@
             android:textSize="16sp"
             android:textColor="@color/black"
             android:fontFamily="@font/roboto_medium"
-            android:text="Сохранено в профиль"
+            android:text="@string/save_in_to_profile"
             tools:layout_editor_absoluteX="287dp"
             tools:layout_editor_absoluteY="178dp" />
 

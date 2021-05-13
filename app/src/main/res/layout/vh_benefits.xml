@@ -45,12 +45,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@color/white"
-                tools:text="1. Оптимальное количество белка в еде – это помогает в процессе похудения, сжигая жировую ткань;
-
-2. Чувство насыщения – куриная грудка в сочетании с овощами придает чувство сытости на длительное время;
-
-3. В курином мясе намного меньше жиров, чем в других видах мяса;"/>
+                android:textColor="@color/white"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

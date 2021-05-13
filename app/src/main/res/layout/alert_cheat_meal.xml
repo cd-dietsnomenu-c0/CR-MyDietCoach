@@ -63,7 +63,7 @@
                 android:layout_marginBottom="58dp"
                 android:fontFamily="@font/roboto"
                 android:gravity="center_horizontal"
-                android:text="Читмил - день, который вы пропустили. Таких пропусков (жизней) ограниченное число. Если вы теряете последнюю жизнь - диета считается проваленной"
+                android:text="@string/cheat_text"
                 android:textColor="@color/black" />
 
             <Button
@@ -73,7 +73,7 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shape_ok"
-                android:text="назад"
+                android:text="@string/back_cheat"
                 android:drawableLeft="@drawable/ic_back"
                 android:paddingHorizontal="22dp"
                 android:textColor="@color/white"

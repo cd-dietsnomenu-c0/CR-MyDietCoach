@@ -66,7 +66,7 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center_horizontal"
-                android:text="Как вас зовут?"
+                android:text="@string/what_is_your_name"
                 android:textSize="20sp"
                 android:textColor="@color/black" />
 
@@ -77,7 +77,7 @@
                 android:layout_marginLeft="32dp"
                 android:inputType="textCapSentences"
                 android:layout_marginRight="32dp"
-                android:hint="Ваше имя или никнейм"
+                android:hint="@string/your_name"
                 android:theme="@style/EditTextTheme"
                 android:focusedByDefault="false"
                 android:gravity="center_horizontal"
@@ -96,20 +96,20 @@
                     android:layout_marginLeft="32dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/shape_profile_cancel"
-                    android:text="отмена"
+                    android:text="@string/cancel_btn"
                     android:paddingHorizontal="22dp"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btnSave"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:layout_gravity="bottom|right"
                     android:layout_marginRight="32dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/shape_profile_save"
-                    android:text="сохранить"
+                    android:text="@string/save_button"
                     android:paddingHorizontal="22dp"
                     android:textColor="@color/white"
                     android:textSize="12sp" />

@@ -28,7 +28,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="40dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="ОПИСАНИЕ"
+                android:text="@string/desc_vh"
                 android:textColor="@color/text_color"
                 android:textSize="18sp" />
 
@@ -40,7 +40,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/roboto"
-                android:text="1. Оптимальное количество белка в еде – это помогает в процессе похудения, сжигая жировую ткань;
+                tools:text="1. Оптимальное количество белка в еде – это помогает в процессе похудения, сжигая жировую ткань;
 
 2. Чувство насыщения – куриная грудка в сочетании с овощами придает чувство сытости на длительное время;
 

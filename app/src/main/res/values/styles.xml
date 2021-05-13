@@ -27,6 +27,13 @@
         <item name="colorPrimary">#2C2C2C</item>
         <item name="colorPrimaryDark">#d1d1d1</item>
         <item name="colorAccent">#4b63c7</item>
+    </style>
+
+    <style name="Langs" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#2C2C2C</item>
+        <item name="colorPrimaryDark">#FFFFFF</item>
+        <item name="colorAccent">#2C2C2C</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

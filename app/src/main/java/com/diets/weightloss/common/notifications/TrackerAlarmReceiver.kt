@@ -18,7 +18,7 @@ import com.diets.weightloss.common.DBHolder
 class TrackerAlarmReceiver : BroadcastReceiver() {
 
     companion object {
-        private val CHANNEL_ID = "com.wsoteam.mydietcoach.channelId"
+        private val CHANNEL_ID = "com.weightloss.mydietcoach.channelId"
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {

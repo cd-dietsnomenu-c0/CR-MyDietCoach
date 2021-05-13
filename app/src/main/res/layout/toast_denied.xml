@@ -34,7 +34,7 @@
             android:textColor="@color/black"
             android:gravity="center"
             android:fontFamily="@font/roboto"
-            android:text="Но мы же не сможем сделать фото"
+            android:text="@string/not_make_photo"
             tools:layout_editor_absoluteX="287dp"
             tools:layout_editor_absoluteY="178dp" />
 

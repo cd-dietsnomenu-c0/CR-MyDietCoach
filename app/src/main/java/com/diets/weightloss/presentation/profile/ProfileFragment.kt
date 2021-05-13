@@ -24,20 +24,22 @@ import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.presentation.profile.controllers.BacksAdapter
 import com.diets.weightloss.presentation.profile.controllers.IBacks
 import com.diets.weightloss.presentation.profile.dialogs.DevelopmentDialog
+import com.diets.weightloss.utils.water.WaterCounter
+import com.diets.weightloss.presentation.profile.dialogs.LanguageWarningDialog
 import com.diets.weightloss.presentation.profile.dialogs.NameDialog
 import com.diets.weightloss.presentation.profile.favorites.FavoritesActivity
+import com.diets.weightloss.presentation.profile.language.ChoiceLangActivity
 import com.diets.weightloss.presentation.profile.measurments.MeasActivity
 import com.diets.weightloss.presentation.profile.toasts.DeniedPermToast
 import com.diets.weightloss.presentation.profile.toasts.IntroToast
 import com.diets.weightloss.utils.PreferenceProvider
-import com.diets.weightloss.utils.water.WaterCounter
 import kotlinx.android.synthetic.main.bottom_sheet_backs.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import java.io.File
 import java.lang.Exception
 
 
-class ProfileFragment : Fragment(R.layout.profile_fragment) {
+class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDialog.Callbacks {
 
     var nameDialog = NameDialog()
     val MAX_ATEMPT_INTRO = 2
@@ -163,6 +165,18 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     private fun openMeasActivity() {
         startActivity(Intent(activity!!, MeasActivity::class.java))
+        btnLanguage.setOnClickListener {
+            if (PreferenceProvider.isShowLangWarning){
+                startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
+            }else{
+                LanguageWarningDialog().apply {
+                    setTargetFragment(this@ProfileFragment, -1)
+                    show(this@ProfileFragment.requireFragmentManager(), "")
+                }
+            }
+
+
+        }
     }
 
     private fun isCameraForbidden(): Boolean = activity!!.checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
@@ -239,21 +253,27 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
 
 
-    override fun onResume() {
-        super.onResume()
-        bindFields()
-    }
 
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         if (!hidden) {
             bindFields()
-            bindInfoToast()
+            //bindInfoToast()
         }
     }
 
-    private fun bindInfoToast() {
+    fun bindName() {
+        if (PreferenceProvider.getName() == "") {
+            tvName.text = resources.getString(R.string.def_name)
+        } else {
+            tvName.text = PreferenceProvider.getName()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bindName()
         if (PreferenceProvider.getCountIntro()!! < MAX_ATEMPT_INTRO) {
             IntroToast.show(activity!!)
             var count = PreferenceProvider.getCountIntro()!!
@@ -286,6 +306,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         } else {
             tvName.text = PreferenceProvider.getName()
         }
+    }
+
+    override fun openChangeLangActivity() {
+        startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
     }
 
 

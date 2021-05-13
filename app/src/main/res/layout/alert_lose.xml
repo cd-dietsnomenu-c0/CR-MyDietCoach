@@ -44,7 +44,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/roboto_medium"
                 android:layout_marginTop="8dp"
-                android:text="Еще бы чуть-чуть..."
+                android:text="@string/rab_title"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -57,7 +57,7 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
-                android:text="Но не стоит расстраиваться!\nВажно не опускать руки и упорно идти к своей цели несмотря ни на что!\n Мы уверены - в следующий раз у вас все получиться" />
+                android:text="@string/rab_text" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                     android:layout_gravity="center_vertical|left"
                     android:layout_marginLeft="24dp"
                     android:background="@drawable/shape_not_rewrite_button"
-                    android:text="завершить"
+                    android:text="@string/rab_end"
                     android:textSize="12sp" />
 
                 <Button
@@ -86,7 +86,7 @@
                     android:layout_marginRight="24dp"
                     android:drawableLeft="@drawable/ic_reload"
                     android:background="@drawable/shape_replay_diet"
-                    android:text="заново"
+                    android:text="@string/rab_replay"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 

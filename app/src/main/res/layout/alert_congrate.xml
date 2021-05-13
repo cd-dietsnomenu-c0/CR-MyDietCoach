@@ -64,7 +64,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Поздравляем!"
+                android:text="@string/congr_conger"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="36dp"
                 android:textColor="@color/black"
@@ -83,7 +83,7 @@
                 android:layout_marginBottom="50dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
-                android:text="Вы успешно завершили эту диету. Это было непросто, но вы справились. Так держать!"/>
+                android:text="@string/text_congr"/>
 
         </FrameLayout>
     </androidx.cardview.widget.CardView>

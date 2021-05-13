@@ -1,7 +1,11 @@
 package com.diets.weightloss
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
@@ -9,6 +13,20 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.RenderMode
 import com.amplitude.api.Amplitude
+import com.diets.weightloss.model.Global
+import com.diets.weightloss.utils.ad.AdWorker.init
+import com.diets.weightloss.utils.analytics.Ampl
+import com.diets.weightloss.utils.analytics.Ampl.Companion.openFromPush
+import com.diets.weightloss.common.DBHolder
+import com.diets.weightloss.common.FBWork.Companion.getFCMToken
+import com.diets.weightloss.common.GlobalHolder
+import com.diets.weightloss.common.db.entities.DietPlanEntity
+import com.diets.weightloss.common.notifications.ScheduleSetter
+import com.diets.weightloss.presentation.onboarding.OnboardActivity
+import com.diets.weightloss.utils.ABConfig
+import com.diets.weightloss.utils.LangChoicer
+import com.diets.weightloss.utils.PreferenceProvider
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.squareup.moshi.Moshi
 import com.diets.weightloss.model.Global
@@ -28,6 +46,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.splash_activity.*
 import java.util.*
 
+
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     lateinit var scale: Animation
@@ -40,11 +59,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     fun post() {
         goCounter += 1
-        if (goCounter >= maxGoCounter){
+        if (goCounter >= maxGoCounter) {
             var intent = Intent()
-            if(PreferenceProvider.getVersion() != ABConfig.C && isFirstTime){
+            if (PreferenceProvider.getVersion() != ABConfig.C && isFirstTime) {
                 intent = Intent(this, OnboardActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
-            }else{
+            } else {
                 intent = Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             }
             startActivity(intent)
@@ -54,19 +73,56 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (intent.extras != null && intent.extras.getString(Config.PUSH_TAG) != null && intent.extras.getString(Config.PUSH_TAG) == Config.OPEN_FROM_PUSH) {
+        bindLocale()
+        bindFCM()
+        if (intent.extras != null && intent.extras!!.getString(Config.PUSH_TAG) != null && intent.extras!!.getString(Config.PUSH_TAG) == Config.OPEN_FROM_PUSH) {
             openFrom = Config.OPEN_FROM_PUSH
             openFromPush()
         }
         PreferenceProvider.setLastEnter(Calendar.getInstance().timeInMillis)
         bindTest()
         ScheduleSetter.setAlarm(this)
-        ScheduleSetter.setReactAlarm(this)
         loadAnimations()
         playAnim()
         loadData()
         setFirstTime()
     }
+
+    private fun bindFCM() {
+        var locale = PreferenceProvider.locale
+
+        if (locale == PreferenceProvider.DEFAULT_LOCALE) {
+            locale = resources.configuration.locale.toString().split("_")[0]
+        }
+
+        when (locale) {
+            LangChoicer.RU -> {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(Config.NEWS_EN).addOnSuccessListener { }
+                FirebaseMessaging.getInstance().subscribeToTopic(Config.NEWS_RU).addOnSuccessListener { }
+            }
+            LangChoicer.EN -> {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(Config.NEWS_RU).addOnSuccessListener { }
+                FirebaseMessaging.getInstance().subscribeToTopic(Config.NEWS_EN).addOnSuccessListener { }
+            }
+            else -> {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(Config.NEWS_EN).addOnSuccessListener { }
+                FirebaseMessaging.getInstance().subscribeToTopic(Config.NEWS_RU).addOnSuccessListener { }
+            }
+        }
+
+        getFCMToken()
+    }
+
+    private fun bindLocale() {
+        if (PreferenceProvider.locale != PreferenceProvider.DEFAULT_LOCALE) {
+            val res: Resources = resources
+            val dm: DisplayMetrics = res.displayMetrics
+            val conf: Configuration = res.configuration
+            conf.locale = Locale(PreferenceProvider.locale.toLowerCase())
+            res.updateConfiguration(conf, dm)
+        }
+    }
+
 
     private fun bindTest() {
         val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
@@ -92,7 +148,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun setFirstTime() {
-        if (PreferenceProvider.getFirstTime() == ""){
+        if (PreferenceProvider.getFirstTime() == "") {
             isFirstTime = true
             val calendar = Calendar.getInstance()
             var date = "${"%02d".format(calendar.get(Calendar.DAY_OF_MONTH))}.${"%02d".format(calendar.get(Calendar.MONTH) + 1)}.${calendar.get(Calendar.YEAR)}"
@@ -203,7 +259,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         var moshi = Moshi.Builder().build()
         var jsonAdapter = moshi.adapter(Global::class.java)
         try {
-            var inputStream = assets.open("adb.json")
+            var inputStream = assets.open(getString(R.string.adb_path))
             var size = inputStream.available()
             var buffer = ByteArray(size)
             inputStream.read(buffer)
@@ -213,5 +269,16 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         } catch (e: Exception) {
         }
         return null
+    }
+
+
+    companion object {
+        private const val CHANGE_LANG_TAG = "CHANGE_LANG_TAG"
+
+        fun getIntent(isChangedLang: Boolean, context: Context): Intent {
+            return Intent(context, SplashActivity::class.java).apply {
+                putExtra(CHANGE_LANG_TAG, true)
+            }
+        }
     }
 }

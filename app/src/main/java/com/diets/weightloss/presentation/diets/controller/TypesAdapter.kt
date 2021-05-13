@@ -8,7 +8,7 @@ import com.diets.weightloss.Config
 import com.diets.weightloss.presentation.diets.IClick
 
 class TypesAdapter(val listSchemas: List<com.diets.weightloss.model.schema.Schema>,
-                   var nativeList: ArrayList<UnifiedNativeAd>,
+                   var nativeList : ArrayList<UnifiedNativeAd>,
                    val iClick: IClick) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val BODY_TYPE = 0
