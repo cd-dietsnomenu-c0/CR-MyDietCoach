@@ -81,11 +81,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun bindFCM() {
         var locale = PrefWorker.locale
 
-        if (locale == PrefWorker.DEFAULT_LOCALE){
-           locale = resources.configuration.locale.toString().split("_")[0]
+        if (locale == PrefWorker.DEFAULT_LOCALE) {
+            locale = resources.configuration.locale.toString().split("_")[0]
         }
 
-        when(locale){
+        when (locale) {
             LangChoicer.RU -> {
                 FirebaseMessaging.getInstance().unsubscribeFromTopic(Config.NEWS_EN).addOnSuccessListener { }
                 FirebaseMessaging.getInstance().subscribeToTopic(Config.NEWS_RU).addOnSuccessListener { }
@@ -111,7 +111,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             conf.locale = Locale(PrefWorker.locale.toLowerCase())
             res.updateConfiguration(conf, dm)
         }
-        Log.e("LOL", "${getResources().getConfiguration().locale}")
     }
 
 
@@ -263,10 +262,10 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
 
-    companion object{
+    companion object {
         private const val CHANGE_LANG_TAG = "CHANGE_LANG_TAG"
 
-        fun getIntent(isChangedLang : Boolean, context: Context) : Intent{
+        fun getIntent(isChangedLang: Boolean, context: Context): Intent {
             return Intent(context, SplashActivity::class.java).apply {
                 putExtra(CHANGE_LANG_TAG, true)
             }
