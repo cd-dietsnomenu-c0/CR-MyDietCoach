@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:orientation="horizontal"
+        android:background="@drawable/head_toolbar_gradient">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/ring_head"
+            android:translationX="-150dp"
+            android:translationY="-180dp"/>
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/ring_head"
+            android:layout_gravity="end|bottom"
+            android:translationX="150dp"
+            android:translationY="180dp"/>
+
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/back_arrow"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/statistic_tabs"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="24sp"/>
+
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            app:tabIndicatorColor="@color/transparent"
+            app:tabMode="auto"
+            app:tabRippleColor="@color/transparent">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tiPlaces"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/tab_places" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tiGraph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/tab_graph" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tiCalendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/tab_calendar" />
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+    </FrameLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/vpStat"/>
+
+</LinearLayout>

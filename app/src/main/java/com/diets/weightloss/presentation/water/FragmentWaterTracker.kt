@@ -2,6 +2,7 @@ package com.diets.weightloss.presentation.water
 
 import android.animation.Animator
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -23,6 +24,7 @@ import com.diets.weightloss.presentation.water.controller.quick.IQuick
 import com.diets.weightloss.presentation.water.controller.quick.QuickAdapter
 import com.diets.weightloss.presentation.water.dialogs.FrequentDrinkDialog
 import com.diets.weightloss.presentation.water.dialogs.GlobalCapacityDialog
+import com.diets.weightloss.presentation.water.stats.StatActivity
 import com.diets.weightloss.presentation.water.toasts.FillMeasToast
 import com.diets.weightloss.utils.FieldsWorker
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
@@ -95,6 +97,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         })
 
         bindDialogs()
+
+        ivParams.setOnClickListener {
+            requireActivity().startActivity(Intent(requireContext(), StatActivity::class.java))
+        }
     }
 
     private fun bindDialogs() {

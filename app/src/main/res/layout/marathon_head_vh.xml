@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        app:cardCornerRadius="24dp"
+        android:elevation="3dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Лучший марафон"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="#384c68"
+                    android:textSize="24sp"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Жидкости выпито"
+                            android:drawableStart="@drawable/ic_drop_marathon"
+                            android:gravity="center_vertical"
+                            android:fontFamily="@font/roboto_medium"
+                            android:drawablePadding="6dp"
+                            android:textSize="12sp"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:text="90 л"
+                        android:textColor="#384c68"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textSize="12sp"/>
+
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Длительность"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="12sp"
+                        android:drawablePadding="6dp"
+                        android:gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_duration_marathon"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:text="100 дней"
+                        android:textColor="#384c68"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textSize="12sp"/>
+
+                </FrameLayout>
+
+                <View
+                    android:id="@+id/divider22"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Начало"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/roboto_medium"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="21.02.21"
+                            android:textSize="16sp"
+                            android:textColor="#384c68"
+                            android:fontFamily="@font/roboto_bold"/>
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="20sp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="8dp"
+                        android:textColor="#384c68"
+                        android:fontFamily="@font/roboto_bold"/>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Конец"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/roboto_medium"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="21.02.21"
+                            android:textSize="16sp"
+                            android:textColor="#384c68"
+                            android:fontFamily="@font/roboto_bold"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/first_place"/>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

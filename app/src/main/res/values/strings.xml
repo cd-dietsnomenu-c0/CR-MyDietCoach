@@ -353,6 +353,10 @@
     <string name="cont_lang">Продолжить</string>
     <string name="adb_path">adb.json</string>
     <string name="splash_lang">Меняем язык</string>
+    <string name="calendar_tabs">Календарь</string>
+    <string name="freq_tabs">Частота</string>
+    <string name="liders_tabs">Марафоны</string>
+    <string name="statistic_tabs">Статистика</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>
