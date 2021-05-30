@@ -5,5 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.R
 
-class MarathonVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_marathon, viewGroup, false)) {
+class ThirdPlaceVH (layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_marathon_third, viewGroup, false)) {
+
 }

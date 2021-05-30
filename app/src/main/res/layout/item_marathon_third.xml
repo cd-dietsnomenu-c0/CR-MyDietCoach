@@ -38,7 +38,7 @@
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Второе место"
+                    android:text="Третье место"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="#384c68"
@@ -97,7 +97,7 @@
                 android:layout_height="100dp"
                 android:layout_marginEnd="8dp"
                 android:layout_gravity="end|center_vertical"
-                android:src="@drawable/img_second_place"/>
+                android:src="@drawable/img_third_place"/>
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 
