@@ -6,4 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.R
 
 class FirstPlaceVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.marathon_head_vh, viewGroup, false)) {
+    fun bind() {
+
+    }
 }
