@@ -6,7 +6,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         app:cardCornerRadius="24dp"
         android:elevation="3dp"
         android:layout_marginStart="16dp"
@@ -70,11 +70,11 @@
 
 
             <androidx.cardview.widget.CardView
-                android:layout_width="54dp"
-                android:layout_height="54dp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
                 android:layout_gravity="center_vertical|end"
-                android:layout_marginEnd="30dp"
-                app:cardCornerRadius="27dp">
+                android:layout_marginEnd="38dp"
+                app:cardCornerRadius="23dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                         android:id="@+id/tvPlace"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="26sp"
+                        android:textSize="22sp"
                         android:text="4"
                         android:textColor="#FFFFFF"
                         android:layout_gravity="center"

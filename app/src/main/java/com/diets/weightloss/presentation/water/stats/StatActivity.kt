@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager
 import com.diets.weightloss.R
 import com.diets.weightloss.presentation.water.stats.pager.StatPagerAdapter
 import com.diets.weightloss.presentation.water.stats.pager.pages.MarathonFragment
+import com.diets.weightloss.presentation.water.stats.pager.pages.frequency.SegmentationFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.stat_activity.*
 
@@ -15,7 +16,7 @@ class StatActivity: AppCompatActivity(R.layout.stat_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        pagerAdapter = StatPagerAdapter(supportFragmentManager, arrayListOf(MarathonFragment()))
+        pagerAdapter = StatPagerAdapter(supportFragmentManager, arrayListOf(MarathonFragment(), SegmentationFragment()))
         vpStat.adapter = pagerAdapter
         bindPager()
     }
