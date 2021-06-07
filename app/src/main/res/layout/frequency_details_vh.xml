@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardElevation="1dp">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/ic_wt_2"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="12dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Минеральная вода"
+                        android:textColor="#384c68"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:id="@+id/tvName"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100 л"
+                        android:textColor="#384c68"
+                        android:layout_gravity="end"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:id="@+id/tvValue"/>
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 % от всей выпитой жидкости"
+                    android:textSize="12sp"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/roboto"
+                    android:id="@+id/tvFrequency"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        
+        
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

@@ -357,6 +357,7 @@
     <string name="freq_tabs">Частота</string>
     <string name="liders_tabs">Марафоны</string>
     <string name="statistic_tabs">Статистика</string>
+    <string name="release_user_expirior_id">1fc4f7fc-9ab9-4ab9-a943-dcfeae03c311</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>
@@ -499,6 +500,10 @@
         <item>Системный</item>
         <item>Русский</item>
         <item>Английский</item>
+    </string-array>
+
+    <string-array name="freq_dividers">
+        <item>Подробно</item>
     </string-array>
 
 </resources>

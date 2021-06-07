@@ -37,7 +37,7 @@ class SegmentationFragment : Fragment(R.layout.segmentation_fragment) {
         fillData()
 
         rvFrequency.layoutManager = LinearLayoutManager(requireContext())
-        adapter = FrequencyAdapter(imgsIndexes, names, percents)
+        adapter = FrequencyAdapter(imgsIndexes, names, percents, resources.getStringArray(R.array.freq_dividers))
         rvFrequency.adapter = adapter
     }
 
