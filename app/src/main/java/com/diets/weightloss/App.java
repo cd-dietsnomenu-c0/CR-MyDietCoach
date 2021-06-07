@@ -16,6 +16,7 @@ import com.amplitude.api.Amplitude;
 import com.google.android.gms.ads.MobileAds;
 import com.diets.weightloss.common.db.DietDatabase;
 import com.diets.weightloss.common.db.migrations.Migrations;
+import com.userexperior.UserExperior;
 
 public class App extends MultiDexApplication {
 
@@ -39,6 +40,11 @@ public class App extends MultiDexApplication {
                 .addMigrations(Migrations.INSTANCE.getMigration_1_2())
                 .allowMainThreadQueries()
                 .build();
+
+        UserExperior.startRecording(
+                getApplicationContext(),
+                getString(R.string.release_user_expirior_id)
+        );
     }
 
     @SuppressLint("NewApi")
