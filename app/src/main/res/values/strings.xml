@@ -385,7 +385,7 @@
         <item>@drawable/ic_track_15</item>
     </integer-array>
 
-    <integer-array name="water_drinks_imgs_color">
+    <!--<integer-array name="water_drinks_imgs_color">
         <item>@drawable/ic_wt_1</item>
         <item>@drawable/ic_wt_2</item>
         <item>@drawable/ic_wt_3</item>
@@ -401,6 +401,25 @@
         <item>@drawable/ic_wt_13</item>
         <item>@drawable/ic_wt_14</item>
         <item>@drawable/ic_wt_15</item>
+    </integer-array>-->
+
+
+    <integer-array name="water_drinks_imgs_color">
+        <item>@drawable/ic_wt_1_grad</item>
+        <item>@drawable/ic_wt_2_grad</item>
+        <item>@drawable/ic_wt_3_grad</item>
+        <item>@drawable/ic_wt_4_grad</item>
+        <item>@drawable/ic_wt_5_grad</item>
+        <item>@drawable/ic_wt_6_grad</item>
+        <item>@drawable/ic_wt_7_grad</item>
+        <item>@drawable/ic_wt_8_grad</item>
+        <item>@drawable/ic_wt_9_grad</item>
+        <item>@drawable/ic_wt_10_grad</item>
+        <item>@drawable/ic_wt_11_grad</item>
+        <item>@drawable/ic_wt_12_grad</item>
+        <item>@drawable/ic_wt_13_grad</item>
+        <item>@drawable/ic_wt_14_grad</item>
+        <item>@drawable/ic_wt_15_grad</item>
     </integer-array>
 
     <string-array name="water_drinks_names">
