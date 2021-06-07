@@ -2,6 +2,7 @@ package com.diets.weightloss.presentation.water.stats.pager.pages.frequency.cont
 
 import android.graphics.Color
 import android.graphics.Typeface
+import android.text.SpannableString
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
@@ -19,29 +20,31 @@ import kotlinx.android.synthetic.main.pie_chart_vh.view.*
 class PieChartVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.pie_chart_vh, viewGroup, false)) {
 
 
-    private  var robotoMedium : Typeface = ResourcesCompat.getFont(itemView.context, R.font.roboto_medium)!!
+    private var robotoMedium: Typeface = ResourcesCompat.getFont(itemView.context, R.font.roboto_medium)!!
 
     init {
         setPieChart()
     }
 
-    fun onBind(imgIndexes : ArrayList<Int>, names : ArrayList<String>, percents : ArrayList<Float>){
-        setData(imgIndexes, names, percents)
+    fun onBind(imgIndexes: ArrayList<Int>, names: ArrayList<String>, percents: ArrayList<Float>, centerText : SpannableString) {
+        setData(imgIndexes, names, percents, centerText)
     }
 
     private fun setPieChart() {
         itemView.pcDrinks.description.isEnabled = false
-        itemView.pcDrinks.setExtraOffsets(5f, 5f, 5f, 5f)
+        itemView.pcDrinks.setExtraOffsets(10f, 5f, 90f, 0f)
 
         itemView.pcDrinks.dragDecelerationFrictionCoef = 0.95f
         itemView.pcDrinks.isDrawHoleEnabled = true
         itemView.pcDrinks.setHoleColor(Color.WHITE)
 
+        itemView.pcDrinks.setCenterTextTypeface(robotoMedium)
+
         itemView.pcDrinks.setTransparentCircleColor(Color.WHITE)
         itemView.pcDrinks.setTransparentCircleAlpha(110)
 
-        itemView.pcDrinks.holeRadius = 40f
-        itemView.pcDrinks.transparentCircleRadius = 44f
+        itemView.pcDrinks.holeRadius = 65f
+        itemView.pcDrinks.transparentCircleRadius = 69f
 
         itemView.pcDrinks.setDrawCenterText(true)
 
@@ -49,31 +52,40 @@ class PieChartVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : Recycle
 
         itemView.pcDrinks.isRotationEnabled = true
         itemView.pcDrinks.isHighlightPerTapEnabled = true
-        //itemView.pcDrinks.setOnChartValueSelectedListener(this)
         itemView.pcDrinks.setUsePercentValues(false)
 
         itemView.pcDrinks.animateY(1400, Easing.EaseInOutQuad)
 
         val l: Legend = itemView.pcDrinks.legend
-        l.isEnabled = false
-        itemView.pcDrinks.setEntryLabelColor(Color.WHITE)
+        l.verticalAlignment = Legend.LegendVerticalAlignment.CENTER
+        l.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
+        l.orientation = Legend.LegendOrientation.VERTICAL
+        l.setDrawInside(false)
+        l.xOffset = 75f
+        l.yOffset = -40f
+
+
+
+        itemView.pcDrinks.setDrawEntryLabels(false)
+        itemView.pcDrinks.setEntryLabelColor(Color.BLACK)
         //pcDrinks.setEntryLabelTypeface(tfRegular)
         itemView.pcDrinks.setEntryLabelTextSize(12f)
     }
 
-    private fun setData(imgIndexes : ArrayList<Int>, names : ArrayList<String>, percents : ArrayList<Float>) {
+    private fun setData(imgIndexes: ArrayList<Int>, names: ArrayList<String>, percents: ArrayList<Float>, centerText: SpannableString) {
+        itemView.pcDrinks.centerText = centerText
+
         val entries = ArrayList<PieEntry>()
 
-        // NOTE: The order of the entries when being added to the entries array determines their position around the center of
-        // the chart.
         for (i in imgIndexes.indices) {
             entries.add(PieEntry(percents[i],
                     names[i],
                     itemView.resources.getDrawable(imgIndexes[i])))
         }
-        val dataSet = PieDataSet(entries, "Election Results")
-        dataSet.setDrawIcons(true)
-        dataSet.sliceSpace = 5f
+        val dataSet = PieDataSet(entries, "")
+        dataSet.setDrawIcons(false)
+        dataSet.setDrawValues(false)
+        dataSet.sliceSpace = 3f
         dataSet.iconsOffset = MPPointF(-30f, 0f)
         dataSet.selectionShift = 1f
 
@@ -94,13 +106,17 @@ class PieChartVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : Recycle
         itemView.pcDrinks.invalidate()
     }
 
-    companion object{
+    companion object {
         val PIE_CHART_COLORS = intArrayOf(
                 Color.rgb(169, 112, 255),
                 Color.rgb(255, 137, 92),
                 Color.rgb(86, 111, 255),
                 Color.rgb(52, 227, 175),
-                Color.rgb(76, 195, 255)
+                Color.rgb(76, 195, 255),
+                Color.rgb(254, 201, 109),
+                Color.rgb(254, 131, 170),
+                Color.rgb(104, 56, 104),
+                Color.rgb(242, 91, 92)
         )
     }
 }

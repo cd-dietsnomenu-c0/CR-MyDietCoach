@@ -1,11 +1,12 @@
 package com.diets.weightloss.presentation.water.stats.pager.pages.frequency.controller
 
+import android.text.SpannableString
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.PI
 
-class FrequencyAdapter(val pieImgIndexes : ArrayList<Int>, val pieNames : ArrayList<String>, val piePercents : ArrayList<Float>, val dividerTexts : Array<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FrequencyAdapter(val pieImgIndexes : ArrayList<Int>, val pieNames : ArrayList<String>, val piePercents : ArrayList<Float>, val dividerTexts : Array<String>, val centerPieText : SpannableString) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object{
         private const val PIE_TYPE = 0
@@ -25,7 +26,7 @@ class FrequencyAdapter(val pieImgIndexes : ArrayList<Int>, val pieNames : ArrayL
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
-            PIE_TYPE -> (holder as PieChartVH).onBind(pieImgIndexes, pieNames, piePercents)
+            PIE_TYPE -> (holder as PieChartVH).onBind(pieImgIndexes, pieNames, piePercents, centerPieText)
             DIVIDER_TYPE -> (holder as DividerVH).onBind(dividerTexts[getDividerPosition(position)])
             FREQUNECY_DETAIL_TYPE -> (holder as FrequencyDetailsVH).onBind()
         }
