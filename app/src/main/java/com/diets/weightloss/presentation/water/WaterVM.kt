@@ -191,7 +191,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
                 .dietDAO()
                 .addWater(WaterIntake(Calendar.getInstance().timeInMillis, quickDrink.typeId, quickDrink.capacity, clearWater))
 
-        increaseGlobalWater(clearWater)
+        increaseGlobalWater(clearWater) /// increase current day capacity of clear water
 
         var drinksCapacities = App.getInstance().db.dietDAO().getChoiceDrink(quickDrink.typeId)
         var capacity = 0L
@@ -202,7 +202,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         }
         capacity += quickDrink.capacity
         App.getInstance().db.dietDAO().insertTypeDrink(DrinksCapacities(quickDrink.typeId, capacity))
-        identifyFrequentDrink()
+        identifyFrequentDrink() // increase capacity of certain drink (global, for all time)
     }
 
     private fun identifyFrequentDrink() {

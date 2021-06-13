@@ -125,4 +125,10 @@ object PreferenceProvider {
     var isShowLangWarning: Boolean
         get() = getInstance()?.getBoolean(LANG_WARNING_TAG, false)!!
         set(value) = editor { it?.putBoolean(LANG_WARNING_TAG, value) }!!
+
+    private const val IS_ON_WATER_SOUND = "IS_ON_WATER_SOUND"
+
+    var isTurnOnWaterSound: Boolean
+        get() = getInstance()?.getBoolean(IS_ON_WATER_SOUND, true)!!
+        set(value) = editor { it?.putBoolean(IS_ON_WATER_SOUND, value) }!!
 }

@@ -3,6 +3,8 @@ package com.diets.weightloss.presentation.water
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Intent
+import android.media.AudioManager
+import android.media.SoundPool
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -31,6 +33,7 @@ import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import kotlin.math.roundToInt
+import kotlin.random.Random
 
 class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
@@ -40,6 +43,12 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     var drinkTypeAdapter: DrinkAdapter? = null
     var capacityAdapter: CapacityAdapter? = null
     var quickAdapter: QuickAdapter? = null
+
+    var soundPool : SoundPool? = null
+    var spFirstSound = -1
+    var spSecondSound = -1
+    var spThirdSound = -1
+    var listSPIndexes : ArrayList<Int>? = null
 
     var progress = 0.0f
     var lastChangeQuickItem = -1
@@ -70,6 +79,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         bsWaterSettings = BottomSheetBehavior.from(llBSWatersettings)
 
         rvQuickDrink.layoutManager = GridLayoutManager(activity, 2)
@@ -80,6 +90,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
         fillWaterSettingsBS()
         setExtraViews()
+        createSounds()
 
         if (PreferenceProvider.getWeight() == PreferenceProvider.EMPTY) {
             showBeginMeasBS()
@@ -101,6 +112,19 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         ivParams.setOnClickListener {
             requireActivity().startActivity(Intent(requireContext(), StatActivity::class.java))
         }
+
+        lavSound.setOnClickListener {
+            setSoundStatus(!PreferenceProvider.isTurnOnWaterSound)
+        }
+    }
+
+    private fun createSounds() {
+        soundPool = SoundPool(5, AudioManager.STREAM_MUSIC, 0)
+        spFirstSound = soundPool!!.load(requireContext(), R.raw.drop_1, 1)
+        spSecondSound = soundPool!!.load(requireContext(), R.raw.drop_2, 1)
+        spThirdSound = soundPool!!.load(requireContext(), R.raw.drop_3, 1)
+
+        listSPIndexes = arrayListOf(spFirstSound, spSecondSound, spThirdSound)
     }
 
     private fun bindDialogs() {
@@ -142,6 +166,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         vm.getCurrentCapacity().observe(this, Observer {
             if (isNeedAnimateCapacity) {
                 changeCurrentCapacity(it)
+
             } else {
                 tvCapacity.text = "$it"
                 setPercent()
@@ -187,6 +212,20 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         } else {
             setHotStateOff()
         }
+
+        setSoundStatus(PreferenceProvider.isTurnOnWaterSound)
+    }
+
+    private fun setSoundStatus(isTurnOnWaterSound: Boolean) {
+        PreferenceProvider.isTurnOnWaterSound = isTurnOnWaterSound
+
+        if (isTurnOnWaterSound){
+            lavSound.setMinAndMaxFrame(60, 90)
+        }else{
+            lavSound.setMinAndMaxFrame(0, 60)
+        }
+
+        lavSound.playAnimation()
     }
 
     private fun setHotStateOn() {
@@ -552,6 +591,9 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 override fun onAdd(position: Int) {
                     if (!isLockAdding){
                         vm.addWater(position)
+                        if (PreferenceProvider.isTurnOnWaterSound){
+                            playSound()
+                        }
                     }else{
                         Toast.makeText(activity, "keke", Toast.LENGTH_LONG).show()
                     }
@@ -566,6 +608,16 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             rvQuickDrink.adapter = quickAdapter
         } else {
             quickAdapter!!.setNewData(it, lastChangeQuickItem)
+        }
+    }
+
+    private fun playSound() {
+        if (soundPool != null && listSPIndexes != null && listSPIndexes!!.size > 0){
+            var index = Random.nextInt(3)
+            soundPool!!.play(listSPIndexes!![index], 1f, 1f, 0, 0, 1f)
+        }else{
+            createSounds()
+            playSound()
         }
     }
 
