@@ -525,4 +525,6 @@
         <item>Детали</item>
     </string-array>
 
+
+    <string name="alert_marathon">Здесь показано, сколько дней подряд вы выпиваете правильную норму воды</string>
 </resources>

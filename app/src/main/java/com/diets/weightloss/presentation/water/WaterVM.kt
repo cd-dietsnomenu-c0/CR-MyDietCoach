@@ -1,6 +1,7 @@
 package com.diets.weightloss.presentation.water
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.diets.weightloss.App
@@ -14,6 +15,7 @@ import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.water.WaterCounter
 import com.diets.weightloss.utils.water.WaterRateProvider
 import java.util.*
+import kotlin.collections.ArrayList
 
 class WaterVM(application: Application) : AndroidViewModel(application) {
 
@@ -22,6 +24,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     private var currentCapacity: MutableLiveData<Int>? = null  // current capacity
     private var globalWaterCapacity: MutableLiveData<Int>? = null
     private var frequentDrink: MutableLiveData<ReadableFrequentDrink>? = null
+    private var marathonDays: MutableLiveData<Int>? = null
 
 
     private fun reloadQuickLD() {
@@ -76,6 +79,34 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
                 .getStringArray(R.array.water_drinks_names)[index]
     }
 
+    fun getMarathonDaysLD(): MutableLiveData<Int> {
+        if (marathonDays == null) {
+            marathonDays = MutableLiveData()
+            fillMarathonDays()
+        }
+        return marathonDays!!
+    }
+
+    fun reCalculateMarathonDays(){
+        if (marathonDays == null){
+            marathonDays = MutableLiveData()
+        }
+        fillMarathonDays()
+    }
+
+    private fun fillMarathonDays() {
+        var intakes = App.getInstance().db.dietDAO().getAllWaterIntakes()
+        Log.e("LOL", intakes.size.toString())
+        var rates = App.getInstance().db.dietDAO().getAllWaterRates()
+        var days = WaterCounter.getMarathonDays(ArrayList(intakes), ArrayList(rates))
+        marathonDays!!.value = days
+
+        var list = WaterCounter.getMarathons(ArrayList(intakes), ArrayList(rates))
+        Log.e("LOL", "kkekeke --- ${list.size}")
+        for (i in list.indices){
+            Log.e("LOL", list[i].toString())
+        }
+    }
 
     fun getQuickLD(): MutableLiveData<QuickWaterList> {
         if (quickWaterData == null) {
@@ -162,7 +193,7 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         WaterRateProvider.addNewRate(countWaterRateDefault())
     }
 
-    private fun countWaterRateDefault() : Int{
+    private fun countWaterRateDefault(): Int {
         var value = WaterCounter.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
                 PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!, true)
 

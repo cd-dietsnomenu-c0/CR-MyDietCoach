@@ -2,10 +2,12 @@ package com.diets.weightloss.presentation.water
 
 import android.animation.Animator
 import android.animation.ValueAnimator
+import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -26,7 +28,9 @@ import com.diets.weightloss.presentation.water.controller.quick.IQuick
 import com.diets.weightloss.presentation.water.controller.quick.QuickAdapter
 import com.diets.weightloss.presentation.water.dialogs.FrequentDrinkDialog
 import com.diets.weightloss.presentation.water.dialogs.GlobalCapacityDialog
+import com.diets.weightloss.presentation.water.dialogs.MarathonDialog
 import com.diets.weightloss.presentation.water.stats.StatActivity
+import com.diets.weightloss.presentation.water.stats.pager.pages.MarathonFragment
 import com.diets.weightloss.presentation.water.toasts.FillMeasToast
 import com.diets.weightloss.utils.FieldsWorker
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
@@ -34,6 +38,7 @@ import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import kotlin.math.roundToInt
 import kotlin.random.Random
+import android.app.NotificationManager as NotificationManager
 
 class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
@@ -72,10 +77,12 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     val CAPACITY_INFO_TAG = "CAPACITY_INFO_TAG"
     val FREQUENT_INFO_TAG = "FREQUENT_INFO_TAG"
+    val MARATHON_INFO_TAG = "MARATHON_INFO_TAG"
 
 
     lateinit var capacityInfoDialog: GlobalCapacityDialog
     lateinit var frequentDrink: FrequentDrinkDialog
+    lateinit var marathonFragment: MarathonDialog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -114,8 +121,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         }
 
         lavSound.setOnClickListener {
-            setSoundStatus(!PreferenceProvider.isTurnOnWaterSound)
+            setSoundStatus(!PreferenceProvider.isTurnOnWaterSound, true)
         }
+
+
     }
 
     private fun createSounds() {
@@ -133,6 +142,13 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
         tvGlobalWater.setOnClickListener {
             capacityInfoDialog.show(activity!!.supportFragmentManager, CAPACITY_INFO_TAG)
+        }
+
+        marathonFragment = MarathonDialog()
+        marathonFragment.setTargetFragment(this, 0)
+
+        tvMarathon.setOnClickListener {
+            marathonFragment.show(activity!!.supportFragmentManager, MARATHON_INFO_TAG)
         }
 
         tvFrequentDrink.setOnClickListener {
@@ -181,6 +197,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         vm.getFrequentDrink().observe(this, Observer {
             tvFrequentDrink.text = it.name
         })
+
+        vm.getMarathonDaysLD().observe(this, Observer {
+            tvMarathon.text = resources.getQuantityString(R.plurals.days_plur, it, it)
+        })
     }
 
     private fun unObserverAll(){
@@ -213,19 +233,23 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             setHotStateOff()
         }
 
-        setSoundStatus(PreferenceProvider.isTurnOnWaterSound)
+        setSoundStatus(PreferenceProvider.isTurnOnWaterSound, false)
     }
 
-    private fun setSoundStatus(isTurnOnWaterSound: Boolean) {
+    private fun setSoundStatus(isTurnOnWaterSound: Boolean, isNeedAnimate : Boolean) {
         PreferenceProvider.isTurnOnWaterSound = isTurnOnWaterSound
 
         if (isTurnOnWaterSound){
-            lavSound.setMinAndMaxFrame(60, 90)
+            lavSound.setMinAndMaxFrame(56, 90)
         }else{
-            lavSound.setMinAndMaxFrame(0, 60)
+            lavSound.setMinAndMaxFrame(0, 56)
         }
 
-        lavSound.playAnimation()
+        if (isNeedAnimate) {
+            lavSound.playAnimation()
+        }else{
+            lavSound.frame = lavSound.maxFrame.toInt()
+        }
     }
 
     private fun setHotStateOn() {
@@ -396,6 +420,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             lavDone.translationY = Y_TRANSLITION_ANIM
             tvDone.alpha = 1f
             cvWaterShowcase.translationY = Y_TRANSLITION_SHOWCASE_HIDE
+            vm.reCalculateMarathonDays()
         }
     }
 

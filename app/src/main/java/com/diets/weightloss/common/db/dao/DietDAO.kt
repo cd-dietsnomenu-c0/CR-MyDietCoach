@@ -51,4 +51,7 @@ interface DietDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addNewRate(waterRate: WaterRate)
+
+    @Query("select * from WaterRate")
+    fun getAllWaterRates() : List<WaterRate>
 }

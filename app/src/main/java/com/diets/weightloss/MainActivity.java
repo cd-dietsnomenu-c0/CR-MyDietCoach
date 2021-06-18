@@ -136,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
         checkFirstRun();
 
         //startActivity(new Intent(this, TextCutActvity.class));
+
+
     }
 
 
