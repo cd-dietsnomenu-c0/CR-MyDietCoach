@@ -87,8 +87,8 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         return marathonDays!!
     }
 
-    fun reCalculateMarathonDays(){
-        if (marathonDays == null){
+    fun reCalculateMarathonDays() {
+        if (marathonDays == null) {
             marathonDays = MutableLiveData()
         }
         fillMarathonDays()
@@ -98,12 +98,15 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         var intakes = App.getInstance().db.dietDAO().getAllWaterIntakes()
         Log.e("LOL", intakes.size.toString())
         var rates = App.getInstance().db.dietDAO().getAllWaterRates()
-        var days = WaterCounter.getMarathonDays(ArrayList(intakes), ArrayList(rates))
+
+        var localIntakes = intakes.map { it.copy() }
+
+        var days = WaterCounter.getMarathonDays(ArrayList(localIntakes), ArrayList(rates))
         marathonDays!!.value = days
 
         var list = WaterCounter.getMarathons(ArrayList(intakes), ArrayList(rates))
         Log.e("LOL", "kkekeke --- ${list.size}")
-        for (i in list.indices){
+        for (i in list.indices) {
             Log.e("LOL", list[i].toString())
         }
     }
