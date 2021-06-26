@@ -96,12 +96,9 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
 
     private fun fillMarathonDays() {
         var intakes = App.getInstance().db.dietDAO().getAllWaterIntakes()
-        Log.e("LOL", intakes.size.toString())
         var rates = App.getInstance().db.dietDAO().getAllWaterRates()
 
-        var localIntakes = intakes.map { it.copy() }
-
-        var days = WaterCounter.getMarathonDays(ArrayList(localIntakes), ArrayList(rates))
+        var days = WaterCounter.getMarathonDays(ArrayList(intakes), ArrayList(rates))
         marathonDays!!.value = days
 
         var list = WaterCounter.getMarathons(ArrayList(intakes), ArrayList(rates))

@@ -87,7 +87,7 @@ object WaterCounter {
         for (i in listIntakes.indices) {
             if (!isContainsItem(daysList, listIntakes[i])) {
                 var counter = i + 1
-                var dayIntake = listIntakes[i]
+                var dayIntake = listIntakes[i].copy()
                 while (counter < listIntakes.size && dayIntake.id == listIntakes[counter].id) {
                     dayIntake.clearCapacity += listIntakes[counter].clearCapacity
                     counter++
@@ -137,6 +137,7 @@ object WaterCounter {
         var capacity = 0
 
         for (i in daysIntakes.indices) {
+            //
             if (daysIntakes[i].clearCapacity >= ratesForEveryDay[i].rate) {
                 if (!isAddNow) {
                     isAddNow = true
@@ -170,7 +171,7 @@ object WaterCounter {
         for (i in daysIntakes.indices) {
             for (j in listRates.indices) {
                 if (daysIntakes[i].id >= listRates[j].timestamp) {
-                    ratesForEveryDay.add(listRates[j])
+                    ratesForEveryDay.add(listRates[j].copy())
                     break
                 }
             }
