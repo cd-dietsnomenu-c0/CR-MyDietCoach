@@ -353,6 +353,15 @@
     <string name="cont_lang">Продолжить</string>
     <string name="adb_path">adb.json</string>
     <string name="splash_lang">Меняем язык</string>
+    <string name="remove_ads_white">Убрать рекламу</string>
+    <string name="white_month">1 месяц</string>
+    <string name="description_month">Ежемесячная подписка продлевается автоматически за %s</string>
+    <string name="white_year">1 год</string>
+    <string name="description_year">Годовая подписка продлевается автоматически за %s</string>
+    <string name="try_7_days_for_free_new">Попробуйте 7 дней бесплатно</string>
+    <string name="month_terms">Бесплатный пробный период - 7 дней. Далее %s в месяц. Вы можете управлять своими подписками на панели управления в Google Play</string>
+    <string name="year_terms">Бесплатный пробный период - 7 дней. Далее %s в год. Вы можете управлять своими подписками на панели управления в Google Play</string>
+    <string name="remove_ads_white_text">Нам не нравится реклама, но без нее мы не можем поддерживать и развивать приложение. Покупка подписки - ваша неоценимая помощь и самое малое, что мы можем сделать для вас взамен - отключить рекламу</string>
 
 
     <plurals name="days_plur">

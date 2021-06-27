@@ -13,6 +13,7 @@ import androidx.multidex.MultiDexApplication;
 import androidx.room.Room;
 
 import com.amplitude.api.Amplitude;
+import com.diets.weightloss.utils.inapp.SubscriptionProvider;
 import com.google.android.gms.ads.MobileAds;
 import com.diets.weightloss.common.db.DietDatabase;
 import com.diets.weightloss.common.db.migrations.Migrations;
@@ -29,7 +30,7 @@ public class App extends MultiDexApplication {
         super.onCreate();
 
         MobileAds.initialize(this);
-        //BillingManager.INSTANCE.init(this);
+        SubscriptionProvider.INSTANCE.init(this);
         Amplitude.getInstance().initialize(this, "d0d5dffefe8b29a89279f15daf6d62b5").
                 enableForegroundTracking(this);
         context = this;

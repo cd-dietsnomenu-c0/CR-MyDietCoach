@@ -16,10 +16,10 @@
       android:icon="@drawable/bnv_calulators"
       android:title="@string/bnv_calc"/>
 
-  <!--<item
-      android:id="@+id/bnv_premium"
+  <item
+      android:id="@+id/bnv_ads"
       android:icon="@drawable/bnv_prem"
-      android:title="@string/bnv_prem"/>-->
+      android:title="@string/bnv_prem"/>
 
   <item
       android:id="@+id/bnv_settings"

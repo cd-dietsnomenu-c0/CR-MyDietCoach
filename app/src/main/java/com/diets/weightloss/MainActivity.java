@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.diets.weightloss.presentation.premium.PremiumFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.diets.weightloss.model.Global;
@@ -57,10 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     Ampl.Companion.openCalculators();
                     return true;
                 }
-                /*case R.id.bnv_premium : {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(2)).commit();
-                    return true;
-                }*/
+
                 case R.id.bnv_settings: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(2)).commit();
                     Ampl.Companion.openSettings();
@@ -70,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.bnv_tracker: {
                     fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(3)).commit();
                     Ampl.Companion.openSettings();
+                    return true;
+                }
+
+                case R.id.bnv_ads: {
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(4)).commit();
                     return true;
                 }
 
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportFragmentManager().findFragmentById(R.id.fragmentContainer) instanceof ProfileFragment) {
             if (((ProfileFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainer)).bsBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
                 super.onBackPressed();
-            }else {
+            } else {
                 ((ProfileFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainer)).bsBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         } else {
@@ -121,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkIntent() {
         if (getIntent().getStringExtra(Config.PUSH_TAG) != null
-                && getIntent().getStringExtra(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)){
+                && getIntent().getStringExtra(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)) {
             AdWorker.INSTANCE.getShow();
         }
     }
@@ -155,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         sections.add(new FragmentCalculators());
         sections.add(new ProfileFragment());
         sections.add(new FragmentTracker());
+        sections.add(new PremiumFragment());
     }
 
     public static boolean hasConnection(final Context context) {
