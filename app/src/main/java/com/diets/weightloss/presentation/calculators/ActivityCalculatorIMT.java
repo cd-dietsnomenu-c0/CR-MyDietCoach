@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.diets.weightloss.utils.PreferenceProvider;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -43,8 +44,11 @@ public class ActivityCalculatorIMT extends AppCompatActivity {
         AdWorker.INSTANCE.checkLoad();
         setContentView(R.layout.activity_calculator_imt);
         Ampl.Companion.openCalcualtor("imt");
-        ban = findViewById(R.id.appodealBannerView);
-        ban.loadAd(new AdRequest.Builder().build());
+        if (!PreferenceProvider.INSTANCE.isHasPremium()) {
+            ban = findViewById(R.id.appodealBannerView);
+            ban.setVisibility(View.VISIBLE);
+            ban.loadAd(new AdRequest.Builder().build());
+        }
         btnCalculate = findViewById(R.id.btnIMTCalculate);
         edtHeight = findViewById(R.id.edtIMTHeight);
         edtWeight = findViewById(R.id.edtIMTWeight);

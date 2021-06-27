@@ -23,6 +23,8 @@ import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.common.notifications.ScheduleSetter
 import com.diets.weightloss.presentation.onboarding.OnboardActivity
+import com.diets.weightloss.presentation.premium.PremiumFragment
+import com.diets.weightloss.presentation.premium.PremiumHostActivity
 import com.diets.weightloss.utils.ABConfig
 import com.diets.weightloss.utils.LangChoicer
 import com.diets.weightloss.utils.PreferenceProvider
@@ -50,10 +52,10 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         goCounter += 1
         if (goCounter >= maxGoCounter) {
             var intent = Intent()
-            if (PreferenceProvider.getVersion() != ABConfig.C && isFirstTime) {
-                intent = Intent(this, OnboardActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
+            intent = if (PreferenceProvider.isSawPremium) {
+                Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             } else {
-                intent = Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
+                Intent(this, PremiumHostActivity::class.java)
             }
             startActivity(intent)
             finish()
@@ -68,9 +70,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             openFrom = Config.OPEN_FROM_PUSH
             openFromPush()
         }
-        PreferenceProvider.setLastEnter(Calendar.getInstance().timeInMillis)
         bindTest()
-        ScheduleSetter.setAlarm(this)
         loadAnimations()
         playAnim()
         loadData()

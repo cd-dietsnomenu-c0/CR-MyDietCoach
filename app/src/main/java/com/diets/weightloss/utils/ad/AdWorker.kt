@@ -8,6 +8,7 @@ import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.diets.weightloss.Config
 import com.diets.weightloss.R
+import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
 
 object AdWorker {
@@ -47,7 +48,7 @@ object AdWorker {
 
             override fun onAdLoaded() {
                 super.onAdLoaded()
-                if (isNeedShowNow){
+                if (isNeedShowNow) {
                     isNeedShowNow = false
                     inter?.show()
                     Ampl.showAd()
@@ -57,21 +58,23 @@ object AdWorker {
     }
 
     private fun loadNative(context: Context) {
-        adLoader = AdLoader
-                .Builder(context, context.getString(R.string.native_ad))
-                .forUnifiedNativeAd { nativeAD ->
-                    bufferAdsList.add(nativeAD)
-                    if (!adLoader!!.isLoading) {
-                        endLoading()
-                    }
-                }.withAdListener(object : AdListener() {
-                    override fun onAdFailedToLoad(p0: Int) {
+        if (!PreferenceProvider.isHasPremium) {
+            adLoader = AdLoader
+                    .Builder(context, context.getString(R.string.native_ad))
+                    .forUnifiedNativeAd { nativeAD ->
+                        bufferAdsList.add(nativeAD)
                         if (!adLoader!!.isLoading) {
                             endLoading()
                         }
-                    }
-                }).build()
-        adLoader?.loadAds(AdRequest.Builder().build(), Config.NATIVE_ITEMS_MAX)
+                    }.withAdListener(object : AdListener() {
+                        override fun onAdFailedToLoad(p0: Int) {
+                            if (!adLoader!!.isLoading) {
+                                endLoading()
+                            }
+                        }
+                    }).build()
+            adLoader?.loadAds(AdRequest.Builder().build(), Config.NATIVE_ITEMS_MAX)
+        }
     }
 
     private fun endLoading() {
@@ -83,10 +86,12 @@ object AdWorker {
     }
 
     fun observeOnNativeList(nativeSpeaker: NativeSpeaker) {
-        if (adsList.size > 0) {
-            nativeSpeaker.loadFin(adsList)
-        } else {
-            this.nativeSpeaker = nativeSpeaker
+        if (!PreferenceProvider.isHasPremium) {
+            if (adsList.size > 0) {
+                nativeSpeaker.loadFin(adsList)
+            } else {
+                this.nativeSpeaker = nativeSpeaker
+            }
         }
     }
 
@@ -108,26 +113,30 @@ object AdWorker {
     }
 
     fun showInter() {
-        if (Counter.getInstance().getCounter() % MAX_REQUEST_AD == 0) {
-            if (inter?.isLoaded == true) {
-                inter?.show()
-                Ampl.showAd()
+        if (!PreferenceProvider.isHasPremium) {
+            if (Counter.getInstance().getCounter() % MAX_REQUEST_AD == 0) {
+                if (inter?.isLoaded == true) {
+                    inter?.show()
+                    Ampl.showAd()
+                    Counter.getInstance().adToCounter()
+                } else if (isFailedLoad) {
+                    counterFailed = 0
+                    isFailedLoad = false
+                    reload()
+                }
+            } else {
                 Counter.getInstance().adToCounter()
-            } else if (isFailedLoad) {
-                counterFailed = 0
-                isFailedLoad = false
-                reload()
             }
-        } else {
-            Counter.getInstance().adToCounter()
         }
     }
 
-    fun getShow(){
-        if (inter?.isLoaded == true){
-            inter?.show()
-        }else{
-            isNeedShowNow = true
+    fun getShow() {
+        if (!PreferenceProvider.isHasPremium) {
+            if (inter?.isLoaded == true) {
+                inter?.show()
+            } else {
+                isNeedShowNow = true
+            }
         }
     }
 }

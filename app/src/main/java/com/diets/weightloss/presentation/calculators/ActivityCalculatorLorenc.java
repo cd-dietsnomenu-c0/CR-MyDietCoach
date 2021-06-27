@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.diets.weightloss.utils.PreferenceProvider;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,8 +38,11 @@ public class ActivityCalculatorLorenc extends AppCompatActivity {
         AdWorker.INSTANCE.checkLoad();
         setContentView(R.layout.activity_calculator_lorenc);
         Ampl.Companion.openCalcualtor("lorenc");
-        ban = findViewById(R.id.appodealBannerView);
-        ban.loadAd(new AdRequest.Builder().build());
+        if (!PreferenceProvider.INSTANCE.isHasPremium()) {
+            ban = findViewById(R.id.appodealBannerView);
+            ban.setVisibility(View.VISIBLE);
+            ban.loadAd(new AdRequest.Builder().build());
+        }
         edtLorencHeight = findViewById(R.id.edtLorencHeight);
         btnCalculate = findViewById(R.id.btnLorencCalculate);
         ivBack = findViewById(R.id.ivBack);

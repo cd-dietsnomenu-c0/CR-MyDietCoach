@@ -1,10 +1,14 @@
 package com.diets.weightloss.presentation.premium
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.diets.weightloss.App
+import com.diets.weightloss.MainActivity
 import com.diets.weightloss.R
+import com.diets.weightloss.SplashActivity
+import com.diets.weightloss.presentation.premium.dialogs.ThankDialog
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.utils.inapp.InAppCallback
@@ -12,7 +16,7 @@ import com.diets.weightloss.utils.inapp.SubscriptionProvider
 import kotlinx.android.synthetic.main.premium_fragment.*
 import java.text.DecimalFormat
 
-class PremiumFragment : Fragment(R.layout.premium_fragment) {
+class PremiumFragment : Fragment(R.layout.premium_fragment), ThankDialog.Callbacks {
 
     var oldYearPrice = ""
     var yearPrice = ""
@@ -24,6 +28,13 @@ class PremiumFragment : Fragment(R.layout.premium_fragment) {
     val where = Ampl.make_purchase_inside
 
     private var whichTwice = Ampl.twice_month
+
+    private lateinit var thankDialog : ThankDialog
+    val THANK_DIALOG_TAG = "THANK_DIALOG_TAG"
+
+    override fun close() {
+        restart()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -69,17 +80,25 @@ class PremiumFragment : Fragment(R.layout.premium_fragment) {
                 }
             })
         }
+        prepareDialog()
+
+
     }
 
     fun handlInApp() {
         Ampl.makePurchaseTwice(where, whichTwice)
         PreferenceProvider.isHasPremium = true
-        close()
+        thankDialog.show(requireActivity().supportFragmentManager, THANK_DIALOG_TAG)
     }
 
-    fun close() {
-        /*startActivity(Intent(MyApp.getInstance().applicationContext, MainActivity::class.java))
-        activity!!.finishAffinity()*/
+    private fun prepareDialog(){
+        thankDialog = ThankDialog()
+        thankDialog.setTargetFragment(this, 0)
+    }
+
+    private fun restart() {
+        startActivity(Intent(requireActivity(), SplashActivity::class.java))
+        requireActivity().finishAffinity()
     }
 
     private fun getSubId(): String {

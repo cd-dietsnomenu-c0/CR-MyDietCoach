@@ -9,16 +9,17 @@
     <string name="native_ad" translatable="false">ca-app-pub-2555056002292788/3938339229</string>-->
 
     <!--diNahuiPizdec-->
-    <string name="admob_key" translatable="false">ca-app-pub-6411359812847072~5901853663</string>
+    <!--WORK-->
+    <!--<string name="admob_key" translatable="false">ca-app-pub-6411359812847072~5901853663</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-6411359812847072/3270453912</string>
     <string name="banner_id" translatable="false">ca-app-pub-6411359812847072/7209698921</string>
-    <string name="native_ad" translatable="false">ca-app-pub-6411359812847072/4912846254</string>
+    <string name="native_ad" translatable="false">ca-app-pub-6411359812847072/4912846254</string>-->
 
     <!--Test-->
-    <!--<string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>-->
+    <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
 
     <!--Profile-->
     <string name="url_gdpr" translatable="false">https://www.freeprivacypolicy.com/privacy/view/272200879b5cf29dd1b4fcd0f0299409</string>

@@ -76,6 +76,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".presentation.premium.PremiumHostActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name="com.diets.weightloss.presentation.profile.favorites.FavoritesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 

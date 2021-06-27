@@ -101,4 +101,9 @@ object PreferenceProvider {
     var isHasPremium: Boolean
         get() = getInstance()?.getBoolean(IS_HAS_PREMIUM_TAG, false)!!
         set(value) = editor { it?.putBoolean(IS_HAS_PREMIUM_TAG, value) }!!
+
+    private const val IS_SAW_PREMIUM = "IS_SAW_PREMIUM"
+    var isSawPremium: Boolean
+        get() = getInstance()?.getBoolean(IS_SAW_PREMIUM, false)!!
+        set(value) = editor { it?.putBoolean(IS_SAW_PREMIUM, value) }!!
 }

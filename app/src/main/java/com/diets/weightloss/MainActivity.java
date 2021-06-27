@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.diets.weightloss.presentation.premium.PremiumFragment;
+import com.diets.weightloss.utils.PreferenceProvider;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.diets.weightloss.model.Global;
@@ -119,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
         additionOneToSharedPreference();
         checkFirstRun();
+
+        if (PreferenceProvider.INSTANCE.isHasPremium()){
+            navigationView.getMenu().removeItem(R.id.bnv_ads);
+        }
     }
 
 
