@@ -22,12 +22,14 @@ import com.diets.weightloss.common.FBWork.Companion.getFCMToken
 import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.common.notifications.ScheduleSetter
+import com.diets.weightloss.model.Subsection
 import com.diets.weightloss.presentation.onboarding.OnboardActivity
 import com.diets.weightloss.presentation.premium.PremiumFragment
 import com.diets.weightloss.presentation.premium.PremiumHostActivity
 import com.diets.weightloss.utils.ABConfig
 import com.diets.weightloss.utils.LangChoicer
 import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.inapp.SubscriptionProvider
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.squareup.moshi.Moshi
@@ -75,6 +77,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         playAnim()
         loadData()
         setFirstTime()
+        SubscriptionProvider.startGettingPrice()
     }
 
     private fun bindFCM() {
