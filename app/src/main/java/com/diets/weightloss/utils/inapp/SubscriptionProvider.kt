@@ -110,7 +110,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                             PreferenceProvider.monthPriceValue = skuDetailsList!![0].priceAmountMicros.toFloat() / 1_000_000
 
                             PreferenceProvider.yearPriceValue = skuDetailsList!![1].priceAmountMicros.toFloat() / 1_000_000
-                            //Log.e("LOL", "1 ---- ${skuDetailsList!![0].priceAmountMicros.toFloat() / 1_000_000}, 2--- ${skuDetailsList!![1].priceAmountMicros.toFloat() / 1_000_000}")
+                            Log.e("LOL", "1 ---- ${skuDetailsList!![0].priceAmountMicros.toFloat() / 1_000_000}, 2--- ${skuDetailsList!![1].priceAmountMicros.toFloat() / 1_000_000}")
                         } catch (ex: Exception) {
                             Log.e("LOL", "catch")
                         }
