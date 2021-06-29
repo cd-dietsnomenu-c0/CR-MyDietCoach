@@ -3,6 +3,7 @@ package com.diets.weightloss.presentation.premium
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.diets.weightloss.App
 import com.diets.weightloss.MainActivity
@@ -36,8 +37,12 @@ class PremiumFragment : Fragment(R.layout.premium_fragment), ThankDialog.Callbac
         restart()
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+
 
         var formatter = DecimalFormat("#.##")
 

@@ -345,6 +345,8 @@
     <string name="month_terms">7 days trial period. Next %s per month. You can manage your subscriptions in the dashboard on Google Play</string>
     <string name="year_terms">7 days trial period. Then %s per year. You can manage your subscriptions in the dashboard on Google Play</string>
     <string name="remove_ads_white_text">We don\'t like ads, but without them we cannot maintain and support the app. Buying a subscription is your invaluable help and the least we can do for you in return is disable ads</string>
+    <string name="continue_prem">continue</string>
+    <string name="text_post_prem">You have purchased a premium subscription and now you have disabled ads. We\'re deeply indebted to you for app support!</string>
 
 
     <plurals name="days_plur">

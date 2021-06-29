@@ -49,7 +49,20 @@
                     android:src="@drawable/shape_stencil_avatar"
                     android:id="@+id/ivCircle"/>
 
+
             </androidx.cardview.widget.CardView>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavPremium"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="180dp"
+                android:layout_marginStart="86dp"
+                android:elevation="10dp"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
+                android:visibility="invisible"
+                app:lottie_fileName="prem_status.json"/>
 
             <ImageView
                 android:id="@+id/ivHeadBack"
@@ -72,6 +85,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
+
 
                     <TextView
                         android:id="@+id/tvDate"

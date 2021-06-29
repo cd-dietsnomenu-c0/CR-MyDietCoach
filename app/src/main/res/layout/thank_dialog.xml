@@ -38,7 +38,7 @@
                 android:layout_marginEnd="24dp"
                 android:textSize="12sp"
                 android:fontFamily="@font/roboto"
-                android:text="Вы приобрели премиум подписку и теперь у вас отключена реклама. Мы в неоплатном долгу перед вами за поддержку приложения!"
+                android:text="@string/text_post_prem"
                 android:gravity="center_horizontal"
                 android:textColor="@color/black" />
 
@@ -51,7 +51,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/shape_close_prem"
-                android:text="закрыть"
+                android:text="@string/continue_prem"
                 android:layout_marginTop="30dp"
                 android:paddingHorizontal="22dp"
                 android:textColor="@color/white"

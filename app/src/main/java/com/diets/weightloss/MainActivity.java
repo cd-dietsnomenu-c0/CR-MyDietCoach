@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.diets.weightloss.common.db.utils.Checker;
 import com.diets.weightloss.presentation.premium.PremiumFragment;
 import com.diets.weightloss.utils.PreferenceProvider;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -136,9 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkDB(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            if (App.getInstance().getDB().dietDAO().getAll() == null || App.getInstance().getDB().dietDAO().getAll().size() == 0) {
-                DBHolder.INSTANCE.setEmpty();
-            }
+            Checker.INSTANCE.checkDB();
         }
     }
 

@@ -2,8 +2,8 @@ package com.diets.weightloss;
 
 public class Config {
     public static final String ID_SECTIONS_ARGS = "id_sec_args";
-    public static final String ID_SUBSECTIONS_ARGS= "id_sub_sec_args";
-    public static final String ID_ITEM= "id_item";
+    public static final String ID_SUBSECTIONS_ARGS = "id_sub_sec_args";
+    public static final String ID_ITEM = "id_item";
     public static final String SECTION_DATA = "SECTION_DATA";
     public static final String ITEM_DATA = "ITEM_DATA";
     public static final String NEW_DIETS = "NEW_DIETS";
@@ -26,4 +26,6 @@ public class Config {
 
     public static final String NEWS_RU = "news";
     public static final String NEWS_EN = "news_en";
+
+    public static final Boolean isForTest = false;
 }

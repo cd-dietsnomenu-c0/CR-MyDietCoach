@@ -16,8 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:visibility="invisible"
-            android:src="@drawable/ic_close_white_prem" />
+            android:src="@drawable/ic_close_white_prem"
+            android:visibility="invisible" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="300dp"
@@ -25,8 +25,8 @@
             android:layout_gravity="center_horizontal"
             app:lottie_autoPlay="true"
             app:lottie_fileName="prem_man.json"
-            app:lottie_speed="0.3"
-            app:lottie_loop="true"/>
+            app:lottie_loop="true"
+            app:lottie_speed="0.3" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,8 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="36dp"
-            android:layout_marginEnd="36dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="36dp"
             android:gravity="center_horizontal"
             android:letterSpacing="0.07"
             android:text="@string/remove_ads_white_text"
@@ -56,17 +56,18 @@
 
         <FrameLayout
             android:id="@+id/flMonth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="380dp"
+            android:layout_height="86dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivBackMonth"
                 android:layout_width="match_parent"
                 android:layout_height="86dp"
-                android:src="@drawable/selector_price_white_shout" />
+                app:srcCompat="@drawable/selector_price_white_shout" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -147,8 +148,9 @@
 
         <FrameLayout
             android:id="@+id/flYear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="380dp"
+            android:layout_height="86dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp">
@@ -179,9 +181,9 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_sale_white_prem"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"/>
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_sale_white_prem" />
 
             </LinearLayout>
 
@@ -253,40 +255,39 @@
             android:id="@+id/btnBuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:textStyle="normal"
-            android:textSize="14sp"
-            android:textColor="#ffffff"
-            android:letterSpacing="0.05"
-            android:lineSpacingExtra="2sp"
-            android:gravity="center_horizontal"
-            android:text="@string/try_7_days_for_free_new"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:background="@drawable/shape_btn_buy_white"
-            android:textAllCaps="true"
-            android:paddingEnd="33dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="2sp"
             android:paddingStart="33dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="33dp"
             android:paddingBottom="16dp"
-            android:paddingTop="16dp"/>
+            android:text="@string/try_7_days_for_free_new"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
 
         <TextView
             android:id="@+id/tvPlayTerms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:textStyle="normal"
-            android:textSize="12sp"
-            android:textColor="#c5c5c5"
-            android:letterSpacing="0.07"
-            android:gravity="center_horizontal"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="17dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            />
+            android:layout_marginBottom="17dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.07"
+            android:textColor="#c5c5c5"
+            android:textSize="12sp"
+            android:textStyle="normal" />
 
 
     </LinearLayout>

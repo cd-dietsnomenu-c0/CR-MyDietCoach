@@ -67,6 +67,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
                 bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
         })
+
+        if (PreferenceProvider.isHasPremium){
+            lavPremium.visibility = View.VISIBLE
+        }
     }
 
     private fun setClickListeners() {
@@ -129,11 +133,13 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
 
 
         ivCircle.setOnClickListener {
-            Ampl.clickAvatar()
-            if (isCameraForbidden()) {
-                requestPermissions(arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE), CAMERA_PERMISSION_REQUEST)
-            } else {
-                runCamera()
+            if (!Config.isForTest) {
+                Ampl.clickAvatar()
+                if (isCameraForbidden()) {
+                    requestPermissions(arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE), CAMERA_PERMISSION_REQUEST)
+                } else {
+                    runCamera()
+                }
             }
         }
 
@@ -151,8 +157,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         }
     }
 
-    private fun isCameraForbidden(): Boolean = activity!!.checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
-            || (ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) != PackageManager.PERMISSION_GRANTED
+    private fun isCameraForbidden(): Boolean = ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
 
     private fun setAvatar() {
         if (PreferenceProvider.getPhoto() != PreferenceProvider.EMPTY_PHOTO) {
