@@ -245,10 +245,15 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             lavSound.setMinAndMaxFrame(0, 56)
         }
 
+
         if (isNeedAnimate) {
             lavSound.playAnimation()
         }else{
-            lavSound.frame = lavSound.maxFrame.toInt()
+            if (isTurnOnWaterSound){
+                lavSound.frame = 90
+            }else{
+                lavSound.frame = 56
+            }
         }
     }
 
