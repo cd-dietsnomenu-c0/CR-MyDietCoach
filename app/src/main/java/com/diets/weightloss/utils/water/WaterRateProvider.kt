@@ -11,4 +11,9 @@ object WaterRateProvider {
         var timeInMillis = CustomDate.getClearTime(Calendar.getInstance().timeInMillis)
         App.getInstance().db.dietDAO().addNewRate(WaterRate(timeInMillis, newRate))
     }
+
+    fun addNewRateCustomTime(newRate : Int, time : Long){
+        var timeInMillis = CustomDate.getClearTime(time)
+        App.getInstance().db.dietDAO().addNewRate(WaterRate(timeInMillis, newRate))
+    }
 }

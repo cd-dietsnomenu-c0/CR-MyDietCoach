@@ -16,6 +16,8 @@ object WaterCounter {
     private val TRAINING_FACTOR = 0.1f
     private val HOT_FACTOR = 0.15f
 
+    private val ONE_DAY_MILLIS = 86400000L
+
     fun getWaterDailyRate(gender: Int, isTrainingOn: Boolean, isHotOn: Boolean, weight: Int, isNeedConsiderFactors: Boolean): Int {
         return if (PreferenceProvider.getWaterRateChangedManual()!! != PreferenceProvider.EMPTY) {
             if (!isNeedConsiderFactors) {
@@ -126,39 +128,49 @@ object WaterCounter {
     fun getMarathons(listIntakes: ArrayList<WaterIntake>, listRates: ArrayList<WaterRate>): ArrayList<WaterMarathon> {
         var daysIntakes = mergeIntakesIntoDays(listIntakes)
 
-        daysIntakes.reverse()
-        listRates.reverse()
 
         var ratesForEveryDay = getRatesForEveryDay(daysIntakes, listRates)
         var marathons = arrayListOf<WaterMarathon>()
 
         var isAddNow = false
+        var isNeedStopNext = false
         var startItem = 0
         var capacity = 0
+        var daysInMarathon = 0
 
         for (i in daysIntakes.indices) {
             //
-            if (daysIntakes[i].clearCapacity >= ratesForEveryDay[i].rate) {
+            if (daysIntakes[i].clearCapacity >= ratesForEveryDay[i].rate && !isNeedStopNext) {
                 if (!isAddNow) {
                     isAddNow = true
                     startItem = i
                 }
                 capacity += daysIntakes[i].clearCapacity
-
+                daysInMarathon ++
                 if (i == daysIntakes.size - 1) {
-                    if (daysIntakes.size == 1){
+                    if (daysIntakes.size == 1) {
                         marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[startItem].id, capacity))
-                    }else{
-                        marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[i - 1].id, capacity))
+                    } else {
+                        marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[i].id, capacity))
+                    }
+                } else {
+                    if (daysIntakes[i + 1].id - daysIntakes[i].id > ONE_DAY_MILLIS) {
+                        isNeedStopNext = true
                     }
                 }
             } else {
                 if (isAddNow) {
-                    marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[i - 1].id, capacity))
-
+                    if (daysInMarathon > 1) {
+                        marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[i - 1].id, capacity))
+                    }
                     startItem = 0
                     capacity = 0
                     isAddNow = false
+                    daysInMarathon = 0
+
+                    if (isNeedStopNext) {
+                        isNeedStopNext = false
+                    }
                 }
             }
         }

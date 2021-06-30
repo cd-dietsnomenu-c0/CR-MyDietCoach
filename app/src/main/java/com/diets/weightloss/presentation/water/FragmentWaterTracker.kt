@@ -32,7 +32,9 @@ import com.diets.weightloss.presentation.water.dialogs.MarathonDialog
 import com.diets.weightloss.presentation.water.stats.StatActivity
 import com.diets.weightloss.presentation.water.stats.pager.pages.MarathonFragment
 import com.diets.weightloss.presentation.water.toasts.FillMeasToast
+import com.diets.weightloss.presentation.water.toasts.FullToast
 import com.diets.weightloss.utils.FieldsWorker
+import com.diets.weightloss.utils.testing.FillWaterIntakes
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
@@ -124,6 +126,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             setSoundStatus(!PreferenceProvider.isTurnOnWaterSound, true)
         }
 
+        FillWaterIntakes.fillDB()
 
     }
 
@@ -625,7 +628,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                             playSound()
                         }
                     }else{
-                        Toast.makeText(activity, "keke", Toast.LENGTH_LONG).show()
+                        FullToast.show(activity!!)
                     }
                 }
 

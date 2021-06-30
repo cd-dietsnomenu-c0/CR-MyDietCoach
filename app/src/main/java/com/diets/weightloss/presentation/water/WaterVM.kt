@@ -100,12 +100,6 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
 
         var days = WaterCounter.getMarathonDays(ArrayList(intakes), ArrayList(rates))
         marathonDays!!.value = days
-
-        var list = WaterCounter.getMarathons(ArrayList(intakes), ArrayList(rates))
-        Log.e("LOL", "kkekeke --- ${list.size}")
-        for (i in list.indices) {
-            Log.e("LOL", list[i].toString())
-        }
     }
 
     fun getQuickLD(): MutableLiveData<QuickWaterList> {
