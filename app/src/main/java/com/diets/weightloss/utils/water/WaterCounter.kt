@@ -1,5 +1,6 @@
 package com.diets.weightloss.utils.water
 
+import android.util.Log
 import com.diets.weightloss.common.db.entities.water.WaterIntake
 import com.diets.weightloss.common.db.entities.water.WaterRate
 import com.diets.weightloss.model.water.WaterMarathon
@@ -125,7 +126,23 @@ object WaterCounter {
         return days
     }
 
-    fun getMarathons(listIntakes: ArrayList<WaterIntake>, listRates: ArrayList<WaterRate>): ArrayList<WaterMarathon> {
+    fun getSortedMarathons(listIntakes: ArrayList<WaterIntake>, listRates: ArrayList<WaterRate>): List<WaterMarathon> {
+        var unsortedMarathons = getMarathons(listIntakes, listRates)
+
+        for (i in unsortedMarathons.indices){
+            var daysAmount = ((unsortedMarathons[i].end - unsortedMarathons[i].start) / ONE_DAY_MILLIS).toInt() + 1
+            unsortedMarathons[i].duration = daysAmount
+        }
+
+        var sortedMarathon = unsortedMarathons.sortedBy { it.duration }
+
+        for (i in sortedMarathon){
+            Log.e("LOL", i.duration.toString())
+        }
+        return sortedMarathon
+    }
+
+    private fun getMarathons(listIntakes: ArrayList<WaterIntake>, listRates: ArrayList<WaterRate>): ArrayList<WaterMarathon> {
         var daysIntakes = mergeIntakesIntoDays(listIntakes)
 
 
@@ -146,12 +163,12 @@ object WaterCounter {
                     startItem = i
                 }
                 capacity += daysIntakes[i].clearCapacity
-                daysInMarathon ++
+                daysInMarathon++
                 if (i == daysIntakes.size - 1) {
                     if (daysIntakes.size == 1) {
-                        marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[startItem].id, capacity))
+                        marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[startItem].id, capacity, 0))
                     } else {
-                        marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[i].id, capacity))
+                        marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[i].id, capacity, 0))
                     }
                 } else {
                     if (daysIntakes[i + 1].id - daysIntakes[i].id > ONE_DAY_MILLIS) {
@@ -161,7 +178,7 @@ object WaterCounter {
             } else {
                 if (isAddNow) {
                     if (daysInMarathon > 1) {
-                        marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[i - 1].id, capacity))
+                        marathons.add(WaterMarathon(daysIntakes[startItem].id, daysIntakes[i - 1].id, capacity, 0))
                     }
                     startItem = 0
                     capacity = 0

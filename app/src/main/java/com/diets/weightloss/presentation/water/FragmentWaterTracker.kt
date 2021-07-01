@@ -126,7 +126,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             setSoundStatus(!PreferenceProvider.isTurnOnWaterSound, true)
         }
 
-        FillWaterIntakes.fillDB()
+        //FillWaterIntakes.fillDB()
 
     }
 
