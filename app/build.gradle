@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 
 android {
@@ -11,8 +12,8 @@ android {
         applicationId "com.diets.weightloss"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 11
-        versionName "1.0.7dev"
+        versionCode 12
+        versionName "1.0.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -93,4 +94,3 @@ dependencies {
     implementation 'com.userexperior:userexperior-android:5.0.0'
 }
 
-apply plugin: 'com.google.gms.google-services'

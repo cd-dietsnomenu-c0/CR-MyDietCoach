@@ -10,6 +10,7 @@ import com.diets.weightloss.Config
 import com.diets.weightloss.R
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
+import kotlin.random.Random
 
 object AdWorker {
     private const val MAX_REQUEST_AD = 3
@@ -22,6 +23,10 @@ object AdWorker {
     var adLoader: AdLoader? = null
     var nativeSpeaker: NativeSpeaker? = null
     var isNeedShowNow = false
+
+    init {
+        FrequencyManager.runSetup()
+    }
 
 
     fun init(context: Context) {
@@ -48,7 +53,7 @@ object AdWorker {
 
             override fun onAdLoaded() {
                 super.onAdLoaded()
-                if (isNeedShowNow) {
+                if (isNeedShowNow && needShow()) {
                     isNeedShowNow = false
                     inter?.show()
                     Ampl.showAd()
@@ -113,7 +118,7 @@ object AdWorker {
     }
 
     fun showInter() {
-        if (!PreferenceProvider.isHasPremium) {
+        if (!PreferenceProvider.isHasPremium && needShow()) {
             if (Counter.getInstance().getCounter() % MAX_REQUEST_AD == 0) {
                 if (inter?.isLoaded == true) {
                     inter?.show()
@@ -132,11 +137,19 @@ object AdWorker {
 
     fun getShow() {
         if (!PreferenceProvider.isHasPremium) {
-            if (inter?.isLoaded == true) {
+            if (inter?.isLoaded == true && needShow()) {
                 inter?.show()
             } else {
                 isNeedShowNow = true
             }
+        }
+    }
+
+    private fun needShow(): Boolean{
+        if (Config.isForTest){
+            return false
+        }else {
+            return Random.nextInt(100) <= PreferenceProvider.frequencyPercent
         }
     }
 }
