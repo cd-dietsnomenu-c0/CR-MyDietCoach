@@ -17,6 +17,7 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.diets.weightloss.App
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.diets.weightloss.Config
 import com.diets.weightloss.R
@@ -127,7 +128,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
             var intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain"
             intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.accompanying_text) + "\n"
-                    + "https://play.google.com/store/apps/details?id=com.jundev.weightloss")
+                    + "https://play.google.com/store/apps/details?id=${App.getInstance().packageName}")
             startActivity(intent)
         }
 
