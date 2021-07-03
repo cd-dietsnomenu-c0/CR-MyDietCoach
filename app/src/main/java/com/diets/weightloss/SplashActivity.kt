@@ -25,9 +25,11 @@ import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.AdWorker.init
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.utils.analytics.Ampl.Companion.openFromPush
+import com.diets.weightloss.utils.analytics.FBAnalytic
 import com.diets.weightloss.utils.inapp.SubscriptionProvider
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.squareup.moshi.Moshi
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -49,11 +51,10 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     fun post() {
         goCounter += 1
         if (goCounter >= maxGoCounter) {
-            var intent = Intent()
-            intent = if (PreferenceProvider.isSawPremium) {
-                Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
-            } else {
+            var intent = if (!PreferenceProvider.isSawPremium && PreferenceProvider.isNeedPrem == ABConfig.PREM_NEED) {
                 Intent(this, PremiumHostActivity::class.java)
+            } else {
+                Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             }
             startActivity(intent)
             finish()
@@ -114,22 +115,28 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun bindTest() {
         val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
-        firebaseRemoteConfig.setDefaults(R.xml.default_config)
-
-        firebaseRemoteConfig.fetch(3600).addOnCompleteListener { task ->
+        var config = FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(3600).build()
+        firebaseRemoteConfig.setConfigSettingsAsync(config)
+        firebaseRemoteConfig.setDefaultsAsync(R.xml.default_config)
+        firebaseRemoteConfig.fetchAndActivate().addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                firebaseRemoteConfig.activateFetched()
                 Amplitude.getInstance().logEvent("norm_ab")
             } else {
                 Amplitude.getInstance().logEvent("crash_ab")
             }
-            setABTestConfig(firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING))
+            setABTestConfig(
+                    firebaseRemoteConfig.getString(ABConfig.PREM_TAG)
+            )
         }
     }
 
     private fun setABTestConfig(version: String) {
         Log.e("LOL", version)
-        PreferenceProvider.setVersion(version)
+        var defaultVer = ABConfig.PREM_NEED
+        if (version != null && version != ""){
+            defaultVer = version
+        }
+        PreferenceProvider.isNeedPrem = defaultVer
         Ampl.setABVersion(version)
         Ampl.setVersion()
         post()

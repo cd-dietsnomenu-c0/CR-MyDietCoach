@@ -12,7 +12,6 @@ class PremiumHostActivity : AppCompatActivity(R.layout.premium_host_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         PreferenceProvider.isSawPremium = true
 
         supportFragmentManager.beginTransaction().add(R.id.flFragmentHost, PremiumFragment()).commit()

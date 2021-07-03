@@ -1,6 +1,7 @@
 package com.diets.weightloss.utils.ad
 
 import android.content.Context
+import com.diets.weightloss.App
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
@@ -10,6 +11,8 @@ import com.diets.weightloss.Config
 import com.diets.weightloss.R
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
+import com.diets.weightloss.utils.analytics.FBAnalytic
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlin.random.Random
 
 object AdWorker {
@@ -58,6 +61,11 @@ object AdWorker {
                     inter?.show()
                     Ampl.showAd()
                 }
+            }
+
+            override fun onAdClicked() {
+                super.onAdClicked()
+                FBAnalytic.adClick()
             }
         }
     }
@@ -121,6 +129,7 @@ object AdWorker {
         if (!PreferenceProvider.isHasPremium && needShow()) {
             if (Counter.getInstance().getCounter() % MAX_REQUEST_AD == 0) {
                 if (inter?.isLoaded == true) {
+                    FBAnalytic.adShow()
                     inter?.show()
                     Ampl.showAd()
                     Counter.getInstance().adToCounter()
@@ -138,6 +147,7 @@ object AdWorker {
     fun getShow() {
         if (!PreferenceProvider.isHasPremium) {
             if (inter?.isLoaded == true && needShow()) {
+                FBAnalytic.adShow()
                 inter?.show()
             } else {
                 isNeedShowNow = true
@@ -145,10 +155,10 @@ object AdWorker {
         }
     }
 
-    private fun needShow(): Boolean{
-        if (Config.isForTest){
+    private fun needShow(): Boolean {
+        if (Config.isForTest) {
             return false
-        }else {
+        } else {
             return Random.nextInt(100) <= PreferenceProvider.frequencyPercent
         }
     }

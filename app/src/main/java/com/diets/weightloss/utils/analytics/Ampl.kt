@@ -59,7 +59,7 @@ class Ampl {
         val send_claim = "send_claim"
 
         val set_ver = "set_ver"
-        val AB = "AB"
+        val AB = "AB_PREM"
 
 
         fun setVersion() {

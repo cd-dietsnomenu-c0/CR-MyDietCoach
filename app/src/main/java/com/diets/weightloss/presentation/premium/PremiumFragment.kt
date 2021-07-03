@@ -12,6 +12,7 @@ import com.diets.weightloss.SplashActivity
 import com.diets.weightloss.presentation.premium.dialogs.ThankDialog
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
+import com.diets.weightloss.utils.analytics.FBAnalytic
 import com.diets.weightloss.utils.inapp.InAppCallback
 import com.diets.weightloss.utils.inapp.SubscriptionProvider
 import kotlinx.android.synthetic.main.premium_fragment.*
@@ -26,7 +27,7 @@ class PremiumFragment : Fragment(R.layout.premium_fragment), ThankDialog.Callbac
     var termsYear = ""
     var termsMonth = ""
 
-    val where = Ampl.make_purchase_inside
+    var where = Ampl.make_purchase_inside
 
     private var whichTwice = Ampl.twice_month
 
@@ -42,7 +43,9 @@ class PremiumFragment : Fragment(R.layout.premium_fragment), ThankDialog.Callbac
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-
+        if (activity is PremiumHostActivity){
+            where = Ampl.make_purchase_start
+        }
 
         var formatter = DecimalFormat("#.##")
 
@@ -91,6 +94,7 @@ class PremiumFragment : Fragment(R.layout.premium_fragment), ThankDialog.Callbac
     }
 
     fun handlInApp() {
+        FBAnalytic.trial()
         Ampl.makePurchaseTwice(where, whichTwice)
         PreferenceProvider.isHasPremium = true
         thankDialog.show(requireActivity().supportFragmentManager, THANK_DIALOG_TAG)

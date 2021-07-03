@@ -107,8 +107,15 @@ object PreferenceProvider {
         get() = getInstance()?.getBoolean(IS_SAW_PREMIUM, false)!!
         set(value) = editor { it?.putBoolean(IS_SAW_PREMIUM, value) }!!
 
+
     private const val AD_PERCENT_TAG = "AD_PERCENT_TAG"
     var frequencyPercent: Int
         get() = getInstance()?.getInt(AD_PERCENT_TAG, 0)!!
         set(value) = editor { it?.putInt(AD_PERCENT_TAG, value) }!!
+
+
+    private const val PREM_VER_TAG = "PREM_VER_TAG"
+    var isNeedPrem: String
+        get() = getInstance()?.getString(PREM_VER_TAG, "")!!
+        set(value) = editor { it?.putString(PREM_VER_TAG, value) }!!
 }
