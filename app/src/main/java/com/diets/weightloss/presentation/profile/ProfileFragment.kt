@@ -144,7 +144,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
             }
         }
 
-        btnLanguage.setOnClickListener {
+        /*btnLanguage.setOnClickListener {
             if (PreferenceProvider.isShowLangWarning){
                 startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
             }else{
@@ -155,7 +155,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
             }
 
 
-        }
+        }*/
     }
 
     private fun isCameraForbidden(): Boolean = ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
