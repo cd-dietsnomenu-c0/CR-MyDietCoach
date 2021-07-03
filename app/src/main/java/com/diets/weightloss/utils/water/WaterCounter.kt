@@ -139,6 +139,7 @@ object WaterCounter {
         for (i in sortedMarathon){
             Log.e("LOL", i.duration.toString())
         }
+        sortedMarathon.reversed()
         return sortedMarathon
     }
 

@@ -101,7 +101,6 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         var days = WaterCounter.getMarathonDays(ArrayList(intakes), ArrayList(rates))
         marathonDays!!.value = days
 
-        WaterCounter.getSortedMarathons(ArrayList(App.getInstance().db.dietDAO().getAllWaterIntakes()), ArrayList(App.getInstance().db.dietDAO().getAllWaterRates()))
     }
 
     fun getQuickLD(): MutableLiveData<QuickWaterList> {

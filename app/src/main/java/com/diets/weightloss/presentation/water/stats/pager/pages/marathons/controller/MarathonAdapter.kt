@@ -1,10 +1,11 @@
-package com.diets.weightloss.presentation.water.stats.pager.pages.controller
+package com.diets.weightloss.presentation.water.stats.pager.pages.marathons.controller
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.diets.weightloss.model.water.WaterMarathon
 
-class MarathonAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MarathonAdapter(val list: List<WaterMarathon>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val FIRST_PLACE_TYPE = 0
@@ -26,12 +27,12 @@ class MarathonAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return 20
+        return list.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
-            FIRST_PLACE_TYPE -> (holder as FirstPlaceVH).bind()
+            FIRST_PLACE_TYPE -> (holder as FirstPlaceVH).bind(list[0])
             SECOND_PLACE_TYPE -> (holder as SecondPlaceVH).bind()
             THIRD_PLACE_TYPE -> (holder as ThirdPlaceVH).bind()
             OTHER_PLACE_TYPE -> (holder as OtherPlaceVH).bind(position)

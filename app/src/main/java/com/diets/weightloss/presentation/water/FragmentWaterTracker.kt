@@ -2,12 +2,10 @@ package com.diets.weightloss.presentation.water
 
 import android.animation.Animator
 import android.animation.ValueAnimator
-import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -30,7 +28,6 @@ import com.diets.weightloss.presentation.water.dialogs.FrequentDrinkDialog
 import com.diets.weightloss.presentation.water.dialogs.GlobalCapacityDialog
 import com.diets.weightloss.presentation.water.dialogs.MarathonDialog
 import com.diets.weightloss.presentation.water.stats.StatActivity
-import com.diets.weightloss.presentation.water.stats.pager.pages.MarathonFragment
 import com.diets.weightloss.presentation.water.toasts.FillMeasToast
 import com.diets.weightloss.presentation.water.toasts.FullToast
 import com.diets.weightloss.utils.FieldsWorker
@@ -40,7 +37,6 @@ import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import kotlin.math.roundToInt
 import kotlin.random.Random
-import android.app.NotificationManager as NotificationManager
 
 class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
@@ -126,7 +122,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             setSoundStatus(!PreferenceProvider.isTurnOnWaterSound, true)
         }
 
-        //FillWaterIntakes.fillDB()
+        FillWaterIntakes.fillDB()
 
     }
 
