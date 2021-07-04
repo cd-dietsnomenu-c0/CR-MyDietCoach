@@ -22,9 +22,9 @@ class MarathonFragment : Fragment(R.layout.marathon_fragment) {
         vm = ViewModelProviders.of(this).get(MarathonVM::class.java)
 
         vm.getMarathons().observe(this, Observer {
-            if (it != null && it.isNotEmpty()){
+            if (it != null && it.isNotEmpty()) {
                 setList(it)
-            }else{
+            } else {
                 setEmptyState()
             }
         })
@@ -33,7 +33,8 @@ class MarathonFragment : Fragment(R.layout.marathon_fragment) {
     }
 
     private fun setEmptyState() {
-
+        rvMarathon.visibility = View.INVISIBLE
+        llEmptyState.visibility = View.VISIBLE
     }
 
     private fun setList(list: List<WaterMarathon>) {

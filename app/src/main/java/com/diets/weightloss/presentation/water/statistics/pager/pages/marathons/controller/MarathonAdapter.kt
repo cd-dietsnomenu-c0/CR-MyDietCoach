@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.model.water.WaterMarathon
+import java.lang.Exception
 
 class MarathonAdapter(val list: List<WaterMarathon>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -27,16 +28,16 @@ class MarathonAdapter(val list: List<WaterMarathon>) : RecyclerView.Adapter<Recy
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list.size + 5
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(getItemViewType(position)){
-            FIRST_PLACE_TYPE -> (holder as FirstPlaceVH).bind(list[0])
-            SECOND_PLACE_TYPE -> (holder as SecondPlaceVH).bind()
-            THIRD_PLACE_TYPE -> (holder as ThirdPlaceVH).bind()
-            OTHER_PLACE_TYPE -> (holder as OtherPlaceVH).bind(position)
-            else -> (holder as OtherPlaceVH).bind(position)
+        when (getItemViewType(position)) {
+            FIRST_PLACE_TYPE -> (holder as FirstPlaceVH).bind(list[position])
+            SECOND_PLACE_TYPE -> (holder as SecondPlaceVH).bind(list[position])
+            THIRD_PLACE_TYPE -> (holder as ThirdPlaceVH).bind(list[position])
+            OTHER_PLACE_TYPE -> (holder as OtherPlaceVH).bind(list[2])
+            else -> Exception()
         }
     }
 

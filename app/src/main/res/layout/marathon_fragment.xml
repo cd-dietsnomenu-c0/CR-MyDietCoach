@@ -1,11 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rvMarathon"/>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/llEmptyState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:orientation="vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavEmpty"
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            app:lottie_autoPlay="true"
+            android:layout_gravity="center_horizontal"
+            app:lottie_fileName="404_stats.json"
+            app:lottie_repeatMode="reverse"
+            app:lottie_loop="true" />
+
+        <TextView
+            android:id="@+id/tvEmptyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Тут пока пусто"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:translationY="-100dp"
+            android:textColor="#B37261D3" />
+
+        <TextView
+            android:id="@+id/tvEmptyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Мы отобразим здесь ваши марафоны - интервалы больше одного дня, когда вы выпивали дневную норму воды"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#807261D3"
+            android:layout_gravity="center_horizontal"
+            android:translationY="-96dp" />
+
+
+    </LinearLayout>
+
+
+
+
+
+</FrameLayout>

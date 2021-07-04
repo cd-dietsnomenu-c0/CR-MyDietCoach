@@ -12,5 +12,8 @@ class FirstPlaceVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : Recyc
     fun bind(waterMarathon: WaterMarathon) {
         itemView.tvDays.text = waterMarathon.duration.toString()
         itemView.tvDays.text = itemView.resources.getQuantityString(R.plurals.days_plur, waterMarathon.duration, waterMarathon.duration)
+        itemView.tvCapacity.text = itemView.resources.getString(R.string.capacity_unit, waterMarathon.readableCapacity)
+        itemView.tvStart.text = waterMarathon.readableStart
+        itemView.tvEnd.text = waterMarathon.readableEnd
     }
 }
