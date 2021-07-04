@@ -359,6 +359,7 @@
     <string name="statistic_tabs">Статистика</string>
     <string name="release_user_expirior_id">1fc4f7fc-9ab9-4ab9-a943-dcfeae03c311</string>
     <string name="capacity_unit">%s л</string>
+    <string name="global_part">%s%% от от всей выпитой жидкости</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>
