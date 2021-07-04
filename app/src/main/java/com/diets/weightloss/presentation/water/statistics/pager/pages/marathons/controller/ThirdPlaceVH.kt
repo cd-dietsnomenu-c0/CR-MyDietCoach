@@ -1,4 +1,4 @@
-package com.diets.weightloss.presentation.water.stats.pager.pages.marathons.controller
+package com.diets.weightloss.presentation.water.statistics.pager.pages.marathons.controller
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

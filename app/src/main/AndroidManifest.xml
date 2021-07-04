@@ -76,7 +76,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.diets.weightloss.presentation.water.stats.StatActivity"
+            android:name="com.diets.weightloss.presentation.water.statistics.StatActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity

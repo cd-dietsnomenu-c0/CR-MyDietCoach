@@ -1,12 +1,12 @@
-package com.diets.weightloss.presentation.water.stats
+package com.diets.weightloss.presentation.water.statistics
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.diets.weightloss.R
-import com.diets.weightloss.presentation.water.stats.pager.StatPagerAdapter
-import com.diets.weightloss.presentation.water.stats.pager.pages.marathons.MarathonFragment
-import com.diets.weightloss.presentation.water.stats.pager.pages.frequency.SegmentationFragment
+import com.diets.weightloss.presentation.water.statistics.pager.StatPagerAdapter
+import com.diets.weightloss.presentation.water.statistics.pager.pages.marathons.MarathonFragment
+import com.diets.weightloss.presentation.water.statistics.pager.pages.frequency.SegmentationFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.stat_activity.*
 

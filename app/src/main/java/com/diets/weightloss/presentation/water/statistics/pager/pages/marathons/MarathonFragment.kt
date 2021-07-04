@@ -1,4 +1,4 @@
-package com.diets.weightloss.presentation.water.stats.pager.pages.marathons
+package com.diets.weightloss.presentation.water.statistics.pager.pages.marathons
 
 import android.os.Bundle
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diets.weightloss.R
 import com.diets.weightloss.model.water.WaterMarathon
-import com.diets.weightloss.presentation.water.stats.pager.pages.marathons.controller.MarathonAdapter
+import com.diets.weightloss.presentation.water.statistics.pager.pages.marathons.controller.MarathonAdapter
 import kotlinx.android.synthetic.main.marathon_fragment.*
 
 class MarathonFragment : Fragment(R.layout.marathon_fragment) {

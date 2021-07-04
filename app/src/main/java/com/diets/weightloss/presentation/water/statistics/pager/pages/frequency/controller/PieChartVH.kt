@@ -1,4 +1,4 @@
-package com.diets.weightloss.presentation.water.stats.pager.pages.frequency.controller
+package com.diets.weightloss.presentation.water.statistics.pager.pages.frequency.controller
 
 import android.graphics.Color
 import android.graphics.Typeface

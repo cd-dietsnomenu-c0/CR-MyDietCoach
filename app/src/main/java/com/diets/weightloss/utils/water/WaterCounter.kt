@@ -146,7 +146,7 @@ object WaterCounter {
     private fun getMarathons(listIntakes: ArrayList<WaterIntake>, listRates: ArrayList<WaterRate>): ArrayList<WaterMarathon> {
         var daysIntakes = mergeIntakesIntoDays(listIntakes)
 
-
+        listRates.reverse()
         var ratesForEveryDay = getRatesForEveryDay(daysIntakes, listRates)
         var marathons = arrayListOf<WaterMarathon>()
 

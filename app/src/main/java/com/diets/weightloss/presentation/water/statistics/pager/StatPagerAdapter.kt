@@ -1,4 +1,4 @@
-package com.diets.weightloss.presentation.water.stats.pager
+package com.diets.weightloss.presentation.water.statistics.pager
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

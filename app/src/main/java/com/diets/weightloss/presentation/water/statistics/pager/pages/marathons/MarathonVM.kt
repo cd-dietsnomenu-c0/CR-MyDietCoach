@@ -1,4 +1,4 @@
-package com.diets.weightloss.presentation.water.stats.pager.pages.marathons
+package com.diets.weightloss.presentation.water.statistics.pager.pages.marathons
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

@@ -1,10 +1,9 @@
-package com.diets.weightloss.presentation.water.stats.pager.pages.frequency.controller
+package com.diets.weightloss.presentation.water.statistics.pager.pages.frequency.controller
 
 import android.text.SpannableString
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.math.PI
 
 class FrequencyAdapter(val pieImgIndexes : ArrayList<Int>, val pieNames : ArrayList<String>, val piePercents : ArrayList<Float>, val dividerTexts : Array<String>, val centerPieText : SpannableString) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

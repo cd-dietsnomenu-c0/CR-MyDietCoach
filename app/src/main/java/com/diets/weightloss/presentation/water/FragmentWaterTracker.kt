@@ -27,7 +27,7 @@ import com.diets.weightloss.presentation.water.controller.quick.QuickAdapter
 import com.diets.weightloss.presentation.water.dialogs.FrequentDrinkDialog
 import com.diets.weightloss.presentation.water.dialogs.GlobalCapacityDialog
 import com.diets.weightloss.presentation.water.dialogs.MarathonDialog
-import com.diets.weightloss.presentation.water.stats.StatActivity
+import com.diets.weightloss.presentation.water.statistics.StatActivity
 import com.diets.weightloss.presentation.water.toasts.FillMeasToast
 import com.diets.weightloss.presentation.water.toasts.FullToast
 import com.diets.weightloss.utils.FieldsWorker

@@ -1,6 +1,5 @@
-package com.diets.weightloss.presentation.water.stats.pager.pages.frequency
+package com.diets.weightloss.presentation.water.statistics.pager.pages.frequency
 
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.SpannableString
@@ -8,25 +7,12 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.View
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diets.weightloss.R
-import com.diets.weightloss.presentation.water.stats.pager.pages.frequency.controller.FrequencyAdapter
-import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.formatter.PercentFormatter
-import com.github.mikephil.charting.highlight.Highlight
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.github.mikephil.charting.utils.MPPointF
+import com.diets.weightloss.presentation.water.statistics.pager.pages.frequency.controller.FrequencyAdapter
 import kotlinx.android.synthetic.main.segmentation_fragment.*
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.random.Random
 
 
 class SegmentationFragment : Fragment(R.layout.segmentation_fragment) {
