@@ -7,7 +7,7 @@ import com.diets.weightloss.R
 import kotlinx.android.synthetic.main.divider_vh.view.*
 
 class DividerVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.divider_vh, viewGroup, false)) {
-    fun onBind(text: String) {
-        itemView.tvDivider.text = text
+    fun onBind() {
+        itemView.tvDivider.text = itemView.resources.getString(R.string.details)
     }
 }

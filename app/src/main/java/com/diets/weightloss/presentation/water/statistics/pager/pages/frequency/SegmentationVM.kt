@@ -8,7 +8,7 @@ import com.diets.weightloss.R
 import com.diets.weightloss.common.db.entities.water.DrinksCapacities
 import java.text.DecimalFormat
 
-class SegmentationVH(application: Application) : AndroidViewModel(application) {
+class SegmentationVM(application: Application) : AndroidViewModel(application) {
 
     private var capacities: MutableLiveData<List<DrinksCapacities>>? = null
 
@@ -26,25 +26,24 @@ class SegmentationVH(application: Application) : AndroidViewModel(application) {
         list = fillNames(list)
         list = fillCapacities(list)
         list = fillGlobalParts(list)
-        capacities!!.value = list
+        capacities!!.value = list.sortedByDescending { it.dirtyCapacity }
     }
 
     private fun fillGlobalParts(list: List<DrinksCapacities>): List<DrinksCapacities> {
         var globalCapacity = 0L
-        var formatter = DecimalFormat("#0.0")
         for (drink in list) {
             globalCapacity += drink.dirtyCapacity
         }
 
         for (i in list.indices) {
-            var value = (globalCapacity / list[i].dirtyCapacity).toFloat()
-            list[i].globalPart = getApplication<App>().applicationContext.resources.getString(R.string.global_part, "${formatter.format(value)}")
+            var value = (list[i].dirtyCapacity.toFloat() / globalCapacity) * 100
+            list[i].globalPart = value
         }
         return list
     }
 
     private fun fillCapacities(list: List<DrinksCapacities>): List<DrinksCapacities> {
-        var formatter = DecimalFormat("#0.0")
+        var formatter = DecimalFormat("#0.00")
         for (i in list.indices) {
             list[i].readableCapacity =
                     getApplication<App>()

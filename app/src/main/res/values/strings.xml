@@ -359,7 +359,8 @@
     <string name="statistic_tabs">Статистика</string>
     <string name="release_user_expirior_id">1fc4f7fc-9ab9-4ab9-a943-dcfeae03c311</string>
     <string name="capacity_unit">%s л</string>
-    <string name="global_part">%s%% от от всей выпитой жидкости</string>
+    <string name="global_part">%s%% от общего числа</string>
+    <string name="global_capacity">%s л \n за все время</string>
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>
@@ -523,10 +524,7 @@
         <item>Английский</item>
     </string-array>
 
-    <string-array name="freq_dividers">
-        <item>Детали</item>
-    </string-array>
-
 
     <string name="alert_marathon">Здесь показано, сколько дней подряд вы выпиваете правильную норму воды</string>
+    <string name="other_water">Другое</string>
 </resources>

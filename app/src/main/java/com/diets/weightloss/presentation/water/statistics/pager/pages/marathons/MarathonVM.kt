@@ -27,7 +27,7 @@ class MarathonVM(application: Application) : AndroidViewModel(application) {
         var list = WaterCounter.getSortedMarathons(ArrayList(App.getInstance().db.dietDAO().getAllWaterIntakes()), ArrayList(App.getInstance().db.dietDAO().getAllWaterRates()))
         list = fillReadableCapacities(list)
         list = fillReadableTimes(list)
-        marathons!!.value = list
+        marathons!!.value = list.sortedByDescending { it.duration }
     }
 
     private fun fillReadableTimes(list: List<WaterMarathon>): List<WaterMarathon> {

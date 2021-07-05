@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.item_marathon.view.*
 class SecondPlaceVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_marathon, viewGroup, false)) {
     fun bind(waterMarathon: WaterMarathon) {
         itemView.tvInterval.text = "${waterMarathon.readableStart} - ${waterMarathon.readableEnd}"
-        itemView.tvCapacity.text = itemView.resources.getQuantityString(R.plurals.days_plur, waterMarathon.duration, waterMarathon.duration)
-        itemView.tvDuration.text = itemView.resources.getString(R.string.capacity_unit, waterMarathon.readableCapacity)
+        itemView.tvDuration.text = itemView.resources.getQuantityString(R.plurals.days_plur, waterMarathon.duration, waterMarathon.duration)
+        itemView.tvCapacity.text = itemView.resources.getString(R.string.capacity_unit, waterMarathon.readableCapacity)
     }
 
 }

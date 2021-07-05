@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.R
+import com.diets.weightloss.common.db.entities.water.DrinksCapacities
+import com.diets.weightloss.presentation.water.statistics.pager.pages.frequency.SegmentationFragment
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -26,8 +28,8 @@ class PieChartVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : Recycle
         setPieChart()
     }
 
-    fun onBind(imgIndexes: ArrayList<Int>, names: ArrayList<String>, percents: ArrayList<Float>, centerText : SpannableString) {
-        setData(imgIndexes, names, percents, centerText)
+    fun onBind(drinks: List<DrinksCapacities>, centerText: SpannableString, otherValue: Float) {
+        setData(drinks, centerText, otherValue)
     }
 
     private fun setPieChart() {
@@ -72,16 +74,20 @@ class PieChartVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : Recycle
         itemView.pcDrinks.setEntryLabelTextSize(12f)
     }
 
-    private fun setData(imgIndexes: ArrayList<Int>, names: ArrayList<String>, percents: ArrayList<Float>, centerText: SpannableString) {
+    private fun setData(drinks: List<DrinksCapacities>, centerText: SpannableString, otherValue: Float) {
         itemView.pcDrinks.centerText = centerText
 
         val entries = ArrayList<PieEntry>()
 
-        for (i in imgIndexes.indices) {
-            entries.add(PieEntry(percents[i],
-                    names[i],
-                    itemView.resources.getDrawable(imgIndexes[i])))
+        for (drink in drinks) {
+            entries.add(PieEntry(drink.globalPart,
+                    drink.readableName))
         }
+        if (otherValue != SegmentationFragment.OTHER_NOT_NEED) {
+            entries.add(PieEntry(otherValue,
+                    itemView.resources.getString(R.string.other_water)))
+        }
+
         val dataSet = PieDataSet(entries, "")
         dataSet.setDrawIcons(false)
         dataSet.setDrawValues(false)
