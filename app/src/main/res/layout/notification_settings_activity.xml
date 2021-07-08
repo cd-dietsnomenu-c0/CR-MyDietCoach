@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/head_toolbar_gradient"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:src="@drawable/ring_head"
+                android:translationX="-150dp"
+                android:translationY="-180dp" />
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ring_head"
+                android:translationX="150dp"
+                android:translationY="180dp" />
+
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:padding="10dp"
+                android:src="@drawable/back_arrow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Уведомления"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+        </FrameLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Основное" />
+
+                <View
+                    android:id="@+id/divider18"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="8dp"
+                    android:background="?android:attr/listDivider" />
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_silent_notifications"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center_vertical"
+                        android:text="Напоминать о приемах"
+                        android:textColor="@color/black" />
+
+                    <Switch
+                        android:id="@+id/swNotif"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical" />
+
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Настройки уведомлений" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="8dp"
+                    android:background="?android:attr/listDivider" />
+
+
+                <FrameLayout
+                    android:id="@+id/flStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:background="?selectableItemBackground">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_sun_notification"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center_vertical"
+                        android:text="Пробуждение"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="11:00"
+                        android:textColor="#7563d5" />
+
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/flEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:background="?selectableItemBackground">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_moon_notifications"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center_vertical"
+                        android:text="Отход ко сну"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="22:00"
+                        android:textColor="#7563d5" />
+
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/flFrequent"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:background="?selectableItemBackground">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_timer_notification"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center_vertical"
+                        android:text="Частота уведомлений"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvFrequent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Каждый час"
+                        android:textColor="#7563d5" />
+
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/flDays"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="?selectableItemBackground">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_calendar_notification"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center_vertical"
+                        android:text="Дни недели"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvFrequentDays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Каждый день"
+                        android:textColor="#7563d5" />
+
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="64dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Стиль уведомлений" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="8dp"
+                    android:background="?android:attr/listDivider" />
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp">
+
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_notif_settings"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center_vertical"
+                        android:text="Напоминать и после выпитой дневной нормы"
+                        android:textColor="@color/black" />
+
+                    <Switch
+                        android:id="@+id/swAfterNorm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical" />
+
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp">
+
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_champion_belt_notifications"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center_vertical"
+                        android:text="Напоминать, даже если недавно пили воду"
+                        android:textColor="@color/black" />
+
+                    <Switch
+                        android:id="@+id/swLast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical" />
+
+
+                </FrameLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="invisible" />
+
+
+    </LinearLayout>
+</ScrollView>

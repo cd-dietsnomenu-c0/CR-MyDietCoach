@@ -9,6 +9,16 @@
     </style>
 
 
+    <style name="NotifSettings" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">#7563d5</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+
+
     <style name="MainActivityTheme" parent="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

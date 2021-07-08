@@ -80,6 +80,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".presentation.water.notifications.NotificationSettingActivity"
+            android:theme="@style/NotifSettings" />
+
+        <activity
             android:name="com.diets.weightloss.utils.res.TextCutActvity"
             android:theme="@style/AppTheme.NoActionBar" />
 

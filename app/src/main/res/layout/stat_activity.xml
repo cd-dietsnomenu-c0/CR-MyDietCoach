@@ -70,12 +70,6 @@
                 android:layout_height="wrap_content"
                 android:layout="@layout/tab_graph" />
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tiCalendar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout="@layout/tab_calendar" />
-
 
         </com.google.android.material.tabs.TabLayout>
 

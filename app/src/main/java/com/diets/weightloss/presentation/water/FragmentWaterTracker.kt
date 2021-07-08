@@ -27,6 +27,7 @@ import com.diets.weightloss.presentation.water.controller.quick.QuickAdapter
 import com.diets.weightloss.presentation.water.dialogs.FrequentDrinkDialog
 import com.diets.weightloss.presentation.water.dialogs.GlobalCapacityDialog
 import com.diets.weightloss.presentation.water.dialogs.MarathonDialog
+import com.diets.weightloss.presentation.water.notifications.NotificationSettingActivity
 import com.diets.weightloss.presentation.water.statistics.StatActivity
 import com.diets.weightloss.presentation.water.toasts.FillMeasToast
 import com.diets.weightloss.presentation.water.toasts.FullToast
@@ -47,11 +48,11 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     var capacityAdapter: CapacityAdapter? = null
     var quickAdapter: QuickAdapter? = null
 
-    var soundPool : SoundPool? = null
+    var soundPool: SoundPool? = null
     var spFirstSound = -1
     var spSecondSound = -1
     var spThirdSound = -1
-    var listSPIndexes : ArrayList<Int>? = null
+    var listSPIndexes: ArrayList<Int>? = null
 
     var progress = 0.0f
     var lastChangeQuickItem = -1
@@ -122,6 +123,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             setSoundStatus(!PreferenceProvider.isTurnOnWaterSound, true)
         }
 
+        ivNotifSettings.setOnClickListener {
+            requireActivity().startActivity(Intent(requireContext(), NotificationSettingActivity::class.java))
+        }
+
         //FillWaterIntakes.fillDB()
 
     }
@@ -151,9 +156,9 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         }
 
         tvFrequentDrink.setOnClickListener {
-            frequentDrink = if (vm.getFrequentDrink().value != null){
+            frequentDrink = if (vm.getFrequentDrink().value != null) {
                 FrequentDrinkDialog.newInstance(vm.getFrequentDrink().value!!.name, vm.getFrequentDrink().value!!.capacity)
-            }else{
+            } else {
                 FrequentDrinkDialog.newInstance(WaterConfig.EMPTY_FREQUENT_DRINK_NAME, "")
             }
             frequentDrink.setTargetFragment(this, 0)
@@ -202,7 +207,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         })
     }
 
-    private fun unObserverAll(){
+    private fun unObserverAll() {
         vm.getQuickLD().removeObservers(this)
         vm.getDailyRate().removeObservers(this)
         vm.getCurrentCapacity().removeObservers(this)
@@ -212,9 +217,9 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        if (hidden){
+        if (hidden) {
             unObserverAll()
-        }else{
+        } else {
             observeAll()
         }
     }
@@ -235,22 +240,22 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         setSoundStatus(PreferenceProvider.isTurnOnWaterSound, false)
     }
 
-    private fun setSoundStatus(isTurnOnWaterSound: Boolean, isNeedAnimate : Boolean) {
+    private fun setSoundStatus(isTurnOnWaterSound: Boolean, isNeedAnimate: Boolean) {
         PreferenceProvider.isTurnOnWaterSound = isTurnOnWaterSound
 
-        if (isTurnOnWaterSound){
+        if (isTurnOnWaterSound) {
             lavSound.setMinAndMaxFrame(56, 90)
-        }else{
+        } else {
             lavSound.setMinAndMaxFrame(0, 56)
         }
 
 
         if (isNeedAnimate) {
             lavSound.playAnimation()
-        }else{
-            if (isTurnOnWaterSound){
+        } else {
+            if (isTurnOnWaterSound) {
                 lavSound.frame = 90
-            }else{
+            } else {
                 lavSound.frame = 56
             }
         }
@@ -353,11 +358,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     }
 
 
-
     private fun changeGlobalCapacity(it: Int) {
-        if (tvGlobalWater.text == ""){
+        if (tvGlobalWater.text == "") {
             tvGlobalWater.text = "$it л"
-        }else{
+        } else {
             var oldCapacity = tvGlobalWater.text.toString().split(" ")[0].toInt()
             var animator = ValueAnimator.ofInt(oldCapacity, it)
             animator.addUpdateListener {
@@ -406,7 +410,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     private fun setPercent() {
         var percentValue = (tvCapacity.text.toString().toFloat() / tvRate.text.toString().toFloat() * 100f).roundToInt()
 
-        if (percentValue > 100){
+        if (percentValue > 100) {
             percentValue = 100
         }
 
@@ -418,7 +422,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             setPositiveValueColor()
         }
 
-        if (percentValue == 100){
+        if (percentValue == 100) {
             isLockAdding = true
             lavDone.frame = END_FRAME_DONE
             lavDone.translationY = Y_TRANSLITION_ANIM
@@ -449,10 +453,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
         animator.start()
         wvProgress.progress = newValue.toFloat() / 100
-        if(newValue == 100){
+        if (newValue == 100) {
             lockAdding()
             isLockAdding = true
-        }else{
+        } else {
             unlockAdding()
             isLockAdding = false
         }
@@ -463,7 +467,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     }
 
     private fun unlockAdding() {
-        if (isLockAdding){
+        if (isLockAdding) {
 
             var moveToTop = ValueAnimator.ofFloat(cvWaterShowcase.translationY, Y_TRANSLITION_SHOWCASE_SHOW)
             moveToTop.addUpdateListener {
@@ -474,7 +478,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             alphaAnimator.addUpdateListener {
                 lavDone.alpha = it.animatedValue.toString().toFloat()
                 tvDone.alpha = it.animatedValue.toString().toFloat()
-                if (it.animatedValue.toString().toFloat() == 0f){
+                if (it.animatedValue.toString().toFloat() == 0f) {
                     lavDone.frame = 0
                     lavDone.alpha = 1f
                     lavDone.translationY = 0f
@@ -488,11 +492,11 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     }
 
     private fun lockAdding() {
-        if (!isLockAdding){
+        if (!isLockAdding) {
             var animator = ValueAnimator.ofFloat(cvWaterShowcase.translationY, Y_TRANSLITION_SHOWCASE_HIDE)
             animator.addUpdateListener {
                 cvWaterShowcase.translationY = it.animatedValue.toString().toFloat()
-                if (it.animatedValue.toString().toFloat() == Y_TRANSLITION_SHOWCASE_HIDE){
+                if (it.animatedValue.toString().toFloat() == Y_TRANSLITION_SHOWCASE_HIDE) {
                     lavDone.playAnimation()
                 }
             }
@@ -506,12 +510,12 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             var moveToTopAnimator = ValueAnimator.ofFloat(lavDone.translationY, Y_TRANSLITION_ANIM)
             moveToTopAnimator.addUpdateListener {
                 lavDone.translationY = it.animatedValue.toString().toFloat()
-                if (it.animatedValue.toString().toFloat() == Y_TRANSLITION_ANIM){
+                if (it.animatedValue.toString().toFloat() == Y_TRANSLITION_ANIM) {
                     alphaShow.start()
                 }
             }
 
-            lavDone.addAnimatorListener(object : Animator.AnimatorListener{
+            lavDone.addAnimatorListener(object : Animator.AnimatorListener {
                 override fun onAnimationRepeat(animation: Animator?) {
                 }
 
@@ -618,12 +622,12 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         if (quickAdapter == null) {
             quickAdapter = QuickAdapter(object : IQuick {
                 override fun onAdd(position: Int) {
-                    if (!isLockAdding){
+                    if (!isLockAdding) {
                         vm.addWater(position)
-                        if (PreferenceProvider.isTurnOnWaterSound){
+                        if (PreferenceProvider.isTurnOnWaterSound) {
                             playSound()
                         }
-                    }else{
+                    } else {
                         FullToast.show(activity!!)
                     }
                 }
@@ -641,10 +645,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     }
 
     private fun playSound() {
-        if (soundPool != null && listSPIndexes != null && listSPIndexes!!.size > 0){
+        if (soundPool != null && listSPIndexes != null && listSPIndexes!!.size > 0) {
             var index = Random.nextInt(3)
             soundPool!!.play(listSPIndexes!![index], 1f, 1f, 0, 0, 1f)
-        }else{
+        } else {
             createSounds()
             playSound()
         }
