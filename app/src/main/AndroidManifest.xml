@@ -57,76 +57,61 @@
 
         <activity
             android:name="com.diets.weightloss.presentation.onboarding.OnboardActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.tracker.LoadingActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.diets.weightloss.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".presentation.premium.PremiumHostActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.profile.favorites.FavoritesActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.profile.language.ChoiceLangActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.diets.list.old.inside.ActivityListItems"
-            android:theme="@style/NewDiets"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.diets.list.old.OldDietsActivity"
-            android:theme="@style/NewDiets"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/NewDiets"/>
 
-        <activity android:name="com.diets.weightloss.presentation.diets.list.old.inside.article.ActivityArticle"
-            android:screenOrientation="portrait"/>
+        <activity android:name="com.diets.weightloss.presentation.diets.list.old.inside.article.ActivityArticle"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorSPK"
-            android:theme="@style/NewDiets"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorBrok"
-            android:theme="@style/NewDiets"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorIMT"
-            android:theme="@style/NewDiets"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorLorenc"
-            android:theme="@style/NewDiets"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.diets.list.modern.article.DietAct"
-            android:theme="@style/NewDiets"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.diets.list.modern.NewDietsListActivity"
-            android:theme="@style/NewDiets"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/NewDiets"/>
 
         <receiver android:name="com.diets.weightloss.common.notifications.TrackerAlarmReceiver"/>
         <receiver android:name="com.diets.weightloss.common.notifications.ReactAlarmReceiver"/>
