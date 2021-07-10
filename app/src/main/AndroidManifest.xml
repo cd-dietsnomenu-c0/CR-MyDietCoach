@@ -46,8 +46,7 @@
 
         <activity
             android:name="com.diets.weightloss.SplashActivity"
-            android:theme="@style/Theme.AppCompat.Translucent"
-            android:screenOrientation="portrait">
+            android:theme="@style/Theme.AppCompat.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
