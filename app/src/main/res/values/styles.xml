@@ -138,7 +138,18 @@
         <item name="colorAccent">#25265e</item>
     </style>
 
+    <style name="CBDays">
+        <item name="colorAccent">#2196F3</item>
+    </style>
 
+    <style name="RBFrequent">
+        <item name="colorAccent">#FF9800</item>
+    </style>
+
+    <style name="NPStartTime" parent="AppTheme">
+        <item name="colorControlNormal">@color/transparent</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 
 
 </resources>

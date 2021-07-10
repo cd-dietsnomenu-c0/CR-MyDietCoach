@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="30dp"
+        android:layout_gravity="center"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="36dp"
+                app:srcCompat="@drawable/ic_calendar_notification" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Дни недели"
+                android:textColor="#333333"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_medium"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+
+                    <CheckBox
+                        android:theme="@style/CBDays"
+                        android:id="@+id/cbMonday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Понедельник"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/roboto"/>
+
+
+                    <CheckBox
+                        android:theme="@style/CBDays"
+                        android:id="@+id/cbWednesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Среда"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto"/>
+
+
+
+                    <CheckBox
+                        android:theme="@style/CBDays"
+                        android:id="@+id/cbFriday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Пятница"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto"/>
+
+                    <CheckBox
+                        android:theme="@style/CBDays"
+                        android:id="@+id/cbSunday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Воскресенье"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:theme="@style/CBDays"
+                        android:id="@+id/cbTuesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Вторник"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/roboto"/>
+
+                    <CheckBox
+                        android:theme="@style/CBDays"
+                        android:id="@+id/cbThursday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Четверг"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto"/>
+
+
+
+                    <CheckBox
+                        android:theme="@style/CBDays"
+                        android:id="@+id/cbSaturday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Суббота"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto"/>
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingStart="36dp"
+                    android:paddingEnd="36dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/shape_cancel_frequent_notif"
+                    android:text="отмена"
+                    android:paddingHorizontal="22dp"
+                    android:textColor="@color/black"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="8dp"
+                    android:textSize="10sp" />
+
+
+
+                <Button
+                    android:id="@+id/btnEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingStart="36dp"
+                    android:paddingEnd="36dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/shape_save_days"
+                    android:text="сохранить"
+                    android:paddingHorizontal="22dp"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>
