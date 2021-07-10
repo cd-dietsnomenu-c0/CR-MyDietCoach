@@ -281,7 +281,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Каждый день"
+                        android:text="Пн, Вт, Ср, Чт, Пт, Сб"
                         android:textColor="#7563d5" />
 
 
@@ -374,7 +374,7 @@
                         android:textColor="@color/black" />
 
                     <Switch
-                        android:id="@+id/swLast"
+                        android:id="@+id/swRecently"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical" />

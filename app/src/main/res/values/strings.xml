@@ -527,4 +527,26 @@
 
     <string name="alert_marathon">Здесь показано, сколько дней подряд вы выпиваете правильную норму воды</string>
     <string name="other_water">Другое</string>
+    <string name="all_days_state">Каждый день</string>
+    <string name="empty_days_state">Никогда</string>
+
+    <string-array name="frequent_types">
+        <item>Каждые 30 минут</item>
+        <item>Каждый час</item>
+        <item>Каждые 1.5 часа</item>
+        <item>Каждые 2 часа</item>
+        <item>Каждые 2.5 часа</item>
+        <item>Каждые 3 часа</item>
+    </string-array>
+
+    <string-array name="days_type">
+        <item>Пн</item>
+        <item>Вт</item>
+        <item>Ср</item>
+        <item>Чт</item>
+        <item>Пт</item>
+        <item>Сб</item>
+        <item>Вс</item>
+    </string-array>
+
 </resources>

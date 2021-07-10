@@ -20,9 +20,6 @@
             android:orientation="vertical">
 
 
-
-
-
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,7 +30,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Пробуждение"
+                    android:text="Отход ко сну"
                     android:layout_gravity="center_vertical"
                     android:textColor="#333333"
                     android:textSize="22sp"
@@ -44,7 +41,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="end"
-                    app:srcCompat="@drawable/ic_table_clock_notification" />
+                    app:srcCompat="@drawable/ic_sun_notification" />
 
             </FrameLayout>
 
@@ -59,7 +56,7 @@
                 android:layout_gravity="center">
 
                 <NumberPicker
-                    android:theme="@style/NPStartTime"
+                    android:theme="@style/NPEndTime"
                     android:id="@+id/npHours"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content" />
@@ -71,10 +68,10 @@
                     android:textStyle="bold"
                     android:textSize="42sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="#F15A8D"/>
+                    android:textColor="#F47248"/>
 
                 <NumberPicker
-                    android:theme="@style/NPStartTime"
+                    android:theme="@style/NPEndTime"
                     android:id="@+id/npMinutes"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content" />
@@ -120,7 +117,7 @@
                     android:paddingEnd="36dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
-                    android:background="@drawable/shape_save_start"
+                    android:background="@drawable/shape_save_end"
                     android:text="сохранить"
                     android:paddingHorizontal="22dp"
                     android:textColor="@color/white"

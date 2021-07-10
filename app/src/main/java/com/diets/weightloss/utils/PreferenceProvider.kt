@@ -39,7 +39,6 @@ object PreferenceProvider {
     private const val MANUAL_CHANGING_WATER_RATE = "MANUAL_CHANGING_WATER_RATE"
 
 
-
     private fun getInstance(): SharedPreferences? {
         val sp = App.getInstance().getSharedPreferences(
                 App.getInstance().packageName + ".SharedPreferences",
@@ -131,4 +130,70 @@ object PreferenceProvider {
     var isTurnOnWaterSound: Boolean
         get() = getInstance()?.getBoolean(IS_ON_WATER_SOUND, true)!!
         set(value) = editor { it?.putBoolean(IS_ON_WATER_SOUND, value) }!!
+
+
+    //////////////////////////////////
+    //////WATER NOTIFICATIONS/////////
+    //////////////////////////////////
+
+
+    private const val IS_ON_WATER_NOTIFICATIONS_TAG = "IS_ON_WATER_SOUND"
+
+    var isTurnOnWaterNotifications: Boolean
+        get() = getInstance()?.getBoolean(IS_ON_WATER_NOTIFICATIONS_TAG, true)!!
+        set(value) = editor { it?.putBoolean(IS_ON_WATER_NOTIFICATIONS_TAG, value) }!!
+
+
+    private const val AFTER_WATER_NORM_TAG = "AFTER_WATER_NORM_TAG"
+
+    var isTurnOnAfterWaterNorm: Boolean
+        get() = getInstance()?.getBoolean(AFTER_WATER_NORM_TAG, true)!!
+        set(value) = editor { it?.putBoolean(AFTER_WATER_NORM_TAG, value) }!!
+
+    private const val RECENTLY_WATER_TAG = "RECENTLY_WATER_TAG"
+
+    var isTurnOnRecentlyWater: Boolean
+        get() = getInstance()?.getBoolean(RECENTLY_WATER_TAG, true)!!
+        set(value) = editor { it?.putBoolean(RECENTLY_WATER_TAG, value) }!!
+
+
+    private const val START_NOTIF_TAG = "START_NOTIF_TAG"
+    private const val DEFAULT_START_NOTIF_TIME = "09:00"
+
+    var startWaterNotifTime: String
+        get() = getInstance()?.getString(START_NOTIF_TAG, DEFAULT_START_NOTIF_TIME)!!
+        set(value) = editor { it?.putString(START_NOTIF_TAG, value) }!!
+
+
+    private const val END_NOTIF_TAG = "START_NOTIF_TAG"
+    private const val DEFAULT_END_NOTIF_TIME = "22:00"
+
+    var endWaterNotifTime: String
+        get() = getInstance()?.getString(END_NOTIF_TAG, DEFAULT_END_NOTIF_TIME)!!
+        set(value) = editor { it?.putString(END_NOTIF_TAG, value) }!!
+
+
+    private const val TYPE_FREQUENT_TAG = "TYPE_FREQUENT_TAG"
+    const val TYPE_30 = 0
+    const val TYPE_60 = 1
+    const val TYPE_90 = 2
+    const val TYPE_120 = 3
+    const val TYPE_150 = 4
+    const val TYPE_180 = 5
+
+
+    var frequentNotificationsType: Int
+        get() = getInstance()?.getInt(TYPE_FREQUENT_TAG, TYPE_60)!!
+        set(value) = editor { it?.putInt(TYPE_FREQUENT_TAG, value) }!!
+
+
+    private const val TYPE_DAYS_TAG = "TYPE_DAYS_TAG"
+    private const val DEFAULT_DAYS = "1-1-1-1-1-1-1" // String with delimiters, where every digit is day of week. 0 - not need notif, 1 - need notif
+
+
+    var daysNotificationsType: String
+        get() = getInstance()?.getString(TYPE_DAYS_TAG, DEFAULT_DAYS)!!
+        set(value) = editor { it?.putString(TYPE_DAYS_TAG, value) }!!
+
+
 }

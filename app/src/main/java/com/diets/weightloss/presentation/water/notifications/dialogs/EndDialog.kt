@@ -5,19 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.NumberPicker
 import androidx.fragment.app.DialogFragment
 import com.diets.weightloss.R
-import kotlinx.android.synthetic.main.start_dialog.*
+import kotlinx.android.synthetic.main.end_dialog.*
 
-class StartDialog : DialogFragment() {
+class EndDialog : DialogFragment() {
 
     interface Callbacks {
-        fun changeStartTime(hour: Int, minute: Int)
+        fun changeEndTime(hour: Int, minute: Int)
     }
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.start_dialog, container, false)
+        var view = inflater.inflate(R.layout.end_dialog, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
         return view
     }
@@ -31,15 +31,15 @@ class StartDialog : DialogFragment() {
         npHours.setFormatter { value -> String.format("%02d", value) }
         npMinutes.setFormatter { value -> String.format("%02d", value) }
 
-        npHours.value = arguments!!.getInt(TAG_HOUR)
-        npMinutes.value = arguments!!.getInt(TAG_MINUTE)
+        npHours.value = arguments!!.getInt(StartDialog.TAG_HOUR)
+        npMinutes.value = arguments!!.getInt(StartDialog.TAG_MINUTE)
 
         btnCancel.setOnClickListener {
             dismiss()
         }
 
         btnSave.setOnClickListener {
-            (requireActivity() as Callbacks).changeStartTime(npHours.value, npMinutes.value)
+            (requireActivity() as Callbacks).changeEndTime(npHours.value, npMinutes.value)
             dismiss()
         }
     }
@@ -49,11 +49,11 @@ class StartDialog : DialogFragment() {
         val TAG_HOUR = "TAG_HOUR"
         val TAG_MINUTE = "TAG_MINUTE"
 
-        fun newInstance(hour: Int, minute: Int): StartDialog {
+        fun newInstance(hour: Int, minute: Int): EndDialog {
             val args = Bundle()
             args.putInt(TAG_HOUR, hour)
             args.putInt(TAG_MINUTE, minute)
-            val fragment = StartDialog()
+            val fragment = EndDialog()
             fragment.arguments = args
             return fragment
         }
