@@ -8,6 +8,7 @@ object DaysWorkers {
 
     private const val DELIMITER = "-"
     private const val TURN_ON = "1"
+    private const val TURN_OFF = "0"
 
     fun getReadableDays() : String{
         var listStates = PreferenceProvider.daysNotificationsType.split(DELIMITER)
@@ -30,8 +31,36 @@ object DaysWorkers {
             if (i != listOnReabableDays.size - 1){
                 readableText = "$readableText, "
             }
+        }
+        return readableText
+    }
 
+
+    fun getDaysStates(pattern : String) : List<Boolean>{
+        var rawList = pattern.split(DELIMITER)
+        var listStates = arrayListOf<Boolean>()
+
+        for (i in rawList.indices){
+            listStates.add(rawList[i] == TURN_ON)
+        }
+        return listStates
+    }
+
+    fun saveDaysStates(states : List<Boolean>){
+        var pattern = ""
+
+        for (i in states.indices){
+            pattern = if (states[i]){
+                "$pattern$TURN_ON"
+            }else{
+                "$pattern$TURN_OFF"
+            }
+
+            if (i != states.size - 1){
+                pattern = "$pattern$DELIMITER"
+            }
         }
 
+        PreferenceProvider.daysNotificationsType = pattern
     }
 }

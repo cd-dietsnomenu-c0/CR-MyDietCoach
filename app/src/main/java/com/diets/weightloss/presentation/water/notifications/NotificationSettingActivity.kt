@@ -8,11 +8,13 @@ import com.diets.weightloss.presentation.water.notifications.dialogs.EndDialog
 import com.diets.weightloss.presentation.water.notifications.dialogs.FrequentDialog
 import com.diets.weightloss.presentation.water.notifications.dialogs.StartDialog
 import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.workers.DaysWorkers
 import com.diets.weightloss.utils.workers.FrequentWorker
 import com.diets.weightloss.utils.workers.TimeNotifWorker
 import kotlinx.android.synthetic.main.notification_settings_activity.*
 
-class NotificationSettingActivity : AppCompatActivity(R.layout.notification_settings_activity), StartDialog.Callbacks, EndDialog.Callbacks, FrequentDialog.Callbacks {
+class NotificationSettingActivity : AppCompatActivity(R.layout.notification_settings_activity),
+        StartDialog.Callbacks, EndDialog.Callbacks, FrequentDialog.Callbacks, DaysDialog.Callbacks {
 
     lateinit var frequentDialog: FrequentDialog
     var FREQUENT_TAG_DIALOG = "FREQUENT_TAG_DIALOG"
@@ -28,7 +30,6 @@ class NotificationSettingActivity : AppCompatActivity(R.layout.notification_sett
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindDialogs()
         setOnClickListeners()
         bindValues()
     }
@@ -42,11 +43,9 @@ class NotificationSettingActivity : AppCompatActivity(R.layout.notification_sett
         tvEnd.text = PreferenceProvider.endWaterNotifTime
 
         tvFrequent.text = FrequentWorker.getReadableFrequent()
+        tvFrequentDays.text = DaysWorkers.getReadableDays()
     }
 
-    private fun bindDialogs() {
-        daysDialog = DaysDialog.newInstance(0)
-    }
 
     private fun setOnClickListeners() {
         flStart.setOnClickListener {
@@ -65,6 +64,7 @@ class NotificationSettingActivity : AppCompatActivity(R.layout.notification_sett
         }
 
         flDays.setOnClickListener {
+            daysDialog = DaysDialog.newInstance(PreferenceProvider.daysNotificationsType)
             daysDialog.show(supportFragmentManager, DAYS_TAG_DIALOG)
         }
 
@@ -97,5 +97,10 @@ class NotificationSettingActivity : AppCompatActivity(R.layout.notification_sett
     override fun changeFrequent(indexType: Int) {
         PreferenceProvider.frequentNotificationsType = indexType
         tvFrequent.text = FrequentWorker.getReadableFrequent()
+    }
+
+    override fun changeDays(states: List<Boolean>) {
+        DaysWorkers.saveDaysStates(states)
+        tvFrequentDays.text = DaysWorkers.getReadableDays()
     }
 }

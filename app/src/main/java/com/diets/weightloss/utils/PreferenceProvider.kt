@@ -147,7 +147,7 @@ object PreferenceProvider {
     private const val AFTER_WATER_NORM_TAG = "AFTER_WATER_NORM_TAG"
 
     var isTurnOnAfterWaterNorm: Boolean
-        get() = getInstance()?.getBoolean(AFTER_WATER_NORM_TAG, true)!!
+        get() = getInstance()?.getBoolean(AFTER_WATER_NORM_TAG, false)!!
         set(value) = editor { it?.putBoolean(AFTER_WATER_NORM_TAG, value) }!!
 
     private const val RECENTLY_WATER_TAG = "RECENTLY_WATER_TAG"
@@ -165,7 +165,7 @@ object PreferenceProvider {
         set(value) = editor { it?.putString(START_NOTIF_TAG, value) }!!
 
 
-    private const val END_NOTIF_TAG = "START_NOTIF_TAG"
+    private const val END_NOTIF_TAG = "END_NOTIF_TAG"
     private const val DEFAULT_END_NOTIF_TIME = "22:00"
 
     var endWaterNotifTime: String
