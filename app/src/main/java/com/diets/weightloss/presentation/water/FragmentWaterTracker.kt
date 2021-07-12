@@ -36,6 +36,8 @@ import com.diets.weightloss.utils.testing.FillWaterIntakes
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
@@ -186,7 +188,6 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         vm.getCurrentCapacity().observe(this, Observer {
             if (isNeedAnimateCapacity) {
                 changeCurrentCapacity(it)
-
             } else {
                 tvCapacity.text = "$it"
                 setPercent()
@@ -468,7 +469,6 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     private fun unlockAdding() {
         if (isLockAdding) {
-
             var moveToTop = ValueAnimator.ofFloat(cvWaterShowcase.translationY, Y_TRANSLITION_SHOWCASE_SHOW)
             moveToTop.addUpdateListener {
                 cvWaterShowcase.translationY = it.animatedValue.toString().toFloat()
@@ -489,6 +489,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             alphaAnimator.start()
 
         }
+        PreferenceProvider.lastNormWaterDay = PreferenceProvider.EMPTY_LAST_DAY
     }
 
     private fun lockAdding() {
@@ -532,6 +533,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             })
 
             animator.start()
+            PreferenceProvider.lastNormWaterDay = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
         }
     }
 

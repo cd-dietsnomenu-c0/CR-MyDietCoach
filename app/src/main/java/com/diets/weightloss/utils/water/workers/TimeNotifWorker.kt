@@ -1,4 +1,4 @@
-package com.diets.weightloss.utils.workers
+package com.diets.weightloss.utils.water.workers
 
 import com.diets.weightloss.utils.PreferenceProvider
 

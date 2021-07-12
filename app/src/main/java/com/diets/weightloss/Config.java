@@ -30,4 +30,9 @@ public class Config {
 
     public static final String NEWS_RU = "news";
     public static final String NEWS_EN = "news_en";
+    public static final String WATER_TOPIC = "water";
+
+
+    public static final String TYPE_KEY = "type";
+    public static final String WATER_TYPE = "water_notif";
 }

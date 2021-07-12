@@ -229,6 +229,8 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
         capacity += quickDrink.capacity
         App.getInstance().db.dietDAO().insertTypeDrink(DrinksCapacities(quickDrink.typeId, capacity))
         identifyFrequentDrink() // increase capacity of certain drink (global, for all time)
+
+        PreferenceProvider.lastTimeWaterIntake = Calendar.getInstance().timeInMillis
     }
 
     private fun identifyFrequentDrink() {

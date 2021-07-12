@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.fragment.app.DialogFragment
 import com.diets.weightloss.R
-import com.diets.weightloss.utils.workers.DaysWorkers
+import com.diets.weightloss.utils.water.workers.DaysWorkers
 import kotlinx.android.synthetic.main.days_dialog.*
 
 class DaysDialog : DialogFragment() {

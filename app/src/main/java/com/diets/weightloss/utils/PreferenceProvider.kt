@@ -181,7 +181,6 @@ object PreferenceProvider {
     const val TYPE_150 = 4
     const val TYPE_180 = 5
 
-
     var frequentNotificationsType: Int
         get() = getInstance()?.getInt(TYPE_FREQUENT_TAG, TYPE_60)!!
         set(value) = editor { it?.putInt(TYPE_FREQUENT_TAG, value) }!!
@@ -190,10 +189,31 @@ object PreferenceProvider {
     private const val TYPE_DAYS_TAG = "TYPE_DAYS_TAG"
     private const val DEFAULT_DAYS = "1-1-1-1-1-1-1" // String with delimiters, where every digit is day of week. 0 - not need notif, 1 - need notif
 
-
     var daysNotificationsType: String
         get() = getInstance()?.getString(TYPE_DAYS_TAG, DEFAULT_DAYS)!!
         set(value) = editor { it?.putString(TYPE_DAYS_TAG, value) }!!
+
+
+    private const val LAST_WATER_NOTIF_TAG = "LAST_WATER_NOTIF_TAG"
+
+    var lastTimeWaterNotif: Long
+        get() = getInstance()?.getLong(LAST_WATER_NOTIF_TAG, 0L)!!
+        set(value) = editor { it?.putLong(LAST_WATER_NOTIF_TAG, value) }!!
+
+
+    private const val LAST_WATER_INTAKE_TAG = "LAST_WATER_INTAKE_TAG"
+
+    var lastTimeWaterIntake: Long
+        get() = getInstance()?.getLong(LAST_WATER_INTAKE_TAG, 0L)!!
+        set(value) = editor { it?.putLong(LAST_WATER_INTAKE_TAG, value) }!!
+
+
+    private const val LAST_NORM_WATER_DAY_TAG = "LAST_NORM_WATER_DAY_TAG"
+    const val EMPTY_LAST_DAY = -1
+
+    var lastNormWaterDay: Int
+        get() = getInstance()?.getInt(LAST_NORM_WATER_DAY_TAG, EMPTY_LAST_DAY)!!
+        set(value) = editor { it?.putInt(LAST_NORM_WATER_DAY_TAG, value) }!!
 
 
 }

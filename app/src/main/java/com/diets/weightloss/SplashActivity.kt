@@ -29,6 +29,8 @@ import com.diets.weightloss.common.notifications.ScheduleSetter
 import com.diets.weightloss.presentation.onboarding.OnboardActivity
 import com.diets.weightloss.utils.ABConfig
 import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.notif.services.TopicWorker
+import com.diets.weightloss.utils.water.workers.NotificationChecker
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -98,6 +100,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 FirebaseMessaging.getInstance().subscribeToTopic(Config.NEWS_RU).addOnSuccessListener { }
             }
         }
+        TopicWorker.changeWaterNotifState(PreferenceProvider.isTurnOnWaterNotifications)
 
         getFCMToken()
     }

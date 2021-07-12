@@ -425,6 +425,7 @@
         <item>@drawable/ic_wt_15_grad</item>
     </integer-array>
 
+
     <string-array name="water_drinks_names">
         <item>Вода</item>
         <item>Вода с газом</item>

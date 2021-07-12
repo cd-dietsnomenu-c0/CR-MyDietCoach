@@ -17,11 +17,70 @@ import com.bumptech.glide.request.target.NotificationTarget
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.diets.weightloss.*
+import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
+import com.diets.weightloss.utils.water.workers.NotificationChecker
+import java.util.*
 
 
 class FCMService : FirebaseMessagingService() {
     override fun onMessageReceived(p0: RemoteMessage) {
+        if (p0?.data != null && p0.data[Config.TYPE_KEY] != null && p0.data[Config.TYPE_KEY] == Config.WATER_TYPE) {
+            if (isNeedShowWaterNotif()) {
+                showWaterNotif()
+            }
+        } else {
+            showReactNotif(p0)
+        }
+    }
+
+    private fun isNeedShowWaterNotif(): Boolean {
+        return PreferenceProvider.isTurnOnWaterNotifications
+                && NotificationChecker.isRightTime()
+                && NotificationChecker.isRightFrequent()
+                && NotificationChecker.isRightDay()
+                && NotificationChecker.checkLastIntakeStrategy()
+                && NotificationChecker.checkNormaStrategy()
+
+    }
+
+    private fun showWaterNotif() {
+        PreferenceProvider.lastTimeWaterNotif = Calendar.getInstance().timeInMillis
+        var intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+
+        var pendingIntent = PendingIntent
+                .getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+
+        var collapsedView = RemoteViews(packageName, R.layout.view_water_notification)
+
+        var largeIcon = BitmapFactory.decodeResource(resources, R.drawable.ic_notification)
+        var notificationBuilder = NotificationCompat.Builder(this, "com.weightloss.diets")
+                .setSmallIcon(R.drawable.ic_small_notification)
+                .setLargeIcon(largeIcon)
+                .setAutoCancel(true)
+                .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + BuildConfig.APPLICATION_ID + "/" + R.raw.notification))
+                .setVibrate(longArrayOf(0, 500))
+                .setLights(Color.MAGENTA, 500, 1000)
+                .setContentIntent(pendingIntent)
+                .setCustomContentView(collapsedView)
+        var notification = notificationBuilder.build()
+
+        var notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel("com.jundev.diets",
+                    "Channel human readable title",
+                    NotificationManager.IMPORTANCE_DEFAULT)
+            notificationManager.createNotificationChannel(channel)
+        }*/
+        notificationManager.notify(0, notification)
+    }
+
+
+    private fun showReactNotif(p0: RemoteMessage) {
         var intent = Intent(this, SplashActivity::class.java)
         intent.putExtra(Config.PUSH_TAG, Config.OPEN_FROM_PUSH)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -53,7 +112,7 @@ class FCMService : FirebaseMessagingService() {
             Glide.with(App.getContext()).asBitmap().load(p0.data["url"]).into(notificationTarget)
         })
 
-        var notificationManager : NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        var notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel("com.jundev.diets",
@@ -62,9 +121,6 @@ class FCMService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }*/
         notificationManager.notify(0, notification)
-
-
-
     }
 
 
