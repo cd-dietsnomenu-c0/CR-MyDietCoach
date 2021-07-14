@@ -132,7 +132,7 @@
 
         <activity
             android:name="com.diets.weightloss.presentation.profile.measurments.MeasActivity"
-            android:theme="@style/Meas" />
+            android:theme="@style/MeasActivity" />
 
         <receiver android:name="com.diets.weightloss.common.notifications.TrackerAlarmReceiver"/>
         <receiver android:name="com.diets.weightloss.common.notifications.ReactAlarmReceiver"/>

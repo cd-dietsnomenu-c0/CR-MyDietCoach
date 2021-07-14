@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/head_toolbar_gradient"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:src="@drawable/ring_head"
+                android:translationX="-150dp"
+                android:translationY="-180dp" />
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ring_head"
+                android:translationX="150dp"
+                android:translationY="180dp" />
+
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:padding="10dp"
+                android:src="@drawable/back_arrow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Параметры"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+        </FrameLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Основное" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="8dp"
+                    android:background="?android:attr/listDivider" />
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/id_card" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="48dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="16dp"
+                        app:hintTextAppearance="@style/Profile.Hint">
+
+                        <EditText
+                            android:id="@+id/edtName"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:backgroundTint="#9e9e9e"
+                            android:fontFamily="@font/roboto"
+                            android:hint="Ваше имя"
+                            android:inputType="textCapSentences"
+                            android:maxLength="30"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:theme="@style/ProfileTheme" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginBottom="12dp"
+                            android:src="@drawable/weight_scale" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilWeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="48dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="16dp"
+                            app:hintTextAppearance="@style/Profile.Hint">
+
+                            <EditText
+                                android:id="@+id/edtWeight"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:backgroundTint="#9e9e9e"
+                                android:fontFamily="@font/roboto"
+                                android:gravity="center_horizontal"
+                                android:hint="Ваш вес (кг)"
+                                android:inputType="number"
+                                android:maxLength="3"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:theme="@style/ProfileTheme"
+
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </FrameLayout>
+
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginBottom="12dp"
+                            android:src="@drawable/ic_water_drop_profile" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilWater"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="48dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="16dp"
+                            app:hintTextAppearance="@style/Profile.Hint">
+
+                            <EditText
+                                android:id="@+id/edtWater"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:backgroundTint="#9e9e9e"
+                                android:fontFamily="@font/roboto"
+                                android:gravity="center_horizontal"
+                                android:hint="Норма воды (мл)"
+                                android:inputType="number"
+                                android:maxLength="5"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:theme="@style/ProfileTheme"
+
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_calculator_meas"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center_vertical"
+                        android:text="Авторасчет нормы воды"
+                        android:textColor="@color/black" />
+
+                    <Switch
+                        android:id="@+id/swtDefaultRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical" />
+
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="64dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Пол" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="8dp"
+                    android:background="?android:attr/listDivider" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="?selectableItemBackground"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/llFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/img_woman_choise" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="8dp"
+                                android:fontFamily="@font/roboto"
+                                android:gravity="center_vertical"
+                                android:text="Женский"
+                                android:textColor="@color/black" />
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lavTickFemale"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:translationX="-10dp"
+                                android:layout_gravity="center_vertical|end"
+                                app:lottie_speed="2.5"
+                                android:visibility="invisible"
+                                app:lottie_fileName="choice_gender.json" />
+
+                        </LinearLayout>
+
+
+
+
+                    </FrameLayout>
+
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="?selectableItemBackground"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/llMale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/img_man_choise" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="8dp"
+                                android:fontFamily="@font/roboto"
+                                android:gravity="center_vertical"
+                                android:text="Мужской"
+                                android:textColor="@color/black" />
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lavTickMale"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:translationX="-10dp"
+                                android:layout_gravity="center_vertical|end"
+                                android:visibility="invisible"
+                                app:lottie_speed="2.5"
+                                app:lottie_fileName="choice_gender.json" />
+                        </LinearLayout>
+
+
+
+
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/shape_save_meas"
+        android:fontFamily="@font/roboto_bold"
+        android:text="сохранить"
+        android:textColor="@color/white" />
+</FrameLayout>

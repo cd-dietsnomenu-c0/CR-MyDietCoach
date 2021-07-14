@@ -12,7 +12,7 @@ import com.diets.weightloss.utils.FieldsWorker
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.water.WaterCounter
 import com.diets.weightloss.utils.water.WaterRateProvider
-import kotlinx.android.synthetic.main.meas_activity.*
+import kotlinx.android.synthetic.main.meas_activitys.*
 
 class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
 
@@ -104,18 +104,14 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
     }
 
     private fun selectFemale() {
-        lavCircleFemale.visibility = View.VISIBLE
         lavTickFemale.visibility = View.VISIBLE
-        lavCircleFemale.frame = 120
-        lavTickFemale.frame = 50
+        lavTickFemale.frame = 40
         sexType = PreferenceProvider.SEX_TYPE_FEMALE
     }
 
     private fun selectMale() {
-        lavCircleMale.visibility = View.VISIBLE
         lavTickMale.visibility = View.VISIBLE
-        lavCircleMale.frame = 120
-        lavTickMale.frame = 50
+        lavTickMale.frame = 40
         sexType = PreferenceProvider.SEX_TYPE_MALE
     }
 
@@ -155,16 +151,12 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
 
 
     private fun prepareAnimViews() {
-        flFemale.setOnClickListener {
-            lavCircleFemale.frame = 0
+        llFemale.setOnClickListener {
             lavTickFemale.frame = 0
-            lavCircleFemale.visibility = View.VISIBLE
-            lavCircleFemale.playAnimation()
             lavTickFemale.visibility = View.VISIBLE
             lavTickFemale.playAnimation()
 
             lavTickMale.visibility = View.INVISIBLE
-            lavCircleMale.visibility = View.INVISIBLE
 
             sexType = PreferenceProvider.SEX_TYPE_FEMALE
             if (swtDefaultRate.isChecked) {
@@ -172,16 +164,12 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
             }
         }
 
-        flMale.setOnClickListener {
-            lavCircleMale.frame = 0
+        llMale.setOnClickListener {
             lavTickMale.frame = 0
-            lavCircleMale.visibility = View.VISIBLE
-            lavCircleMale.playAnimation()
             lavTickMale.visibility = View.VISIBLE
             lavTickMale.playAnimation()
 
             lavTickFemale.visibility = View.INVISIBLE
-            lavCircleFemale.visibility = View.INVISIBLE
 
             sexType = PreferenceProvider.SEX_TYPE_MALE
             if (swtDefaultRate.isChecked) {
