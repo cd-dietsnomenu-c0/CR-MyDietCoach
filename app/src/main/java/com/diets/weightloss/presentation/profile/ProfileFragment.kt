@@ -43,16 +43,16 @@ import java.lang.Exception
 
 class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDialog.Callbacks {
 
-    var nameDialog = NameDialog()
-    val MAX_ATEMPT_INTRO = 2
-    val CAMERA_REQUEST = 0
-    val CAMERA_PERMISSION_REQUEST = 1
+    private var nameDialog = NameDialog()
+    private val MAX_ATEMPT_INTRO = 2
+    private val CAMERA_REQUEST = 0
+    private val CAMERA_PERMISSION_REQUEST = 1
 
-    val EMPTY_MEAS = " - "
+    private val EMPTY_MEAS = " - "
 
-    lateinit var bsBehavior: BottomSheetBehavior<LinearLayout>
+    private lateinit var bsBehavior: BottomSheetBehavior<LinearLayout>
 
-    lateinit var uri: Uri
+    private lateinit var uri: Uri
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -76,7 +76,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         })
 
 
-        bsBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback(){
+        bsBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
                     ivBSBackground.visibility = View.GONE
@@ -177,19 +177,26 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         }
     }
 
+    fun isCanClose(): Boolean {
+        return if (bsBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+            bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            false
+        } else {
+            true
+        }
+    }
+
     private fun openMeasActivity() {
         startActivity(Intent(activity!!, MeasActivity::class.java))
         btnLanguage.setOnClickListener {
-            if (PreferenceProvider.isShowLangWarning){
+            if (PreferenceProvider.isShowLangWarning) {
                 startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
-            }else{
+            } else {
                 LanguageWarningDialog().apply {
                     setTargetFragment(this@ProfileFragment, -1)
                     show(this@ProfileFragment.requireFragmentManager(), "")
                 }
             }
-
-
         }
     }
 
@@ -294,21 +301,21 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
 
 
     private fun bindFields() {
-        if (PreferenceProvider.getWeight()!! != PreferenceProvider.EMPTY){
+        if (PreferenceProvider.getWeight()!! != PreferenceProvider.EMPTY) {
             tvWeight.text = PreferenceProvider.getWeight()!!.toString()
             tvWater.text = WaterCounter.getWaterDailyRate(PreferenceProvider.getSex()!!, false, false, PreferenceProvider.getWeight()!!, false).toString()
-        }else{
+        } else {
             tvWeight.text = EMPTY_MEAS
             tvWater.text = EMPTY_MEAS
         }
 
-        if (PreferenceProvider.getSex() != PreferenceProvider.EMPTY){
-            if (PreferenceProvider.getSex() == PreferenceProvider.SEX_TYPE_MALE){
+        if (PreferenceProvider.getSex() != PreferenceProvider.EMPTY) {
+            if (PreferenceProvider.getSex() == PreferenceProvider.SEX_TYPE_MALE) {
                 tvGender.text = getString(R.string.male_gender)
-            }else{
+            } else {
                 tvGender.text = getString(R.string.female_gender)
             }
-        }else{
+        } else {
             tvGender.text = EMPTY_MEAS
         }
 

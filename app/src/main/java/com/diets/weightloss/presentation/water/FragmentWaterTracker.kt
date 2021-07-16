@@ -133,6 +133,15 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     }
 
+    fun isCanClose() : Boolean{
+        return if (bsWaterSettings?.state == BottomSheetBehavior.STATE_COLLAPSED){
+            true
+        }else{
+            bsWaterSettings!!.state = BottomSheetBehavior.STATE_COLLAPSED
+            false
+        }
+    }
+
     private fun createSounds() {
         soundPool = SoundPool(5, AudioManager.STREAM_MUSIC, 0)
         spFirstSound = soundPool!!.load(requireContext(), R.raw.drop_1, 1)

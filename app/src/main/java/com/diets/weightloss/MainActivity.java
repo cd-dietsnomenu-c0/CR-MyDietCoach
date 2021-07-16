@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     private final int SETTINGS = 2;
     private final int EAT_TRACKER = 3;
     private final int WATER_TRACKER = 4;
+
+    private boolean isHasEatTracker = true;
 
     private BottomNavigationView.OnNavigationItemSelectedListener bnvListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -99,14 +102,32 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AdWorker.INSTANCE.showInter();
-        if (getSupportFragmentManager().findFragmentById(R.id.fragmentContainer) instanceof ProfileFragment) {
-            if (((ProfileFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainer)).bsBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
-                super.onBackPressed();
-            }else {
-                ((ProfileFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainer)).bsBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        if (lastSectionNumber != MAIN && lastSectionNumber != EAT_TRACKER) {
+            switch (lastSectionNumber) {
+                case SETTINGS:
+                    if (((ProfileFragment) sections.get(SETTINGS)).isCanClose())
+                        openInitialFragment();
+                    break;
+                case WATER_TRACKER:
+                    if (((FragmentWaterTracker) sections.get(WATER_TRACKER)).isCanClose()) {
+                        navigationView.getMenu().removeItem(R.id.bnv_tracker);
+                        openInitialFragment();
+                    }
+                    break;
+                default:
+                    openInitialFragment();
             }
         } else {
             super.onBackPressed();
+        }
+    }
+
+    private void openInitialFragment() {
+        if (isHasEatTracker) {
+            openSection(EAT_TRACKER);
+
+        } else {
+            openSection(MAIN);
         }
     }
 
@@ -129,21 +150,18 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.bnv_main);
         if (DBHolder.INSTANCE.getIfExist().getName().equals(DBHolder.INSTANCE.getNO_DIET_YET())) {
             navigationView.getMenu().removeItem(R.id.bnv_tracker);
+            isHasEatTracker = false;
         }
         navigationView.setOnNavigationItemSelectedListener(bnvListener);
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
         additionOneToSharedPreference();
         checkFirstRun();
-
-        //startActivity(new Intent(this, TextCutActvity.class));
-
-
     }
 
 
     private void checkIntent() {
         if (getIntent().getStringExtra(Config.PUSH_TAG) != null
-                && getIntent().getStringExtra(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)){
+                && getIntent().getStringExtra(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)) {
             AdWorker.INSTANCE.getShow();
         }
     }
