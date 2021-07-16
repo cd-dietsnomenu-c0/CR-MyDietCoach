@@ -553,6 +553,12 @@
         </FrameLayout>
     </ScrollView>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="#3E070707"
+        android:visibility="gone"
+        android:id="@+id/ivBSBackground"/>
     <include layout="@layout/bottom_sheet_backs" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

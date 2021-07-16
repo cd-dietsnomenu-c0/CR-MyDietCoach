@@ -216,9 +216,11 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         vm.getFrequentDrink().removeObservers(this)
     }
 
+
+
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        if (bsBeginMeas!!.state == BottomSheetBehavior.STATE_EXPANDED && PreferenceProvider.getWeight() != PreferenceProvider.EMPTY) {
+        if (bsBeginMeas?.state == BottomSheetBehavior.STATE_EXPANDED && PreferenceProvider.getWeight() != PreferenceProvider.EMPTY) {
             ivDimBackground.visibility = View.GONE
             llBSBeginMeas.visibility = View.GONE
             startWaterTracker()

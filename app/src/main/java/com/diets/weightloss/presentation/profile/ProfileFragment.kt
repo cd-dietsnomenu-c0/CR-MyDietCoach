@@ -35,6 +35,7 @@ import com.diets.weightloss.presentation.profile.toasts.DeniedPermToast
 import com.diets.weightloss.presentation.profile.toasts.IntroToast
 import com.diets.weightloss.utils.PreferenceProvider
 import kotlinx.android.synthetic.main.bottom_sheet_backs.*
+import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import java.io.File
 import java.lang.Exception
@@ -74,6 +75,17 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
             }
         })
 
+
+        bsBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback(){
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+                    ivBSBackground.visibility = View.GONE
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            }
+        })
     }
 
     private fun setClickListeners() {
@@ -95,6 +107,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         ivHeadBack.setOnClickListener {
             Ampl.openWallpapers()
             bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            ivBSBackground.visibility = View.VISIBLE
             PreferenceProvider.setCountIntro(MAX_ATEMPT_INTRO)
         }
 

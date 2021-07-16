@@ -104,7 +104,7 @@ object PreferenceProvider {
     fun getTrainingFactor() = getInstance()?.getBoolean(TRAINING_TAG, true)
 
     fun setHotFactor(isTurnOn: Boolean) = editor { it?.putBoolean(HOT_TAG, isTurnOn) }
-    fun getHotFactor() = getInstance()?.getBoolean(HOT_TAG, true)
+    fun getHotFactor() = getInstance()?.getBoolean(HOT_TAG, false)
 
     fun setGlobalWaterCount(diff: Int) = editor { it?.putInt(GLOBAL_WATER_COUNT_TAG, diff) }
     fun getGlobalWaterCount() = getInstance()?.getInt(GLOBAL_WATER_COUNT_TAG, 0)
