@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_calculator_meas" />
-                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\calculator.svg" />
+                            <entry key="outputName" value="ic_information" />
+                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\information.svg" />
                           </map>
                         </option>
                       </PersistentState>

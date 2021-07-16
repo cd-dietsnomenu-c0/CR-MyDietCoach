@@ -205,7 +205,7 @@
                                 android:backgroundTint="#9e9e9e"
                                 android:fontFamily="@font/roboto"
                                 android:gravity="center_horizontal"
-                                android:hint="Норма воды (мл)"
+                                android:hint="Норма воды (мл)*"
                                 android:inputType="number"
                                 android:maxLength="5"
                                 android:textColor="@color/black"
@@ -254,6 +254,8 @@
         </androidx.cardview.widget.CardView>
 
 
+
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
@@ -261,7 +263,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="64dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp">
 
@@ -395,7 +396,21 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:id="@+id/tvMark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*без учета факторов жары и тренировок"
+            android:layout_gravity="center_horizontal"
+            android:textSize="10sp"
+            android:padding="8dp"
+            android:background="?selectableItemBackground"
+            android:drawableEnd="@drawable/ic_information"
+            android:drawablePadding="4dp"
+            android:layout_marginBottom="64dp"/>
     </LinearLayout>
+
+
 </ScrollView>
 
     <Button

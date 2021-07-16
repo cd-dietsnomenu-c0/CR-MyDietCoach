@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -251,14 +252,11 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         Glide.with(this).load(url).into(ivHeadBack)
     }
 
-
-
-
-
+    
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        if (!hidden) {
-            bindFields()
+        Log.e("LOL", "onHiddenChanged")
+        if (!hidden && isResumed) {
             if (PreferenceProvider.getCountIntro()!! < MAX_ATEMPT_INTRO) {
                 IntroToast.show(activity!!)
                 var count = PreferenceProvider.getCountIntro()!!
@@ -279,13 +277,14 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
     override fun onResume() {
         super.onResume()
         bindName()
-
+        bindFields()
     }
+
 
     private fun bindFields() {
         if (PreferenceProvider.getWeight()!! != PreferenceProvider.EMPTY){
             tvWeight.text = PreferenceProvider.getWeight()!!.toString()
-            tvWater.text = WaterCounter.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!, false).toString()
+            tvWater.text = WaterCounter.getWaterDailyRate(PreferenceProvider.getSex()!!, false, false, PreferenceProvider.getWeight()!!, false).toString()
         }else{
             tvWeight.text = EMPTY_MEAS
             tvWater.text = EMPTY_MEAS

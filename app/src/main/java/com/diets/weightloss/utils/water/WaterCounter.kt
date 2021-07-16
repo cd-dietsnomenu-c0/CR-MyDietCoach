@@ -74,6 +74,21 @@ object WaterCounter {
         return waterRate
     }
 
+    fun getClearWaterRate(rawWaterRate: Int): String {
+        //Water rate without factors (hot and trainings)
+        var trainingDiff = 0
+        var hotDiff = 0
+
+        if (PreferenceProvider.getHotFactor()!!) {
+            hotDiff = (rawWaterRate * HOT_FACTOR).toInt()
+        }
+        if (PreferenceProvider.getTrainingFactor()!!) {
+            trainingDiff = (rawWaterRate * TRAINING_FACTOR).toInt()
+        }
+
+        return (rawWaterRate - trainingDiff - hotDiff).toString()
+    }
+
     fun mergeIntakesIntoDays(listIntakes: ArrayList<WaterIntake>): ArrayList<WaterIntake> {
         var daysList = arrayListOf<WaterIntake>()
 
@@ -129,14 +144,14 @@ object WaterCounter {
     fun getSortedMarathons(listIntakes: ArrayList<WaterIntake>, listRates: ArrayList<WaterRate>): List<WaterMarathon> {
         var unsortedMarathons = getMarathons(listIntakes, listRates)
 
-        for (i in unsortedMarathons.indices){
+        for (i in unsortedMarathons.indices) {
             var daysAmount = ((unsortedMarathons[i].end - unsortedMarathons[i].start) / ONE_DAY_MILLIS).toInt() + 1
             unsortedMarathons[i].duration = daysAmount
         }
 
         var sortedMarathon = unsortedMarathons.sortedBy { it.duration }
 
-        for (i in sortedMarathon){
+        for (i in sortedMarathon) {
             Log.e("LOL", i.duration.toString())
         }
         sortedMarathon.reversed()

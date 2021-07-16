@@ -5,8 +5,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.diets.weightloss.R
+import com.diets.weightloss.presentation.profile.measurments.dialogs.MarkDialog
 import com.diets.weightloss.presentation.profile.measurments.toasts.RefreshToast
 import com.diets.weightloss.utils.FieldsWorker
 import com.diets.weightloss.utils.PreferenceProvider
@@ -14,18 +16,24 @@ import com.diets.weightloss.utils.water.WaterCounter
 import com.diets.weightloss.utils.water.WaterRateProvider
 import kotlinx.android.synthetic.main.meas_activitys.*
 
-class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
+class MeasActivity : AppCompatActivity(R.layout.meas_activitys) {
 
     var sexType = PreferenceProvider.SEX_TYPE_FEMALE
+    var waterNormWithFactors = 0
+
+    lateinit var markDialog: MarkDialog
+    val MARK_DIALOG_TAG = "MARK_DIALOG_TAG"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         edtName.setText(PreferenceProvider.getName()!!)
-        if (PreferenceProvider.getWeight()!! != PreferenceProvider.EMPTY){
+        if (PreferenceProvider.getWeight()!! != PreferenceProvider.EMPTY) {
             edtWeight.setText(PreferenceProvider.getWeight()!!.toString())
-            edtWater.setText(WaterCounter.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
-                    PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!, false).toString())
+            waterNormWithFactors = WaterCounter.getWaterDailyRate(PreferenceProvider.getSex()!!, PreferenceProvider.getTrainingFactor()!!,
+                    PreferenceProvider.getHotFactor()!!, PreferenceProvider.getWeight()!!, false)
+            edtWater.setText(WaterCounter.getWaterDailyRate(PreferenceProvider.getSex()!!, false,
+                    false, PreferenceProvider.getWeight()!!, false).toString())
         }
 
         bindGenderViews()
@@ -38,6 +46,11 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
 
         btnSave.setOnClickListener {
             checkFieldAndSave()
+        }
+
+        tvMark.setOnClickListener {
+            markDialog = MarkDialog()
+            markDialog.show(supportFragmentManager, MARK_DIALOG_TAG)
         }
 
         edtWeight.addTextChangedListener(object : TextWatcher {
@@ -57,6 +70,7 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
                 }
             }
         })
+
 
         prepareAnimViews()
 
@@ -78,6 +92,8 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
                 turnOnWaterEdit()
             }
         }
+
+
     }
 
     private fun turnOnWaterEdit() {
@@ -89,7 +105,7 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
         edtWater.isEnabled = false
         edtWater.setTextColor(resources.getColor(R.color.label_color))
         if (edtWeight.text.toString() != "" && edtWeight.text.toString() != " ") {
-            edtWater.setText(WaterCounter.countRate(sexType, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, edtWeight.text.toString().toInt()).toString())
+            edtWater.setText(WaterCounter.countRate(sexType, false, false, edtWeight.text.toString().toInt()).toString())
         } else {
             edtWater.setText("0")
         }
@@ -117,20 +133,20 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
 
     private fun checkFieldAndSave() {
         if (FieldsWorker.isCorrect(edtWeight.text.toString())) {
-
             if (FieldsWorker.isCorrect(edtWater.text.toString()) && edtWater.text.toString() != "0") {
-
                 var weight = edtWeight.text.toString().toInt()
                 if (weight in 21..199) {
                     PreferenceProvider.setWeight(weight)
                     PreferenceProvider.setSex(sexType)
-                    if (!swtDefaultRate.isChecked){
+                    if (!swtDefaultRate.isChecked) {
                         PreferenceProvider.setWaterRateChangedManual(edtWater.text.toString().toInt())
-                    }else{
+                        WaterRateProvider.addNewRate(edtWater.text.toString().toInt())
+                    } else {
                         PreferenceProvider.setWaterRateChangedManual(PreferenceProvider.EMPTY)
+                        WaterRateProvider.addNewRate(waterNormWithFactors)
                     }
-                    WaterRateProvider.addNewRate(edtWater.text.toString().toInt())
-                    if (FieldsWorker.isCorrect(edtName.text.toString())){
+
+                    if (FieldsWorker.isCorrect(edtName.text.toString())) {
                         PreferenceProvider.setName(edtName.text.toString())
                     }
                     RefreshToast.show(this)
@@ -142,7 +158,6 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
             } else {
                 Toast.makeText(this, getString(R.string.water_rate_error), Toast.LENGTH_LONG).show()
             }
-
 
         } else {
             Toast.makeText(this, getString(R.string.input_error_empty), Toast.LENGTH_LONG).show()
@@ -159,7 +174,7 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
             lavTickMale.visibility = View.INVISIBLE
 
             sexType = PreferenceProvider.SEX_TYPE_FEMALE
-            if (swtDefaultRate.isChecked) {
+            if (swtDefaultRate.isChecked && FieldsWorker.isCorrect(edtWeight.text.toString())) {
                 calculateWaterRate()
             }
         }
@@ -172,13 +187,14 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activity) {
             lavTickFemale.visibility = View.INVISIBLE
 
             sexType = PreferenceProvider.SEX_TYPE_MALE
-            if (swtDefaultRate.isChecked) {
+            if (swtDefaultRate.isChecked && FieldsWorker.isCorrect(edtWeight.text.toString())) {
                 calculateWaterRate()
             }
         }
     }
 
     private fun calculateWaterRate() {
-        edtWater.setText(WaterCounter.countRate(sexType, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, edtWeight.text.toString().toInt()).toString())
+        waterNormWithFactors = WaterCounter.countRate(sexType, PreferenceProvider.getTrainingFactor()!!, PreferenceProvider.getHotFactor()!!, edtWeight.text.toString().toInt())
+        edtWater.setText(WaterCounter.countRate(sexType, false, false, edtWeight.text.toString().toInt()).toString())
     }
 }
