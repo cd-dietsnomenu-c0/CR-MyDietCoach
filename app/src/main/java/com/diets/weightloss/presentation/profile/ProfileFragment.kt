@@ -252,10 +252,9 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         Glide.with(this).load(url).into(ivHeadBack)
     }
 
-    
+
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        Log.e("LOL", "onHiddenChanged")
         if (!hidden && isResumed) {
             if (PreferenceProvider.getCountIntro()!! < MAX_ATEMPT_INTRO) {
                 IntroToast.show(activity!!)

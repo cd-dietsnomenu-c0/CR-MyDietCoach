@@ -218,6 +218,11 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
+        if (bsBeginMeas!!.state == BottomSheetBehavior.STATE_EXPANDED && PreferenceProvider.getWeight() != PreferenceProvider.EMPTY) {
+            ivDimBackground.visibility = View.GONE
+            llBSBeginMeas.visibility = View.GONE
+            startWaterTracker()
+        }
         if (hidden) {
             unObserverAll()
         } else {
@@ -608,9 +613,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 if (weight in 21..199) {
                     PreferenceProvider.setWeight(weight)
                     PreferenceProvider.setSex(sexType)
-                    vm.firstCalculateWaterRate()
-                    bsBeginMeas!!.state = BottomSheetBehavior.STATE_COLLAPSED
-                    FillMeasToast.show(activity!!)
+                    startWaterTracker()
                 } else {
                     Toast.makeText(activity, getString(R.string.input_error_not_in_limit), Toast.LENGTH_LONG).show()
                 }
@@ -618,6 +621,12 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 Toast.makeText(activity, getString(R.string.input_error_empty), Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun startWaterTracker() {
+        vm.firstCalculateWaterRate()
+        bsBeginMeas!!.state = BottomSheetBehavior.STATE_COLLAPSED
+        FillMeasToast.show(activity!!)
     }
 
     private fun fillQuick(it: QuickWaterList) {
