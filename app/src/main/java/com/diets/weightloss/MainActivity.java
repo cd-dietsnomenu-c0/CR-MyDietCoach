@@ -125,9 +125,10 @@ public class MainActivity extends AppCompatActivity {
     private void openInitialFragment() {
         if (isHasEatTracker) {
             openSection(EAT_TRACKER);
-
+            navigationView.setSelectedItemId(R.id.bnv_tracker);
         } else {
             openSection(MAIN);
+            navigationView.setSelectedItemId(R.id.bnv_main);
         }
     }
 
