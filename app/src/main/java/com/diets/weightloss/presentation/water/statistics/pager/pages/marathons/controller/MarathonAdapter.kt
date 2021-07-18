@@ -28,7 +28,7 @@ class MarathonAdapter(val list: List<WaterMarathon>) : RecyclerView.Adapter<Recy
     }
 
     override fun getItemCount(): Int {
-        return list.size + 5
+        return list.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

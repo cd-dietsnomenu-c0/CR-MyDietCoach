@@ -423,6 +423,10 @@
         <item>@drawable/ic_wt_13_grad</item>
         <item>@drawable/ic_wt_14_grad</item>
         <item>@drawable/ic_wt_15_grad</item>
+        <item>@drawable/ic_wt_16_grad</item>
+        <item>@drawable/ic_wt_17_grad</item>
+        <item>@drawable/ic_wt_18_grad</item>
+        <item>@drawable/ic_wt_19_grad</item>
     </integer-array>
 
 
@@ -430,36 +434,44 @@
         <item>Вода</item>
         <item>Вода с газом</item>
         <item>Кофе</item>
-        <item>Энергетик</item>
         <item>Черный чай</item>
-        <item>Зеленый чай</item>
-        <item>Крепкий алкоголь</item>
-        <item>Молоко</item>
         <item>Газировка</item>
-        <item>Алкогольный коктейль</item>
+        <item>Зеленый чай</item>
+        <item>Сок</item>
+        <item>Молоко</item>
+        <item>Морс</item>
+        <item>Фруктовая вода</item>
+        <item>Какао</item>
+        <item>Смузи</item>
+        <item>Молочный коктейль</item>
+        <item>Энергетик</item>
+        <item>Крепкий алкоголь</item>
         <item>Пиво</item>
         <item>Вино</item>
-        <item>Айран</item>
-        <item>Сок</item>
-        <item>Молочный коктейль</item>
+        <item>Алкогольный коктейль</item>
+        <item>Кис.мол. продукт</item>
     </string-array>
 
     <integer-array name="water_drinks_factor">
         <item>100</item>
-        <item>80</item>
-        <item>30</item>
-        <item>-80</item>
-        <item>80</item>
-        <item>80</item>
-        <item>-180</item>
-        <item>80</item>
-        <item>-40</item>
-        <item>-60</item>
-        <item>-50</item>
-        <item>-60</item>
-        <item>-20</item>
-        <item>80</item>
-        <item>-30</item>
+        <item>100</item>
+        <item>99</item>
+        <item>100</item>
+        <item>89</item>
+        <item>100</item>
+        <item>89</item>
+        <item>88</item>
+        <item>89</item>
+        <item>99</item>
+        <item>95</item>
+        <item>89</item>
+        <item>85</item>
+        <item>89</item>
+        <item>85</item>
+        <item>94</item>
+        <item>90</item>
+        <item>90</item>
+        <item>85</item>
     </integer-array>
 
 
