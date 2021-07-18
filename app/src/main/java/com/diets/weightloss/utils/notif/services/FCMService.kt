@@ -24,6 +24,9 @@ import java.util.*
 
 
 class FCMService : FirebaseMessagingService() {
+
+
+
     override fun onMessageReceived(p0: RemoteMessage) {
         if (p0?.data != null && p0.data[Config.TYPE_KEY] != null && p0.data[Config.TYPE_KEY] == Config.WATER_TYPE) {
             if (isNeedShowWaterNotif()) {
@@ -57,8 +60,8 @@ class FCMService : FirebaseMessagingService() {
         var collapsedView = RemoteViews(packageName, R.layout.view_water_notification)
 
         var largeIcon = BitmapFactory.decodeResource(resources, R.drawable.ic_notification)
-        var notificationBuilder = NotificationCompat.Builder(this, "com.weightloss.diets")
-                .setSmallIcon(R.drawable.ic_small_notification)
+        var notificationBuilder = NotificationCompat.Builder(this, getString(R.string.water_channel_id))
+                .setSmallIcon(R.drawable.ic_water_drop_notif)
                 .setLargeIcon(largeIcon)
                 .setAutoCancel(true)
                 .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + BuildConfig.APPLICATION_ID + "/" + R.raw.notification))
@@ -95,7 +98,7 @@ class FCMService : FirebaseMessagingService() {
         collapsedView.setTextViewText(R.id.tvNotificationTitle, p0.data["title"])
 
         var largeIcon = BitmapFactory.decodeResource(resources, R.drawable.ic_notification)
-        var notificationBuilder = NotificationCompat.Builder(this, "com.weightloss.diets")
+        var notificationBuilder = NotificationCompat.Builder(this, getString(R.string.react_channel_id))
                 .setSmallIcon(R.drawable.ic_small_notification)
                 .setLargeIcon(largeIcon)
                 .setAutoCancel(true)

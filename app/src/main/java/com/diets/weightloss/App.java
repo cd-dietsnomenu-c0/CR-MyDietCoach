@@ -13,6 +13,7 @@ import androidx.multidex.MultiDexApplication;
 import androidx.room.Room;
 
 import com.amplitude.api.Amplitude;
+import com.diets.weightloss.utils.notif.services.FCMService;
 import com.google.android.gms.ads.MobileAds;
 import com.diets.weightloss.common.db.DietDatabase;
 import com.diets.weightloss.common.db.migrations.Migrations;
@@ -57,12 +58,29 @@ public class App extends MultiDexApplication {
                     .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                     .build();
 
-            String channelId = "com.weightloss.diets";
-            String channelName = "com.weightloss.diets";
+            String channelId = getString(R.string.react_channel_id);
+            String channelName = getString(R.string.react_channel_id);
             NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             channel.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.notification), att);
             channel.setLightColor(Color.parseColor("#4B8A08"));
-            channel.setVibrationPattern(new long[]{0, 500});
+            channel.setVibrationPattern(new long[]{0, 300, 700, 400});
+            channel.enableVibration(true);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            AudioAttributes att = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                    .build();
+
+            String channelId = getString(R.string.water_channel_id);
+            String channelName = getString(R.string.water_channel_id);
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.drop_3), att);
+            channel.setLightColor(Color.parseColor("#4B8A08"));
+            channel.setVibrationPattern(new long[]{0, 300, 500, 500});
             channel.enableVibration(true);
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.createNotificationChannel(channel);

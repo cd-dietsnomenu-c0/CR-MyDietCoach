@@ -14,6 +14,9 @@
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
 
+    <string name="react_channel_id" translatable="false">com.weightloss.diets</string>
+    <string name="water_channel_id" translatable="false">com.weightloss.diets.water</string>
+
     <!--Profile-->
     <string name="url_gdpr" translatable="false">https://www.freeprivacypolicy.com/privacy/view/272200879b5cf29dd1b4fcd0f0299409</string>
     <string name="accompanying_text">Все работает в реальной жизни! Попробуй и ты!</string>

@@ -26,20 +26,29 @@ class WaterVM(application: Application) : AndroidViewModel(application) {
     private var frequentDrink: MutableLiveData<ReadableFrequentDrink>? = null
     private var marathonDays: MutableLiveData<Int>? = null
 
+    private val TYPE_WATER = 0
+    private val TYPE_COFFEE = 2
+    private val TYPE_SODA = 4
+    private val TYPE_BLACK_TEA = 3
+
+    private val CAPACITY_200_ML = 3
+    private val CAPACITY_250_ML = 4
+    private val CAPACITY_300_ML = 5
+
 
     private fun reloadQuickLD() {
         if (PreferenceProvider.getQuickData(0) == -1) {
-            PreferenceProvider.setQuickData(0, 0)
-            PreferenceProvider.setCapacityIndex(1, 0)
+            PreferenceProvider.setQuickData(TYPE_WATER, 0)
+            PreferenceProvider.setCapacityIndex(CAPACITY_200_ML, 0)
 
-            PreferenceProvider.setQuickData(3, 1)
-            PreferenceProvider.setCapacityIndex(6, 1)
+            PreferenceProvider.setQuickData(TYPE_COFFEE, 1)
+            PreferenceProvider.setCapacityIndex(CAPACITY_250_ML, 1)
 
-            PreferenceProvider.setQuickData(4, 2)
-            PreferenceProvider.setCapacityIndex(2, 2)
+            PreferenceProvider.setQuickData(TYPE_SODA, 2)
+            PreferenceProvider.setCapacityIndex(CAPACITY_200_ML, 2)
 
-            PreferenceProvider.setQuickData(7, 3)
-            PreferenceProvider.setCapacityIndex(3, 3)
+            PreferenceProvider.setQuickData(TYPE_BLACK_TEA, 3)
+            PreferenceProvider.setCapacityIndex(CAPACITY_300_ML, 3)
         }
         fillQuickWaterData()
     }
