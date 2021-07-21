@@ -2,13 +2,16 @@ package com.diets.weightloss.presentation.water
 
 import android.animation.Animator
 import android.animation.ValueAnimator
+import android.app.Activity
 import android.content.Intent
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -144,11 +147,9 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     private fun createSounds() {
         soundPool = SoundPool(5, AudioManager.STREAM_MUSIC, 0)
-        spFirstSound = soundPool!!.load(requireContext(), R.raw.drop_1, 1)
-        spSecondSound = soundPool!!.load(requireContext(), R.raw.drop_2, 1)
-        spThirdSound = soundPool!!.load(requireContext(), R.raw.drop_3, 1)
+        spFirstSound = soundPool!!.load(requireContext(), R.raw.drop_3, 1)
 
-        listSPIndexes = arrayListOf(spFirstSound, spSecondSound, spThirdSound)
+        listSPIndexes = arrayListOf(spFirstSound)
     }
 
     private fun bindDialogs() {
@@ -622,6 +623,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             if (FieldsWorker.isCorrect(edtWeight.text.toString())) {
                 var weight = edtWeight.text.toString().toInt()
                 if (weight in 21..199) {
+                    hideKeyboard()
                     PreferenceProvider.setWeight(weight)
                     PreferenceProvider.setSex(sexType)
                     startWaterTracker()
@@ -632,6 +634,16 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 Toast.makeText(activity, getString(R.string.input_error_empty), Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun hideKeyboard() {
+        val imm: InputMethodManager =
+                requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        var view: View? = requireActivity().currentFocus
+        if (view == null) {
+            view = View(requireContext())
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun startWaterTracker() {
@@ -668,8 +680,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     private fun playSound() {
         if (soundPool != null && listSPIndexes != null && listSPIndexes!!.size > 0) {
-            var index = Random.nextInt(3)
-            soundPool!!.play(listSPIndexes!![index], 1f, 1f, 0, 0, 1f)
+            soundPool!!.play(listSPIndexes!![0], 1f, 1f, 0, 0, 1f)
         } else {
             createSounds()
             playSound()

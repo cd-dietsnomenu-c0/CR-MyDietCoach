@@ -19,6 +19,10 @@ class StatActivity: AppCompatActivity(R.layout.stat_activity) {
         pagerAdapter = StatPagerAdapter(supportFragmentManager, arrayListOf(MarathonFragment(), SegmentationFragment()))
         vpStat.adapter = pagerAdapter
         bindPager()
+
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun bindPager() {

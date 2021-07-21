@@ -128,7 +128,7 @@ object PreferenceProvider {
     private const val IS_ON_WATER_SOUND = "IS_ON_WATER_SOUND"
 
     var isTurnOnWaterSound: Boolean
-        get() = getInstance()?.getBoolean(IS_ON_WATER_SOUND, true)!!
+        get() = getInstance()?.getBoolean(IS_ON_WATER_SOUND, false)!!
         set(value) = editor { it?.putBoolean(IS_ON_WATER_SOUND, value) }!!
 
 

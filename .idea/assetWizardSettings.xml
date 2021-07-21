@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_water_drop_notif" />
-                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\water-drop (2).svg" />
+                            <entry key="outputName" value="ic_drop_water_tracker" />
+                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\drop.svg" />
                           </map>
                         </option>
                       </PersistentState>
