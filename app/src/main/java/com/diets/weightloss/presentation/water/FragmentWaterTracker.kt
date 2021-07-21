@@ -35,6 +35,7 @@ import com.diets.weightloss.presentation.water.statistics.StatActivity
 import com.diets.weightloss.presentation.water.toasts.FillMeasToast
 import com.diets.weightloss.presentation.water.toasts.FullToast
 import com.diets.weightloss.utils.FieldsWorker
+import com.diets.weightloss.utils.notif.services.TopicWorker
 import com.diets.weightloss.utils.testing.FillWaterIntakes
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
@@ -626,6 +627,8 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                     hideKeyboard()
                     PreferenceProvider.setWeight(weight)
                     PreferenceProvider.setSex(sexType)
+                    PreferenceProvider.isTurnOnWaterNotifications = true
+                    TopicWorker.changeWaterNotifState(PreferenceProvider.isTurnOnWaterNotifications)
                     startWaterTracker()
                 } else {
                     Toast.makeText(activity, getString(R.string.input_error_not_in_limit), Toast.LENGTH_LONG).show()
