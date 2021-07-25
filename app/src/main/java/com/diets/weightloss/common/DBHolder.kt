@@ -2,8 +2,9 @@ package com.diets.weightloss.common
 
 import android.util.Log
 import com.diets.weightloss.App
-import com.diets.weightloss.model.interactive.DietDay
 import com.diets.weightloss.common.db.entities.DietPlanEntity
+import com.diets.weightloss.common.db.utils.Checker
+import com.diets.weightloss.model.interactive.DietDay
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

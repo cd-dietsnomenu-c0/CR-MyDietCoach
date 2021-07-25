@@ -59,7 +59,7 @@ class Ampl {
         val send_claim = "send_claim"
 
         val set_ver = "set_ver"
-        val AB = "AB"
+        val AB = "AB_PREM"
 
 
         fun setVersion() {
@@ -229,6 +229,30 @@ class Ampl {
                 exception.printStackTrace()
             }
             Amplitude.getInstance().logEvent(use_calculator, eventProperties)
+        }
+
+
+
+        val make_purchase = "make_purchase"
+
+        val make_purchase_where = "where"
+        val which_twice = "which_twice"
+
+        val twice_month = "month"
+        val twice_year = "year"
+
+        val make_purchase_inside = "inside"
+        val make_purchase_start = "start"
+
+        fun makePurchaseTwice(where : String, which : String) {
+            val eventProperties = JSONObject()
+            try {
+                eventProperties.put(make_purchase_where, where)
+                eventProperties.put(which_twice, which)
+            } catch (exception: JSONException) {
+                exception.printStackTrace()
+            }
+            Amplitude.getInstance().logEvent(make_purchase, eventProperties)
         }
 
     }

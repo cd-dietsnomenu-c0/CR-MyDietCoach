@@ -43,15 +43,6 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--<activity
-            android:name="com.wsoteam.mydietcoach.MainActivity"
-            android:theme="@style/MainActivityTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>-->
 
         <activity
             android:name="com.diets.weightloss.SplashActivity"
@@ -65,15 +56,19 @@
 
         <activity
             android:name="com.diets.weightloss.presentation.onboarding.OnboardActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.tracker.LoadingActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.diets.weightloss.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".presentation.premium.PremiumHostActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.water.statistics.StatActivity"
@@ -89,46 +84,46 @@
 
         <activity
             android:name="com.diets.weightloss.presentation.profile.favorites.FavoritesActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
 
 
         <activity
             android:name="com.diets.weightloss.presentation.profile.language.ChoiceLangActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.diets.list.old.inside.ActivityListItems"
-            android:theme="@style/NewDiets" />
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.diets.list.old.OldDietsActivity"
-            android:theme="@style/NewDiets" />
+            android:theme="@style/NewDiets"/>
 
-        <activity android:name="com.diets.weightloss.presentation.diets.list.old.inside.article.ActivityArticle" />
+        <activity android:name="com.diets.weightloss.presentation.diets.list.old.inside.article.ActivityArticle"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorSPK"
-            android:theme="@style/NewDiets" />
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorBrok"
-            android:theme="@style/NewDiets" />
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorIMT"
-            android:theme="@style/NewDiets" />
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorLorenc"
-            android:theme="@style/NewDiets" />
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.diets.list.modern.article.DietAct"
-            android:theme="@style/NewDiets" />
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.diets.list.modern.NewDietsListActivity"
-            android:theme="@style/NewDiets" />
+            android:theme="@style/NewDiets"/>
 
         <activity
             android:name="com.diets.weightloss.presentation.profile.measurments.MeasActivity"

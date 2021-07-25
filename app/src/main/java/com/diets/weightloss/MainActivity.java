@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -18,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.diets.weightloss.common.DBHolder;
 import com.diets.weightloss.common.GlobalHolder;
+import com.diets.weightloss.common.db.utils.Checker;
 import com.diets.weightloss.model.Global;
 import com.diets.weightloss.presentation.calculators.FragmentCalculators;
 import com.diets.weightloss.presentation.diets.FragmentTypes;
@@ -29,7 +29,6 @@ import com.diets.weightloss.utils.ThankToast;
 import com.diets.weightloss.utils.ad.AdWorker;
 import com.diets.weightloss.utils.analytics.Ampl;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,10 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     Ampl.Companion.openCalculators();
                     return true;
                 }
-                /*case R.id.bnv_premium : {
-                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(2)).commit();
-                    return true;
-                }*/
+
                 case R.id.bnv_settings: {
                     openSection(SETTINGS);
                     Ampl.Companion.openSettings();
@@ -88,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
                     Ampl.Companion.openCalculators();
                     return true;
                 }
+                /*case R.id.bnv_ads: {
+                    fragmentManager.beginTransaction().replace(R.id.fragmentContainer, sections.get(4)).commit();
+                    return true;
+                }*/
+
             }
             return false;
         }
@@ -157,6 +158,10 @@ public class MainActivity extends AppCompatActivity {
         setDietDataTC(GlobalHolder.INSTANCE.getGlobal());
         additionOneToSharedPreference();
         checkFirstRun();
+
+        /*if (PreferenceProvider.INSTANCE.isHasPremium()) {
+            navigationView.getMenu().removeItem(R.id.bnv_ads);
+        }*/
     }
 
 
@@ -169,9 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkDB(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            if (App.getInstance().getDB().dietDAO().getAll() == null || App.getInstance().getDB().dietDAO().getAll().size() == 0) {
-                DBHolder.INSTANCE.setEmpty();
-            }
+            Checker.INSTANCE.checkDB();
         }
     }
 
@@ -203,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
             lastSectionNumber = EAT_TRACKER;
         }
-
     }
 
     public static boolean hasConnection(final Context context) {

@@ -18,6 +18,7 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.diets.weightloss.App
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.diets.weightloss.Config
 import com.diets.weightloss.R
@@ -86,6 +87,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
             }
         })
+
+        if (PreferenceProvider.isHasPremium){
+            lavPremium.visibility = View.VISIBLE
+        }
     }
 
     private fun setClickListeners() {
@@ -146,23 +151,24 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         }
 
         btnShare.setOnClickListener {
-            if (!Config.FOR_TEST) {
-                Ampl.openSettingsShare()
-                var intent = Intent(Intent.ACTION_SEND)
-                intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.accompanying_text) + "\n"
-                        + "https://play.google.com/store/apps/details?id=com.jundev.weightloss")
-                startActivity(intent)
-            }
+
+            Ampl.openSettingsShare()
+            var intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.accompanying_text) + "\n"
+                    + "https://play.google.com/store/apps/details?id=${App.getInstance().packageName}")
+            startActivity(intent)
         }
 
 
         ivCircle.setOnClickListener {
-            Ampl.clickAvatar()
-            if (isCameraForbidden()) {
-                requestPermissions(arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE), CAMERA_PERMISSION_REQUEST)
-            } else {
-                runCamera()
+            if (!Config.isForTest) {
+                Ampl.clickAvatar()
+                if (isCameraForbidden()) {
+                    requestPermissions(arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE), CAMERA_PERMISSION_REQUEST)
+                } else {
+                    runCamera()
+                }
             }
         }
 
@@ -188,20 +194,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
 
     private fun openMeasActivity() {
         startActivity(Intent(activity!!, MeasActivity::class.java))
-        btnLanguage.setOnClickListener {
-            if (PreferenceProvider.isShowLangWarning) {
-                startActivity(Intent(requireActivity(), ChoiceLangActivity::class.java))
-            } else {
-                LanguageWarningDialog().apply {
-                    setTargetFragment(this@ProfileFragment, -1)
-                    show(this@ProfileFragment.requireFragmentManager(), "")
-                }
-            }
-        }
     }
 
-    private fun isCameraForbidden(): Boolean = activity!!.checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
-            || (ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) != PackageManager.PERMISSION_GRANTED
+    private fun isCameraForbidden(): Boolean = ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
 
     private fun setAvatar() {
         if (PreferenceProvider.getPhoto() != PreferenceProvider.EMPTY_PHOTO) {

@@ -19,10 +19,10 @@
   <item
       android:id="@+id/bnv_water"
       android:icon="@drawable/bnv_water"
-      android:title="Питье"/>
+      android:title="Вода"/>
 
   <!--<item
-      android:id="@+id/bnv_premium"
+      android:id="@+id/bnv_ads"
       android:icon="@drawable/bnv_prem"
       android:title="@string/bnv_prem"/>-->
 

@@ -3,10 +3,18 @@
     <string name="check_your_connect">Check your internet</string>
 
 
+    <!--wadimKazak-->
     <!--<string name="admob_key" translatable="false">ca-app-pub-2555056002292788~3750621051</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-2555056002292788/3064241259</string>
     <string name="banner_id" translatable="false">ca-app-pub-2555056002292788/9629649606</string>
     <string name="native_ad" translatable="false">ca-app-pub-2555056002292788/3938339229</string>-->
+
+    <!--diNahuiPizdec-->
+    <!--WORK-->
+    <!--<string name="admob_key" translatable="false">ca-app-pub-6411359812847072~5901853663</string>
+    <string name="interstitial_id" translatable="false">ca-app-pub-6411359812847072/3270453912</string>
+    <string name="banner_id" translatable="false">ca-app-pub-6411359812847072/7209698921</string>
+    <string name="native_ad" translatable="false">ca-app-pub-6411359812847072/4912846254</string>-->
 
     <!--Test-->
     <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
@@ -20,6 +28,8 @@
     <!--Profile-->
     <string name="url_gdpr" translatable="false">https://www.freeprivacypolicy.com/privacy/view/272200879b5cf29dd1b4fcd0f0299409</string>
     <string name="accompanying_text">Все работает в реальной жизни! Попробуй и ты!</string>
+
+    <string name="release_user_expirior_id" translatable="false">01d5f098-ed63-4a8a-8c08-55128b5b8b0c</string>
 
     <!--Tracker-->
     <string name="tracker_share_1">Мной была успешно пройдена </string>
@@ -360,10 +370,21 @@
     <string name="freq_tabs">Частота</string>
     <string name="liders_tabs">Марафоны</string>
     <string name="statistic_tabs">Статистика</string>
-    <string name="release_user_expirior_id">1fc4f7fc-9ab9-4ab9-a943-dcfeae03c311</string>
     <string name="capacity_unit">%s л</string>
     <string name="global_part">%s%% от общего числа</string>
     <string name="global_capacity">%s л \n за все время</string>
+    <string name="remove_ads_white">Убрать рекламу</string>
+    <string name="white_month">1 месяц</string>
+    <string name="description_month">Ежемесячная подписка продлевается автоматически за %s</string>
+    <string name="white_year">1 год</string>
+    <string name="description_year">Годовая подписка продлевается автоматически за %s</string>
+    <string name="try_7_days_for_free_new">Попробуйте 7 дней бесплатно</string>
+    <string name="month_terms">Бесплатный пробный период - 7 дней. Далее %s в месяц. Вы можете управлять своими подписками на панели управления в Google Play</string>
+    <string name="year_terms">Бесплатный пробный период - 7 дней. Далее %s в год. Вы можете управлять своими подписками на панели управления в Google Play</string>
+    <string name="remove_ads_white_text">Нам не нравится реклама, но без нее мы не можем поддерживать и развивать приложение. Покупка подписки - ваша неоценимая помощь и самое малое, что мы можем сделать для вас взамен - отключить рекламу</string>
+    <string name="continue_prem">продолжить</string>
+    <string name="text_post_prem">Вы приобрели премиум подписку и теперь у вас отключена реклама. Мы в неоплатном долгу перед вами за поддержку приложения!</string>
+
 
     <plurals name="days_plur">
         <item quantity="one">%1$d день</item>

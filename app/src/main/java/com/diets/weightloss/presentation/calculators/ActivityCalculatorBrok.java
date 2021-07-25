@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.diets.weightloss.utils.PreferenceProvider;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,8 +45,10 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
         AdWorker.INSTANCE.checkLoad();
         setContentView(R.layout.activity_calculator_brok);
         Ampl.Companion.openCalcualtor("brok");
-        ban = findViewById(R.id.appodealBannerView);
-        ban.loadAd(new AdRequest.Builder().build());
+        if (!PreferenceProvider.INSTANCE.isHasPremium()) {
+            ban = findViewById(R.id.appodealBannerView);
+            ban.loadAd(new AdRequest.Builder().build());
+        }
         edtBrokGrowth = findViewById(R.id.edtBrokGrowth);
         edtBrokGirth = findViewById(R.id.edtBrokGirth);
         edtBrokAge = findViewById(R.id.edtBrokAge);

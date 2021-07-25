@@ -19,6 +19,7 @@ import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.common.DBHolder
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.common.db.entities.FavoriteEntity
+import com.diets.weightloss.common.db.utils.Checker
 import com.diets.weightloss.presentation.diets.list.modern.article.dialogs.DifficultyFragment
 import com.diets.weightloss.presentation.diets.list.modern.article.dialogs.RewriteAlert
 import com.diets.weightloss.presentation.diets.list.modern.article.controller.DietAdapter
@@ -87,6 +88,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         Ampl.openNewDiet(diet.title)
 
         btnStart.setOnClickListener {
+            Checker.checkDB()
             if (DBHolder.get().name != DBHolder.NO_DIET_YET) {
                 RewriteAlert().show(supportFragmentManager, TAG)
             }else{
