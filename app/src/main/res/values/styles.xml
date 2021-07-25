@@ -183,5 +183,17 @@
         <item name="colorAccent">#686868</item>
     </style>
 
+    <style name="BnvTextActive">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/active_bnv</item>
+    </style>
+
+    <style name="BnvTextInActive">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/inactive_bnv</item>
+    </style>
+
 
 </resources>

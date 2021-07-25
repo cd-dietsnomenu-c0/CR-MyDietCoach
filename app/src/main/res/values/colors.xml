@@ -116,5 +116,8 @@
 
     <color name="stat_text">#384c68</color>
 
+    <color name="active_bnv">#867ac4</color>
+    <color name="inactive_bnv">#807e9f</color>
+
 
 </resources>
