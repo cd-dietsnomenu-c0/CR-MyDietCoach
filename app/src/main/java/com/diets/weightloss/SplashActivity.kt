@@ -51,8 +51,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     fun post() {
         goCounter += 1
         if (goCounter >= maxGoCounter) {
-            Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
-            startActivity(intent)
+            var mainActivityIntent = Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
+            startActivity(mainActivityIntent)
             finish()
         }
     }
