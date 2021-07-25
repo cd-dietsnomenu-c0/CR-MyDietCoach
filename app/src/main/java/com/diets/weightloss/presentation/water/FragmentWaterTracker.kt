@@ -11,7 +11,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -36,14 +35,12 @@ import com.diets.weightloss.presentation.water.toasts.FillMeasToast
 import com.diets.weightloss.presentation.water.toasts.FullToast
 import com.diets.weightloss.utils.FieldsWorker
 import com.diets.weightloss.utils.notif.services.TopicWorker
-import com.diets.weightloss.utils.testing.FillWaterIntakes
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
-import kotlin.random.Random
 
 class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
@@ -88,6 +85,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     lateinit var capacityInfoDialog: GlobalCapacityDialog
     lateinit var frequentDrink: FrequentDrinkDialog
     lateinit var marathonFragment: MarathonDialog
+
+    lateinit var animator: ValueAnimator
+    lateinit var alphaShow: ValueAnimator
+    lateinit var moveAnim: ValueAnimator
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -137,10 +138,10 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     }
 
-    fun isCanClose() : Boolean{
-        return if (bsWaterSettings?.state == BottomSheetBehavior.STATE_COLLAPSED){
+    fun isCanClose(): Boolean {
+        return if (bsWaterSettings?.state == BottomSheetBehavior.STATE_COLLAPSED) {
             true
-        }else{
+        } else {
             bsWaterSettings!!.state = BottomSheetBehavior.STATE_COLLAPSED
             false
         }
@@ -226,7 +227,6 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         vm.getGlobalWaterCapacity().removeObservers(this)
         vm.getFrequentDrink().removeObservers(this)
     }
-
 
 
     override fun onHiddenChanged(hidden: Boolean) {
@@ -487,32 +487,47 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     private fun unlockAdding() {
         if (isLockAdding) {
-            var moveToTop = ValueAnimator.ofFloat(cvWaterShowcase.translationY, Y_TRANSLITION_SHOWCASE_SHOW)
-            moveToTop.addUpdateListener {
+            stopAnimIfRun()
+            moveAnim = ValueAnimator.ofFloat(cvWaterShowcase.translationY, Y_TRANSLITION_SHOWCASE_SHOW)
+            moveAnim.addUpdateListener {
                 cvWaterShowcase.translationY = it.animatedValue.toString().toFloat()
             }
 
-            var alphaAnimator = ValueAnimator.ofFloat(1f, 0f)
-            alphaAnimator.addUpdateListener {
+            alphaShow = ValueAnimator.ofFloat(1f, 0f)
+            alphaShow.addUpdateListener {
                 lavDone.alpha = it.animatedValue.toString().toFloat()
                 tvDone.alpha = it.animatedValue.toString().toFloat()
                 if (it.animatedValue.toString().toFloat() == 0f) {
                     lavDone.frame = 0
                     lavDone.alpha = 1f
                     lavDone.translationY = 0f
-                    moveToTop.start()
+                    moveAnim.start()
                 }
             }
 
-            alphaAnimator.start()
+            alphaShow.start()
 
         }
         PreferenceProvider.lastNormWaterDay = PreferenceProvider.EMPTY_LAST_DAY
     }
 
+    private fun stopAnimIfRun() {
+        if (lavDone.isAnimating || lavDone.alpha != 1f){
+            lavDone.cancelAnimation()
+            lavDone.frame = 0
+            lavDone.alpha = 1f
+            lavDone.translationY = 0f
+        }
+
+        if (animator.isRunning){
+            animator.cancel()
+        }
+    }
+
     private fun lockAdding() {
         if (!isLockAdding) {
-            var animator = ValueAnimator.ofFloat(cvWaterShowcase.translationY, Y_TRANSLITION_SHOWCASE_HIDE)
+            // animator --> lavDone --> moveAnim --> alphaShow
+            animator = ValueAnimator.ofFloat(cvWaterShowcase.translationY, Y_TRANSLITION_SHOWCASE_HIDE)
             animator.addUpdateListener {
                 cvWaterShowcase.translationY = it.animatedValue.toString().toFloat()
                 if (it.animatedValue.toString().toFloat() == Y_TRANSLITION_SHOWCASE_HIDE) {
@@ -521,13 +536,13 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             }
             animator.duration = 1000
 
-            var alphaShow = ValueAnimator.ofFloat(0f, 1f)
+            alphaShow = ValueAnimator.ofFloat(0f, 1f)
             alphaShow.addUpdateListener {
                 tvDone.alpha = it.animatedValue.toString().toFloat()
             }
 
-            var moveToTopAnimator = ValueAnimator.ofFloat(lavDone.translationY, Y_TRANSLITION_ANIM)
-            moveToTopAnimator.addUpdateListener {
+            moveAnim = ValueAnimator.ofFloat(lavDone.translationY, Y_TRANSLITION_ANIM)
+            moveAnim.addUpdateListener {
                 lavDone.translationY = it.animatedValue.toString().toFloat()
                 if (it.animatedValue.toString().toFloat() == Y_TRANSLITION_ANIM) {
                     alphaShow.start()
@@ -540,7 +555,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
                 override fun onAnimationEnd(animation: Animator?) {
                     lavDone.removeAllAnimatorListeners()
-                    moveToTopAnimator.start()
+                    moveAnim.start()
                 }
 
                 override fun onAnimationCancel(animation: Animator?) {

@@ -137,7 +137,7 @@ object PreferenceProvider {
     //////////////////////////////////
 
 
-    private const val IS_ON_WATER_NOTIFICATIONS_TAG = "IS_ON_WATER_SOUND"
+    private const val IS_ON_WATER_NOTIFICATIONS_TAG = "IS_ON_WATER_NOTIFICATIONS_TAG"
 
     var isTurnOnWaterNotifications: Boolean
         get() = getInstance()?.getBoolean(IS_ON_WATER_NOTIFICATIONS_TAG, false)!!
