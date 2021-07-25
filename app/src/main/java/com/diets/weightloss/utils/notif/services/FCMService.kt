@@ -52,56 +52,37 @@ class FCMService : FirebaseMessagingService() {
 
     private fun showEatTrackerNotif() {
         if (isHasFood()) {
-            val notificationIntent = Intent(this, SplashActivity::class.java)
+            PreferenceProvider.lastTimeWaterNotif = Calendar.getInstance().timeInMillis
+            var intent = Intent(this, SplashActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-            var collapsedView = RemoteViews(this.packageName, R.layout.view_tracker_notification)
 
-            val VIBRATE_PATTERN = Const.VIBRO_PATTERN_EAT
-            val NOTIFICATION_COLOR = Color.RED
-            val NOTIFICATION_SOUND_URI = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            var pendingIntent = PendingIntent
+                    .getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
-            val stackBuilder = TaskStackBuilder.create(this)
-            stackBuilder.addNextIntent(notificationIntent)
+            var collapsedView = RemoteViews(packageName, R.layout.view_water_notification)
 
-            val pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
-
-            val builder = NotificationCompat.Builder(this, getString(R.string.eat_channel_id)).setCustomBigContentView(collapsedView)
-            val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-
-            val notification = builder
+            var largeIcon = BitmapFactory.decodeResource(resources, R.drawable.ic_notification)
+            var notificationBuilder = NotificationCompat.Builder(this, getString(R.string.eat_channel_id))
+                    .setSmallIcon(R.drawable.ic_water_drop_notif)
+                    .setLargeIcon(largeIcon)
                     .setAutoCancel(true)
-                    .setVibrate(VIBRATE_PATTERN)
-                    .setSmallIcon(R.drawable.ic_tracker_notify)
-                    .setDefaults(Notification.DEFAULT_SOUND)
-                    .setSound(NOTIFICATION_SOUND_URI)
-                    .setContentIntent(pendingIntent).build()
+                    .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + BuildConfig.APPLICATION_ID + "/" + R.raw.eat_notif))
+                    .setVibrate(Const.VIBRO_PATTERN_EAT)
+                    .setLights(Color.MAGENTA, 500, 1000)
+                    .setContentIntent(pendingIntent)
+                    .setCustomContentView(collapsedView)
+            var notification = notificationBuilder.build()
 
+            var notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                builder.setChannelId(getString(R.string.eat_channel_id))
-            }
-
-            val notificationManager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val channel = NotificationChannel(
-                        getString(R.string.eat_channel_id),
-                        this.resources.getString(R.string.app_name),
-                        NotificationManager.IMPORTANCE_DEFAULT
-                )
-                val audioAttributes = AudioAttributes.Builder()
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                        .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                        .build()
-                channel.enableLights(true)
-                channel.setSound(alarmSound, audioAttributes)
-                channel.lightColor = NOTIFICATION_COLOR
-                channel.vibrationPattern = VIBRATE_PATTERN
-                channel.enableVibration(true)
-                channel.lockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC
+            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val channel = NotificationChannel("com.jundev.diets",
+                        "Channel human readable title",
+                        NotificationManager.IMPORTANCE_DEFAULT)
                 notificationManager.createNotificationChannel(channel)
-            }
-
+            }*/
             notificationManager.notify(0, notification)
         }
     }
@@ -133,8 +114,8 @@ class FCMService : FirebaseMessagingService() {
                 .setSmallIcon(R.drawable.ic_water_drop_notif)
                 .setLargeIcon(largeIcon)
                 .setAutoCancel(true)
-                .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + BuildConfig.APPLICATION_ID + "/" + R.raw.notification))
-                .setVibrate(longArrayOf(0, 500))
+                .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + BuildConfig.APPLICATION_ID + "/" + R.raw.drop_3))
+                .setVibrate(Const.VIBRO_PATTERN_WATER)
                 .setLights(Color.MAGENTA, 500, 1000)
                 .setContentIntent(pendingIntent)
                 .setCustomContentView(collapsedView)
@@ -173,7 +154,7 @@ class FCMService : FirebaseMessagingService() {
                     .setLargeIcon(largeIcon)
                     .setAutoCancel(true)
                     .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + BuildConfig.APPLICATION_ID + "/" + R.raw.notification))
-                    .setVibrate(longArrayOf(0, 500))
+                    .setVibrate(Const.VIBRO_PATTERN_REACT)
                     .setLights(Color.MAGENTA, 500, 1000)
                     .setContentIntent(pendingIntent)
                     .setCustomContentView(collapsedView)
