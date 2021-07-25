@@ -94,6 +94,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 FirebaseMessaging.getInstance().subscribeToTopic(Config.NEWS_RU).addOnSuccessListener { }
             }
         }
+        FirebaseMessaging.getInstance().subscribeToTopic(Config.EAT_TOPIC).addOnSuccessListener { }
         TopicWorker.changeWaterNotifState(PreferenceProvider.isTurnOnWaterNotifications)
 
         getFCMToken()

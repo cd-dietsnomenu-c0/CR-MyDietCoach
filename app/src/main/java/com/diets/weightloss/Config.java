@@ -24,13 +24,12 @@ public class Config {
     public static final String TYPE_NAME = "TYPE_NAME";
     public static final String HEADER_TAG = "HEADER_TAG";
 
-    public static final boolean FOR_TEST = true;
-
-
+    public static final boolean FOR_TEST = false;
 
     public static final String NEWS_RU = "news";
     public static final String NEWS_EN = "news_en";
     public static final String WATER_TOPIC = "water";
+    public static final String EAT_TOPIC = "eat";
 
 
     public static final String TYPE_KEY = "type";

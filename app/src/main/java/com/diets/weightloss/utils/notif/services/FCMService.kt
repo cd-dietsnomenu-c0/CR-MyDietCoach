@@ -54,6 +54,7 @@ class FCMService : FirebaseMessagingService() {
         if (isHasFood()) {
             PreferenceProvider.lastTimeWaterNotif = Calendar.getInstance().timeInMillis
             var intent = Intent(this, SplashActivity::class.java)
+            intent.putExtra(Config.PUSH_TAG, Config.OPEN_FROM_PUSH)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
@@ -61,11 +62,11 @@ class FCMService : FirebaseMessagingService() {
             var pendingIntent = PendingIntent
                     .getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
-            var collapsedView = RemoteViews(packageName, R.layout.view_water_notification)
+            var collapsedView = RemoteViews(packageName, R.layout.view_eat_notification)
 
             var largeIcon = BitmapFactory.decodeResource(resources, R.drawable.ic_notification)
             var notificationBuilder = NotificationCompat.Builder(this, getString(R.string.eat_channel_id))
-                    .setSmallIcon(R.drawable.ic_water_drop_notif)
+                    .setSmallIcon(R.drawable.ic_restaurant)
                     .setLargeIcon(largeIcon)
                     .setAutoCancel(true)
                     .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + BuildConfig.APPLICATION_ID + "/" + R.raw.eat_notif))
