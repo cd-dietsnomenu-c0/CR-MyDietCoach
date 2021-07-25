@@ -129,23 +129,6 @@
             android:name="com.diets.weightloss.presentation.profile.measurments.MeasActivity"
             android:theme="@style/MeasActivity" />
 
-        <receiver android:name="com.diets.weightloss.common.notifications.TrackerAlarmReceiver"/>
-        <receiver android:name="com.diets.weightloss.common.notifications.ReactAlarmReceiver"/>
-
-        <receiver android:name="com.diets.weightloss.common.notifications.BootReceiver"
-            android:exported="true"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-
-                <category android:name="android.intent.category.HOME" />
-            </intent-filter>
-        </receiver>
-
-        <service
-            android:name="com.diets.weightloss.common.notifications.BootNotificationService"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
-
         <service
             android:name="com.diets.weightloss.utils.notif.services.FCMService"
             android:exported="false">

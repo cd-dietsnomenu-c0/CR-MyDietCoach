@@ -35,6 +35,7 @@ public class Config {
 
     public static final String TYPE_KEY = "type";
     public static final String WATER_TYPE = "water_notif";
+    public static final String EAT_TYPE = "eat_notif";
 
     public static final Boolean isForTest = false;
 }

@@ -62,7 +62,7 @@ public class App extends MultiDexApplication {
             NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             channel.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.notification), att);
             channel.setLightColor(Color.parseColor("#4B8A08"));
-            channel.setVibrationPattern(new long[]{0, 300, 700, 400});
+            channel.setVibrationPattern(Const.INSTANCE.getVIBRO_PATTERN_REACT());
             channel.enableVibration(true);
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.createNotificationChannel(channel);
@@ -79,7 +79,24 @@ public class App extends MultiDexApplication {
             NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             channel.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.drop_3), att);
             channel.setLightColor(Color.parseColor("#4B8A08"));
-            channel.setVibrationPattern(new long[]{0, 300, 500, 500});
+            channel.setVibrationPattern(Const.INSTANCE.getVIBRO_PATTERN_WATER());
+            channel.enableVibration(true);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            AudioAttributes att = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                    .build();
+
+            String channelId = getString(R.string.eat_channel_id);
+            String channelName = getString(R.string.eat_channel_id);
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.eat_notif), att);
+            channel.setLightColor(Color.parseColor("#4B8A08"));
+            channel.setVibrationPattern(Const.INSTANCE.getVIBRO_PATTERN_EAT());
             channel.enableVibration(true);
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.createNotificationChannel(channel);

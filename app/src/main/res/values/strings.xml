@@ -24,6 +24,7 @@
 
     <string name="react_channel_id" translatable="false">com.weightloss.diets</string>
     <string name="water_channel_id" translatable="false">com.weightloss.diets.water</string>
+    <string name="eat_channel_id" translatable="false">com.weightloss.diets.eat</string>
 
     <!--Profile-->
     <string name="url_gdpr" translatable="false">https://www.freeprivacypolicy.com/privacy/view/272200879b5cf29dd1b4fcd0f0299409</string>
