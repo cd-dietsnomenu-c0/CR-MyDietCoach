@@ -36,7 +36,7 @@
             android:textColor="#4CAF50"
             android:gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Ваши данные обновлены"
+            android:text="@string/profile_refresh"
             tools:layout_editor_absoluteX="287dp"
             tools:layout_editor_absoluteY="178dp" />
 

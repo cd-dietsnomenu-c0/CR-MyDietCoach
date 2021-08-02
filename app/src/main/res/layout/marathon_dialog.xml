@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Марафон"
+                android:text="@string/marathon_dialog"
                 android:textColor="#333333"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="24dp"
@@ -58,7 +58,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/shape_understand_marathon"
-                android:text="понятно"
+                android:text="@string/marathon_close"
                 android:layout_marginTop="30dp"
                 android:paddingHorizontal="22dp"
                 android:textColor="@color/white"

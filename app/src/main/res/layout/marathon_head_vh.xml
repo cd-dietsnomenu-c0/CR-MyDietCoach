@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Лучший марафон"
+                    android:text="@string/best_marathon"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="#384c68"
@@ -41,7 +42,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Жидкости выпито"
+                            android:text="@string/drink_water"
                             android:drawableStart="@drawable/ic_drop_marathon"
                             android:gravity="center_vertical"
                             android:fontFamily="@font/roboto_medium"
@@ -54,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
-                        android:text="90 л"
+                        tools:text="90 л"
                         android:textColor="#384c68"
                         android:fontFamily="@font/roboto_bold"
                         android:textSize="12sp"/>
@@ -71,7 +72,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Длительность"
+                        android:text="@string/duration"
                         android:fontFamily="@font/roboto_medium"
                         android:textSize="12sp"
                         android:drawablePadding="6dp"
@@ -84,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
-                        android:text="100 дней"
+                        tools:text="100 дней"
                         android:textColor="#384c68"
                         android:fontFamily="@font/roboto_bold"
                         android:textSize="12sp"/>
@@ -114,7 +115,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Начало"
+                            android:text="@string/mar_start"
                             android:layout_gravity="center_horizontal"
                             android:textSize="10sp"
                             android:fontFamily="@font/roboto_medium"/>
@@ -152,7 +153,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Конец"
+                            android:text="@string/mar_end"
                             android:layout_gravity="center_horizontal"
                             android:textSize="10sp"
                             android:fontFamily="@font/roboto_medium"/>

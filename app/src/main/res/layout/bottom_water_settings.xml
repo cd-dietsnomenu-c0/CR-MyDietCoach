@@ -34,7 +34,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Настройки напитка"
+                android:text="@string/water_bs_drink_title"
                 android:layout_marginTop="12dp"
                 android:textColor="#25265e"
                 android:layout_gravity="center_horizontal"
@@ -46,7 +46,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Объем"
+                android:text="@string/water_bs_drink_capacity"
                 android:layout_marginTop="24dp"
                 android:textColor="#25265e"
                 android:layout_marginStart="16dp"
@@ -72,7 +72,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Вид напитка"
+                android:text="@string/water_bs_drink_type"
                 android:layout_marginTop="36dp"
                 android:textColor="#25265e"
                 android:layout_marginStart="16dp"
@@ -98,7 +98,7 @@
                 android:id="@+id/btnSaveQuick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="сохранить"
+                android:text="@string/water_bs_drink_save"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="24dp"

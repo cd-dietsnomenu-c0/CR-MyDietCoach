@@ -35,7 +35,7 @@
             android:textColor="#4693ff"
             android:gravity="center"
             android:fontFamily="@font/roboto_bold"
-            android:text="Норма выполнена \n продолжим завтра"
+            android:text="@string/water_full"
             tools:layout_editor_absoluteX="287dp"
             tools:layout_editor_absoluteY="178dp" />
 

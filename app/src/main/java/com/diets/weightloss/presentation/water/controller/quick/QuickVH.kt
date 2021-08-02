@@ -21,7 +21,7 @@ class QuickVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, iQuick: IQui
 
     fun bind(imgIndex : Int, title : String, capacity : Int){
         itemView.tvTitle.text = title
-        itemView.tvCapacity.text = "$capacity мл"
+        itemView.tvCapacity.text = "$capacity ${itemView.resources.getString(R.string.water_ml)}"
         itemView.ivHead.setImageResource(imgIndex)
     }
 

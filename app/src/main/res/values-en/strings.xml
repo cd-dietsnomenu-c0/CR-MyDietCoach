@@ -364,4 +364,194 @@
         <item>English</item>
     </string-array>
 
+
+    <string name="input_error_not_in_limit">Please enter your real weight</string>
+    <string name="input_error_empty">Please enter your weight</string>
+    <string name="alert_clear_water">This shows how much clean water you drank during the entire time.</string>
+    <string name="frequent_drink_text">Here you can see which drink you have consumed most often. Right now your favorite drink is %s, and you have had %s</string>
+    <string name="frequent_drink_text_empty">Here you can see which drink you used most often. Until you have a favorite drink</string>
+    <string name="water_rate_error">The water rate cannot be zero</string>
+    <string name="male_gender">Male</string>
+    <string name="female_gender">Female</string>
+
+    <string name="calendar_tabs">Calendar</string>
+    <string name="freq_tabs">Frequency</string>
+    <string name="liders_tabs">Marathons</string>
+    <string name="statistic_tabs">Statistics</string>
+    <string name="capacity_unit">%s l</string>
+    <string name="global_part">%s%% of the total number</string>
+    <string name="global_capacity">%s l \n all the time</string>
+
+    <string-array name="water_drinks_names">
+        <item>Water</item>
+        <item>Water and gas</item>
+        <item>Coffee</item>
+        <item>Black tea</item>
+        <item>Soda</item>
+        <item>Green tea</item>
+        <item>Juice</item>
+        <item>Milk</item>
+        <item>Mors</item>
+        <item>Fruit water</item>
+        <item>Cocoa</item>
+        <item>Smoothie</item>
+        <item>Milkshake</item>
+        <item>Energetic</item>
+        <item>Hard liquor</item>
+        <item>Beer</item>
+        <item>Wine</item>
+        <item>Alcoholic cocktail</item>
+        <item>Sour milk product</item>
+    </string-array>
+
+    <string-array name="drink_capacity_names">
+        <item>Bowl</item>
+        <item>A little tetra pack</item>
+        <item>Cup</item>
+        <item>Glass</item>
+        <item>Paper cup</item>
+        <item>Mug</item>
+        <item>Tin can</item>
+        <item>Large mug</item>
+        <item>Thermocup</item>
+        <item>A small bottle</item>
+    </string-array>
+
+    <string-array name="drink_capacity_values">
+        <item>50 ml</item>
+        <item>100 ml</item>
+        <item>150 ml</item>
+        <item>200 ml</item>
+        <item>250 ml</item>
+        <item>300 ml</item>
+        <item>350 ml</item>
+        <item>400 ml</item>
+        <item>450 ml</item>
+        <item>500 ml</item>
+    </string-array>
+
+
+    <string name="alert_marathon">This shows how many days in a row you drink the correct amount of water</string>
+    <string name="other_water">Other</string>
+    <string name="all_days_state">Every day</string>
+    <string name="empty_days_state">Never</string>
+    <string name="weight">Weight</string>
+    <string name="kg_profile">kg</string>
+    <string name="water_norm">Water rate</string>
+    <string name="ml_profile">ml</string>
+    <string name="gender_profile">Gender</string>
+    <string name="profile_refresh">Your information has been updated</string>
+    <string name="meas_dialog_title">Factors</string>
+    <string name="meas_dialog_text">The current screen shows your water allowance without heat or exercise factors. If it is hot outside you should add 15% to your water allowance, if you work out at the gym or are physically strenuous you should add 10% to your water allowance. You can change these factors on the water tracker screen</string>
+    <string name="meas_dialog_understand">see</string>
+    <string name="meas_params">Parameters</string>
+    <string name="meas_params_main">Main</string>
+    <string name="meas_params_name">Your name</string>
+    <string name="meas_weight">Your weight (kg)</string>
+    <string name="meas_water_norm">Your water allowance (ml)*</string>
+    <string name="meas_auto_water">Auto-calculate water rate</string>
+    <string name="meas_gender">Gender</string>
+    <string name="meas_female">Female</string>
+    <string name="meas_male">Male</string>
+    <string name="meas_mark">*without considering heat and exercise factors</string>
+    <string name="meas_save">save</string>
+    <string name="water_open_tracker">Water tracker is open.</string>
+    <string name="water_full">Rate met. We\'ll continue tomorrow.</string>
+    <string name="lovely_drink">Favorite drink</string>
+    <string name="lovely_drink_save">good</string>
+    <string name="clear_water">Pure water</string>
+    <string name="clear_water_understand">got it</string>
+    <string name="marathon_dialog">Marathon</string>
+    <string name="marathon_close">got it</string>
+    <string name="ignore_norm">Ignore norm.</string>
+    <string name="ignore_norm_dialog">If the switch is active, the reminders will come even after the daily norm of water is fulfilled.</string>
+    <string name="ignore_norm_btn">got it</string>
+    <string name="days_title">Days of the week</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="friday">Friday</string>
+    <string name="sunday">Sunday</string>
+    <string name="thursday">Thursday</string>
+    <string name="saturday">Saturday</string>
+    <string name="days_cancel">cancel</string>
+    <string name="days_save">save</string>
+    <string name="sleep_title">Bedtime</string>
+    <string name="sleep_cancel">cancel</string>
+    <string name="sleep_save">save</string>
+    <string name="freq_title">Reminder frequency</string>
+    <string name="freq_30">Every 30 minutes</string>
+    <string name="freq_60">Every hour</string>
+    <string name="freq_90">Every 1.5 hours</string>
+    <string name="freq_120">Every 2 hours</string>
+    <string name="freq_150">Every 2.5 hours</string>
+    <string name="freq_180">Every 3 hours</string>
+    <string name="freq_cancel">cancel</string>
+    <string name="freq_save">Save</string>
+    <string name="ignore_take_title">Ignore meals.</string>
+    <string name="ignore_take_text">If this option is enabled, you will receive reminders even if you have drunk water recently. Otherwise, you will only receive a reminder if more than 15 minutes have passed since your last fluid intake</string>
+    <string name="ignore_take_close">got it</string>
+    <string name="wakeup_title">Awakening</string>
+    <string name="wakeup_cancel">cancel</string>
+    <string name="wakeup_save">save</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="notif_main">Main</string>
+    <string name="notif_remind">Remind you about appointments</string>
+    <string name="notif_settings">Notification settings</string>
+    <string name="notif_wakeup">Awakening</string>
+    <string name="notif_sleep">Going to sleep</string>
+    <string name="notif_freq">Notification frequency</string>
+    <string name="notif_days">Days of the week</string>
+    <string name="notif_style">Notification style</string>
+    <string name="notif_after_norm">Remind you even after you\'ve drunk your daily quota</string>
+    <string name="notif_recently">Reminds you even if you recently drank water</string>
+    <string name="notif_alert">*Reminders only work if you have internet access</string>
+    <string name="empty_segmentation_title">Nothing here yet</string>
+    <string name="empty_segmentation_text">We show your stats here, after your first drink</string>
+    <string name="empty_marathon_title">It\'s still empty.</string>
+    <string name="empty_marathon_text">We\'ll show your marathons here - intervals of more than one day when you drank your daily water allowance</string>
+    <string name="best_marathon">Best marathon</string>
+    <string name="drink_water">Liquids drank</string>
+    <string name="duration">Length</string>
+    <string name="mar_start">Start</string>
+    <string name="mar_end">End</string>
+    <string name="second_place">Second place</string>
+    <string name="third_place">Third place</string>
+    <string name="water_bs_drink_title">Beverage settings</string>
+    <string name="water_bs_drink_capacity">Volume</string>
+    <string name="water_bs_drink_type">Beverage type</string>
+    <string name="water_bs_drink_save">save</string>
+    <string name="water_bs_meas_title">Hi!</string>
+    <string name="water_bs_meas_subtitle">This is a water tracker. Please specify your weight and gender to proceed</string>
+    <string name="water_bs_meas_kg">kg</string>
+    <string name="water_bs_meas_enter_weight">SELECT YOUR WEIGHT</string>
+    <string name="water_bs_meas_choice_gender">CHOOSE YOUR GENDER</string>
+    <string name="water_bs_meas_save">save and continue</string>
+    <string name="water_bs_meas_alert">You can change the values later in the Profile* tab</string>
+    <string name="water_title">Water balance</string>
+    <string name="water_sport">Sport</string>
+    <string name="water_hot">Heat</string>
+    <string name="water_l">л</string>
+    <string name="water_ml">ml</string>
+    <string name="water_quick_add">add</string>
+
+    <string-array name="frequent_types">
+        <item>Every 30 minutes</item>
+        <item>Every hour</item>
+        <item>Every 1.5 hours</item>
+        <item>Every 2 hours</item>
+        <item>Every 2.5 hours</item>
+        <item>Every 3 hours</item>
+    </string-array>
+
+    <string-array name="days_type">
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+        <item>Sun</item>
+    </string-array>
+
 </resources>

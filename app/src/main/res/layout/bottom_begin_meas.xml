@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Привет!"
+                android:text="@string/water_bs_meas_title"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:textSize="20sp"
@@ -37,7 +37,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Это трекер воды. Для продолжения работы укажите пожалуйста ваш вес и пол"
+                android:text="@string/water_bs_meas_subtitle"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:gravity="center_horizontal"
@@ -85,7 +85,7 @@
                     android:textSize="32sp"
                     android:fontFamily="@font/roboto_bold"
                     android:layout_gravity="center_vertical"
-                    android:text="кг"
+                    android:text="@string/water_bs_meas_kg"
                     android:textColor="#25265e"
                     android:layout_marginStart="8dp"/>
 
@@ -100,7 +100,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:textColor="#25265e"
                 android:layout_marginTop="2dp"
-                android:text="УКАЖИТЕ ВАШ ВЕС"/>
+                android:text="@string/water_bs_meas_enter_weight"/>
 
 
             <LinearLayout
@@ -208,7 +208,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ВЫБЕРИТЕ ВАШ ПОЛ"
+                android:text="@string/water_bs_meas_choice_gender"
                 android:textSize="10sp"
                 android:fontFamily="@font/roboto_medium"
                 android:textColor="#25265e"
@@ -219,7 +219,7 @@
                 android:id="@+id/btnContinue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="сохранить и продолжить"
+                android:text="@string/water_bs_meas_save"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/shape_save_btn_begin_meas"
@@ -233,7 +233,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Изменить значения можно будет позднее во вкладке Профиль*"
+                android:text="@string/water_bs_meas_alert"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:gravity="center_horizontal"

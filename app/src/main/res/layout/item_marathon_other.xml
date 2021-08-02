@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -32,7 +33,7 @@
                     android:id="@+id/tvInterval"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="21.02.21 - 21.03.21"
+                    tools:text="21.02.21 - 21.03.21"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="#384c68"
                     android:textSize="18sp"/>
@@ -49,7 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:text="90 л"
+                        tools:text="90 л"
                         android:gravity="center_vertical"
                         android:drawablePadding="6dp"
                         android:drawableStart="@drawable/ic_drop_marathon_small"
@@ -60,7 +61,7 @@
                         android:id="@+id/tvDuration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="90 дней"
+                        tools:text="90 дней"
                         android:gravity="center_vertical"
                         android:drawablePadding="6dp"
                         android:drawableStart="@drawable/ic_duration_marathon_small"

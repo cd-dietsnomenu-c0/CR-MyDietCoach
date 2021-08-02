@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Дни недели"
+                android:text="@string/days_title"
                 android:textColor="#333333"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="24dp"
@@ -58,7 +58,7 @@
                         android:id="@+id/cbMonday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Понедельник"
+                        android:text="@string/monday"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"/>
 
@@ -68,7 +68,7 @@
                         android:id="@+id/cbWednesday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Среда"
+                        android:text="@string/wednesday"
                         android:textColor="@color/black"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/roboto"/>
@@ -80,7 +80,7 @@
                         android:id="@+id/cbFriday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Пятница"
+                        android:text="@string/friday"
                         android:textColor="@color/black"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/roboto"/>
@@ -90,7 +90,7 @@
                         android:id="@+id/cbSunday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Воскресенье"
+                        android:text="@string/sunday"
                         android:textColor="@color/black"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/roboto"/>
@@ -109,7 +109,7 @@
                         android:id="@+id/cbTuesday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Вторник"
+                        android:text="@string/tuesday"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"/>
 
@@ -118,7 +118,7 @@
                         android:id="@+id/cbThursday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Четверг"
+                        android:text="@string/thursday"
                         android:textColor="@color/black"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/roboto"/>
@@ -130,7 +130,7 @@
                         android:id="@+id/cbSaturday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Суббота"
+                        android:text="@string/saturday"
                         android:textColor="@color/black"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/roboto"/>
@@ -161,7 +161,7 @@
                     android:paddingEnd="36dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/shape_cancel_frequent_notif"
-                    android:text="отмена"
+                    android:text="@string/days_cancel"
                     android:paddingHorizontal="22dp"
                     android:textColor="@color/black"
                     android:layout_marginEnd="24dp"
@@ -179,7 +179,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/shape_save_days"
-                    android:text="сохранить"
+                    android:text="@string/days_save"
                     android:paddingHorizontal="22dp"
                     android:textColor="@color/white"
                     android:textSize="12sp" />

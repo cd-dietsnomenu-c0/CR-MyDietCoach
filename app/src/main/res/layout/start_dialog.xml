@@ -33,7 +33,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Пробуждение"
+                    android:text="@string/wakeup_title"
                     android:layout_gravity="center_vertical"
                     android:textColor="#333333"
                     android:textSize="22sp"
@@ -102,7 +102,7 @@
                     android:paddingEnd="36dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/shape_cancel_frequent_notif"
-                    android:text="отмена"
+                    android:text="@string/wakeup_cancel"
                     android:paddingHorizontal="22dp"
                     android:textColor="@color/black"
                     android:layout_marginEnd="24dp"
@@ -121,7 +121,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/shape_save_start"
-                    android:text="сохранить"
+                    android:text="@string/wakeup_save"
                     android:paddingHorizontal="22dp"
                     android:textColor="@color/white"
                     android:textSize="12sp" />

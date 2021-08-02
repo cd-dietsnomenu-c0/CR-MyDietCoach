@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.net.Uri;
@@ -47,6 +48,8 @@ public class App extends MultiDexApplication {
                 getApplicationContext(),
                 getString(R.string.release_user_expirior_id)
         );
+
+
     }
 
     @SuppressLint("NewApi")

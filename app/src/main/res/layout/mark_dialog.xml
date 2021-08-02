@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Факторы"
+                android:text="@string/meas_dialog_title"
                 android:textColor="#333333"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="24dp"
@@ -46,7 +46,7 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/roboto"
                 android:textSize="12sp"
-                android:text="На текущем экране указана ваша норма воды без учета факторов жары и тренировок. Если на улице стоит жаркая погода нужно добавлять к норме 15%, если вы занимаетесь в спортзале или подвержены физическим нагрузка нужно добавлять к норме 10%. Эти факторы мы можете изменить на экране трекера воды"
+                android:text="@string/meas_dialog_text"
                 android:gravity="center_horizontal"
                 android:textColor="#807F7F" />
 
@@ -59,7 +59,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/shape_understand_factor_info"
-                android:text="понятно"
+                android:text="@string/meas_dialog_understand"
                 android:layout_marginTop="30dp"
                 android:paddingHorizontal="22dp"
                 android:textColor="@color/white"

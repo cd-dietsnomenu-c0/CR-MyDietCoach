@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <LinearLayout
@@ -49,7 +50,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Уведомления"
+                android:text="@string/notifications_title"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -76,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Основное" />
+                    android:text="@string/notif_main" />
 
                 <View
                     android:id="@+id/divider18"
@@ -105,7 +106,7 @@
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center_vertical"
-                        android:text="Напоминать о приемах"
+                        android:text="@string/notif_remind"
                         android:textColor="@color/black" />
 
                     <Switch
@@ -141,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Настройки уведомлений" />
+                    android:text="@string/notif_settings" />
 
                 <View
                     android:id="@+id/divider1"
@@ -171,7 +172,7 @@
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center_vertical"
-                        android:text="Пробуждение"
+                        android:text="@string/notif_wakeup"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -204,7 +205,7 @@
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center_vertical"
-                        android:text="Отход ко сну"
+                        android:text="@string/notif_sleep"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -238,7 +239,7 @@
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center_vertical"
-                        android:text="Частота уведомлений"
+                        android:text="@string/notif_freq"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -247,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Каждый час"
+                        android:text="@string/freq_60"
                         android:textColor="#7563d5" />
 
 
@@ -272,7 +273,7 @@
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center_vertical"
-                        android:text="Дни недели"
+                        android:text="@string/notif_days"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -281,7 +282,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Пн, Вт, Ср, Чт, Пт, Сб"
+                        tools:text="Пн, Вт, Ср, Чт, Пт, Сб"
                         android:textColor="#7563d5" />
 
 
@@ -311,7 +312,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Стиль уведомлений" />
+                    android:text="@string/notif_style" />
 
                 <View
                     android:id="@+id/divider1"
@@ -340,7 +341,7 @@
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center_vertical"
-                        android:text="Напоминать и после выпитой дневной нормы"
+                        android:text="@string/notif_after_norm"
                         android:textColor="@color/black" />
 
                     <Switch
@@ -371,7 +372,7 @@
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center_vertical"
-                        android:text="Напоминать, даже если недавно пили воду"
+                        android:text="@string/notif_recently"
                         android:textColor="@color/black" />
 
                     <Switch
@@ -389,7 +390,7 @@
             android:id="@+id/tvMark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="*напоминания работают только при наличии интернета"
+            android:text="@string/notif_alert"
             android:layout_gravity="center_horizontal"
             android:textSize="10sp"
             android:padding="8dp"

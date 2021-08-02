@@ -379,12 +379,12 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     private fun changeGlobalCapacity(it: Int) {
         if (tvGlobalWater.text == "") {
-            tvGlobalWater.text = "$it л"
+            tvGlobalWater.text = "$it ${getString(R.string.water_l)}"
         } else {
             var oldCapacity = tvGlobalWater.text.toString().split(" ")[0].toInt()
             var animator = ValueAnimator.ofInt(oldCapacity, it)
             animator.addUpdateListener {
-                tvGlobalWater.text = "${it.animatedValue.toString().toInt()} л"
+                tvGlobalWater.text = "${it.animatedValue.toString().toInt()} ${getString(R.string.water_l)}"
             }
             animator.start()
         }

@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Игнорировать норму"
+                android:text="@string/ignore_norm"
                 android:textColor="#333333"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="24dp"
@@ -45,7 +45,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/roboto"
-                android:text="Если переключатель активен, то напоминания будут приходить и после выполненной дневной нормы воды"
+                android:text="@string/ignore_norm_dialog"
                 android:gravity="center_horizontal"
                 android:textColor="#807F7F" />
 
@@ -58,7 +58,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/shape_understand_after_norm"
-                android:text="понятно"
+                android:text="@string/ignore_norm_btn"
                 android:layout_marginTop="30dp"
                 android:paddingHorizontal="22dp"
                 android:textColor="@color/white"

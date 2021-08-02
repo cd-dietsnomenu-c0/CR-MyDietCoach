@@ -30,7 +30,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Водный баланс"
+                    android:text="@string/water_title"
                     android:textColor="@color/tracker_text_medium"
                     android:textSize="20sp" />
 
@@ -263,7 +263,7 @@
                                         android:layout_marginStart="10dp"
                                         android:layout_marginEnd="8dp"
                                         android:layout_marginBottom="4dp"
-                                        android:text="Спорт"
+                                        android:text="@string/water_sport"
                                         android:fontFamily="@font/roboto_medium"
                                         android:textSize="14sp"
                                         android:layout_marginTop="4dp"/>
@@ -310,7 +310,7 @@
                                         android:layout_marginStart="8dp"
                                         android:layout_marginEnd="8dp"
                                         android:layout_marginBottom="4dp"
-                                        android:text="Жара"
+                                        android:text="@string/water_hot"
                                         android:fontFamily="@font/roboto_medium"
                                         android:textSize="14sp"
                                         android:layout_marginTop="4dp"/>

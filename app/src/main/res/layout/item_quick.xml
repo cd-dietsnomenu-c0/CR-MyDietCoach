@@ -100,7 +100,7 @@
                 android:layout_marginBottom="4dp"
                 android:background="@drawable/shape_quick_add"
                 android:fontFamily="@font/roboto_bold"
-                android:text="добавить"
+                android:text="@string/water_quick_add"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
 

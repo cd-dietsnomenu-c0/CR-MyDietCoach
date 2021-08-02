@@ -35,7 +35,7 @@
             android:textColor="#1fc571"
             android:gravity="center"
             android:fontFamily="@font/roboto_bold"
-            android:text="Трекер воды открыт"
+            android:text="@string/water_open_tracker"
             tools:layout_editor_absoluteX="287dp"
             tools:layout_editor_absoluteY="178dp" />
 
