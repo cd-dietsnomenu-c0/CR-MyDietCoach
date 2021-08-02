@@ -447,7 +447,6 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             lavDone.translationY = Y_TRANSLITION_ANIM
             tvDone.alpha = 1f
             cvWaterShowcase.translationY = Y_TRANSLITION_SHOWCASE_HIDE
-            vm.reCalculateMarathonDays()
         }
     }
 
@@ -498,6 +497,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 lavDone.alpha = it.animatedValue.toString().toFloat()
                 tvDone.alpha = it.animatedValue.toString().toFloat()
                 if (it.animatedValue.toString().toFloat() == 0f) {
+                    vm.reCalculateMarathonDays()
                     lavDone.frame = 0
                     lavDone.alpha = 1f
                     lavDone.translationY = 0f
@@ -546,6 +546,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 lavDone.translationY = it.animatedValue.toString().toFloat()
                 if (it.animatedValue.toString().toFloat() == Y_TRANSLITION_ANIM) {
                     alphaShow.start()
+                    vm.reCalculateMarathonDays()
                 }
             }
 
