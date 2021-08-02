@@ -534,6 +534,10 @@
     <string name="water_l">л</string>
     <string name="water_ml">ml</string>
     <string name="water_quick_add">add</string>
+    <string name="notif_attention">WARNING</string>
+    <string name="notif_attention_eat">Food must be noted</string>
+    <string name="notif_water_title">ATTENTION</string>
+    <string name="notif_water_text">Time to drink water</string>
 
     <string-array name="frequent_types">
         <item>Every 30 minutes</item>

@@ -666,6 +666,10 @@
     <string name="water_l">л</string>
     <string name="water_ml">мл</string>
     <string name="water_quick_add">добавить</string>
+    <string name="notif_attention">ВНИМАНИЕ</string>
+    <string name="notif_attention_eat">Необходимо отметить еду</string>
+    <string name="notif_water_title">НАПОМИНАНИЕ</string>
+    <string name="notif_water_text">Время выпить воды</string>
 
     <string-array name="frequent_types">
         <item>Каждые 30 минут</item>

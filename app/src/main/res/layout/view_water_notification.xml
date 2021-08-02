@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvTitle"
-        android:text="НАПОМИНАНИЕ"
+        android:text="@string/notif_water_title"
         android:fontFamily="@font/roboto_medium"
         android:textColor="#a7cbfb"
         android:layout_marginLeft="64dp"
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Время выпить воды"
+        android:text="@string/notif_water_text"
         android:fontFamily="@font/roboto_bold"
         android:textStyle="bold"
         android:textColor="#5793f9"
