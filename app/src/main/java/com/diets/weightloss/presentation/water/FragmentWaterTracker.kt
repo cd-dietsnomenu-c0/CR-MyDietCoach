@@ -519,7 +519,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             lavDone.translationY = 0f
         }
 
-        if (animator.isRunning){
+        if (this::animator.isInitialized && animator.isRunning){
             animator.cancel()
         }
     }
