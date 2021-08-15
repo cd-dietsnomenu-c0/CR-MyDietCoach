@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.diets.weightloss.R
 import com.diets.weightloss.common.db.entities.water.DrinksCapacities
 import com.diets.weightloss.presentation.water.statistics.pager.pages.frequency.controller.FrequencyAdapter
+import com.diets.weightloss.utils.ad.AdWorker
+import com.diets.weightloss.utils.ad.NativeSpeaker
+import com.google.android.gms.ads.formats.UnifiedNativeAd
 import kotlinx.android.synthetic.main.segmentation_fragment.*
 import java.text.DecimalFormat
 import kotlin.collections.ArrayList
@@ -51,8 +54,14 @@ class SegmentationFragment : Fragment(R.layout.segmentation_fragment) {
 
     private fun fillList(drinks: List<DrinksCapacities>) {
         rvFrequency.layoutManager = LinearLayoutManager(requireContext())
-        adapter = FrequencyAdapter(drinks, getSpannableString(drinks), getShowedDrinks(drinks), getOtherPercent(drinks))
+        adapter = FrequencyAdapter(drinks, getSpannableString(drinks), getShowedDrinks(drinks), getOtherPercent(drinks), arrayListOf())
         rvFrequency.adapter = adapter
+
+        AdWorker.observeOnNativeList(object : NativeSpeaker {
+            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                adapter.insertAds(nativeList)
+            }
+        })
     }
 
     private fun getOtherPercent(drinks: List<DrinksCapacities>): Float {
