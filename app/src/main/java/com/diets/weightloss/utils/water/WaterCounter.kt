@@ -89,9 +89,8 @@ object WaterCounter {
         return (rawWaterRate - trainingDiff - hotDiff).toString()
     }
 
-    fun mergeIntakesIntoDays(listIntakes: ArrayList<WaterIntake>): ArrayList<WaterIntake> {
+    fun mergeIntakesIntoDays(listIntakes: ArrayList<WaterIntake>, isNeedFillEmptyDays : Boolean): ArrayList<WaterIntake> {
         var daysList = arrayListOf<WaterIntake>()
-
 
         //set in all intakes clear time in millis
         for (i in listIntakes.indices) {
@@ -114,11 +113,21 @@ object WaterCounter {
             }
         }
 
+        if (isNeedFillEmptyDays && daysList.isNotEmpty()){
+            var currentTime = CustomDate.getClearTime(Calendar.getInstance().timeInMillis)
+            var countEmptyDays = (currentTime - daysList.last().id) / ONE_DAY_MILLIS
+
+            for (i in 0..countEmptyDays){
+                var time = daysList.last().id + ONE_DAY_MILLIS
+                daysList.add(WaterIntake(time, 0, 0, 0))
+            }
+        }
+
         return daysList
     }
 
     fun getMarathonDays(listIntakes: ArrayList<WaterIntake>, listRates: ArrayList<WaterRate>): Int {
-        var daysIntakes = mergeIntakesIntoDays(listIntakes)
+        var daysIntakes = mergeIntakesIntoDays(listIntakes, true)
 
         daysIntakes.reverse()
         listRates.reverse()
@@ -159,7 +168,7 @@ object WaterCounter {
     }
 
     private fun getMarathons(listIntakes: ArrayList<WaterIntake>, listRates: ArrayList<WaterRate>): ArrayList<WaterMarathon> {
-        var daysIntakes = mergeIntakesIntoDays(listIntakes)
+        var daysIntakes = mergeIntakesIntoDays(listIntakes, false)
 
         listRates.reverse()
         var ratesForEveryDay = getRatesForEveryDay(daysIntakes, listRates)
