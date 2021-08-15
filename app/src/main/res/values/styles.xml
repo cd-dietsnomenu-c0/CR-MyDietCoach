@@ -195,5 +195,9 @@
         <item name="android:textColor">@color/inactive_bnv</item>
     </style>
 
+    <style name="WaterRV">
+        <item name="colorPrimary">#2e9ef0</item>
+    </style>
+
 
 </resources>
