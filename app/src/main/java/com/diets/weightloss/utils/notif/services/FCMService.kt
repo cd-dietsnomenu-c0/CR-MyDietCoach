@@ -52,6 +52,7 @@ class FCMService : FirebaseMessagingService() {
 
     private fun showEatTrackerNotif() {
         if (isHasFood()) {
+            Ampl.showEatNotif()
             PreferenceProvider.lastTimeWaterNotif = Calendar.getInstance().timeInMillis
             var intent = Intent(this, SplashActivity::class.java)
             intent.putExtra(Config.PUSH_TAG, Config.OPEN_FROM_PUSH)
@@ -99,6 +100,7 @@ class FCMService : FirebaseMessagingService() {
     }
 
     private fun showWaterNotif() {
+        Ampl.showWaterNotif()
         PreferenceProvider.lastTimeWaterNotif = Calendar.getInstance().timeInMillis
         var intent = Intent(this, SplashActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -136,6 +138,7 @@ class FCMService : FirebaseMessagingService() {
 
     private fun showReactNotif(p0: RemoteMessage) {
         if (!PreferenceProvider.isHasPremium) {
+            Ampl.showReactNotif()
             var intent = Intent(this, SplashActivity::class.java)
             intent.putExtra(Config.PUSH_TAG, Config.OPEN_FROM_PUSH)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

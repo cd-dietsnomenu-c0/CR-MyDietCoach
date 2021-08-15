@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 case R.id.bnv_water: {
                     openSection(WATER_TRACKER);
-                    Ampl.Companion.openCalculators();
+                    Ampl.Companion.openWater();
                     return true;
                 }
                 /*case R.id.bnv_ads: {

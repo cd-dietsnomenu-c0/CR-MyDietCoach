@@ -35,6 +35,7 @@ import com.diets.weightloss.presentation.water.toasts.FillMeasToast
 import com.diets.weightloss.presentation.water.toasts.FullToast
 import com.diets.weightloss.utils.FieldsWorker
 import com.diets.weightloss.utils.ad.ActionAd
+import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.utils.notif.services.TopicWorker
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
@@ -513,14 +514,14 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     }
 
     private fun stopAnimIfRun() {
-        if (lavDone.isAnimating || lavDone.alpha != 1f){
+        if (lavDone.isAnimating || lavDone.alpha != 1f) {
             lavDone.cancelAnimation()
             lavDone.frame = 0
             lavDone.alpha = 1f
             lavDone.translationY = 0f
         }
 
-        if (this::animator.isInitialized && animator.isRunning){
+        if (this::animator.isInitialized && animator.isRunning) {
             animator.cancel()
         }
     }
@@ -528,6 +529,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     private fun lockAdding() {
         if (!isLockAdding) {
             // animator --> lavDone --> moveAnim --> alphaShow
+            Ampl.fillWaterDay()
             animator = ValueAnimator.ofFloat(cvWaterShowcase.translationY, Y_TRANSLITION_SHOWCASE_HIDE)
             animator.addUpdateListener {
                 cvWaterShowcase.translationY = it.animatedValue.toString().toFloat()
@@ -647,6 +649,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                     PreferenceProvider.isTurnOnWaterNotifications = true
                     TopicWorker.changeWaterNotifState(PreferenceProvider.isTurnOnWaterNotifications)
                     startWaterTracker()
+                    Ampl.fillWaterMeas()
                 } else {
                     Toast.makeText(activity, getString(R.string.input_error_not_in_limit), Toast.LENGTH_LONG).show()
                 }
@@ -685,6 +688,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                         FullToast.show(activity!!)
                     }
                     ActionAd.action()
+                    Ampl.addWater()
                 }
 
                 override fun onSettings(position: Int) {

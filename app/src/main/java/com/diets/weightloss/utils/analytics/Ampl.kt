@@ -255,5 +255,33 @@ class Ampl {
             Amplitude.getInstance().logEvent(make_purchase, eventProperties)
         }
 
+        fun showWaterNotif() {
+            Amplitude.getInstance().logEvent("show_water_notif")
+        }
+
+        fun showEatNotif() {
+            Amplitude.getInstance().logEvent("show_eat_notif")
+        }
+
+        fun showReactNotif() {
+            Amplitude.getInstance().logEvent("show_react_notif")
+        }
+
+
+        fun openWater() {
+            Amplitude.getInstance().logEvent("open_water")
+        }
+
+        fun fillWaterMeas() {
+            Amplitude.getInstance().logEvent("fill_water_meas")
+        }
+
+        fun addWater() {
+            Amplitude.getInstance().logEvent("add_water")
+        }
+
+        fun fillWaterDay() {
+            Amplitude.getInstance().logEvent("fill_water_day")
+        }
     }
 }
