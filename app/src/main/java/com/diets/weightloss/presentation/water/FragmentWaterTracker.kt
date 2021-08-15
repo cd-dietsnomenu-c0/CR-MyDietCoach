@@ -34,6 +34,7 @@ import com.diets.weightloss.presentation.water.statistics.StatActivity
 import com.diets.weightloss.presentation.water.toasts.FillMeasToast
 import com.diets.weightloss.presentation.water.toasts.FullToast
 import com.diets.weightloss.utils.FieldsWorker
+import com.diets.weightloss.utils.ad.ActionAd
 import com.diets.weightloss.utils.notif.services.TopicWorker
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
@@ -683,6 +684,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                     } else {
                         FullToast.show(activity!!)
                     }
+                    ActionAd.action()
                 }
 
                 override fun onSettings(position: Int) {

@@ -146,6 +146,21 @@ object AdWorker {
         }
     }
 
+
+    fun showInterWithoutCounter() {
+        if (!PreferenceProvider.isHasPremium && needShow()) {
+            if (inter?.isLoaded == true) {
+                FBAnalytic.adShow()
+                inter?.show()
+                Ampl.showAd()
+            } else if (isFailedLoad) {
+                counterFailed = 0
+                isFailedLoad = false
+                reload()
+            }
+        }
+    }
+
     fun getShow() {
         if (!PreferenceProvider.isHasPremium) {
             if (inter?.isLoaded == true && needShow()) {

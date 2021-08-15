@@ -259,4 +259,9 @@ object PreferenceProvider {
     var isNeedPrem: String
         get() = getInstance()?.getString(PREM_VER_TAG, "")!!
         set(value) = editor { it?.putString(PREM_VER_TAG, value) }!!
+
+    private const val ACTION_AD_COUNTER_TAG = "ACTION_AD_COUNTER_TAG"
+    var actionNumber: Int
+        get() = getInstance()?.getInt(ACTION_AD_COUNTER_TAG, 0)!!
+        set(value) = editor { it?.putInt(ACTION_AD_COUNTER_TAG, value) }!!
 }
