@@ -3,22 +3,23 @@ package com.diets.weightloss.presentation.diets
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.diets.weightloss.Config
+import com.diets.weightloss.R
+import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.model.Global
 import com.diets.weightloss.model.interactive.AllDiets
 import com.diets.weightloss.model.interactive.Diet
 import com.diets.weightloss.model.schema.Schema
-import com.diets.weightloss.R
-import com.diets.weightloss.utils.ad.AdWorker
-import com.diets.weightloss.utils.ad.NativeSpeaker
-import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.presentation.diets.controller.TypesAdapter
 import com.diets.weightloss.presentation.diets.dialogs.PropertiesFragment
 import com.diets.weightloss.presentation.diets.list.modern.NewDietsListActivity
 import com.diets.weightloss.presentation.diets.list.old.OldDietsActivity
+import com.diets.weightloss.utils.ad.AdWorker
+import com.diets.weightloss.utils.ad.NativeSpeaker
+import com.google.android.gms.ads.formats.UnifiedNativeAd
 import kotlinx.android.synthetic.main.fr_types.*
 
 class FragmentTypes : Fragment(R.layout.fr_types) {
@@ -39,8 +40,9 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTopMargin()
         global = GlobalHolder.getGlobal()
-        adapter = TypesAdapter(global.schemas, arrayListOf(), object : IClick{
+        adapter = TypesAdapter(global.schemas, arrayListOf(), object : IClick {
             override fun clickOpen(position: Int) {
                 openList(position)
             }
@@ -58,6 +60,18 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
         })
 
 
+    }
+
+    private fun setTopMargin() {
+        var height = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            height = resources.getDimensionPixelSize(resourceId)
+        }
+
+        var params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
+        params.setMargins(0, height, 0, 0)
+        rvTypes.layoutParams = params
     }
 
     private fun openList(position: Int) {

@@ -9,8 +9,10 @@ import android.media.SoundPool
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -39,6 +41,7 @@ import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.utils.notif.services.TopicWorker
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
+import kotlinx.android.synthetic.main.fr_types.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -94,7 +97,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setTopMargin()
         bsWaterSettings = BottomSheetBehavior.from(llBSWatersettings)
 
         rvQuickDrink.layoutManager = GridLayoutManager(activity, 2)
@@ -138,6 +141,18 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
         //FillWaterIntakes.fillDB()
 
+    }
+
+    private fun setTopMargin() {
+        var height = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            height = resources.getDimensionPixelSize(resourceId)
+        }
+
+        var params = CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT)
+        params.setMargins(0, height, 0, 0)
+        svWater.layoutParams = params
     }
 
     fun isCanClose(): Boolean {

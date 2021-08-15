@@ -3,6 +3,8 @@ package com.diets.weightloss.presentation.tracker
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -29,6 +31,7 @@ import com.diets.weightloss.presentation.tracker.controller.menu.IMenu
 import com.diets.weightloss.presentation.tracker.controller.menu.MenuAdapter
 import com.diets.weightloss.utils.ad.ActionAd
 import kotlinx.android.synthetic.main.fragment_tracker.*
+import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import java.util.*
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
@@ -56,6 +59,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTopMargin()
         Ampl.openTracker()
         cvMainCard.setBackgroundResource(R.drawable.shape_card_tracker)
         rvEats.layoutManager = GridLayoutManager(activity, 2)
@@ -74,6 +78,19 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         tvTitleLives.setOnClickListener {
             showCheatAlert()
         }
+    }
+
+
+    private fun setTopMargin() {
+        var height = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            height = resources.getDimensionPixelSize(resourceId)
+        }
+
+        var params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
+        params.setMargins(0, height, 0, 0)
+        nsvTracker.layoutParams = params
     }
 
     private fun showCheatAlert() {

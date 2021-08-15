@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ public class FragmentCalculators extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         fillDataForList();
         rvListOfCalculating = view.findViewById(R.id.rvListOfCalculating);
+        setMargins();
         rvListOfCalculating.setLayoutManager(new LinearLayoutManager(view.getContext()));
         adapter = new CalculatingAdapter(listOfTitles, listOfDescriptions, gradients, new ArrayList<>(),
                 position -> startCalculator(position));
@@ -56,6 +58,18 @@ public class FragmentCalculators extends Fragment {
                 adapter.insertAds(nativeList);
             }
         });
+    }
+
+    private void setMargins() {
+        int height = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            height = getResources().getDimensionPixelSize(resourceId);
+        }
+
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
+        params.setMargins(0, height, 0, 0);
+        rvListOfCalculating.setLayoutParams(params);
     }
 
     public void startCalculator(Integer position) {

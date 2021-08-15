@@ -7,10 +7,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
+        android:id="@+id/svWater"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/WaterRV"
-        android:layout_marginTop="25dp">
+        android:theme="@style/WaterRV">
 
 
         <LinearLayout
