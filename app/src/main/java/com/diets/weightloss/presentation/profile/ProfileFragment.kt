@@ -22,6 +22,7 @@ import com.diets.weightloss.App
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.diets.weightloss.Config
 import com.diets.weightloss.R
+import com.diets.weightloss.presentation.premium.PremiumHostActivity
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.presentation.profile.controllers.BacksAdapter
 import com.diets.weightloss.presentation.profile.controllers.IBacks
@@ -100,8 +101,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         }
 
         btnTrophy.setOnClickListener {
-            Ampl.openTrophy()
-            DevelopmentDialog().show(activity!!.supportFragmentManager, "DevelopmentDialog")
+            startActivity(PremiumHostActivity.getIntentProfile(requireActivity()))
         }
 
         tvName.setOnClickListener {

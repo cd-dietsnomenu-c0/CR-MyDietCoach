@@ -38,8 +38,6 @@ class PremiumFragment : Fragment(R.layout.premium_fragment), ThankDialog.Callbac
         restart()
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
