@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -12,9 +15,14 @@ import com.diets.weightloss.presentation.profile.measurments.dialogs.MarkDialog
 import com.diets.weightloss.presentation.profile.measurments.toasts.RefreshToast
 import com.diets.weightloss.utils.FieldsWorker
 import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.ad.AdWorker
+import com.diets.weightloss.utils.ad.NativeSpeaker
 import com.diets.weightloss.utils.water.WaterCounter
 import com.diets.weightloss.utils.water.WaterRateProvider
+import com.google.android.gms.ads.formats.UnifiedNativeAd
+import kotlinx.android.synthetic.main.load_ad_include.*
 import kotlinx.android.synthetic.main.meas_activitys.*
+import kotlinx.android.synthetic.main.meas_activitys.flAdContainer
 
 class MeasActivity : AppCompatActivity(R.layout.meas_activitys) {
 
@@ -74,6 +82,35 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activitys) {
 
         prepareAnimViews()
 
+        AdWorker.observeOnNativeList(object : NativeSpeaker {
+            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                if (nativeList.size > 0) {
+                    loadNative(nativeList[0])
+                }
+            }
+        })
+    }
+
+
+    private fun loadNative(nativeAd: UnifiedNativeAd) {
+        ad_view.mediaView = ad_media
+        ad_view.headlineView = ad_headline
+        ad_view.bodyView = ad_body
+        ad_view.callToActionView = ad_call_to_action
+        ad_view.iconView = ad_icon
+        (ad_view.headlineView as TextView).text = nativeAd.headline
+        (ad_view.bodyView as TextView).text = nativeAd.body
+        (ad_view.callToActionView as Button).text = nativeAd.callToAction
+        val icon = nativeAd.icon
+        if (icon == null) {
+            ad_view.iconView.visibility = View.INVISIBLE
+        } else {
+            (ad_view.iconView as ImageView).setImageDrawable(icon.drawable)
+            ad_view.iconView.visibility = View.VISIBLE
+        }
+        ad_view.setNativeAd(nativeAd)
+
+        flAdContainer.visibility = View.VISIBLE
     }
 
     private fun bindDefaultRateViews() {
@@ -92,7 +129,6 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activitys) {
                 turnOnWaterEdit()
             }
         }
-
 
     }
 

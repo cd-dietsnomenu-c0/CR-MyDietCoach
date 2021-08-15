@@ -122,6 +122,8 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView1"
             android:layout_width="match_parent"
@@ -129,6 +131,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp">
 
@@ -292,12 +295,23 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"
+            android:id="@+id/flAdContainer">
+
+            <include layout="@layout/load_ad_water" />
+
+        </FrameLayout>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp">
@@ -397,10 +411,6 @@
             android:drawablePadding="4dp"
             android:layout_marginBottom="64dp"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:visibility="invisible" />
 
 
     </LinearLayout>

@@ -33,7 +33,6 @@ class DrinkVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val iDrinkVH
 
 
     private fun getImageDrink(imageId: Int): Int {
-        //TODO вынести в фрагмент
         return itemView
                 .resources
                 .obtainTypedArray(R.array.water_drinks_imgs_color)

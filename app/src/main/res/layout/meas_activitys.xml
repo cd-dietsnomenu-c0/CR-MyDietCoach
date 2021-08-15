@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" >
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -52,6 +52,16 @@
                 android:text="@string/meas_params"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/btnSave"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_check_save"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:padding="10dp"
+                android:layout_gravity="center_vertical|end"/>
 
         </FrameLayout>
 
@@ -407,13 +417,25 @@
             android:background="?selectableItemBackground"
             android:drawableEnd="@drawable/ic_information"
             android:drawablePadding="4dp"
-            android:layout_marginBottom="64dp"/>
+            android:layout_marginBottom="16dp"/>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/flAdContainer">
+            <include layout="@layout/load_ad_water" />
+        </FrameLayout>
+
+
     </LinearLayout>
 
 
 </ScrollView>
 
-    <Button
+
+    <!--<Button
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -425,5 +447,5 @@
         android:background="@drawable/shape_save_meas"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/meas_save"
-        android:textColor="@color/white" />
+        android:textColor="@color/white" />-->
 </FrameLayout>

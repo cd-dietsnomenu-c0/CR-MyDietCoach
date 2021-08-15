@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.diets.weightloss.R
 import com.diets.weightloss.model.water.WaterMarathon
 import com.diets.weightloss.presentation.water.statistics.pager.pages.marathons.controller.MarathonAdapter
+import com.diets.weightloss.utils.ad.AdWorker
+import com.diets.weightloss.utils.ad.NativeSpeaker
+import com.google.android.gms.ads.formats.UnifiedNativeAd
 import kotlinx.android.synthetic.main.marathon_fragment.*
 
 class MarathonFragment : Fragment(R.layout.marathon_fragment) {
@@ -28,8 +31,6 @@ class MarathonFragment : Fragment(R.layout.marathon_fragment) {
                 setEmptyState()
             }
         })
-
-
     }
 
     private fun setEmptyState() {
@@ -38,8 +39,14 @@ class MarathonFragment : Fragment(R.layout.marathon_fragment) {
     }
 
     private fun setList(list: List<WaterMarathon>) {
-        adapter = MarathonAdapter(list)
+        adapter = MarathonAdapter(list, arrayListOf())
         rvMarathon.layoutManager = LinearLayoutManager(requireContext())
         rvMarathon.adapter = adapter
+
+        AdWorker.observeOnNativeList(object : NativeSpeaker {
+            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                adapter.insertAds(nativeList)
+            }
+        })
     }
 }

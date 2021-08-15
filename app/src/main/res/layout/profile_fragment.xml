@@ -136,7 +136,7 @@
                         android:drawablePadding="12dp"
                         android:paddingLeft="30dp"
                         android:paddingRight="18dp"
-                        android:text="Премиум"
+                        android:text="@string/bnv_prem"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/btnFavorites"
