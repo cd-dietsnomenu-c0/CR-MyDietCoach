@@ -76,6 +76,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
     var isNeedAnimateDailyRate = false
     var isNeedAnimateCapacity = false
     var isLockAdding = false
+    var isNeedAnimateChangeQuick = false
 
     val Y_TRANSLITION_ANIM = -66f
     val Y_TRANSLITION_SHOWCASE_HIDE = 385f
@@ -713,7 +714,8 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 }
             }, it)
             rvQuickDrink.adapter = quickAdapter
-        } else {
+        } else if (isNeedAnimateChangeQuick){
+            isNeedAnimateChangeQuick = false
             quickAdapter!!.setNewData(it, lastChangeQuickItem)
         }
     }
@@ -736,6 +738,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
         btnSaveQuick.setOnClickListener(null)
         btnSaveQuick.setOnClickListener {
+            isNeedAnimateChangeQuick = true
             lastChangeQuickItem = position
             bsWaterSettings!!.state = BottomSheetBehavior.STATE_COLLAPSED
             vm.saveNewQuickItem(capacityAdapter!!.getSelectedNumber(), drinkTypeAdapter!!.getSelectedNumber(), position)
