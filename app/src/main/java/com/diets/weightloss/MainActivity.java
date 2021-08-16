@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case WATER_TRACKER:
                     if (((FragmentWaterTracker) sections.get(WATER_TRACKER)).isCanClose()) {
-                        navigationView.getMenu().removeItem(R.id.bnv_tracker);
                         openInitialFragment();
                     }
                     break;
