@@ -117,7 +117,7 @@ object WaterCounter {
             var currentTime = CustomDate.getClearTime(Calendar.getInstance().timeInMillis)
             var countEmptyDays = (currentTime - daysList.last().id) / ONE_DAY_MILLIS
 
-            for (i in 0..countEmptyDays){
+            for (i in 0 until countEmptyDays){
                 var time = daysList.last().id + ONE_DAY_MILLIS
                 daysList.add(WaterIntake(time, 0, 0, 0))
             }
