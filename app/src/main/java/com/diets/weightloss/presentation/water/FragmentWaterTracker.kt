@@ -7,8 +7,10 @@ import android.content.Intent
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -660,6 +662,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                 var weight = edtWeight.text.toString().toInt()
                 if (weight in 21..199) {
                     hideKeyboard()
+                    edtWeight.isEnabled = false
                     PreferenceProvider.setWeight(weight)
                     PreferenceProvider.setSex(sexType)
                     PreferenceProvider.isTurnOnWaterNotifications = true
