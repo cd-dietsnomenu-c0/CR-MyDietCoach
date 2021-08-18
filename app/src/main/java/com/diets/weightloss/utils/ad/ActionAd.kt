@@ -4,7 +4,7 @@ import com.diets.weightloss.utils.PreferenceProvider
 
 object ActionAd {
 
-    private const val ACTION_TRIGGER = 4
+    private const val ACTION_TRIGGER = 5
 
     fun action(){
         var actionNumber = PreferenceProvider.actionNumber
