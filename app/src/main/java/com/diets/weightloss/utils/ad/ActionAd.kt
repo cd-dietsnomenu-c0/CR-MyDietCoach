@@ -1,5 +1,6 @@
 package com.diets.weightloss.utils.ad
 
+import com.diets.weightloss.Config
 import com.diets.weightloss.utils.PreferenceProvider
 
 object ActionAd {
@@ -11,7 +12,9 @@ object ActionAd {
         actionNumber ++
 
         if (actionNumber >= ACTION_TRIGGER){
-            AdWorker.showInterWithoutCounter()
+            if (!Config.FOR_TEST) {
+                AdWorker.showInterWithoutCounter()
+            }
             actionNumber = 0
         }
 

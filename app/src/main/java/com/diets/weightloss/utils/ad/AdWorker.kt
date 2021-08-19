@@ -128,7 +128,7 @@ object AdWorker {
     }
 
     fun showInter() {
-        if (!PreferenceProvider.isHasPremium && needShow()) {
+        if (!PreferenceProvider.isHasPremium && needShow() && !Config.FOR_TEST) {
             if (Counter.getInstance().getCounter() % MAX_REQUEST_AD == 0) {
                 if (inter?.isLoaded == true) {
                     FBAnalytic.adShow()
@@ -173,7 +173,7 @@ object AdWorker {
     }
 
     private fun needShow(): Boolean {
-        if (Config.isForTest) {
+        if (Config.FOR_TEST) {
             return false
         } else {
             return Random.nextInt(100) <= PreferenceProvider.frequencyPercent

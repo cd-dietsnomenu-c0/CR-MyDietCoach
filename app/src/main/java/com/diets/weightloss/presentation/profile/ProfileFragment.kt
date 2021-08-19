@@ -162,7 +162,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
 
 
         ivCircle.setOnClickListener {
-            if (!Config.isForTest) {
+            if (!Config.FOR_TEST) {
                 Ampl.clickAvatar()
                 if (isCameraForbidden()) {
                     requestPermissions(arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE), CAMERA_PERMISSION_REQUEST)

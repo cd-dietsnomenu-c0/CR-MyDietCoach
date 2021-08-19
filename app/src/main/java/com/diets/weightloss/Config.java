@@ -24,7 +24,7 @@ public class Config {
     public static final String TYPE_NAME = "TYPE_NAME";
     public static final String HEADER_TAG = "HEADER_TAG";
 
-    public static final boolean FOR_TEST = false;
+    public static final boolean FOR_TEST = true;
 
     public static final String NEWS_RU = "news";
     public static final String NEWS_EN = "news_en";
@@ -36,5 +36,4 @@ public class Config {
     public static final String WATER_TYPE = "water_notif";
     public static final String EAT_TYPE = "eat_notif";
 
-    public static final Boolean isForTest = false;
 }
