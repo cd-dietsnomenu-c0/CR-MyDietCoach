@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.common.db.entities.water.DrinksCapacities
 import com.diets.weightloss.presentation.water.statistics.pager.pages.marathons.controller.NativeWaterVH
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import kotlin.math.PI
 
 class FrequencyAdapter(val drinks: List<DrinksCapacities>, val centerPieText: SpannableString, val showedDrinks: List<DrinksCapacities>, val otherValue: Float, var nativeList: ArrayList<UnifiedNativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -34,7 +35,7 @@ class FrequencyAdapter(val drinks: List<DrinksCapacities>, val centerPieText: Sp
         when (getItemViewType(position)) {
             PIE_TYPE -> (holder as PieChartVH).onBind(showedDrinks, centerPieText, otherValue)
             DIVIDER_TYPE -> (holder as DividerVH).onBind()
-            FREQUNECY_DETAIL_TYPE -> (holder as FrequencyDetailsVH).onBind(drinks[getPosition(position)])
+            FREQUNECY_DETAIL_TYPE -> (holder as FrequencyDetailsVH).onBind(drinks[position - 2])
             AD_TYPE -> (holder as NativeWaterVH).bind(nativeList[getAdPosition()])
         }
     }
@@ -44,13 +45,6 @@ class FrequencyAdapter(val drinks: List<DrinksCapacities>, val centerPieText: Sp
         notifyDataSetChanged()
     }
 
-    private fun getPosition(position: Int): Int {
-        return if (nativeList.isEmpty()) {
-            position - 2
-        } else {
-            position - 3
-        }
-    }
 
     private fun getAdPosition(): Int {
         var position = 0
@@ -73,33 +67,11 @@ class FrequencyAdapter(val drinks: List<DrinksCapacities>, val centerPieText: Sp
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (nativeList.isEmpty()) {
-            return when (position) {
-                0 -> {
-                    PIE_TYPE
-                }
-                1 -> {
-                    DIVIDER_TYPE
-                }
-                else -> {
-                    FREQUNECY_DETAIL_TYPE
-                }
-            }
-        } else {
-            return when (position) {
-                0 -> {
-                    PIE_TYPE
-                }
-                1 -> {
-                    AD_TYPE
-                }
-                2 -> {
-                    DIVIDER_TYPE
-                }
-                else -> {
-                    FREQUNECY_DETAIL_TYPE
-                }
-            }
+        return when(position){
+            0 -> PIE_TYPE
+            1 -> DIVIDER_TYPE
+            drinks.size + 2 -> AD_TYPE
+            else -> FREQUNECY_DETAIL_TYPE
         }
     }
 }
