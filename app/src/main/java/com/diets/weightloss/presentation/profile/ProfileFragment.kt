@@ -16,17 +16,16 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import com.airbnb.lottie.RenderMode
-import com.airbnb.lottie.TextDelegate
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.diets.weightloss.App
 import com.diets.weightloss.Config
-import com.diets.weightloss.MainActivity
 import com.diets.weightloss.R
 import com.diets.weightloss.presentation.premium.PremiumHostActivity
-import com.diets.weightloss.presentation.profile.controllers.BacksAdapter
-import com.diets.weightloss.presentation.profile.controllers.IBacks
+import com.diets.weightloss.presentation.profile.backgrounds.pager.BacksVPAdapter
+import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.AnimBacksFragment
+import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.controller.AnimBacksAdapter
+import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.statics.StaticBacksFragment
 import com.diets.weightloss.presentation.profile.dialogs.LanguageWarningDialog
 import com.diets.weightloss.presentation.profile.dialogs.NameDialog
 import com.diets.weightloss.presentation.profile.favorites.FavoritesActivity
@@ -38,8 +37,11 @@ import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.utils.water.WaterCounter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.bottom_sheet_backs.*
+import kotlinx.android.synthetic.main.bottom_sheet_backs.tlType
 import kotlinx.android.synthetic.main.profile_fragment.*
+import kotlinx.android.synthetic.main.stat_activity.*
 import java.io.File
 
 
@@ -67,10 +69,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         nameDialog.setTargetFragment(this, 0)
         bsBehavior = BottomSheetBehavior.from(llBottomSheet)
 
-        startActivity(Intent(requireActivity(), MainActivity::class.java))
-
-
-
         //rvBacks.layoutManager = GridLayoutManager(activity, 2)
         /*rvBacks.adapter = BacksAdapter(resources.getStringArray(R.array.backgrounds_profile), object : IBacks {
             override fun choiceBack(position: Int) {
@@ -95,6 +93,30 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         if (PreferenceProvider.isHasPremium){
             lavPremium.visibility = View.VISIBLE
         }
+
+        bindBacksChoicer()
+    }
+
+    private fun bindBacksChoicer() {
+        var listBacksFragments = arrayListOf<Fragment>()
+        listBacksFragments.add(StaticBacksFragment())
+        listBacksFragments.add(AnimBacksFragment())
+
+        vpBackgrounds.adapter = BacksVPAdapter(childFragmentManager, listBacksFragments)
+
+        tlType.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vpBackgrounds))
+
+        vpBackgrounds.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                tlType.getTabAt(position)!!.select()
+            }
+        })
     }
 
     private fun setClickListeners() {

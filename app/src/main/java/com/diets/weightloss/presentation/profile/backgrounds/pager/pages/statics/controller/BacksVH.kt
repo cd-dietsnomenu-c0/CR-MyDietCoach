@@ -1,4 +1,4 @@
-package com.diets.weightloss.presentation.profile.controllers
+package com.diets.weightloss.presentation.profile.backgrounds.pager.pages.statics.controller
 
 import android.view.LayoutInflater
 import android.view.View

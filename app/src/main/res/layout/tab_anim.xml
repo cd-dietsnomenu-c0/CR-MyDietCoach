@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Статичные"
+        android:text="Анимированные"
         android:gravity="center_horizontal"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/selector_tab_back"

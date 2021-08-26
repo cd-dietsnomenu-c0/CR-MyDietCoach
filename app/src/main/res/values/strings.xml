@@ -690,4 +690,13 @@
         <item>Вс</item>
     </string-array>
 
+    <string-array name="back_animations">
+        <item>back_1.json</item>
+        <item>back_1.json</item>
+        <item>back_1.json</item>
+        <item>back_1.json</item>
+        <item>back_1.json</item>
+        <item>back_1.json</item>
+    </string-array>
+
 </resources>
