@@ -22,13 +22,50 @@
             android:layout_marginTop="8dp"
             android:layout_gravity="center_horizontal"/>
 
-        <androidx.recyclerview.widget.RecyclerView
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlType"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:tabIndicatorColor="@color/transparent"
+            app:tabMode="auto"
+            app:tabRippleColor="@color/transparent">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tiStatic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/tab_static" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tiAnim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/tab_graph" />
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+        <!--<androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:id="@+id/rvBacks"/>
+            android:id="@+id/vpBacks"/>-->
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavKek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:lottie_rawRes="@raw/kek"
+            app:lottie_renderMode="software"
+            app:lottie_loop="true"/>
+
+
+
+
 
     </androidx.cardview.widget.CardView>
 

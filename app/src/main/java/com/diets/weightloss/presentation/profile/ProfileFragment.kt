@@ -3,13 +3,13 @@ package com.diets.weightloss.presentation.profile
 import android.app.Activity.RESULT_OK
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.Intent.*
+import android.content.Intent.ACTION_SENDTO
+import android.content.Intent.createChooser
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -17,17 +17,16 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.airbnb.lottie.RenderMode
+import com.airbnb.lottie.TextDelegate
 import com.bumptech.glide.Glide
 import com.diets.weightloss.App
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.diets.weightloss.Config
+import com.diets.weightloss.MainActivity
 import com.diets.weightloss.R
 import com.diets.weightloss.presentation.premium.PremiumHostActivity
-import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.presentation.profile.controllers.BacksAdapter
 import com.diets.weightloss.presentation.profile.controllers.IBacks
-import com.diets.weightloss.presentation.profile.dialogs.DevelopmentDialog
-import com.diets.weightloss.utils.water.WaterCounter
 import com.diets.weightloss.presentation.profile.dialogs.LanguageWarningDialog
 import com.diets.weightloss.presentation.profile.dialogs.NameDialog
 import com.diets.weightloss.presentation.profile.favorites.FavoritesActivity
@@ -36,11 +35,12 @@ import com.diets.weightloss.presentation.profile.measurments.MeasActivity
 import com.diets.weightloss.presentation.profile.toasts.DeniedPermToast
 import com.diets.weightloss.presentation.profile.toasts.IntroToast
 import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.analytics.Ampl
+import com.diets.weightloss.utils.water.WaterCounter
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.bottom_sheet_backs.*
-import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import java.io.File
-import java.lang.Exception
 
 
 class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDialog.Callbacks {
@@ -64,18 +64,21 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         setBack(PreferenceProvider.getBack()!!)
         setAvatar()
         setClickListeners()
-
         nameDialog.setTargetFragment(this, 0)
         bsBehavior = BottomSheetBehavior.from(llBottomSheet)
 
-        rvBacks.layoutManager = GridLayoutManager(activity, 2)
-        rvBacks.adapter = BacksAdapter(resources.getStringArray(R.array.backgrounds_profile), object : IBacks {
+        startActivity(Intent(requireActivity(), MainActivity::class.java))
+
+
+
+        //rvBacks.layoutManager = GridLayoutManager(activity, 2)
+        /*rvBacks.adapter = BacksAdapter(resources.getStringArray(R.array.backgrounds_profile), object : IBacks {
             override fun choiceBack(position: Int) {
                 PreferenceProvider.setBack(position)
                 setBack(position)
                 bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
-        })
+        })*/
 
 
         bsBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
