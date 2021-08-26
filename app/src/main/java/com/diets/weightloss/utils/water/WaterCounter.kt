@@ -113,6 +113,7 @@ object WaterCounter {
             }
         }
 
+        //fill interval from last intake day to current time
         if (isNeedFillEmptyDays && daysList.isNotEmpty()){
             var currentTime = CustomDate.getClearTime(Calendar.getInstance().timeInMillis)
             var countEmptyDays = (currentTime - daysList.last().id) / ONE_DAY_MILLIS
@@ -123,7 +124,27 @@ object WaterCounter {
             }
         }
 
-        return daysList
+        var daysIntakesListFin = arrayListOf<WaterIntake>()
+
+
+        //Fill all missed water days intakes
+        for (i in daysList.indices){
+            daysIntakesListFin.add(daysList[i])
+            if (i < daysList.size - 1) {
+                if (isHasEmptyDay(daysList[i], daysList[i + 1])) {
+                    var numberEmptyDays = (daysList[i + 1].id - daysList[i].id) / ONE_DAY_MILLIS
+                    for (j in 1 until numberEmptyDays) {
+                        daysIntakesListFin.add(WaterIntake(daysList[i].id + ONE_DAY_MILLIS * j, 0, 0, 0))
+                    }
+                }
+            }
+        }
+
+        return daysIntakesListFin
+    }
+
+    private fun isHasEmptyDay(currentWaterIntake: WaterIntake, nextWaterIntake: WaterIntake): Boolean {
+        return (nextWaterIntake.id - currentWaterIntake.id) > ONE_DAY_MILLIS
     }
 
     fun getMarathonDays(listIntakes: ArrayList<WaterIntake>, listRates: ArrayList<WaterRate>): Int {
