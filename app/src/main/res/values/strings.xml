@@ -692,11 +692,21 @@
 
     <string-array name="back_animations">
         <item>back_1.json</item>
+        <item>back_nature.json</item>
+        <item>back_old_town.json</item>
+        <item>back_green_nature.json</item>
+        <item>back_sun.json</item>
+        <item>blue_nature.json</item>
     </string-array>
 
 
     <string-array name="preview_animations">
         <item>https://i.ibb.co/VTntMYF/preview-1.jpg</item>
+        <item>https://i.ibb.co/CQjrs1T/preview-3.jpg</item>
+        <item>https://i.ibb.co/LSz1z9w/preview-2.jpg</item>
+        <item>https://i.ibb.co/n89yBT6/preview-green-nature.jpg</item>
+        <item>https://i.ibb.co/n89yBT6/preview-green-nature.jpg</item>
+        <item>https://i.ibb.co/n89yBT6/preview-green-nature.jpg</item>
     </string-array>
 
 </resources>

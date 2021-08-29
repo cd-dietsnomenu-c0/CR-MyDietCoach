@@ -81,8 +81,7 @@
                 android:visibility="invisible"
                 android:scaleType="fitXY"
                 app:lottie_loop="true"
-                app:lottie_autoPlay="true"
-                app:lottie_repeatMode="reverse"/>
+                app:lottie_autoPlay="true"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvParent"
