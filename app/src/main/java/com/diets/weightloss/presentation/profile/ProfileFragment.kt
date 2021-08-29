@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -20,11 +21,11 @@ import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.diets.weightloss.App
 import com.diets.weightloss.Config
+import com.diets.weightloss.Const
 import com.diets.weightloss.R
 import com.diets.weightloss.presentation.premium.PremiumHostActivity
 import com.diets.weightloss.presentation.profile.backgrounds.pager.BacksVPAdapter
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.AnimBacksFragment
-import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.controller.AnimBacksAdapter
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.statics.StaticBacksFragment
 import com.diets.weightloss.presentation.profile.dialogs.LanguageWarningDialog
 import com.diets.weightloss.presentation.profile.dialogs.NameDialog
@@ -41,11 +42,11 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.bottom_sheet_backs.*
 import kotlinx.android.synthetic.main.bottom_sheet_backs.tlType
 import kotlinx.android.synthetic.main.profile_fragment.*
-import kotlinx.android.synthetic.main.stat_activity.*
+import kotlinx.android.synthetic.main.vh_types.*
 import java.io.File
 
 
-class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDialog.Callbacks {
+class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDialog.Callbacks, ChoiceBackgroundCallback {
 
     private var nameDialog = NameDialog()
     private val MAX_ATEMPT_INTRO = 2
@@ -117,6 +118,34 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
                 tlType.getTabAt(position)!!.select()
             }
         })
+    }
+
+    override fun choiceBackground(typeBack: Int, position: Int) {
+        when(typeBack){
+            Const.ANIM_TYPE_BACK ->{
+                setAnimBack(position)
+            }
+            Const.STAIC_TYPE_BACK -> {
+                setStaticBack(position)
+            }
+        }
+
+        //PreferenceProvider.setBack(position)
+
+        bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+    }
+
+    private fun setAnimBack(position: Int) {
+        lavHead.cancelAnimation()
+        lavHead.visibility = View.VISIBLE
+        ivHeadBack.visibility = View.INVISIBLE
+    }
+
+    private fun setStaticBack(number: Int) {
+        var url = resources.getStringArray(R.array.backgrounds_profile)[number]
+        Glide.with(this).load(url).into(ivHeadBack)
+        lavHead.visibility = View.INVISIBLE
+        ivHeadBack.visibility = View.VISIBLE
     }
 
     private fun setClickListeners() {
@@ -288,10 +317,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         }
     }
 
-    private fun setBack(number: Int) {
-        var url = resources.getStringArray(R.array.backgrounds_profile)[number]
-        Glide.with(this).load(url).into(ivHeadBack)
-    }
+
 
 
     override fun onHiddenChanged(hidden: Boolean) {

@@ -74,6 +74,7 @@
                 tools:src="@drawable/head_newdiets" />
 
             <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavHead"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:translationY="-3dp"
