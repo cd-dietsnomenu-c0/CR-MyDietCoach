@@ -323,6 +323,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         if (!hidden && isResumed) {
+            bindFields()
             if (PreferenceProvider.getCountIntro()!! < MAX_ATEMPT_INTRO) {
                 IntroToast.show(activity!!)
                 var count = PreferenceProvider.getCountIntro()!!
