@@ -692,11 +692,11 @@
 
     <string-array name="back_animations">
         <item>back_1.json</item>
-        <item>back_1.json</item>
-        <item>back_1.json</item>
-        <item>back_1.json</item>
-        <item>back_1.json</item>
-        <item>back_1.json</item>
+    </string-array>
+
+
+    <string-array name="preview_animations">
+        <item>https://i.ibb.co/VTntMYF/preview-1.jpg</item>
     </string-array>
 
 </resources>

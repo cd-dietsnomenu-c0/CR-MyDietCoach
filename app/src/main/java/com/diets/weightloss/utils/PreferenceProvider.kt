@@ -216,7 +216,6 @@ object PreferenceProvider {
         set(value) = editor { it?.putInt(LAST_NORM_WATER_DAY_TAG, value) }!!
 
 
-
     private const val MONTH_PRICE_VALUE_TAG = "MONTH_PRICE_VALUE_TAG"
     private const val EMPTY_VALUE_MONTH = 0.99F
     var monthPriceValue: Float
@@ -264,4 +263,17 @@ object PreferenceProvider {
     var actionNumber: Int
         get() = getInstance()?.getInt(ACTION_AD_COUNTER_TAG, 0)!!
         set(value) = editor { it?.putInt(ACTION_AD_COUNTER_TAG, value) }!!
+
+    private const val TYPE_HEAD_TAG = "TYPE_HEAD_TAG"
+    const val ANIM_TYPE_HEAD = 1
+    const val STATIC_TYPE_HEAD = 0
+    var typeHead: Int
+        get() = getInstance()?.getInt(TYPE_HEAD_TAG, STATIC_TYPE_HEAD)!!
+        set(value) = editor { it?.putInt(TYPE_HEAD_TAG, value) }!!
+
+
+    private const val ANIM_INDEX_TAG = "ANIM_INDEX_TAG"
+    var animIndex: Int
+        get() = getInstance()?.getInt(ANIM_INDEX_TAG, 0)!!
+        set(value) = editor { it?.putInt(ANIM_INDEX_TAG, value) }!!
 }

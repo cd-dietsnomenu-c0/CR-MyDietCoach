@@ -64,7 +64,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         Ampl.openProfile()
         tvDate.text = "${resources.getString(R.string.together)} ${PreferenceProvider.getFirstTime()}"
         cvParent.setBackgroundResource(R.drawable.shape_profile_card)
-        setBack(PreferenceProvider.getBack()!!)
+        setHeadBack(PreferenceProvider.typeHead, PreferenceProvider.animIndex)
         setAvatar()
         setClickListeners()
         nameDialog.setTargetFragment(this, 0)
@@ -91,7 +91,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
             }
         })
 
-        if (PreferenceProvider.isHasPremium){
+        if (PreferenceProvider.isHasPremium) {
             lavPremium.visibility = View.VISIBLE
         }
 
@@ -107,7 +107,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
 
         tlType.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vpBackgrounds))
 
-        vpBackgrounds.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        vpBackgrounds.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
@@ -121,22 +121,28 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
     }
 
     override fun choiceBackground(typeBack: Int, position: Int) {
-        when(typeBack){
-            Const.ANIM_TYPE_BACK ->{
+        setHeadBack(typeBack, position)
+        PreferenceProvider.typeHead = typeBack
+        PreferenceProvider.animIndex = position
+        bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+    }
+
+    private fun setHeadBack(typeBack: Int, position: Int) {
+        when (typeBack) {
+            PreferenceProvider.ANIM_TYPE_HEAD -> {
                 setAnimBack(position)
             }
-            Const.STAIC_TYPE_BACK -> {
+            PreferenceProvider.STATIC_TYPE_HEAD -> {
                 setStaticBack(position)
             }
         }
-
-        //PreferenceProvider.setBack(position)
-
-        bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     private fun setAnimBack(position: Int) {
         lavHead.cancelAnimation()
+        lavHead.setAnimation(resources.getStringArray(R.array.back_animations)[position])
+        lavHead.playAnimation()
+
         lavHead.visibility = View.VISIBLE
         ivHeadBack.visibility = View.INVISIBLE
     }
@@ -144,6 +150,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
     private fun setStaticBack(number: Int) {
         var url = resources.getStringArray(R.array.backgrounds_profile)[number]
         Glide.with(this).load(url).into(ivHeadBack)
+
         lavHead.visibility = View.INVISIBLE
         ivHeadBack.visibility = View.VISIBLE
     }
@@ -164,6 +171,13 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         }
 
         ivHeadBack.setOnClickListener {
+            Ampl.openWallpapers()
+            bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            ivBSBackground.visibility = View.VISIBLE
+            PreferenceProvider.setCountIntro(MAX_ATEMPT_INTRO)
+        }
+
+        lavHead.setOnClickListener {
             Ampl.openWallpapers()
             bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             ivBSBackground.visibility = View.VISIBLE
@@ -316,8 +330,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
             PreferenceProvider.setPhoto(uri.toString())
         }
     }
-
-
 
 
     override fun onHiddenChanged(hidden: Boolean) {
