@@ -47,6 +47,7 @@ import kotlinx.android.synthetic.main.fr_types.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.floor
 import kotlin.math.roundToInt
 
 class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
@@ -472,7 +473,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     private fun changePercentAnim(capacity: Int, dailyRate: Int, isNeedAnimateBubbles: Boolean) {
         var oldValue = tvPercent.text.toString().split("%")[0].toInt()
-        var newValue = (capacity.toFloat() / dailyRate.toFloat() * 100f).roundToInt()
+        var newValue = floor(capacity.toFloat() / dailyRate.toFloat() * 100f).toInt()
 
         if (newValue > 100) {
             newValue = 100
