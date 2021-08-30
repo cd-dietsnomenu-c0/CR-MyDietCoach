@@ -10,7 +10,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -21,7 +20,6 @@ import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.diets.weightloss.App
 import com.diets.weightloss.Config
-import com.diets.weightloss.Const
 import com.diets.weightloss.R
 import com.diets.weightloss.presentation.premium.PremiumHostActivity
 import com.diets.weightloss.presentation.profile.backgrounds.pager.BacksVPAdapter
@@ -42,7 +40,6 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.bottom_sheet_backs.*
 import kotlinx.android.synthetic.main.bottom_sheet_backs.tlType
 import kotlinx.android.synthetic.main.profile_fragment.*
-import kotlinx.android.synthetic.main.vh_types.*
 import java.io.File
 
 
@@ -102,6 +99,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         var listBacksFragments = arrayListOf<Fragment>()
         listBacksFragments.add(StaticBacksFragment())
         listBacksFragments.add(AnimBacksFragment())
+
+
 
         vpBackgrounds.adapter = BacksVPAdapter(childFragmentManager, listBacksFragments)
 

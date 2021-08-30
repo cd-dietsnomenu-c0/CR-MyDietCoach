@@ -1,11 +1,9 @@
 package com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.diets.weightloss.Const
 import com.diets.weightloss.R
 import com.diets.weightloss.presentation.profile.ChoiceBackgroundCallback
 import com.diets.weightloss.presentation.profile.backgrounds.pager.ClickBackCallback
@@ -33,15 +31,9 @@ class AnimBacksFragment : Fragment(R.layout.anim_backs_fragment), UnlockCallback
             }
         })
         rvAnimBacks.adapter = adapter
-
-
-        rvAnimBacks.isNestedScrollingEnabled = true
-        rvAnimBacks.setOnTouchListener { v, event ->
-            v.parent.requestDisallowInterceptTouchEvent(true)
-            v.onTouchEvent(event)
-            true
-        }
     }
+
+
 
     private fun getAnimPath(position: Int): String {
         return resources.getStringArray(R.array.back_animations)[position]

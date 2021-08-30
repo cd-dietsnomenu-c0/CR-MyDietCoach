@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.diets.weightloss.Const
 import com.diets.weightloss.R
 import com.diets.weightloss.presentation.profile.ChoiceBackgroundCallback
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.statics.controller.BacksAdapter
@@ -28,10 +26,6 @@ class StaticBacksFragment : Fragment(R.layout.static_backs_fragment) {
         })
         rvStaticBacks.adapter = adapter
 
-        rvStaticBacks.setOnTouchListener { v, event ->
-            v.parent.requestDisallowInterceptTouchEvent(true)
-            v.onTouchEvent(event)
-            true
-        }
     }
+
 }
