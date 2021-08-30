@@ -25,7 +25,6 @@ class StaticBacksFragment : Fragment(R.layout.static_backs_fragment) {
             }
         })
         rvStaticBacks.adapter = adapter
-
     }
 
 }
