@@ -691,32 +691,68 @@
     </string-array>
 
     <string-array name="back_animations">
-        <item>back_ufo.json</item>
-        <item>back_1.json</item>
-        <item>back_nature.json</item>
-        <item>back_old_town.json</item>
-        <item>back_green_nature.json</item>
-        <item>back_sun.json</item>
-        <item>blue_nature.json</item>
-        <item>back_color_waves.json</item>
-        <item>back_robot.json</item>
-        <item>back_car.json</item>
-
+        <item>back_1_hell.json</item>
+        <item>back_2_wood.json</item>
+        <item>back_3_window.json</item>
+        <item>back_4_river.json</item>
+        <item>back_5_montains.json</item>
+        <item>back_6_pinkwaves.json</item>
+        <item>back_7_violet.json</item>
+        <item>back_8_loop.json</item>
+        <item>back_9_music.json</item>
+        <item>back_10_underwater.json</item>
+        <item>back_11_bus.json</item>
+        <item>back_12_particles.json</item>
+        <item>back_13_orange.json</item>
+        <item>back_14_sky.json</item>
+        <item>back_15_england.json</item>
+        <item>back_16_beach.json</item>
+        <item>back_17_olive.json</item>
+        <item>back_18_worms.json</item>
+        <item>back_19_lemonade.json</item>
+        <item>back_20_red.json</item>
+        <item>back_21_blue.json</item>
+        <item>back_22_electro.json</item>
+        <item>back_23_dot.json</item>
+        <item>back_24_city.json</item>
+        <item>back_25_car.json</item>
+        <item>back_26_stains.json</item>
+        <item>back_27_field.json</item>
+        <item>back_28_playa.json</item>
+        <item>back_29_travel.json</item>
     </string-array>
 
 
     <string-array name="preview_animations">
-        <item>https://i.ibb.co/n89yBT6/preview-green-nature.jpg</item>
         <item>https://i.ibb.co/VTntMYF/preview-1.jpg</item>
-        <item>https://i.ibb.co/CQjrs1T/preview-3.jpg</item>
-        <item>https://i.ibb.co/LSz1z9w/preview-2.jpg</item>
-        <item>https://i.ibb.co/n89yBT6/preview-green-nature.jpg</item>
-        <item>https://i.ibb.co/n89yBT6/preview-green-nature.jpg</item>
-        <item>https://i.ibb.co/n89yBT6/preview-green-nature.jpg</item>
-        <item>https://i.ibb.co/n89yBT6/preview-green-nature.jpg</item>
-        <item>https://i.ibb.co/n89yBT6/preview-green-nature.jpg</item>
-        <item>https://i.ibb.co/n89yBT6/preview-green-nature.jpg</item>
-
+        <item>https://i.ibb.co/7GDTXHH/prev-2-wood.jpg</item>
+        <item>https://i.ibb.co/Wt16WQ5/prev-3-window.jpg</item>
+        <item>https://i.ibb.co/CJkfxSR/prev-4-river.jpg</item>
+        <item>https://i.ibb.co/2qCq3P8/prev-5-montains.jpg</item>
+        <item>https://i.ibb.co/xH1ThcQ/prev-6-pinkwaves.jpg</item>
+        <item>https://i.ibb.co/crNG8w9/prev-7-violet.jpg</item>
+        <item>https://i.ibb.co/gmC9BVD/prev-8-loop.jpg</item>
+        <item>https://i.ibb.co/JvGtLZH/prev-9-music.jpg</item>
+        <item>https://i.ibb.co/mGv41Fb/prev-10-underwater.jpg</item>
+        <item>https://i.ibb.co/qdy5H8G/prev-11-bus.jpg</item>
+        <item>https://i.ibb.co/NWhZWwn/prev-12-particles.jpg</item>
+        <item>https://i.ibb.co/DKPfyNx/prev-13-orange.jpg</item>
+        <item>https://i.ibb.co/sq8pW9Q/prev-14-sky.jpg</item>
+        <item>https://i.ibb.co/9q9Ckcd/prev-15-england.jpg</item>
+        <item>https://i.ibb.co/NLRjh9J/prev-16-beach.jpg</item>
+        <item>https://i.ibb.co/RcsZ0hQ/prev-17-olive.jpg</item>
+        <item>https://i.ibb.co/tzc5Yy8/prev-18-worms.jpg</item>
+        <item>https://i.ibb.co/CQpBqxy/prev-19-lemonade.jpg</item>
+        <item>https://i.ibb.co/g9bkCkM/prev-20-red.jpg</item>
+        <item>https://i.ibb.co/df03KNx/prev-21-blue.jpg</item>
+        <item>https://i.ibb.co/tLXQPyZ/prev-22-electro.jpg</item>
+        <item>https://i.ibb.co/qFNJhr1/prev-23-dot.jpg</item>
+        <item>https://i.ibb.co/bNYjdKh/prev-24-city.jpg</item>
+        <item>https://i.ibb.co/k6YRM3s/prev-25-car.jpg</item>
+        <item>https://i.ibb.co/tQtX88Z/prev-26-stains.jpg</item>
+        <item>https://i.ibb.co/yXZrVSV/prev-27-field.jpg</item>
+        <item>https://i.ibb.co/JxFmp9H/prev-28-playa.jpg</item>
+        <item>https://i.ibb.co/z6b8jfg/prev-29-travel.jpg</item>
     </string-array>
 
 </resources>
