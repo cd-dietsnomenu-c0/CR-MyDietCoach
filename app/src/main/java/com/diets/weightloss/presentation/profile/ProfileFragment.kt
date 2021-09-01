@@ -34,6 +34,7 @@ import com.diets.weightloss.presentation.profile.toasts.DeniedPermToast
 import com.diets.weightloss.presentation.profile.toasts.IntroToast
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
+import com.diets.weightloss.utils.backs.AnimBackHolder
 import com.diets.weightloss.utils.water.WaterCounter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayout
@@ -99,6 +100,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         var listBacksFragments = arrayListOf<Fragment>()
         listBacksFragments.add(AnimBacksFragment())
         listBacksFragments.add(StaticBacksFragment())
+
+        var list = AnimBackHolder.getListBacks()
 
         vpBackgrounds.adapter = BacksVPAdapter(childFragmentManager, listBacksFragments)
 
