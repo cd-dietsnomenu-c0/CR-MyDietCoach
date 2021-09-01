@@ -702,7 +702,6 @@
         <item>back_9_music.json</item>
         <item>back_10_underwater.json</item>
         <item>back_11_bus.json</item>
-        <item>back_12_particles.json</item>
         <item>back_13_orange.json</item>
         <item>back_14_sky.json</item>
         <item>back_15_england.json</item>
@@ -735,7 +734,6 @@
         <item>https://i.ibb.co/JvGtLZH/prev-9-music.jpg</item>
         <item>https://i.ibb.co/mGv41Fb/prev-10-underwater.jpg</item>
         <item>https://i.ibb.co/qdy5H8G/prev-11-bus.jpg</item>
-        <item>https://i.ibb.co/NWhZWwn/prev-12-particles.jpg</item>
         <item>https://i.ibb.co/DKPfyNx/prev-13-orange.jpg</item>
         <item>https://i.ibb.co/sq8pW9Q/prev-14-sky.jpg</item>
         <item>https://i.ibb.co/9q9Ckcd/prev-15-england.jpg</item>
@@ -754,5 +752,68 @@
         <item>https://i.ibb.co/JxFmp9H/prev-28-playa.jpg</item>
         <item>https://i.ibb.co/z6b8jfg/prev-29-travel.jpg</item>
     </string-array>
+
+    <integer-array name="reverse">
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+
+
+    <integer-array name="speed">
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>10</item>
+        <item>0</item>
+        <item>0</item>
+        <item>10</item>
+        <item>100</item>
+        <item>100</item>
+        <item>10</item>
+        <item>100</item>
+        <item>30</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>40</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+    </integer-array>
 
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,17 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="3dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="350dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -28,35 +29,64 @@
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lavPreview"
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
-                app:lottie_loop="true"
+                android:layout_height="180dp"
                 android:scaleType="centerCrop"
-                app:lottie_autoPlay="true" />
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                tools:src="@drawable/ic_meas_training" />
 
-            <TextView
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:src="@drawable/gradient_black_back" />
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Превью"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:layout_gravity="center_horizontal|bottom"
+                android:orientation="horizontal">
 
 
-            <Button
-                android:id="@+id/btnClose"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/shape_develop_dialog"
-                android:text="@string/ok_dev_page"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
+                <Button
+                    android:id="@+id/btnClose"
+                    android:layout_width="120dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/shape_unlock_back"
+                    android:drawableStart="@drawable/ic_cancel_back"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingHorizontal="16dp"
+                    android:text="назад"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="10sp" />
 
-        </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnSetup"
+                    android:layout_width="180dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/shape_unlock_back"
+                    android:drawableStart="@drawable/ic_back_unlock"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingHorizontal="16dp"
+                    android:text="Разблокировать фон"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+        </FrameLayout>
 
     </androidx.cardview.widget.CardView>
 

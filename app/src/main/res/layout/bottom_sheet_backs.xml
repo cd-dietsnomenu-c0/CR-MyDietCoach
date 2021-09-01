@@ -39,16 +39,16 @@
             app:tabRippleColor="@color/transparent">
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tiStatic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout="@layout/tab_static" />
-
-            <com.google.android.material.tabs.TabItem
                 android:id="@+id/tiAnim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout="@layout/tab_anim" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tiStatic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/tab_static" />
 
 
         </com.google.android.material.tabs.TabLayout>

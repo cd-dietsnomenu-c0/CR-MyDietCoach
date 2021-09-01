@@ -97,10 +97,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
 
     private fun bindBacksChoicer() {
         var listBacksFragments = arrayListOf<Fragment>()
-        listBacksFragments.add(StaticBacksFragment())
         listBacksFragments.add(AnimBacksFragment())
-
-
+        listBacksFragments.add(StaticBacksFragment())
 
         vpBackgrounds.adapter = BacksVPAdapter(childFragmentManager, listBacksFragments)
 

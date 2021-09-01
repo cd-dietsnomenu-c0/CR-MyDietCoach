@@ -23,8 +23,12 @@ class PreviewDialog : DialogFragment() {
         lavPreview.playAnimation()
 
         btnClose.setOnClickListener {
-            (targetFragment as UnlockCallback).unlock()
+            //(targetFragment as UnlockCallback).unlock()
             dismiss()
+        }
+
+        btnSetup.setOnClickListener {
+
         }
     }
 
