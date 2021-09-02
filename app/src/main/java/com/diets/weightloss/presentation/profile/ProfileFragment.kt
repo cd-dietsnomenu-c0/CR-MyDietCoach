@@ -101,7 +101,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         listBacksFragments.add(AnimBacksFragment())
         listBacksFragments.add(StaticBacksFragment())
 
-        var list = AnimBackHolder.getListBacks()
 
         vpBackgrounds.adapter = BacksVPAdapter(childFragmentManager, listBacksFragments)
 

@@ -27,11 +27,12 @@ object AnimBackHolder {
         var animPaths = App.getInstance().resources.getStringArray(R.array.back_animations)
         var urlsPreviews = App.getInstance().resources.getStringArray(R.array.preview_animations)
         var lockStates = stringToStates(PreferenceProvider.animUnlockBacksState, speeds.size)
+        var names = App.getInstance().resources.getStringArray(R.array.backs_names)
 
         listBacks = arrayListOf()
 
         for (i in speeds.indices) {
-            listBacks!!.add(Background(animPaths[i], urlsPreviews[i], REVERSE_MODE_ON == mode[i], (speeds[i] * 0.01f), lockStates[i]))
+            listBacks!!.add(Background(animPaths[i], urlsPreviews[i], REVERSE_MODE_ON == mode[i], (speeds[i] * 0.01f), lockStates[i], names[i]))
         }
     }
 
@@ -42,13 +43,12 @@ object AnimBackHolder {
             arrayStates.add(false)
         }
 
-        if (animUnlockBacksState != PreferenceProvider.DEF_BACK_STATE) {
-            var rawStates = animUnlockBacksState.split(PreferenceProvider.STATES_REGEX)
+        var rawStates = animUnlockBacksState.split(PreferenceProvider.STATES_REGEX)
 
-            for (i in rawStates) {
-                arrayStates[i.toInt()] = true
-            }
+        for (i in rawStates) {
+            arrayStates[i.toInt()] = true
         }
+
         return arrayStates
     }
 

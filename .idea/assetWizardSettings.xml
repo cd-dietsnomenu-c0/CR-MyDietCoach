@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_cancel_back" />
-                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\cancel.svg" />
+                            <entry key="outputName" value="ic_unlock_anim_back" />
+                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\unlocked.svg" />
                           </map>
                         </option>
                       </PersistentState>

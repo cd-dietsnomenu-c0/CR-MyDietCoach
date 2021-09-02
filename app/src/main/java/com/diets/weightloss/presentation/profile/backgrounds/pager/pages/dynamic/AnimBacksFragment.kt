@@ -10,6 +10,7 @@ import com.diets.weightloss.presentation.profile.backgrounds.pager.ClickBackCall
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.controller.AnimBacksAdapter
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.dialogs.PreviewDialog
 import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.backs.AnimBackHolder
 import kotlinx.android.synthetic.main.anim_backs_fragment.*
 
 class AnimBacksFragment : Fragment(R.layout.anim_backs_fragment), UnlockCallback {
@@ -22,7 +23,7 @@ class AnimBacksFragment : Fragment(R.layout.anim_backs_fragment), UnlockCallback
 
         rvAnimBacks.setItemViewCacheSize(resources.getStringArray(R.array.preview_animations).size)
         rvAnimBacks.layoutManager = GridLayoutManager(requireContext(), 2)
-        adapter = AnimBacksAdapter(resources.getStringArray(R.array.preview_animations), object : ClickBackCallback{
+        adapter = AnimBacksAdapter(AnimBackHolder.getListBacks(), object : ClickBackCallback{
             override fun choiceBack(position: Int) {
                 currentIndex = position
                 var dialog = PreviewDialog.newInstance(getAnimPath(position))

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.diets.weightloss.R
+import com.diets.weightloss.model.back.Background
 import com.diets.weightloss.presentation.profile.backgrounds.pager.ClickBackCallback
 import kotlinx.android.synthetic.main.anim_back_vh.view.*
 
@@ -20,8 +21,15 @@ class AnimBackVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val click
         clickBackCallback.choiceBack(adapterPosition)
     }
 
-    fun bind(url: String) {
-        Glide.with(itemView.context).load(url).into(itemView.ivPreview)
+    fun bind(background: Background) {
+        Glide.with(itemView.context).load(background.urlPreview).into(itemView.ivPreview)
+        itemView.tvName.text = background.name
+
+        if (background.isUnlock){
+            itemView.ivUnlockState.setImageResource(R.drawable.ic_unlock_anim_back)
+        }else{
+            itemView.ivUnlockState.setImageResource(R.drawable.ic_lock_anim_back)
+        }
     }
 
 

@@ -722,6 +722,38 @@
     </string-array>
 
 
+    <string-array name="backs_names">
+        <item>Посмертие</item>
+        <item>Безмятежность</item>
+        <item>Воскресенье</item>
+        <item>Устье</item>
+        <item>Сорбус</item>
+        <item>Нежность</item>
+        <item>Неон</item>
+        <item>Круговерть</item>
+        <item>Мелодия</item>
+        <item>Океан</item>
+        <item>Экскурсия</item>
+        <item>Лосось</item>
+        <item>Лазурь</item>
+        <item>Тауэр</item>
+        <item>Прилив</item>
+        <item>Волны</item>
+        <item>Пульсация</item>
+        <item>Самопознание</item>
+        <item>Воля</item>
+        <item>Верность</item>
+        <item>Реальность</item>
+        <item>Всплеск</item>
+        <item>Панорама</item>
+        <item>Переезд</item>
+        <item>Лаволампа</item>
+        <item>Луг</item>
+        <item>Мечта</item>
+        <item>Путешествие</item>
+    </string-array>
+
+
     <string-array name="preview_animations">
         <item>https://i.ibb.co/VTntMYF/preview-1.jpg</item>
         <item>https://i.ibb.co/7GDTXHH/prev-2-wood.jpg</item>
@@ -778,7 +810,7 @@
         <item>0</item>
         <item>1</item>
         <item>0</item>
-        <item>0</item>
+        <item>1</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
@@ -810,7 +842,7 @@
         <item>40</item>
         <item>100</item>
         <item>100</item>
-        <item>100</item>
+        <item>70</item>
         <item>100</item>
         <item>100</item>
         <item>100</item>

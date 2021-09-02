@@ -278,7 +278,7 @@ object PreferenceProvider {
         set(value) = editor { it?.putInt(ANIM_INDEX_TAG, value) }!!
 
     private const val ANIM_BACK_STATE_TAG = "ANIM_BACK_STATE_TAG"
-    const val DEF_BACK_STATE = ""
+    const val DEF_BACK_STATE = "0.1.2"
     const val STATES_REGEX = "."
 
     var animUnlockBacksState: String
