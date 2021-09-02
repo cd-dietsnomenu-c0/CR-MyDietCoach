@@ -79,11 +79,28 @@
                     android:drawableStart="@drawable/ic_back_unlock"
                     android:fontFamily="@font/roboto_medium"
                     android:paddingHorizontal="16dp"
-                    android:text="Разблокировать фон"
+                    android:text="@string/unlock"
                     android:textColor="#CCFFFFFF"
                     android:textSize="10sp" />
 
             </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/flUnlock"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:background="#9F000000">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lavUnlock"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    app:lottie_fileName="unlock_back.json"
+                    android:layout_gravity="center"/>
+
+            </FrameLayout>
+
 
 
         </FrameLayout>

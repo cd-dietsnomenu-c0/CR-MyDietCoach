@@ -139,7 +139,9 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
 
     private fun setAnimBack(position: Int) {
         lavHead.cancelAnimation()
-        lavHead.setAnimation(resources.getStringArray(R.array.back_animations)[position])
+        lavHead.setAnimation(AnimBackHolder.getListBacks()[position].path)
+        lavHead.speed = AnimBackHolder.getListBacks()[position].speed
+        lavHead.repeatMode = AnimBackHolder.getListBacks()[position].mode
         lavHead.playAnimation()
 
         lavHead.visibility = View.VISIBLE

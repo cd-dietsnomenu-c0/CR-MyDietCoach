@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.model.back.Background
 import com.diets.weightloss.presentation.profile.backgrounds.pager.ClickBackCallback
 
-class AnimBacksAdapter(val listBacks: ArrayList<Background>, val param: ClickBackCallback) : RecyclerView.Adapter<AnimBackVH>() {
+class AnimBacksAdapter(var listBacks: ArrayList<Background>, val param: ClickBackCallback) : RecyclerView.Adapter<AnimBackVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimBackVH {
         val li = LayoutInflater.from(parent.context)
@@ -19,5 +19,10 @@ class AnimBacksAdapter(val listBacks: ArrayList<Background>, val param: ClickBac
 
     override fun getItemCount(): Int {
         return listBacks.size
+    }
+
+    fun unlockItem(currentIndex: Int) {
+        listBacks[currentIndex].isUnlock = true
+        notifyItemChanged(currentIndex)
     }
 }

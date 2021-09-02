@@ -1,23 +1,24 @@
 package com.diets.weightloss.utils.ad
 
 import android.content.Context
+import android.util.Log
 import com.diets.weightloss.App
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdLoader
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.diets.weightloss.Config
 import com.diets.weightloss.R
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.utils.analytics.FBAnalytic
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.firebase.analytics.FirebaseAnalytics
 import kotlin.random.Random
 
 object AdWorker {
     private const val MAX_REQUEST_AD = 3
     private var inter: InterstitialAd? = null
+    private var rewardedAd: RewardedAd? = null
     private const val MAX_QUERY = 3
     private var counterFailed = 0
     var isFailedLoad = false
@@ -26,6 +27,8 @@ object AdWorker {
     var adLoader: AdLoader? = null
     var nativeSpeaker: NativeSpeaker? = null
     var isNeedShowNow = false
+    private var counterRewardFailed = 0
+    private const val MAX_QUERY_REWARD_VIDEO = 3
 
     init {
         FrequencyManager.runSetup()
@@ -36,6 +39,7 @@ object AdWorker {
         inter = InterstitialAd(context)
         inter?.adUnitId = context.getString(R.string.interstitial_id)
         inter?.loadAd(AdRequest.Builder().build())
+        loadReward()
         loadNative(context)
         inter?.adListener = object : AdListener() {
 
@@ -90,6 +94,36 @@ object AdWorker {
                 adLoader?.loadAds(AdRequest.Builder().build(), Config.NATIVE_ITEMS_MAX)
             }
         }
+    }
+
+    fun loadReward() {
+        var context = App.getInstance()
+        RewardedAd.load(
+                context,
+                context.resources.getString(R.string.reward_id),
+                AdRequest.Builder().build(),
+                object :
+                        RewardedAdLoadCallback() {
+
+                    override fun onRewardedAdFailedToLoad(p0: LoadAdError?) {
+                        Log.e("LOL", "fail reward")
+                        counterRewardFailed++
+                        if (counterRewardFailed <= MAX_QUERY_REWARD_VIDEO) {
+                            loadReward()
+                        }
+                        rewardedAd = null
+                    }
+
+                    override fun onAdLoaded(p0: RewardedAd) {
+                        Log.e("LOL", "loaded reward")
+                        counterRewardFailed = 0
+                        rewardedAd = p0
+                    }
+                })
+    }
+
+    fun getRewardAd() : RewardedAd?{
+        return rewardedAd
     }
 
     private fun endLoading() {

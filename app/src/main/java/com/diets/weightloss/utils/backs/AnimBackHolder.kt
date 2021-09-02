@@ -32,7 +32,7 @@ object AnimBackHolder {
         listBacks = arrayListOf()
 
         for (i in speeds.indices) {
-            listBacks!!.add(Background(animPaths[i], urlsPreviews[i], REVERSE_MODE_ON == mode[i], (speeds[i] * 0.01f), lockStates[i], names[i]))
+            listBacks!!.add(Background(animPaths[i], urlsPreviews[i], mode[i], (speeds[i] * 0.01f), lockStates[i], names[i]))
         }
     }
 

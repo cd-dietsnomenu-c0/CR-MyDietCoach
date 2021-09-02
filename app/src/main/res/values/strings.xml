@@ -14,13 +14,15 @@
     <!--<string name="admob_key" translatable="false">ca-app-pub-6411359812847072~5901853663</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-6411359812847072/3270453912</string>
     <string name="banner_id" translatable="false">ca-app-pub-6411359812847072/7209698921</string>
-    <string name="native_ad" translatable="false">ca-app-pub-6411359812847072/4912846254</string>-->
+    <string name="native_ad" translatable="false">ca-app-pub-6411359812847072/4912846254</string>
+    <string name="reward_id" translatable="false">ca-app-pub-2555056002292788/7698422502</string>-->
 
     <!--Test-->
     <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
+    <string name="reward_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
 
     <string name="react_channel_id" translatable="false">com.weightloss.diets</string>
     <string name="water_channel_id" translatable="false">com.weightloss.diets.water</string>
@@ -670,6 +672,9 @@
     <string name="notif_attention_eat">Необходимо отметить еду</string>
     <string name="notif_water_title">НАПОМИНАНИЕ</string>
     <string name="notif_water_text">Время выпить воды</string>
+    <string name="unlock">Разблокировать фон</string>
+    <string name="setup_back">Установить фон</string>
+    <string name="info_unlock">Рекламу нужно досмотреть до конца</string>
 
     <string-array name="frequent_types">
         <item>Каждые 30 минут</item>
@@ -726,7 +731,7 @@
         <item>Посмертие</item>
         <item>Безмятежность</item>
         <item>Воскресенье</item>
-        <item>Устье</item>
+        <item>Исток</item>
         <item>Сорбус</item>
         <item>Нежность</item>
         <item>Неон</item>
@@ -786,34 +791,34 @@
     </string-array>
 
     <integer-array name="reverse">
-        <item>0</item>
-        <item>0</item>
         <item>1</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
         <item>1</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>2</item>
         <item>1</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
         <item>1</item>
-        <item>0</item>
         <item>1</item>
-        <item>0</item>
         <item>1</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
     </integer-array>
 
 
@@ -822,14 +827,14 @@
         <item>100</item>
         <item>100</item>
         <item>10</item>
-        <item>0</item>
-        <item>0</item>
-        <item>10</item>
-        <item>100</item>
-        <item>100</item>
-        <item>10</item>
-        <item>100</item>
         <item>30</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>10</item>
+        <item>100</item>
+        <item>60</item>
         <item>100</item>
         <item>100</item>
         <item>100</item>

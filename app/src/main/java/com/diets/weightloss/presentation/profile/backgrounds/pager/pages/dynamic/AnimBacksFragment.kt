@@ -26,7 +26,7 @@ class AnimBacksFragment : Fragment(R.layout.anim_backs_fragment), UnlockCallback
         adapter = AnimBacksAdapter(AnimBackHolder.getListBacks(), object : ClickBackCallback{
             override fun choiceBack(position: Int) {
                 currentIndex = position
-                var dialog = PreviewDialog.newInstance(getAnimPath(position))
+                var dialog = PreviewDialog.newInstance(AnimBackHolder.getListBacks()[position])
                 dialog.setTargetFragment(this@AnimBacksFragment, 0)
                 dialog.show(requireFragmentManager(), "")
             }
@@ -35,12 +35,12 @@ class AnimBacksFragment : Fragment(R.layout.anim_backs_fragment), UnlockCallback
     }
 
 
-
-    private fun getAnimPath(position: Int): String {
-        return resources.getStringArray(R.array.back_animations)[position]
+    override fun setupBackground() {
+        (parentFragment as ChoiceBackgroundCallback).choiceBackground(PreferenceProvider.ANIM_TYPE_HEAD, currentIndex)
     }
 
-    override fun unlock() {
-        (parentFragment as ChoiceBackgroundCallback).choiceBackground(PreferenceProvider.ANIM_TYPE_HEAD, currentIndex)
+    override fun unlockBackground() {
+        AnimBackHolder.unlockItem(currentIndex)
+        adapter.unlockItem(currentIndex)
     }
 }

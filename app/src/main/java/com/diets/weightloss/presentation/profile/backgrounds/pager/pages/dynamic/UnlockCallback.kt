@@ -3,5 +3,6 @@ package com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynami
 import java.text.FieldPosition
 
 interface UnlockCallback {
-    fun unlock()
+    fun setupBackground()
+    fun unlockBackground()
 }
