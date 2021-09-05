@@ -696,6 +696,8 @@
     </string-array>
 
     <string-array name="back_animations">
+        <item>back_tropics.json</item>
+        <item>back_sakura.json</item>
         <item>back_1_hell.json</item>
         <item>back_2_wood.json</item>
         <item>back_3_window.json</item>
@@ -716,7 +718,6 @@
         <item>back_19_lemonade.json</item>
         <item>back_20_red.json</item>
         <item>back_21_blue.json</item>
-
         <item>back_23_dot.json</item>
         <item>back_24_city.json</item>
         <item>back_25_car.json</item>
@@ -728,10 +729,11 @@
 
 
     <string-array name="backs_names">
+        <item>Тропики</item>
+        <item>Сакура</item>
         <item>Посмертие</item>
         <item>Безмятежность</item>
         <item>Воскресенье</item>
-        <item>Исток</item>
         <item>Сорбус</item>
         <item>Нежность</item>
         <item>Неон</item>
@@ -748,7 +750,6 @@
         <item>Самопознание</item>
         <item>Воля</item>
         <item>Верность</item>
-
         <item>Всплеск</item>
         <item>Панорама</item>
         <item>Переезд</item>
@@ -760,10 +761,11 @@
 
 
     <string-array name="preview_animations">
+        <item>https://i.ibb.co/r470fMm/tropics.jpg</item>
+        <item>https://i.ibb.co/9bCbPQZ/sakura.jpg</item>
         <item>https://i.ibb.co/VTntMYF/preview-1.jpg</item>
         <item>https://i.ibb.co/7GDTXHH/prev-2-wood.jpg</item>
         <item>https://i.ibb.co/Wt16WQ5/prev-3-window.jpg</item>
-        <item>https://i.ibb.co/CJkfxSR/prev-4-river.jpg</item>
         <item>https://i.ibb.co/2qCq3P8/prev-5-montains.jpg</item>
         <item>https://i.ibb.co/xH1ThcQ/prev-6-pinkwaves.jpg</item>
         <item>https://i.ibb.co/crNG8w9/prev-7-violet.jpg</item>
@@ -780,7 +782,6 @@
         <item>https://i.ibb.co/CQpBqxy/prev-19-lemonade.jpg</item>
         <item>https://i.ibb.co/g9bkCkM/prev-20-red.jpg</item>
         <item>https://i.ibb.co/df03KNx/prev-21-blue.jpg</item>
-
         <item>https://i.ibb.co/qFNJhr1/prev-23-dot.jpg</item>
         <item>https://i.ibb.co/bNYjdKh/prev-24-city.jpg</item>
         <item>https://i.ibb.co/k6YRM3s/prev-25-car.jpg</item>
@@ -793,16 +794,9 @@
     <integer-array name="reverse">
         <item>1</item>
         <item>1</item>
-        <item>2</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
         <item>1</item>
         <item>1</item>
         <item>2</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
         <item>1</item>
         <item>1</item>
         <item>1</item>
@@ -811,7 +805,14 @@
         <item>1</item>
         <item>1</item>
         <item>1</item>
-
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
         <item>1</item>
         <item>2</item>
         <item>1</item>
@@ -824,9 +825,10 @@
 
     <integer-array name="speed">
         <item>100</item>
+        <item>70</item>
         <item>100</item>
         <item>100</item>
-        <item>10</item>
+        <item>100</item>
         <item>30</item>
         <item>100</item>
         <item>100</item>
@@ -843,7 +845,6 @@
         <item>100</item>
         <item>100</item>
         <item>100</item>
-
         <item>40</item>
         <item>100</item>
         <item>100</item>
