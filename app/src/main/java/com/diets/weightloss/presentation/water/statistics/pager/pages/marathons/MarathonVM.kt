@@ -41,7 +41,7 @@ class MarathonVM(application: Application) : AndroidViewModel(application) {
     private fun getReadableDate(timeInMillis: Long): String {
         var cal = Calendar.getInstance()
         cal.timeInMillis = timeInMillis
-        return "${String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))}.${String.format("%02d", cal.get(Calendar.MONTH))}.${cal.get(Calendar.YEAR)}"
+        return "${String.format("%02d", cal.get(Calendar.DAY_OF_MONTH))}.${String.format("%02d", cal.get(Calendar.MONTH) + 1)}.${cal.get(Calendar.YEAR)}"
     }
 
     private fun fillReadableCapacities(list: List<WaterMarathon>): List<WaterMarathon> {
