@@ -62,7 +62,7 @@
                     android:drawableStart="@drawable/ic_cancel_back"
                     android:fontFamily="@font/roboto_medium"
                     android:paddingHorizontal="16dp"
-                    android:text="назад"
+                    android:text="@string/back_cheat"
                     android:textColor="#CCFFFFFF"
                     android:textSize="10sp" />
 

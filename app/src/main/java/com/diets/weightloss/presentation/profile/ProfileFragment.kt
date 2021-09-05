@@ -97,6 +97,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
     }
 
     private fun bindBacksChoicer() {
+        cvBacks.setBackgroundResource(R.drawable.img_back_bs_backs)
+
         var listBacksFragments = arrayListOf<Fragment>()
         listBacksFragments.add(AnimBacksFragment())
         listBacksFragments.add(StaticBacksFragment())

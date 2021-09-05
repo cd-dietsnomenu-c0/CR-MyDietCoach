@@ -675,6 +675,8 @@
     <string name="unlock">Разблокировать фон</string>
     <string name="setup_back">Установить фон</string>
     <string name="info_unlock">Рекламу нужно досмотреть до конца</string>
+    <string name="anim_backs">Анимированные</string>
+    <string name="static_backs">Статичные</string>
 
     <string-array name="frequent_types">
         <item>Каждые 30 минут</item>
