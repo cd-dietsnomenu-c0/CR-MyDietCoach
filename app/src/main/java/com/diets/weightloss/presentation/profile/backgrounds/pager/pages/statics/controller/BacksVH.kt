@@ -14,8 +14,9 @@ class BacksVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val iBacks: 
     init {
         itemView.setOnClickListener(this)
     }
-    fun bind(imageUrl: String) {
+    fun bind(imageUrl: String, name: String) {
         Glide.with(itemView.context).load(imageUrl).into(itemView.ivBack)
+        itemView.tvName.text = name
     }
 
     override fun onClick(v: View?) {

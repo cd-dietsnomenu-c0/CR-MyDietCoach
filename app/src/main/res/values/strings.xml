@@ -853,4 +853,31 @@
         <item>100</item>
     </integer-array>
 
+
+    <string-array name="static_anim_names">
+        <item>Энергичность</item>
+        <item>Кармин</item>
+        <item>Азалия</item>
+        <item>Будущее</item>
+        <item>Баланс</item>
+        <item>Фламинго</item>
+        <item>Грезы</item>
+        <item>Танец</item>
+        <item>Перерыв</item>
+        <item>Ланч</item>
+        <item>Сталь</item>
+        <item>Кэрри</item>
+        <item>Дары солнца</item>
+        <item>Индиго</item>
+        <item>Бискай</item>
+        <item>Фуксия</item>
+        <item>Бодрость</item>
+        <item>Аромат</item>
+        <item>Василек</item>
+        <item>Сеть</item>
+        <item>Понедельник</item>
+        <item>Амарант</item>
+        <item>Малахит</item>
+    </string-array>
+
 </resources>

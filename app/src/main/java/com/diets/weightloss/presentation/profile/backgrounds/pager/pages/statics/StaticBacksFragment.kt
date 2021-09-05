@@ -23,7 +23,7 @@ class StaticBacksFragment : Fragment(R.layout.static_backs_fragment) {
             override fun choiceBack(position: Int) {
                 (parentFragment as ChoiceBackgroundCallback).choiceBackground(PreferenceProvider.STATIC_TYPE_HEAD, position)
             }
-        })
+        }, resources.getStringArray(R.array.static_anim_names))
         rvStaticBacks.adapter = adapter
     }
 

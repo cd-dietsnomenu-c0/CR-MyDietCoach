@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.presentation.profile.backgrounds.pager.ClickBackCallback
 
-class BacksAdapter(val urls : Array<String>, val iBacks: ClickBackCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BacksAdapter(val urls: Array<String>, val iBacks: ClickBackCallback, val names: Array<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return BacksVH(LayoutInflater.from(parent.context), parent, iBacks)
@@ -16,6 +16,6 @@ class BacksAdapter(val urls : Array<String>, val iBacks: ClickBackCallback) : Re
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as BacksVH).bind(urls[position])
+        (holder as BacksVH).bind(urls[position], names[position])
     }
 }
