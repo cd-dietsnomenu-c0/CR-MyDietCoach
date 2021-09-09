@@ -14,13 +14,15 @@
     <!--<string name="admob_key" translatable="false">ca-app-pub-6411359812847072~5901853663</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-6411359812847072/3270453912</string>
     <string name="banner_id" translatable="false">ca-app-pub-6411359812847072/7209698921</string>
-    <string name="native_ad" translatable="false">ca-app-pub-6411359812847072/4912846254</string>-->
+    <string name="native_ad" translatable="false">ca-app-pub-6411359812847072/4912846254</string>
+    <string name="reward_id" translatable="false">ca-app-pub-2555056002292788/7698422502</string>-->
 
     <!--Test-->
     <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
+    <string name="reward_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
 
     <string name="react_channel_id" translatable="false">com.weightloss.diets</string>
     <string name="water_channel_id" translatable="false">com.weightloss.diets.water</string>
@@ -670,6 +672,11 @@
     <string name="notif_attention_eat">Необходимо отметить еду</string>
     <string name="notif_water_title">НАПОМИНАНИЕ</string>
     <string name="notif_water_text">Время выпить воды</string>
+    <string name="unlock">Разблокировать фон</string>
+    <string name="setup_back">Установить фон</string>
+    <string name="info_unlock">Рекламу нужно досмотреть до конца</string>
+    <string name="anim_backs">Анимированные</string>
+    <string name="static_backs">Статичные</string>
 
     <string-array name="frequent_types">
         <item>Каждые 30 минут</item>
@@ -688,6 +695,191 @@
         <item>Пт</item>
         <item>Сб</item>
         <item>Вс</item>
+    </string-array>
+
+    <string-array name="back_animations">
+        <item>back_tropics.json</item>
+        <item>back_sakura.json</item>
+        <item>back_1_hell.json</item>
+        <item>back_2_wood.json</item>
+        <item>back_3_window.json</item>
+        <item>back_5_montains.json</item>
+        <item>back_6_pinkwaves.json</item>
+        <item>back_7_violet.json</item>
+        <item>back_8_loop.json</item>
+        <item>back_9_music.json</item>
+        <item>back_10_underwater.json</item>
+        <item>back_11_bus.json</item>
+        <item>back_13_orange.json</item>
+        <item>back_14_sky.json</item>
+        <item>back_15_england.json</item>
+        <item>back_16_beach.json</item>
+        <item>back_17_olive.json</item>
+        <item>back_18_worms.json</item>
+        <item>back_19_lemonade.json</item>
+        <item>back_20_red.json</item>
+        <item>back_21_blue.json</item>
+        <item>back_23_dot.json</item>
+        <item>back_24_city.json</item>
+        <item>back_25_car.json</item>
+        <item>back_26_stains.json</item>
+        <item>back_27_field.json</item>
+        <item>back_28_playa.json</item>
+        <item>back_29_travel.json</item>
+    </string-array>
+
+
+    <string-array name="backs_names">
+        <item>Тропики</item>
+        <item>Сакура</item>
+        <item>Посмертие</item>
+        <item>Безмятежность</item>
+        <item>Воскресенье</item>
+        <item>Сорбус</item>
+        <item>Нежность</item>
+        <item>Неон</item>
+        <item>Круговерть</item>
+        <item>Мелодия</item>
+        <item>Океан</item>
+        <item>Экскурсия</item>
+        <item>Лосось</item>
+        <item>Лазурь</item>
+        <item>Тауэр</item>
+        <item>Прилив</item>
+        <item>Волны</item>
+        <item>Пульсация</item>
+        <item>Самопознание</item>
+        <item>Воля</item>
+        <item>Верность</item>
+        <item>Всплеск</item>
+        <item>Панорама</item>
+        <item>Переезд</item>
+        <item>Лаволампа</item>
+        <item>Луг</item>
+        <item>Мечта</item>
+        <item>Путешествие</item>
+    </string-array>
+
+
+    <string-array name="preview_animations">
+        <item>https://i.ibb.co/r470fMm/tropics.jpg</item>
+        <item>https://i.ibb.co/9bCbPQZ/sakura.jpg</item>
+        <item>https://i.ibb.co/VTntMYF/preview-1.jpg</item>
+        <item>https://i.ibb.co/7GDTXHH/prev-2-wood.jpg</item>
+        <item>https://i.ibb.co/Wt16WQ5/prev-3-window.jpg</item>
+        <item>https://i.ibb.co/2qCq3P8/prev-5-montains.jpg</item>
+        <item>https://i.ibb.co/xH1ThcQ/prev-6-pinkwaves.jpg</item>
+        <item>https://i.ibb.co/crNG8w9/prev-7-violet.jpg</item>
+        <item>https://i.ibb.co/gmC9BVD/prev-8-loop.jpg</item>
+        <item>https://i.ibb.co/JvGtLZH/prev-9-music.jpg</item>
+        <item>https://i.ibb.co/mGv41Fb/prev-10-underwater.jpg</item>
+        <item>https://i.ibb.co/qdy5H8G/prev-11-bus.jpg</item>
+        <item>https://i.ibb.co/DKPfyNx/prev-13-orange.jpg</item>
+        <item>https://i.ibb.co/sq8pW9Q/prev-14-sky.jpg</item>
+        <item>https://i.ibb.co/9q9Ckcd/prev-15-england.jpg</item>
+        <item>https://i.ibb.co/NLRjh9J/prev-16-beach.jpg</item>
+        <item>https://i.ibb.co/RcsZ0hQ/prev-17-olive.jpg</item>
+        <item>https://i.ibb.co/tzc5Yy8/prev-18-worms.jpg</item>
+        <item>https://i.ibb.co/CQpBqxy/prev-19-lemonade.jpg</item>
+        <item>https://i.ibb.co/g9bkCkM/prev-20-red.jpg</item>
+        <item>https://i.ibb.co/df03KNx/prev-21-blue.jpg</item>
+        <item>https://i.ibb.co/qFNJhr1/prev-23-dot.jpg</item>
+        <item>https://i.ibb.co/bNYjdKh/prev-24-city.jpg</item>
+        <item>https://i.ibb.co/k6YRM3s/prev-25-car.jpg</item>
+        <item>https://i.ibb.co/tQtX88Z/prev-26-stains.jpg</item>
+        <item>https://i.ibb.co/yXZrVSV/prev-27-field.jpg</item>
+        <item>https://i.ibb.co/JxFmp9H/prev-28-playa.jpg</item>
+        <item>https://i.ibb.co/z6b8jfg/prev-29-travel.jpg</item>
+    </string-array>
+
+    <integer-array name="reverse">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+
+
+    <integer-array name="speed">
+        <item>100</item>
+        <item>70</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>30</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>10</item>
+        <item>100</item>
+        <item>60</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>40</item>
+        <item>100</item>
+        <item>100</item>
+        <item>70</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+    </integer-array>
+
+
+    <string-array name="static_anim_names">
+        <item>Энергичность</item>
+        <item>Кармин</item>
+        <item>Азалия</item>
+        <item>Будущее</item>
+        <item>Баланс</item>
+        <item>Фламинго</item>
+        <item>Грезы</item>
+        <item>Танец</item>
+        <item>Перерыв</item>
+        <item>Ланч</item>
+        <item>Сталь</item>
+        <item>Кэрри</item>
+        <item>Дары солнца</item>
+        <item>Индиго</item>
+        <item>Бискай</item>
+        <item>Фуксия</item>
+        <item>Бодрость</item>
+        <item>Аромат</item>
+        <item>Василек</item>
+        <item>Сеть</item>
+        <item>Понедельник</item>
+        <item>Амарант</item>
+        <item>Малахит</item>
     </string-array>
 
 </resources>

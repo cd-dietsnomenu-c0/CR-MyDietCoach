@@ -538,6 +538,11 @@
     <string name="notif_attention_eat">Food must be noted</string>
     <string name="notif_water_title">ATTENTION</string>
     <string name="notif_water_text">Time to drink water</string>
+    <string name="unlock">Unlock</string>
+    <string name="setup_back">Set</string>
+    <string name="info_unlock">The commercial must be seen to the end</string>
+    <string name="anim_backs">Animated</string>
+    <string name="static_backs">Static</string>
 
     <string-array name="frequent_types">
         <item>Every 30 minutes</item>
@@ -556,6 +561,65 @@
         <item>Fri</item>
         <item>Sat</item>
         <item>Sun</item>
+    </string-array>
+
+
+    <string-array name="backs_names">
+        <item>Tropics</item>
+        <item>Sakura</item>
+        <item>Postmortem</item>
+        <item>Serenity</item>
+        <item>Sunday</item>
+        <item>Sorbus</item>
+        <item>Tenderness</item>
+        <item>Neon</item>
+        <item>Spin</item>
+        <item>Melody</item>
+        <item>Ocean</item>
+        <item>Excursion</item>
+        <item>Salmon</item>
+        <item>Azure</item>
+        <item>Tower</item>
+        <item>The Tide</item>
+        <item>Waves</item>
+        <item>Pulsation</item>
+        <item>Self-Knowledge</item>
+        <item>Will</item>
+        <item>Fidelity</item>
+        <item>Splash</item>
+        <item>Panorama</item>
+        <item>Moving</item>
+        <item>Lavolamp</item>
+        <item>The Meadow</item>
+        <item>The Dream</item>
+        <item>Journey</item>
+    </string-array>
+
+
+    <string-array name="static_anim_names">
+        <item>Energy</item>
+        <item>Carmine</item>
+        <item>Azalea</item>
+        <item>The Future</item>
+        <item>Balance</item>
+        <item>Flamingo</item>
+        <item>Dreams</item>
+        <item>Dance</item>
+        <item>Recess</item>
+        <item>Lunch</item>
+        <item>Steel</item>
+        <item>Carrie</item>
+        <item>Gifts of the Sun</item>
+        <item>Indigo</item>
+        <item>Biscay</item>
+        <item>Fuchsia</item>
+        <item>Liveliness</item>
+        <item>Fragrance</item>
+        <item>Cornflower</item>
+        <item>Network</item>
+        <item>Monday</item>
+        <item>Amaranth</item>
+        <item>Malachite</item>
     </string-array>
 
 </resources>

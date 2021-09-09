@@ -3,31 +3,28 @@ package com.diets.weightloss.presentation.profile
 import android.app.Activity.RESULT_OK
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.Intent.*
+import android.content.Intent.ACTION_SENDTO
+import android.content.Intent.createChooser
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.diets.weightloss.App
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.diets.weightloss.Config
 import com.diets.weightloss.R
 import com.diets.weightloss.presentation.premium.PremiumHostActivity
-import com.diets.weightloss.utils.analytics.Ampl
-import com.diets.weightloss.presentation.profile.controllers.BacksAdapter
-import com.diets.weightloss.presentation.profile.controllers.IBacks
-import com.diets.weightloss.presentation.profile.dialogs.DevelopmentDialog
-import com.diets.weightloss.utils.water.WaterCounter
+import com.diets.weightloss.presentation.profile.backgrounds.pager.BacksVPAdapter
+import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.AnimBacksFragment
+import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.statics.StaticBacksFragment
 import com.diets.weightloss.presentation.profile.dialogs.LanguageWarningDialog
 import com.diets.weightloss.presentation.profile.dialogs.NameDialog
 import com.diets.weightloss.presentation.profile.favorites.FavoritesActivity
@@ -36,14 +33,18 @@ import com.diets.weightloss.presentation.profile.measurments.MeasActivity
 import com.diets.weightloss.presentation.profile.toasts.DeniedPermToast
 import com.diets.weightloss.presentation.profile.toasts.IntroToast
 import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.analytics.Ampl
+import com.diets.weightloss.utils.backs.AnimBackHolder
+import com.diets.weightloss.utils.water.WaterCounter
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.bottom_sheet_backs.*
-import kotlinx.android.synthetic.main.fragment_water_tracker.*
+import kotlinx.android.synthetic.main.bottom_sheet_backs.tlType
 import kotlinx.android.synthetic.main.profile_fragment.*
 import java.io.File
-import java.lang.Exception
 
 
-class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDialog.Callbacks {
+class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDialog.Callbacks, ChoiceBackgroundCallback {
 
     private var nameDialog = NameDialog()
     private val MAX_ATEMPT_INTRO = 2
@@ -61,21 +62,20 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         Ampl.openProfile()
         tvDate.text = "${resources.getString(R.string.together)} ${PreferenceProvider.getFirstTime()}"
         cvParent.setBackgroundResource(R.drawable.shape_profile_card)
-        setBack(PreferenceProvider.getBack()!!)
+        setHeadBack(PreferenceProvider.typeHead, PreferenceProvider.animIndex)
         setAvatar()
         setClickListeners()
-
         nameDialog.setTargetFragment(this, 0)
         bsBehavior = BottomSheetBehavior.from(llBottomSheet)
 
-        rvBacks.layoutManager = GridLayoutManager(activity, 2)
-        rvBacks.adapter = BacksAdapter(resources.getStringArray(R.array.backgrounds_profile), object : IBacks {
+        //rvBacks.layoutManager = GridLayoutManager(activity, 2)
+        /*rvBacks.adapter = BacksAdapter(resources.getStringArray(R.array.backgrounds_profile), object : IBacks {
             override fun choiceBack(position: Int) {
                 PreferenceProvider.setBack(position)
                 setBack(position)
                 bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
-        })
+        })*/
 
 
         bsBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
@@ -89,9 +89,73 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
             }
         })
 
-        if (PreferenceProvider.isHasPremium){
+        if (PreferenceProvider.isHasPremium) {
             lavPremium.visibility = View.VISIBLE
         }
+
+        bindBacksChoicer()
+    }
+
+    private fun bindBacksChoicer() {
+        cvBacks.setBackgroundResource(R.drawable.img_back_bs_backs)
+
+        var listBacksFragments = arrayListOf<Fragment>()
+        listBacksFragments.add(AnimBacksFragment())
+        listBacksFragments.add(StaticBacksFragment())
+
+
+        vpBackgrounds.adapter = BacksVPAdapter(childFragmentManager, listBacksFragments)
+
+        tlType.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vpBackgrounds))
+
+        vpBackgrounds.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                tlType.getTabAt(position)!!.select()
+            }
+        })
+    }
+
+    override fun choiceBackground(typeBack: Int, position: Int) {
+        setHeadBack(typeBack, position)
+        PreferenceProvider.typeHead = typeBack
+        PreferenceProvider.animIndex = position
+        bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+    }
+
+    private fun setHeadBack(typeBack: Int, position: Int) {
+        when (typeBack) {
+            PreferenceProvider.ANIM_TYPE_HEAD -> {
+                setAnimBack(position)
+            }
+            PreferenceProvider.STATIC_TYPE_HEAD -> {
+                setStaticBack(position)
+            }
+        }
+    }
+
+    private fun setAnimBack(position: Int) {
+        lavHead.cancelAnimation()
+        lavHead.setAnimation(AnimBackHolder.getListBacks()[position].path)
+        lavHead.speed = AnimBackHolder.getListBacks()[position].speed
+        lavHead.repeatMode = AnimBackHolder.getListBacks()[position].mode
+        lavHead.playAnimation()
+
+        lavHead.visibility = View.VISIBLE
+        ivHeadBack.visibility = View.INVISIBLE
+    }
+
+    private fun setStaticBack(number: Int) {
+        var url = resources.getStringArray(R.array.backgrounds_profile)[number]
+        Glide.with(this).load(url).into(ivHeadBack)
+
+        lavHead.visibility = View.INVISIBLE
+        ivHeadBack.visibility = View.VISIBLE
     }
 
     private fun setClickListeners() {
@@ -110,6 +174,13 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         }
 
         ivHeadBack.setOnClickListener {
+            Ampl.openWallpapers()
+            bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            ivBSBackground.visibility = View.VISIBLE
+            PreferenceProvider.setCountIntro(MAX_ATEMPT_INTRO)
+        }
+
+        lavHead.setOnClickListener {
             Ampl.openWallpapers()
             bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             ivBSBackground.visibility = View.VISIBLE
@@ -261,11 +332,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
             ivAvatar.setImageURI(uri)
             PreferenceProvider.setPhoto(uri.toString())
         }
-    }
-
-    private fun setBack(number: Int) {
-        var url = resources.getStringArray(R.array.backgrounds_profile)[number]
-        Glide.with(this).load(url).into(ivHeadBack)
     }
 
 
