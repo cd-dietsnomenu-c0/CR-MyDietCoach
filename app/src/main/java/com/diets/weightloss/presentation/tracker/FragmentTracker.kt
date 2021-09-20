@@ -62,19 +62,24 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         setTopMargin()
         Ampl.openTracker()
         cvMainCard.setBackgroundResource(R.drawable.shape_card_tracker)
+
         rvEats.layoutManager = GridLayoutManager(activity, 2)
         rvMenu.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         rvDays.layoutManager = LinearLayoutManager(activity)
         rvLives.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
         tvDetails.setOnClickListener {
             startActivity(Intent(activity, DietAct::class.java)
                     .putExtra(Config.NEW_DIET, getDiet())
                     .putExtra(Config.NEED_SHOW_CONNECT, false))
         }
+
         createAlerts()
+
         ivExit.setOnClickListener {
             exitAlert.show(activity!!.supportFragmentManager, EXIT_TAG)
         }
+
         tvTitleLives.setOnClickListener {
             showCheatAlert()
         }
@@ -147,9 +152,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
                 dietState = DBHolder.bindNewDay(getDietDays()!!)
             }
-            /*if (true) {
-            dietState = DBHolder.bindNewDay(getDietDays()!!)
-        }*/
+
             if (dietState == DBHolder.DIET_COMPLETED) {
                 showCompletedAlert()
             } else if (dietState == DBHolder.DIET_LOSE) {

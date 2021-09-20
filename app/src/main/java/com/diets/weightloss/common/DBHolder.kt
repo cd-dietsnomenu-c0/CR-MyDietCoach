@@ -64,6 +64,7 @@ object DBHolder {
 
     fun firstSet(dietPlanEntity: DietPlanEntity, days: List<DietDay>) {
         this.dietPlanEntity = dietPlanEntity
+        // set meals states (checked, non checked)
         setMeals(days)
         insertInDB()
     }
@@ -108,11 +109,16 @@ object DBHolder {
             dietPlanEntity.currentDay = days.size - 1
             isLastDayHandled = true
         }
+        //fill loses days
         for (i in oldCurrentDay..dietPlanEntity.currentDay) {
             dietPlanEntity.numbersLosesDays.add(i)
             dietPlanEntity.missingDays += 1
         }
         return isLastDayHandled
+    }
+
+    fun rollBack(){
+        
     }
 
     private fun insertInDB() {
@@ -180,14 +186,6 @@ object DBHolder {
                 && dietPlanEntity.snake2State != NOT_CHECKED
     }
 
-    fun getCurrentTimeTrigger(): Long {
-        var calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-        return calendar.timeInMillis
-    }
 
     fun getTomorrowTimeTrigger(): Long {
         var calendar = Calendar.getInstance()
