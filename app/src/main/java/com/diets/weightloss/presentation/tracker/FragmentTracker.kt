@@ -19,10 +19,7 @@ import com.diets.weightloss.common.DBHolder
 import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.presentation.diets.list.modern.article.DietAct
-import com.diets.weightloss.presentation.tracker.alerts.CheatMealAlert
-import com.diets.weightloss.presentation.tracker.alerts.CongrateAlert
-import com.diets.weightloss.presentation.tracker.alerts.ExitAlert
-import com.diets.weightloss.presentation.tracker.alerts.LoseAlert
+import com.diets.weightloss.presentation.tracker.alerts.*
 import com.diets.weightloss.presentation.tracker.controller.DayAdapter
 import com.diets.weightloss.presentation.tracker.controller.eats.EatAdapter
 import com.diets.weightloss.presentation.tracker.controller.eats.IEat
@@ -142,6 +139,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     override fun onResume() {
         super.onResume()
         bindTracker()
+        AddLifeDialog().show(requireActivity().supportFragmentManager, "")
     }
 
 
