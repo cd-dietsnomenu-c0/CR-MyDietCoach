@@ -169,7 +169,9 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     private fun showLosedAlert() {
-        loseFragment.show(activity!!.supportFragmentManager, LOSE_TAG)
+        if(!loseFragment.isAdded) {
+            loseFragment.show(activity!!.supportFragmentManager, LOSE_TAG)
+        }
     }
 
     private fun showCompletedAlert() {
