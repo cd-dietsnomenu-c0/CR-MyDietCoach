@@ -117,8 +117,21 @@ object DBHolder {
         return isLastDayHandled
     }
 
-    fun rollBack(){
-        
+    fun rollBack() {
+        var diffDaysCount = dietPlanEntity.missingDays - dietPlanEntity.difficulty
+
+        var lastDeletedDay = -1
+
+        for (i in 0 until diffDaysCount) {
+            lastDeletedDay = dietPlanEntity.numbersLosesDays[dietPlanEntity.numbersLosesDays.size - 1]
+            dietPlanEntity.numbersLosesDays.removeAt(dietPlanEntity.numbersLosesDays.size - 1)
+        }
+
+        dietPlanEntity.missingDays = dietPlanEntity.difficulty
+        dietPlanEntity.timeTrigger = getTomorrowTimeTrigger()
+        dietPlanEntity.currentDay = lastDeletedDay
+        setMeals(getDietDays()!!)
+        insertInDB()
     }
 
     private fun insertInDB() {
@@ -196,6 +209,7 @@ object DBHolder {
         return calendar.timeInMillis + ONE_DAY
     }
 
+
     fun checkEat(type: Int) {
         when (type) {
             0 -> dietPlanEntity.breakfastState = CHECKED
@@ -205,6 +219,15 @@ object DBHolder {
             4 -> dietPlanEntity.snake2State = CHECKED
         }
         insertInDB()
+    }
+
+    private fun getDietDays(): List<DietDay>? {
+        for (diet in GlobalHolder.getGlobal().allDiets.dietList) {
+            if (diet.title == dietPlanEntity.name) {
+                return diet.days
+            }
+        }
+        return null
     }
 
     fun setEmpty() {

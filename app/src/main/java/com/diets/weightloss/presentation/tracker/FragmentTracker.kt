@@ -189,6 +189,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
 
     private fun bindMenu() {
+        tvCompleteMenu.visibility = View.INVISIBLE
         menuAdapter = MenuAdapter(getTypedArray(), object : IMenu {
             override fun completeDay() {
                 closeDay()
@@ -281,6 +282,12 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             }
         }
         return null
+    }
+
+    fun rollBack() {
+        dietState = DBHolder.DIET_CONTINUE
+        DBHolder.rollBack()
+        bindTracker()
     }
 
 }

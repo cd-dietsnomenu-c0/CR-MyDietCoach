@@ -29,5 +29,11 @@ class LoseAlert : DialogFragment() {
             (targetFragment as FragmentTracker).restartDiet()
             dismiss()
         }
+
+
+        btnShowAdd.setOnClickListener {
+            (targetFragment as FragmentTracker).rollBack()
+            dismiss()
+        }
     }
 }
