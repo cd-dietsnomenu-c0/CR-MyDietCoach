@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diets.weightloss.R
 import com.diets.weightloss.common.db.entities.water.DrinksCapacities
+import com.diets.weightloss.presentation.water.statistics.StatActivity
 import com.diets.weightloss.presentation.water.statistics.pager.pages.frequency.controller.FrequencyAdapter
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.AdWorker
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.load_ad_include.*
 import kotlinx.android.synthetic.main.meas_activitys.*
 import kotlinx.android.synthetic.main.segmentation_fragment.*
 import java.text.DecimalFormat
+import java.text.FieldPosition
 
 
 class SegmentationFragment : Fragment(R.layout.segmentation_fragment) {
@@ -41,7 +43,7 @@ class SegmentationFragment : Fragment(R.layout.segmentation_fragment) {
         const val OTHER_NOT_NEED = -1f
     }
 
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vm = ViewModelProviders.of(this).get(SegmentationVM::class.java)
@@ -53,6 +55,7 @@ class SegmentationFragment : Fragment(R.layout.segmentation_fragment) {
             }
         })
         fillData()
+
     }
 
     private fun fillList(drinks: List<DrinksCapacities>) {

@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.add_life_dialog.*
 import kotlinx.coroutines.GlobalScope
 
 class AddLifeDialog : DialogFragment() {
+
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.add_life_dialog, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))

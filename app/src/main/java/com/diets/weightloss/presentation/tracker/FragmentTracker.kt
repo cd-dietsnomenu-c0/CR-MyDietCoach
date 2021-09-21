@@ -139,7 +139,6 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     override fun onResume() {
         super.onResume()
         bindTracker()
-        AddLifeDialog().show(requireActivity().supportFragmentManager, "")
     }
 
 
@@ -283,6 +282,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     fun rollBack() {
+        AddLifeDialog().show(requireActivity().supportFragmentManager, "")
         dietState = DBHolder.DIET_CONTINUE
         DBHolder.rollBack()
         bindTracker()

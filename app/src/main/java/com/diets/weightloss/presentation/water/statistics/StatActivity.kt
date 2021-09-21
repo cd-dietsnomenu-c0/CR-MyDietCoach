@@ -40,4 +40,5 @@ class StatActivity: AppCompatActivity(R.layout.stat_activity) {
             }
         })
     }
+
 }
