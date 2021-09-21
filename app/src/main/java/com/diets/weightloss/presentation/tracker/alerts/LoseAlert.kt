@@ -10,6 +10,7 @@ import com.diets.weightloss.R
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.toasts.InfoLockToast
 import com.diets.weightloss.presentation.tracker.FragmentTracker
 import com.diets.weightloss.presentation.tracker.toasts.NotShowAdInfoToast
+import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.AdWorker
 import com.google.android.gms.ads.FullScreenContentCallback
 import kotlinx.android.synthetic.main.alert_lose.*
@@ -49,7 +50,7 @@ class LoseAlert : DialogFragment() {
 
 
     private fun showRewardVideo() {
-        if (AdWorker.getRewardAd() != null) {
+        if (AdWorker.getRewardAd() != null && !PreferenceProvider.isHasPremium) {
             AdWorker.getRewardAd()!!.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent()

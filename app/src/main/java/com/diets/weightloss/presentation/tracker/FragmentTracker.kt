@@ -187,6 +187,11 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
     private fun bindMenu() {
         tvCompleteMenu.visibility = View.INVISIBLE
+        tvTitleMenu.visibility = View.VISIBLE
+
+        tvBigDay.visibility = View.VISIBLE
+        tvLabelDay.visibility = View.VISIBLE
+        lavCompleteDay.visibility = View.INVISIBLE
         menuAdapter = MenuAdapter(getTypedArray(), object : IMenu {
             override fun completeDay() {
                 closeDay()
