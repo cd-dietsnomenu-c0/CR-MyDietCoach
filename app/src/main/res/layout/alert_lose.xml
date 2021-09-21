@@ -57,7 +57,7 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
-                android:text="@string/rab_text" />
+                android:text="@string/rab_text_new" />
 
             <FrameLayout
                 android:layout_width="match_parent"
