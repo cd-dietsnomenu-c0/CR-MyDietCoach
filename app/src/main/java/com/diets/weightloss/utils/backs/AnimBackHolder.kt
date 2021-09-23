@@ -39,6 +39,7 @@ object AnimBackHolder {
     private fun stringToStates(animUnlockBacksState: String, size: Int): ArrayList<Boolean> {
         var arrayStates = arrayListOf<Boolean>()
 
+        //fill def data
         for (i in 0 until size) {
             arrayStates.add(false)
         }
@@ -54,10 +55,7 @@ object AnimBackHolder {
 
     fun unlockItem(index: Int) {
         var states = PreferenceProvider.animUnlockBacksState
-        if (states != PreferenceProvider.DEF_BACK_STATE) {
-            states += PreferenceProvider.STATES_REGEX
-        }
-        states += index.toString()
+        states += "${PreferenceProvider.STATES_REGEX}$index"
         PreferenceProvider.animUnlockBacksState = states
     }
 }
