@@ -74,7 +74,7 @@ object DBHolder {
         var isLastDayHandled = checkNotOpenedDays(days)
         if (dietPlanEntity.currentDay + 1 < days.size) {
             dietPlanEntity.currentDay += 1
-            dietPlanEntity.timeTrigger += ONE_DAY
+            dietPlanEntity.timeTrigger = getTomorrowTimeTrigger()
         }
         if (dietPlanEntity.missingDays > dietPlanEntity.difficulty) {
             return DIET_LOSE
@@ -100,11 +100,15 @@ object DBHolder {
 
     private fun checkNotOpenedDays(days: List<DietDay>): Boolean {
         var isLastDayHandled = false
+
         var currentTime = Calendar.getInstance().timeInMillis
         var diff = currentTime - dietPlanEntity.timeTrigger
+
         var loseDays = (diff / ONE_DAY).toInt()
         var oldCurrentDay = dietPlanEntity.currentDay + 1
+
         dietPlanEntity.currentDay += loseDays
+
         if (dietPlanEntity.currentDay > days.size - 1) {
             dietPlanEntity.currentDay = days.size - 1
             isLastDayHandled = true
