@@ -44,15 +44,19 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     lateinit var alpha: Animation
     lateinit var alphaText: Animation
     var goCounter = 0
-    var maxGoCounter = 3
+    var maxGoCounter = 4
     var openFrom = ""
     var isFirstTime = false
 
     fun post() {
         goCounter += 1
         if (goCounter >= maxGoCounter) {
-            var mainActivityIntent = Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
-            startActivity(mainActivityIntent)
+            var intent = if (isFirstTime && PreferenceProvider.isNeedPrem == ABConfig.PREM_NEED) {
+                Intent(this, PremiumHostActivity::class.java)
+            } else {
+                Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
+            }
+            startActivity(intent)
             finish()
         }
     }
@@ -65,7 +69,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             openFrom = Config.OPEN_FROM_PUSH
             openFromPush()
         }
-        //bindTest()
+        bindTest()
         loadAnimations()
         playAnim()
         loadData()
@@ -129,7 +133,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun setABTestConfig(version: String) {
-        Log.e("LOL", version)
         var defaultVer = ABConfig.PREM_NEED
         if (version != null && version != "") {
             defaultVer = version

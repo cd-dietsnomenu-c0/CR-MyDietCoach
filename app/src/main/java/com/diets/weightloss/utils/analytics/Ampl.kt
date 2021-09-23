@@ -283,5 +283,29 @@ class Ampl {
         fun fillWaterDay() {
             Amplitude.getInstance().logEvent("fill_water_day")
         }
+
+        fun loseDiet() {
+            Amplitude.getInstance().logEvent("lose_diet")
+        }
+
+        fun closeLoseDiet() {
+            Amplitude.getInstance().logEvent("close_lose_diet")
+        }
+
+        fun replayLoseDiet() {
+            Amplitude.getInstance().logEvent("replay_lose_diet")
+        }
+
+        fun clickRewardDiet() {
+            Amplitude.getInstance().logEvent("click_reward_diet")
+        }
+
+        fun showRewardDiet() {
+            Amplitude.getInstance().logEvent("show_reward_diet")
+        }
+
+        fun notLoadedRewardDiet() {
+            Amplitude.getInstance().logEvent("not_loaded_reward_diet")
+        }
     }
 }

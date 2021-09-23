@@ -12,17 +12,13 @@ import com.diets.weightloss.presentation.tracker.FragmentTracker
 import com.diets.weightloss.presentation.tracker.toasts.NotShowAdInfoToast
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.AdWorker
+import com.diets.weightloss.utils.analytics.Ampl
 import com.google.android.gms.ads.FullScreenContentCallback
 import kotlinx.android.synthetic.main.alert_lose.*
 
 class LoseAlert : DialogFragment() {
 
     private var isAdWatched = false
-    private var isUnlockNow = false
-
-    interface Callbacks{
-        fun addLife()
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.alert_lose, container, false)
@@ -32,18 +28,23 @@ class LoseAlert : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Ampl.loseDiet()
+
         btnEnd.setOnClickListener {
+            Ampl.closeLoseDiet()
             (targetFragment as FragmentTracker).closeDiet()
             dismiss()
         }
 
         btnReplay.setOnClickListener {
+            Ampl.replayLoseDiet()
             (targetFragment as FragmentTracker).restartDiet()
             dismiss()
         }
 
 
         btnShowAdd.setOnClickListener {
+            Ampl.clickRewardDiet()
             showRewardVideo()
         }
     }
@@ -51,6 +52,7 @@ class LoseAlert : DialogFragment() {
 
     private fun showRewardVideo() {
         if (AdWorker.getRewardAd() != null && !PreferenceProvider.isHasPremium) {
+            Ampl.showRewardDiet()
             AdWorker.getRewardAd()!!.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent()
@@ -67,6 +69,7 @@ class LoseAlert : DialogFragment() {
                 isAdWatched = true
             }
         } else {
+            Ampl.notLoadedRewardDiet()
             addLife()
         }
     }

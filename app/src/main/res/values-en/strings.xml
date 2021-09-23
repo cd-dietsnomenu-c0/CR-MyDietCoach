@@ -544,6 +544,12 @@
     <string name="anim_backs">Animated</string>
     <string name="static_backs">Static</string>
 
+    <string name="get_play">Get another shot at</string>
+    <string name="get_life_title">You got life</string>
+    <string name="get_life_text">But be careful. The more often you take this opportunity, the less effective the diet will be</string>
+    <string name="get_life_btn">got it</string>
+    <string name="rab_text_new">But don\'t be discouraged! It\'s important not to give up and persevere toward your goal no matter what!</string>
+
     <string-array name="frequent_types">
         <item>Every 30 minutes</item>
         <item>Every hour</item>
