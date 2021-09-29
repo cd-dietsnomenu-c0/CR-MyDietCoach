@@ -23,6 +23,7 @@ import com.diets.weightloss.common.db.utils.Checker;
 import com.diets.weightloss.model.Global;
 import com.diets.weightloss.presentation.calculators.FragmentCalculators;
 import com.diets.weightloss.presentation.diets.FragmentTypes;
+import com.diets.weightloss.presentation.history.HistoryDietActivity;
 import com.diets.weightloss.presentation.profile.ProfileFragment;
 import com.diets.weightloss.presentation.tracker.FragmentTracker;
 import com.diets.weightloss.presentation.water.FragmentWaterTracker;

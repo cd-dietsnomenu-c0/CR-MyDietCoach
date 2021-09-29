@@ -23,6 +23,7 @@ import com.diets.weightloss.model.Global
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.common.db.entities.DietPlanEntity
+import com.diets.weightloss.presentation.history.HistoryDietActivity
 import com.diets.weightloss.presentation.premium.PremiumHostActivity
 import com.diets.weightloss.utils.ABConfig
 import com.diets.weightloss.utils.PreferenceProvider
@@ -54,7 +55,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             var intent = if (isFirstTime && PreferenceProvider.isNeedPrem == ABConfig.PREM_NEED) {
                 Intent(this, PremiumHostActivity::class.java)
             } else {
-                Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
+                //Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
+                Intent(this, HistoryDietActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             }
             startActivity(intent)
             finish()

@@ -66,6 +66,11 @@
             android:name="com.diets.weightloss.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+
+        <activity
+            android:name="com.diets.weightloss.presentation.history.HistoryDietActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".presentation.premium.PremiumHostActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
