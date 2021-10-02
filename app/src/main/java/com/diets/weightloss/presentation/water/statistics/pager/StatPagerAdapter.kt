@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 
 class StatPagerAdapter (fragmentManager: FragmentManager, val fragmentsList: List<Fragment>) :
         FragmentStatePagerAdapter(fragmentManager) {
+
     override fun getItem(position: Int): Fragment {
         return fragmentsList[position]
     }
