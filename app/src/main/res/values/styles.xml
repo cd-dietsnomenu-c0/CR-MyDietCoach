@@ -142,6 +142,20 @@
         <item name="tickMark">@drawable/progress_water_transparent_tickmark</item>
     </style>
 
+
+    <style name="SeekbarHistoryDifficulty" parent="Widget.AppCompat.SeekBar.Discrete">
+        <item name="android:progressDrawable">@drawable/progress_drawable_history_diff</item>
+        <item name="tickMarkFixed">@drawable/progress_diff_tick_mark</item>
+        <item name="tickMark">@drawable/progress_water_transparent_tickmark</item>
+    </style>
+
+
+    <style name="SeekbarHistoryGrade" parent="Widget.AppCompat.SeekBar.Discrete">
+        <item name="android:progressDrawable">@drawable/progress_drawable_history_grade</item>
+        <item name="tickMarkFixed">@drawable/progress_grade_tick_mark</item>
+        <item name="tickMark">@drawable/progress_water_transparent_tickmark</item>
+    </style>
+
     <style name="MeasEditText" parent="Widget.AppCompat.EditText">
         <item name="colorPrimary">#25265e</item>
         <item name="colorPrimaryDark">#25265e</item>
@@ -150,6 +164,10 @@
 
     <style name="CBDays">
         <item name="colorAccent">#2196F3</item>
+    </style>
+
+    <style name="ReviewHistory">
+        <item name="colorAccent">#32374c</item>
     </style>
 
     <style name="RBFrequent">
