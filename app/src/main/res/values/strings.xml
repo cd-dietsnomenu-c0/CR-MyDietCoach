@@ -883,4 +883,38 @@
         <item>Малахит</item>
     </string-array>
 
+    <string-array name="text_diff">
+        <item>Очень легко</item>
+        <item>Легко</item>
+        <item>Нормально</item>
+        <item>Сложно</item>
+        <item>Очень сложно</item>
+    </string-array>
+
+    <integer-array name="imgs_diff">
+        <item>@drawable/img_very_easy</item>
+        <item>@drawable/img_easy</item>
+        <item>@drawable/img_normal</item>
+        <item>@drawable/img_hard</item>
+        <item>@drawable/img_very_hard</item>
+    </integer-array>
+
+
+    <string-array name="text_grade">
+        <item>Очень плохо</item>
+        <item>Плохо</item>
+        <item>Удовлетворительно</item>
+        <item>Хорошо</item>
+        <item>Отлично</item>
+    </string-array>
+
+
+    <integer-array name="imgs_grade">
+        <item>@drawable/img_very_bad</item>
+        <item>@drawable/img_bad</item>
+        <item>@drawable/img_normal_grade</item>
+        <item>@drawable/img_good_grade</item>
+        <item>@drawable/img_perfect</item>
+    </integer-array>
+
 </resources>
