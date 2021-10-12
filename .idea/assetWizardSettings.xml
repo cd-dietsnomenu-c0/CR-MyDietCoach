@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="img_normal_grade" />
-                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\shock (1).svg" />
+                            <entry key="outputName" value="ic_check_history" />
+                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\check.svg" />
                           </map>
                         </option>
                       </PersistentState>

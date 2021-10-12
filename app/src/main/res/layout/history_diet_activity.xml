@@ -35,6 +35,12 @@
                 android:layout_marginEnd="16dp"
                 app:cardElevation="8dp">
 
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -165,6 +171,8 @@
 
 
                 </LinearLayout>
+
+                </FrameLayout>
             </androidx.cardview.widget.CardView>
 
 
@@ -186,8 +194,18 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="35dp"
                 android:elevation="11dp"
-                app:lottie_autoPlay="true"
+                android:visibility="invisible"
                 app:lottie_fileName="win_diet.json" />
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavLose"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="90dp"
+                android:elevation="11dp"
+                app:lottie_fileName="lose_diet.json" />
 
         </FrameLayout>
 

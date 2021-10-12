@@ -5,6 +5,7 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.diets.weightloss.R
 import kotlinx.android.synthetic.main.history_diet_activity.*
+import kotlinx.coroutines.processNextEventInCurrentThread
 
 class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity) {
 
@@ -13,8 +14,11 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity) {
 
         setUI()
         bindSeekbars()
+
         setDifficulty(0)
         setGrade(4)
+        sbDifficulty.progress = 0
+        sbGrade.progress = 4
     }
 
 

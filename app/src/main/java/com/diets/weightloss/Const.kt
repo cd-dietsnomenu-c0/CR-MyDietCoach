@@ -7,4 +7,12 @@ object Const {
 
     const val ANIM_TYPE_BACK = 1
     const val STAIC_TYPE_BACK = 2
+
+    const val COMPLETED_DIET = 1
+    const val UNCOMPLETED_DIET = 0
+
+
+    const val EASY_LEVEL = 2
+    const val NORMAL_LEVEL = 1
+    const val HARD_LEVEL = 0
 }
