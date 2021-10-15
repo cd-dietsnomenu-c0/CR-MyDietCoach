@@ -42,7 +42,21 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity) {
         tvStart.text = historyDiet!!.readableStart
         tvEnd.text = historyDiet!!.readableEnd
         tvTime.text = resources.getQuantityString(R.plurals.days_plur, historyDiet!!.readablePeriod, historyDiet!!.readablePeriod)
-
+        tvLostDays.text = resources.getQuantityString(R.plurals.lifes_plur, historyDiet!!.loseLifes, historyDiet!!.loseLifes)
+        tvDifficulty.text = when (historyDiet!!.difficulty) {
+            Const.EASY_LEVEL -> {
+                getString(R.string.easy_diff)
+            }
+            Const.NORMAL_LEVEL -> {
+                getString(R.string.med_diff_desc)
+            }
+            Const.HARD_LEVEL -> {
+                getString(R.string.hard_diff)
+            }
+            else -> {
+                getString(R.string.med_diff_desc)
+            }
+        }
     }
 
     private fun bindHeadAnim() {

@@ -398,6 +398,15 @@
         <item quantity="other">%1$d дней</item>
     </plurals>
 
+
+    <plurals name="lifes_plur">
+        <item quantity="one">%1$d жизнь</item>
+        <item quantity="two">%1$d жизни</item>
+        <item quantity="few">%1$d жизни</item>
+        <item quantity="many">%1$d жизней</item>
+        <item quantity="other">%1$d жизней</item>
+    </plurals>
+
     <integer-array name="water_drinks_imgs">
         <item>@drawable/ic_track_1</item>
         <item>@drawable/ic_track_2</item>

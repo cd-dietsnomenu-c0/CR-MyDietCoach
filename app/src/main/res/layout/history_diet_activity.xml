@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
 
     <LinearLayout
@@ -31,8 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="130dp"
-                android:layout_marginBottom="12dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="12dp"
                 app:cardElevation="8dp">
 
                 <FrameLayout
@@ -40,141 +40,133 @@
                     android:layout_height="match_parent">
 
 
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="100dp"
-                    android:orientation="vertical">
-
-
-
-                    <TextView
-                        android:id="@+id/tvName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:fontFamily="@font/roboto_bold"
-                        android:text="Куриная диета"
-                        android:textColor="#32374c"
-                        android:textSize="24sp" />
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="24dp"
-                        android:orientation="horizontal">
+                        android:layout_marginTop="100dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="vertical">
 
+
+                        <TextView
+                            android:id="@+id/tvName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Куриная диета"
+                            android:textColor="#32374c"
+                            android:textSize="24sp" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:orientation="vertical">
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="24dp"
+                            android:orientation="horizontal">
 
-                            <TextView
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="Начало"
-                                android:textSize="12sp" />
+                                android:layout_marginStart="12dp"
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/tvStart"
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:text="Начало"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tvStart"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:text="12.12.1992"
+                                    android:textColor="#32374c" />
+
+                            </LinearLayout>
+
+
+                            <View
+                                android:id="@+id/divider28"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:background="#efefef" />
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:fontFamily="@font/roboto_bold"
-                                android:text="12.12.1992"
-                                android:textColor="#32374c" />
+                                android:orientation="vertical">
 
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:text="Длительность"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tvTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="8dp"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:text="10 дней"
+                                    android:textColor="#32374c" />
+
+                            </LinearLayout>
+
+
+                            <View
+                                android:id="@+id/divider29"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:background="#efefef" />
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="12dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:text="Конец"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tvEnd"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:text="22.12.1992"
+                                    android:textColor="#32374c" />
+
+                            </LinearLayout>
                         </LinearLayout>
 
 
-                        <View
-                            android:id="@+id/divider28"
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="#efefef" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="Длительность"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:id="@+id/tvTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="8dp"
-                                android:fontFamily="@font/roboto_bold"
-                                android:text="10 дней"
-                                android:textColor="#32374c" />
-
-                        </LinearLayout>
-
-
-                        <View
-                            android:id="@+id/divider29"
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="#efefef" />
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="12dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="Конец"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:id="@+id/tvEnd"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:fontFamily="@font/roboto_bold"
-                                android:text="22.12.1992"
-                                android:textColor="#32374c" />
-
-                        </LinearLayout>
                     </LinearLayout>
-
-
-
-
-
-
-                </LinearLayout>
 
                 </FrameLayout>
             </androidx.cardview.widget.CardView>
-
 
 
             <androidx.cardview.widget.CardView
@@ -184,7 +176,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="70dp"
                 app:cardCornerRadius="75dp"
-                app:cardElevation="10dp"/>
+                app:cardElevation="10dp" />
 
 
             <com.airbnb.lottie.LottieAnimationView
@@ -211,27 +203,24 @@
         </FrameLayout>
 
 
-
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            android:layout_marginTop="4dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="12dp"
-            android:layout_marginEnd="16dp">
-
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp">
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:layout_gravity="center_horizontal">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
@@ -258,6 +247,7 @@
                             android:layout_marginTop="2dp"
                             android:text="Потеряно"
                             android:textSize="10sp" />
+
                         <TextView
                             android:id="@+id/tvLostDays"
                             android:layout_width="wrap_content"
@@ -266,8 +256,6 @@
                             android:text="4 жизни"
                             android:textColor="#32374c"
                             android:textSize="18sp" />
-
-
 
 
                     </LinearLayout>
@@ -286,7 +274,7 @@
                     <ImageView
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:src="@drawable/level_three" />
+                        android:src="@drawable/ic_award" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -313,8 +301,6 @@
                             android:textSize="18sp" />
 
 
-
-
                     </LinearLayout>
 
 
@@ -330,12 +316,12 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp">
 
 
             <LinearLayout
@@ -346,48 +332,46 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Сложность прохождения"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
-                    android:textSize="14sp"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#32374c"/>
+                    android:text="Сложность прохождения"
+                    android:textColor="#32374c"
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/ivDifficulty"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/img_very_easy"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="24dp"/>
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/img_very_easy" />
 
                 <TextView
                     android:id="@+id/tvDifficulty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Очень легко"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="20sp"
-                    android:gravity="center_vertical"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="#32374c"/>
+                    android:gravity="center_vertical"
+                    android:text="Очень легко"
+                    android:textColor="#32374c"
+                    android:textSize="20sp" />
 
                 <com.diets.weightloss.views.FixedSeekbar
                     android:id="@+id/sbDifficulty"
+                    style="@style/SeekbarHistoryDifficulty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
-                    style="@style/SeekbarHistoryDifficulty"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="24dp"
                     android:max="4"
                     android:maxHeight="8dp"
-                    android:layout_marginBottom="24dp"
-                    android:thumb="@drawable/ic_diff_scrubber"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"/>
-
-
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:thumb="@drawable/ic_diff_scrubber" />
 
 
             </LinearLayout>
@@ -397,12 +381,12 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp">
 
 
             <LinearLayout
@@ -413,47 +397,45 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Оценка диете"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
-                    android:textSize="14sp"
                     android:fontFamily="@font/roboto_medium"
-                    android:textColor="#32374c"/>
+                    android:text="Оценка диете"
+                    android:textColor="#32374c"
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/ivGrade"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/img_very_easy"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="24dp"/>
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/img_very_easy" />
 
                 <TextView
                     android:id="@+id/tvGrade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Нормально"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="24sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="#32374c"/>
+                    android:text="Нормально"
+                    android:textColor="#32374c"
+                    android:textSize="24sp" />
 
                 <com.diets.weightloss.views.FixedSeekbar
                     android:id="@+id/sbGrade"
+                    style="@style/SeekbarHistoryGrade"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
-                    style="@style/SeekbarHistoryGrade"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="24dp"
                     android:max="4"
                     android:maxHeight="8dp"
-                    android:layout_marginBottom="24dp"
-                    android:thumb="@drawable/ic_grade_scrubber"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"/>
-
-
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:thumb="@drawable/ic_grade_scrubber" />
 
 
             </LinearLayout>
@@ -464,12 +446,12 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -480,46 +462,41 @@
                     android:layout_width="270dp"
                     android:layout_height="200dp"
                     android:layout_gravity="center_horizontal"
-                    app:lottie_fileName="review_history.json"
                     app:lottie_autoPlay="true"
-                    app:lottie_speed="0.5"
+                    app:lottie_fileName="review_history.json"
+                    app:lottie_loop="true"
                     app:lottie_repeatMode="reverse"
-                    app:lottie_loop="true"/>
+                    app:lottie_speed="0.5" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Отзыв"
                     android:textColor="#32374c"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textSize="24sp"
-                    android:layout_gravity="center_horizontal"/>
-
+                    android:textSize="24sp" />
 
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/shape_border_review"
+                    android:fontFamily="@font/roboto"
                     android:gravity="top"
-                    android:theme="@style/ReviewHistory"
-                    android:paddingTop="16dp"
+                    android:hint="Место для вашего отзыва"
+                    android:maxLength="200"
                     android:paddingStart="16dp"
+                    android:paddingTop="16dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="16dp"
-                    android:maxLength="200"
-                    android:fontFamily="@font/roboto"
+                    android:textColor="#32374c"
                     android:textSize="14sp"
-                    android:hint="Место для вашего отзыва"
-                    android:background="@drawable/shape_border_review"
-                    android:layout_marginBottom="24dp"
-                    android:textColor="#32374c"/>
-
-
-
-
+                    android:theme="@style/ReviewHistory" />
 
 
             </LinearLayout>
