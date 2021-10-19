@@ -28,7 +28,6 @@ import com.diets.weightloss.utils.ABConfig
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.AdWorker.init
 import com.diets.weightloss.utils.analytics.Ampl.Companion.openFromPush
-import com.diets.weightloss.utils.analytics.FBAnalytic
 import com.diets.weightloss.utils.inapp.SubscriptionProvider
 import com.diets.weightloss.utils.notif.services.TopicWorker
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
@@ -129,19 +128,25 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 Amplitude.getInstance().logEvent("crash_ab")
             }
             setABTestConfig(
-                    firebaseRemoteConfig.getString(ABConfig.PREM_TAG)
+                    firebaseRemoteConfig.getString(ABConfig.PREM_TAG), firebaseRemoteConfig.getString(ABConfig.GRADE_TAG)
             )
         }
     }
 
-    private fun setABTestConfig(version: String) {
+    private fun setABTestConfig(version: String, gradeVersion: String) {
         var defaultVer = ABConfig.PREM_NEED
+        var defaultGradeVer = ABConfig.GRADE_OLD
         if (version != null && version != "") {
             defaultVer = version
         }
+        if (gradeVersion != null && gradeVersion != "") {
+            defaultGradeVer = gradeVersion
+        }
         PreferenceProvider.isNeedPrem = defaultVer
-        Ampl.setABVersion(version)
+        PreferenceProvider.gradePremVer = defaultGradeVer
+        Ampl.setABVersion(version, defaultGradeVer)
         Ampl.setVersion()
+        Log.e("LOL", defaultGradeVer)
         post()
     }
 

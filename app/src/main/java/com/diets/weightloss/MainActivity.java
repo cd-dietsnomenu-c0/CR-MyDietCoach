@@ -167,8 +167,6 @@ public class MainActivity extends AppCompatActivity {
         /*if (PreferenceProvider.INSTANCE.isHasPremium()) {
             navigationView.getMenu().removeItem(R.id.bnv_ads);
         }*/
-
-
     }
 
 

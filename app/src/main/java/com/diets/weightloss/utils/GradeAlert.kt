@@ -41,6 +41,7 @@ class GradeAlert : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setVersionAnim()
         increase = AnimationUtils.loadAnimation(view.context, R.anim.grade_increase_scale)
         decrease = AnimationUtils.loadAnimation(view.context, R.anim.grade_decrease_scale)
         showLabel = AnimationUtils.loadAnimation(view.context, R.anim.show_rate_label)
@@ -65,6 +66,16 @@ class GradeAlert : DialogFragment() {
             (activity as MainActivity).sayThank()
             dismiss()
         }
+    }
+
+    private fun setVersionAnim() {
+        when(PreferenceProvider.gradePremVer){
+            ABConfig.GRADE_OLD -> lottieAnimationView2.setAnimation("head_grade.json")
+            ABConfig.GRADE_DOGE -> lottieAnimationView2.setAnimation("head_grade_doge.json")
+            ABConfig.GRADE_BOX -> lottieAnimationView2.setAnimation("head_grade_box.json")
+            ABConfig.GRADE_ASTRO -> lottieAnimationView2.setAnimation("head_grade_astro.json")
+        }
+        lottieAnimationView2.playAnimation()
     }
 
     private fun setClickListeners() {
