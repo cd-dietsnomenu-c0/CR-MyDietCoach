@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.diets.weightloss.MainActivity
 import com.diets.weightloss.R
 import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.analytics.Ampl
 import kotlinx.android.synthetic.main.premium_host_activity.*
 
 class PremiumHostActivity : AppCompatActivity(R.layout.premium_host_activity) {
@@ -15,6 +16,8 @@ class PremiumHostActivity : AppCompatActivity(R.layout.premium_host_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Ampl.showPremScreen()
         from = intent.getIntExtra(TAG_OPEN_FROM_PROFILE, -1)
         PreferenceProvider.isSawPremium = true
 

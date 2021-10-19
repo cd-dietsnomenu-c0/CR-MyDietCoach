@@ -30,6 +30,7 @@ import com.diets.weightloss.utils.GradeAlert;
 import com.diets.weightloss.utils.ThankToast;
 import com.diets.weightloss.utils.ad.AdWorker;
 import com.diets.weightloss.utils.analytics.Ampl;
+import com.diets.weightloss.utils.analytics.FBAnalytic;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private final int SETTINGS = 2;
     private final int EAT_TRACKER = 3;
     private final int WATER_TRACKER = 4;
+
+    private final int COUNT_RUN_BETWEEN_SHOW_GRADE = 3;
 
     private boolean isHasEatTracker = true;
 
@@ -144,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         checkIntent();
         fragmentManager = getSupportFragmentManager();
 
-        Ampl.Companion.run();
+        Ampl.Companion.showMainScreen();
 
         if (!hasConnection(this)) {
             Toast.makeText(this, R.string.check_your_connect, Toast.LENGTH_SHORT).show();
@@ -237,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToMarket() {
+        FBAnalytic.INSTANCE.goToGrade();
         isNeedShowThank = true;
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("market://details?id=" + MainActivity.this.getPackageName()));
@@ -260,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkFirstRun() {
-        if (countOfRun.getInt(TAG_OF_COUNT_RUN, COUNT_OF_RUN) == 4) {
+        if (countOfRun.getInt(TAG_OF_COUNT_RUN, COUNT_OF_RUN) == COUNT_RUN_BETWEEN_SHOW_GRADE) {
             new GradeAlert().show(getSupportFragmentManager(), "GradeAlert");
         }
     }

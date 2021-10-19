@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment
 import com.airbnb.lottie.LottieAnimationView
 import com.diets.weightloss.MainActivity
 import com.diets.weightloss.R
+import com.diets.weightloss.utils.analytics.Ampl
 import kotlinx.android.synthetic.main.alert_grade.*
 
 class GradeAlert : DialogFragment() {
@@ -35,6 +36,7 @@ class GradeAlert : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.alert_grade, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
+        Ampl.showGradeDialog()
         return view
     }
 
@@ -49,11 +51,13 @@ class GradeAlert : DialogFragment() {
         setClickListeners()
 
         btnLater.setOnClickListener {
+            Ampl.clickLaterButtonGrade()
             (activity as MainActivity).rateLater()
             dismiss()
         }
 
         btnStop.setOnClickListener {
+            Ampl.closeGradeDialog()
             dismiss()
         }
 
@@ -119,7 +123,8 @@ class GradeAlert : DialogFragment() {
     }
 
     private fun bindRate(grade: Int) {
-        if (grade > 2 && PreferenceProvider.getRateMind() != PreferenceProvider.RATE_MIND_BAD) {
+        Ampl.clickGrade(grade)
+        if (grade > 3 && PreferenceProvider.getRateMind() != PreferenceProvider.RATE_MIND_BAD) {
             moveToMarket()
         } else {
             showSafety()

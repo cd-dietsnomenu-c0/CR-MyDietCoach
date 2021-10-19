@@ -28,6 +28,7 @@ import com.diets.weightloss.utils.ABConfig
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.AdWorker.init
 import com.diets.weightloss.utils.analytics.Ampl.Companion.openFromPush
+import com.diets.weightloss.utils.analytics.FBAnalytic
 import com.diets.weightloss.utils.inapp.SubscriptionProvider
 import com.diets.weightloss.utils.notif.services.TopicWorker
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
@@ -63,6 +64,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Ampl.runApp()
         bindLocale()
         bindFCM()
         if (intent.extras != null && intent.extras!!.getString(Config.PUSH_TAG) != null && intent.extras!!.getString(Config.PUSH_TAG) == Config.OPEN_FROM_PUSH) {
