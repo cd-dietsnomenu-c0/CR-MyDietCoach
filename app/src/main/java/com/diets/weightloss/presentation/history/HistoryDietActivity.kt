@@ -57,6 +57,12 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity) {
                 getString(R.string.med_diff_desc)
             }
         }
+
+        setDifficulty(historyDiet!!.userDifficulty)
+        sbDifficulty.progress = historyDiet!!.userDifficulty
+
+        setGrade(historyDiet!!.g)
+        sbGrade.progress = historyDiet!!.userDifficulty
     }
 
     private fun bindHeadAnim() {
