@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.diets.weightloss.common.DBHolder;
 import com.diets.weightloss.common.GlobalHolder;
@@ -27,6 +28,7 @@ import com.diets.weightloss.presentation.profile.ProfileFragment;
 import com.diets.weightloss.presentation.tracker.FragmentTracker;
 import com.diets.weightloss.presentation.water.FragmentWaterTracker;
 import com.diets.weightloss.utils.GradeAlert;
+import com.diets.weightloss.utils.PreferenceProvider;
 import com.diets.weightloss.utils.ThankToast;
 import com.diets.weightloss.utils.ad.AdWorker;
 import com.diets.weightloss.utils.analytics.Ampl;
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().hide(sections.get(lastSectionNumber)).commit();
         fragmentManager.beginTransaction().show(sections.get(numberSection)).commit();
         lastSectionNumber = numberSection;
+
     }
 
     @Override
@@ -192,6 +195,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setDietData() {
+        if (fragmentManager.getFragments().size() > 0) {
+            clearFM();
+        }
+
         sections.add(new FragmentTypes());
         sections.add(new FragmentCalculators());
         sections.add(new ProfileFragment());
@@ -211,6 +218,25 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
             lastSectionNumber = EAT_TRACKER;
         }
+
+        /*if (isNeedOpenLastPage){
+            switch (PreferenceProvider.INSTANCE.getLastOpenPage()){
+                case MAIN : navigationView.setSelectedItemId(R.id.bnv_main);
+                case CALCULATORS : navigationView.setSelectedItemId(R.id.bnv_calclators);
+                case SETTINGS : navigationView.setSelectedItemId(R.id.bnv_settings);
+                case WATER_TRACKER : navigationView.setSelectedItemId(R.id.bnv_water);
+                case EAT_TRACKER : navigationView.setSelectedItemId(R.id.bnv_tracker);
+            }
+            openSection(PreferenceProvider.INSTANCE.getLastOpenPage());
+        }*/
+    }
+
+    private void clearFM() {
+        FragmentTransaction removeTransaction = fragmentManager.beginTransaction();
+        for (Fragment frag : fragmentManager.getFragments()) {
+            removeTransaction.remove(frag);
+        }
+        removeTransaction.commit();
     }
 
     public static boolean hasConnection(final Context context) {

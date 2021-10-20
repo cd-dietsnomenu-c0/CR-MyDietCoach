@@ -14,6 +14,7 @@ import androidx.multidex.MultiDexApplication;
 import androidx.room.Room;
 
 import com.amplitude.api.Amplitude;
+import com.bugsee.library.Bugsee;
 import com.diets.weightloss.utils.notif.services.FCMService;
 import com.diets.weightloss.utils.inapp.SubscriptionProvider;
 import com.google.android.gms.ads.MobileAds;
@@ -49,7 +50,7 @@ public class App extends MultiDexApplication {
                 getString(R.string.release_user_expirior_id)
         );
 
-
+        Bugsee.launch(this, "5bdc0639-f870-4536-8038-8977c685cfc7");
     }
 
     @SuppressLint("NewApi")

@@ -289,4 +289,5 @@ object PreferenceProvider {
     var animUnlockBacksState: String
         get() = getInstance()?.getString(ANIM_BACK_STATE_TAG, DEF_BACK_STATE)!!
         set(value) = editor { it?.putString(ANIM_BACK_STATE_TAG, value) }!!
+
 }
