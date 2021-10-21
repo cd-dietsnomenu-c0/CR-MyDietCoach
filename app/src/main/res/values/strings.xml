@@ -33,7 +33,7 @@
     <string name="url_gdpr" translatable="false">https://www.freeprivacypolicy.com/privacy/view/272200879b5cf29dd1b4fcd0f0299409</string>
     <string name="accompanying_text">Все работает в реальной жизни! Попробуй и ты!</string>
 
-    <string name="release_user_expirior_id" translatable="false">9633f7e2-31bc-46f7-83b3-6fa780c3d040</string>
+    <string name="release_user_expirior_id" translatable="false">86a94eb4-b5f2-4eca-ad63-68e3112b243a</string>
 
     <!--Tracker-->
     <string name="tracker_share_1">Мной была успешно пройдена </string>
