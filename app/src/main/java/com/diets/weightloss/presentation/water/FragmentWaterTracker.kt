@@ -180,7 +180,9 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         capacityInfoDialog.setTargetFragment(this, 0)
 
         tvGlobalWater.setOnClickListener {
-            capacityInfoDialog.show(activity!!.supportFragmentManager, CAPACITY_INFO_TAG)
+            if (!capacityInfoDialog.isAdded) {
+                capacityInfoDialog.show(activity!!.supportFragmentManager, CAPACITY_INFO_TAG)
+            }
         }
 
         marathonFragment = MarathonDialog()

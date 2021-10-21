@@ -343,6 +343,10 @@ class Ampl {
             Amplitude.getInstance().logEvent("show_main_screen")
         }
 
+        fun startAfterSplash() {
+            Amplitude.getInstance().logEvent("start_after_splash")
+        }
+
 
         fun clickGrade(count : Int) {
             val eventProperties = JSONObject()

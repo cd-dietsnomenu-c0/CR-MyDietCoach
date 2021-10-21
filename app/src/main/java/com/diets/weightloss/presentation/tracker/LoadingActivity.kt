@@ -19,6 +19,7 @@ import com.diets.weightloss.utils.ad.NativeSpeaker
 import com.diets.weightloss.utils.analytics.Ampl
 import kotlinx.android.synthetic.main.load_ad_include.*
 import kotlinx.android.synthetic.main.loading_activity.*
+import java.lang.Exception
 
 class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
 
@@ -28,7 +29,7 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Ampl.startLoading()
-        AdWorker.observeOnNativeList(object : NativeSpeaker{
+        AdWorker.observeOnNativeList(object : NativeSpeaker {
             override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
                 if (nativeList.size > 0) {
                     loadNative(nativeList[0])
@@ -57,7 +58,10 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
         })
 
         lavLoading.addAnimatorUpdateListener {
-            changeState(it.animatedValue as Float)
+            try {
+                changeState(it.animatedValue as Float)
+            } catch (ex: Exception) {
+            }
         }
 
 

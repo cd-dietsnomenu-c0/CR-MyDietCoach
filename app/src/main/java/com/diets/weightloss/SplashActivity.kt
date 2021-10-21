@@ -56,6 +56,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             } else {
                 Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             }
+            Ampl.startAfterSplash()
             startActivity(intent)
             finish()
         }
@@ -208,8 +209,13 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         lavLetter.speed = 2.5f
         lavLetter.playAnimation()
         lavLetter.addAnimatorUpdateListener {
-            if ((it.animatedValue as Float * 100).toInt() == 99) {
-                lavLetter.startAnimation(scale)
+            try {
+                if ((it.animatedValue as Float * 100).toInt() == 99) {
+                    lavLetter.startAnimation(scale)
+                }
+            } catch (ex: java.lang.Exception) {
+                post()
+                Log.e("LOL", "anim")
             }
         }
     }
