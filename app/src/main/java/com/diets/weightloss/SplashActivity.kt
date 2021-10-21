@@ -58,6 +58,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 //Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
                 Intent(this, HistoryDietActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             }
+            Ampl.startAfterSplash()
             startActivity(intent)
             finish()
         }
@@ -65,6 +66,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Ampl.runApp()
         bindLocale()
         bindFCM()
         if (intent.extras != null && intent.extras!!.getString(Config.PUSH_TAG) != null && intent.extras!!.getString(Config.PUSH_TAG) == Config.OPEN_FROM_PUSH) {
@@ -129,19 +131,25 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 Amplitude.getInstance().logEvent("crash_ab")
             }
             setABTestConfig(
-                    firebaseRemoteConfig.getString(ABConfig.PREM_TAG)
+                    firebaseRemoteConfig.getString(ABConfig.PREM_TAG), firebaseRemoteConfig.getString(ABConfig.GRADE_TAG)
             )
         }
     }
 
-    private fun setABTestConfig(version: String) {
+    private fun setABTestConfig(version: String, gradeVersion: String) {
         var defaultVer = ABConfig.PREM_NEED
+        var defaultGradeVer = ABConfig.GRADE_OLD
         if (version != null && version != "") {
             defaultVer = version
         }
+        if (gradeVersion != null && gradeVersion != "") {
+            defaultGradeVer = gradeVersion
+        }
         PreferenceProvider.isNeedPrem = defaultVer
-        Ampl.setABVersion(version)
+        PreferenceProvider.gradePremVer = defaultGradeVer
+        Ampl.setABVersion(version, defaultGradeVer)
         Ampl.setVersion()
+        Log.e("LOL", defaultGradeVer)
         post()
     }
 
@@ -203,8 +211,13 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         lavLetter.speed = 2.5f
         lavLetter.playAnimation()
         lavLetter.addAnimatorUpdateListener {
-            if ((it.animatedValue as Float * 100).toInt() == 99) {
-                lavLetter.startAnimation(scale)
+            try {
+                if ((it.animatedValue as Float * 100).toInt() == 99) {
+                    lavLetter.startAnimation(scale)
+                }
+            } catch (ex: java.lang.Exception) {
+                post()
+                Log.e("LOL", "anim")
             }
         }
     }

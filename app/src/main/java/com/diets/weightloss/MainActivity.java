@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.diets.weightloss.common.DBHolder;
 import com.diets.weightloss.common.GlobalHolder;
@@ -28,9 +29,11 @@ import com.diets.weightloss.presentation.profile.ProfileFragment;
 import com.diets.weightloss.presentation.tracker.FragmentTracker;
 import com.diets.weightloss.presentation.water.FragmentWaterTracker;
 import com.diets.weightloss.utils.GradeAlert;
+import com.diets.weightloss.utils.PreferenceProvider;
 import com.diets.weightloss.utils.ThankToast;
 import com.diets.weightloss.utils.ad.AdWorker;
 import com.diets.weightloss.utils.analytics.Ampl;
+import com.diets.weightloss.utils.analytics.FBAnalytic;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -55,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     private final int SETTINGS = 2;
     private final int EAT_TRACKER = 3;
     private final int WATER_TRACKER = 4;
+
+    private final int COUNT_RUN_BETWEEN_SHOW_GRADE = 3;
 
     private boolean isHasEatTracker = true;
 
@@ -102,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().hide(sections.get(lastSectionNumber)).commit();
         fragmentManager.beginTransaction().show(sections.get(numberSection)).commit();
         lastSectionNumber = numberSection;
+
     }
 
     @Override
@@ -145,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         checkIntent();
         fragmentManager = getSupportFragmentManager();
 
-        Ampl.Companion.run();
+        Ampl.Companion.showMainScreen();
 
         if (!hasConnection(this)) {
             Toast.makeText(this, R.string.check_your_connect, Toast.LENGTH_SHORT).show();
@@ -165,8 +171,6 @@ public class MainActivity extends AppCompatActivity {
         /*if (PreferenceProvider.INSTANCE.isHasPremium()) {
             navigationView.getMenu().removeItem(R.id.bnv_ads);
         }*/
-
-
     }
 
 
@@ -192,6 +196,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setDietData() {
+        if (fragmentManager.getFragments().size() > 0) {
+            clearFM();
+        }
+
         sections.add(new FragmentTypes());
         sections.add(new FragmentCalculators());
         sections.add(new ProfileFragment());
@@ -211,6 +219,25 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(getResources().getColor(R.color.trans_status_bar));
             lastSectionNumber = EAT_TRACKER;
         }
+
+        /*if (isNeedOpenLastPage){
+            switch (PreferenceProvider.INSTANCE.getLastOpenPage()){
+                case MAIN : navigationView.setSelectedItemId(R.id.bnv_main);
+                case CALCULATORS : navigationView.setSelectedItemId(R.id.bnv_calclators);
+                case SETTINGS : navigationView.setSelectedItemId(R.id.bnv_settings);
+                case WATER_TRACKER : navigationView.setSelectedItemId(R.id.bnv_water);
+                case EAT_TRACKER : navigationView.setSelectedItemId(R.id.bnv_tracker);
+            }
+            openSection(PreferenceProvider.INSTANCE.getLastOpenPage());
+        }*/
+    }
+
+    private void clearFM() {
+        FragmentTransaction removeTransaction = fragmentManager.beginTransaction();
+        for (Fragment frag : fragmentManager.getFragments()) {
+            removeTransaction.remove(frag);
+        }
+        removeTransaction.commit();
     }
 
     public static boolean hasConnection(final Context context) {
@@ -238,6 +265,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToMarket() {
+        FBAnalytic.INSTANCE.goToGrade();
         isNeedShowThank = true;
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("market://details?id=" + MainActivity.this.getPackageName()));
@@ -261,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkFirstRun() {
-        if (countOfRun.getInt(TAG_OF_COUNT_RUN, COUNT_OF_RUN) == 4) {
+        if (countOfRun.getInt(TAG_OF_COUNT_RUN, COUNT_OF_RUN) == COUNT_RUN_BETWEEN_SHOW_GRADE) {
             new GradeAlert().show(getSupportFragmentManager(), "GradeAlert");
         }
     }

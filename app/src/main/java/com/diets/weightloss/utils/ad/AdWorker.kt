@@ -44,12 +44,12 @@ object AdWorker {
         inter?.adListener = object : AdListener() {
 
             override fun onAdFailedToLoad(p0: Int) {
-                Ampl.failedOneLoads()
+                Ampl.failedOneLoads(p0)
                 counterFailed++
                 if (counterFailed <= MAX_QUERY) {
                     reload()
                 } else {
-                    Ampl.failedAllLoads()
+                    Ampl.failedAllLoads(p0)
                     isFailedLoad = true
                 }
             }

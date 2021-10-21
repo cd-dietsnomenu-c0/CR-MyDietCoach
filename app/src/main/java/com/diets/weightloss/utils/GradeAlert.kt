@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment
 import com.airbnb.lottie.LottieAnimationView
 import com.diets.weightloss.MainActivity
 import com.diets.weightloss.R
+import com.diets.weightloss.utils.analytics.Ampl
 import kotlinx.android.synthetic.main.alert_grade.*
 
 class GradeAlert : DialogFragment() {
@@ -35,10 +36,12 @@ class GradeAlert : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.alert_grade, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
+        Ampl.showGradeDialog()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setVersionAnim()
         increase = AnimationUtils.loadAnimation(view.context, R.anim.grade_increase_scale)
         decrease = AnimationUtils.loadAnimation(view.context, R.anim.grade_decrease_scale)
         showLabel = AnimationUtils.loadAnimation(view.context, R.anim.show_rate_label)
@@ -49,11 +52,13 @@ class GradeAlert : DialogFragment() {
         setClickListeners()
 
         btnLater.setOnClickListener {
+            Ampl.clickLaterButtonGrade()
             (activity as MainActivity).rateLater()
             dismiss()
         }
 
         btnStop.setOnClickListener {
+            Ampl.closeGradeDialog()
             dismiss()
         }
 
@@ -61,6 +66,16 @@ class GradeAlert : DialogFragment() {
             (activity as MainActivity).sayThank()
             dismiss()
         }
+    }
+
+    private fun setVersionAnim() {
+        when(PreferenceProvider.gradePremVer){
+            ABConfig.GRADE_OLD -> lottieAnimationView2.setAnimation("head_grade.json")
+            ABConfig.GRADE_DOGE -> lottieAnimationView2.setAnimation("head_grade_doge.json")
+            ABConfig.GRADE_BOX -> lottieAnimationView2.setAnimation("head_grade_box.json")
+            ABConfig.GRADE_ASTRO -> lottieAnimationView2.setAnimation("head_grade_astro.json")
+        }
+        lottieAnimationView2.playAnimation()
     }
 
     private fun setClickListeners() {
@@ -119,7 +134,8 @@ class GradeAlert : DialogFragment() {
     }
 
     private fun bindRate(grade: Int) {
-        if (grade > 2 && PreferenceProvider.getRateMind() != PreferenceProvider.RATE_MIND_BAD) {
+        Ampl.clickGrade(grade)
+        if (grade > 3 && PreferenceProvider.getRateMind() != PreferenceProvider.RATE_MIND_BAD) {
             moveToMarket()
         } else {
             showSafety()

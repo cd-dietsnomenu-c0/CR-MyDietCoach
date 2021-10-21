@@ -259,6 +259,11 @@ object PreferenceProvider {
         get() = getInstance()?.getString(PREM_VER_TAG, "")!!
         set(value) = editor { it?.putString(PREM_VER_TAG, value) }!!
 
+    private const val GRADE_VER_TAG = "GRADE_VER_TAG"
+    var gradePremVer: String
+        get() = getInstance()?.getString(GRADE_VER_TAG, ABConfig.GRADE_OLD)!!
+        set(value) = editor { it?.putString(GRADE_VER_TAG, value) }!!
+
     private const val ACTION_AD_COUNTER_TAG = "ACTION_AD_COUNTER_TAG"
     var actionNumber: Int
         get() = getInstance()?.getInt(ACTION_AD_COUNTER_TAG, 0)!!
@@ -284,4 +289,5 @@ object PreferenceProvider {
     var animUnlockBacksState: String
         get() = getInstance()?.getString(ANIM_BACK_STATE_TAG, DEF_BACK_STATE)!!
         set(value) = editor { it?.putString(ANIM_BACK_STATE_TAG, value) }!!
+
 }

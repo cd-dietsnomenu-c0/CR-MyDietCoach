@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.net.Uri;
@@ -14,11 +13,10 @@ import androidx.multidex.MultiDexApplication;
 import androidx.room.Room;
 
 import com.amplitude.api.Amplitude;
-import com.diets.weightloss.utils.notif.services.FCMService;
-import com.diets.weightloss.utils.inapp.SubscriptionProvider;
-import com.google.android.gms.ads.MobileAds;
 import com.diets.weightloss.common.db.DietDatabase;
 import com.diets.weightloss.common.db.migrations.Migrations;
+import com.diets.weightloss.utils.inapp.SubscriptionProvider;
+import com.google.android.gms.ads.MobileAds;
 import com.userexperior.UserExperior;
 
 public class App extends MultiDexApplication {
@@ -40,7 +38,7 @@ public class App extends MultiDexApplication {
         createNotificationChannel(getContext());
 
         db = Room.databaseBuilder(this, DietDatabase.class, "dietPlans")
-                .addMigrations(Migrations.INSTANCE.getMigration_1_2(), Migrations.INSTANCE.getMigration_2_3())
+                .addMigrations(Migrations.INSTANCE.getMigration_1_2(), Migrations.INSTANCE.getMigration_2_3(), Migrations.INSTANCE.getMigration_3_4())
                 .allowMainThreadQueries()
                 .build();
 
@@ -49,7 +47,7 @@ public class App extends MultiDexApplication {
                 getString(R.string.release_user_expirior_id)
         );
 
-
+        //Bugsee.launch(this, "5bdc0639-f870-4536-8038-8977c685cfc7");
     }
 
     @SuppressLint("NewApi")

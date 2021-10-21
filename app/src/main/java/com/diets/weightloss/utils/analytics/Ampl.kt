@@ -60,14 +60,15 @@ class Ampl {
 
         val set_ver = "set_ver"
         val AB = "AB_PREM"
+        val AB_GRADE = "AB_GRADE"
 
 
         fun setVersion() {
             Amplitude.getInstance().logEvent(set_ver)
         }
 
-        fun setABVersion(version : String){
-            var identify = Identify().setOnce(AB, version)
+        fun setABVersion(version: String, gradeVer: String){
+            var identify = Identify().setOnce(AB, version).setOnce(AB_GRADE, gradeVer)
             Amplitude.getInstance().identify(identify)
         }
 
@@ -137,15 +138,27 @@ class Ampl {
             Amplitude.getInstance().logEvent(open_from_push)
         }
 
-        fun failedAllLoads() {
-            Amplitude.getInstance().logEvent(failed_all_loads)
+        fun failedAllLoads(code : Int) {
+            val eventProperties = JSONObject()
+            try {
+                eventProperties.put("code", code)
+            } catch (exception: JSONException) {
+                exception.printStackTrace()
+            }
+            Amplitude.getInstance().logEvent(failed_all_loads, eventProperties)
         }
 
-        fun failedOneLoads() {
-            Amplitude.getInstance().logEvent(failed_one_loads)
+        fun failedOneLoads(code : Int) {
+            val eventProperties = JSONObject()
+            try {
+                eventProperties.put("code", code)
+            } catch (exception: JSONException) {
+                exception.printStackTrace()
+            }
+            Amplitude.getInstance().logEvent(failed_one_loads, eventProperties)
         }
 
-        fun run() {
+        fun runApp() {
             Amplitude.getInstance().logEvent(run_app)
         }
 
@@ -306,6 +319,51 @@ class Ampl {
 
         fun notLoadedRewardDiet() {
             Amplitude.getInstance().logEvent("not_loaded_reward_diet")
+        }
+
+
+        fun showGradeDialog() {
+            Amplitude.getInstance().logEvent("show_grade_dialog")
+        }
+
+        fun closeGradeDialog() {
+            Amplitude.getInstance().logEvent("close_grade_dialog")
+        }
+
+        fun clickLaterButtonGrade() {
+            Amplitude.getInstance().logEvent("later_grade_dialog")
+        }
+
+
+        fun showPremScreen() {
+            Amplitude.getInstance().logEvent("show_prem_screen")
+        }
+
+        fun showMainScreen() {
+            Amplitude.getInstance().logEvent("show_main_screen")
+        }
+
+        fun startAfterSplash() {
+            Amplitude.getInstance().logEvent("start_after_splash")
+        }
+
+
+        fun clickGrade(count : Int) {
+            val eventProperties = JSONObject()
+            try {
+                eventProperties.put("count", count + 1)
+            } catch (exception: JSONException) {
+                exception.printStackTrace()
+            }
+            Amplitude.getInstance().logEvent(make_purchase, eventProperties)
+
+            when(count){
+                0 -> FBAnalytic.gradeOneStar()
+                1 -> FBAnalytic.gradeTwoStars()
+                2 -> FBAnalytic.gradeThreeStars()
+                3 -> FBAnalytic.gradeFirthStars()
+                4 -> FBAnalytic.gradeFifthStars()
+            }
         }
     }
 }

@@ -33,8 +33,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:lottie_autoPlay="true"
                 app:lottie_speed="0.5"
+                app:lottie_repeatMode="reverse"
                 app:lottie_fileName="head_grade.json"
                 app:lottie_loop="true" />
 
