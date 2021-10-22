@@ -21,8 +21,7 @@
                 android:id="@+id/ivHead"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/head_newdiets" />
+                android:scaleType="centerCrop" />
 
 
             <androidx.cardview.widget.CardView
@@ -225,13 +224,14 @@
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal">
 
 
                     <ImageView
-                        android:layout_width="46dp"
-                        android:layout_height="46dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_broken_heart" />
 
                     <LinearLayout
@@ -312,6 +312,48 @@
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Изменение веса"
+                    android:textColor="#32374c"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Ваш вес до и после диеты"
+                    android:textSize="10sp" />
+
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -337,7 +379,17 @@
                     android:fontFamily="@font/roboto_medium"
                     android:text="Сложность прохождения"
                     android:textColor="#32374c"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Насколько сложно Вам было довести диету до конца?"
+                    android:textSize="10sp" />
 
                 <ImageView
                     android:id="@+id/ivDifficulty"
@@ -403,6 +455,15 @@
                     android:text="Оценка диете"
                     android:textColor="#32374c"
                     android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Какую оценку Вы поставили бы этой диете?"
+                    android:textSize="10sp" />
 
                 <ImageView
                     android:id="@+id/ivGrade"
@@ -503,6 +564,30 @@
 
 
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnBuy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/shape_btn_buy_white"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="2sp"
+            android:paddingStart="33dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="33dp"
+            android:paddingBottom="16dp"
+            android:text="Сохранить"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
 

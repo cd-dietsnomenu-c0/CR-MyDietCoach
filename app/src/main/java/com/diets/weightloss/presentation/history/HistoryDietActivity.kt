@@ -61,8 +61,8 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity) {
         setDifficulty(historyDiet!!.userDifficulty)
         sbDifficulty.progress = historyDiet!!.userDifficulty
 
-        setGrade(historyDiet!!.g)
-        sbGrade.progress = historyDiet!!.userDifficulty
+        setGrade(historyDiet!!.satisfaction)
+        sbGrade.progress = historyDiet!!.satisfaction
     }
 
     private fun bindHeadAnim() {
