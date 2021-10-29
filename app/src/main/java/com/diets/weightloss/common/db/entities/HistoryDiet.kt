@@ -17,5 +17,7 @@ data class HistoryDiet(var index: Int,
                        var name: String,
                        var readableStart: String,
                        var readableEnd: String,
-                       var readablePeriod: Int) : Serializable {
+                       var readablePeriod: Int,
+                       var weightUntil: Float,
+                       var weightAfter: Float) : Serializable {
 }

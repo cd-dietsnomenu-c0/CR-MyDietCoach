@@ -50,6 +50,9 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
     }
 
     private fun fillDietList() {
-        listDiet.add(HistoryDiet(0, 3, 1633888830, 1633888830, 0, 2, 2, 3, 4, "kek", "", "", "", "", 0))
+        listDiet.add(HistoryDiet(0, 3, 1633888830, 1633888830, 0, 2, 2, 3, 4, "kek", "", "", "", "", 0, 45f, 49.7f))
+        listDiet.add(HistoryDiet(0, 3, 1633888830, 1633888830, 0, 2, 2, 3, 4, "kek", "", "", "", "", 0, 45.8f, 49.7f))
+        listDiet.add(HistoryDiet(0, 3, 1633888830, 1633888830, 0, 2, 2, 3, 4, "kek", "", "", "", "", 0, 45.8f, 49.7f))
+        listDiet.add(HistoryDiet(0, 3, 1633888830, 1633888830, 0, 2, 2, 3, 4, "kek", "", "", "", "", 0, 45.8f, 49.7f))
         }
 }

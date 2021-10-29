@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="30dp"
+        android:layout_gravity="center"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Вес после диеты"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#333333"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/roboto"/>
+
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/shape_circle_history_after"
+                    android:paddingStart="14dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingEnd="10dp"
+                    android:src="@drawable/ic_weight_history_after"/>
+
+            </FrameLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <NumberPicker
+                    android:theme="@style/NPAfterWeight"
+                    android:id="@+id/npKilos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="."
+                    android:textStyle="bold"
+                    android:textSize="42sp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#FF9800"/>
+
+                <NumberPicker
+                    android:theme="@style/NPAfterWeight"
+                    android:id="@+id/npGramms"
+                    android:translationX="-10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kg_brok"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="30sp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#FF9800"/>
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:paddingStart="36dp"
+                    android:paddingEnd="36dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/shape_cancel_frequent_notif"
+                    android:text="@string/sleep_cancel"
+                    android:paddingHorizontal="22dp"
+                    android:textColor="@color/black"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="8dp"
+                    android:textSize="12sp" />
+
+
+
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:paddingStart="36dp"
+                    android:paddingEnd="36dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/shape_save_after"
+                    android:text="@string/sleep_save"
+                    android:paddingHorizontal="22dp"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

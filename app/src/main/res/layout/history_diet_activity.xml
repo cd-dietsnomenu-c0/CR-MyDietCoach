@@ -344,8 +344,182 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/roboto"
-                    android:text="Ваш вес до и после диеты"
+                    android:text="Насколько изменился ваш вес"
                     android:textSize="10sp" />
+
+
+                <!--<TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="изменение веса"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"/>-->
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_gravity="center_horizontal">
+
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lavStatus"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:translationX="8dp"
+                        app:lottie_speed="0.7"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true"/>
+
+
+                    <TextView
+                        android:id="@+id/tvDiffWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20.0 кг"
+                        android:textSize="34sp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="#4CAF50"/>
+
+                </LinearLayout>
+
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/llWeightUntil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?selectableItemBackground"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/shape_circle_history_until"
+                            android:paddingStart="10dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            android:paddingEnd="14dp"
+                            android:src="@drawable/ic_weight_history"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Вес до"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/roboto"
+                                android:textColor="#03A9F4"/>
+
+                            <TextView
+                                android:id="@+id/tvUntilWeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:text="64.0 кг"
+                                android:fontFamily="@font/roboto_bold"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/ivEditUntil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_pen"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="6dp"/>
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:id="@+id/divider69"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="24dp"
+                        android:background="#efefef" />
+
+                    <LinearLayout
+                        android:id="@+id/llWeightAfter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?selectableItemBackground"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/shape_circle_history_after"
+                            android:paddingStart="14dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            android:paddingEnd="10dp"
+                            android:src="@drawable/ic_weight_history_after"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Вес после"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/roboto"
+                                android:textColor="#FF9800"/>
+
+                            <TextView
+                                android:id="@+id/tvAfterWeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:text="64.0 кг"
+                                android:fontFamily="@font/roboto_bold"/>
+
+
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/ivEditAfter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_pen"
+                            android:layout_marginStart="8dp"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
 
 
 

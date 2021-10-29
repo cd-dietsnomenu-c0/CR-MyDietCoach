@@ -10,28 +10,57 @@ import com.bumptech.glide.Glide
 import com.diets.weightloss.Const
 import com.diets.weightloss.R
 import com.diets.weightloss.common.db.entities.HistoryDiet
+import com.diets.weightloss.presentation.history.dialogs.WeightAfterDialog
+import com.diets.weightloss.presentation.history.dialogs.WeightUntilDialog
+import com.diets.weightloss.utils.history.HistoryFormatter
 import kotlinx.android.synthetic.main.history_diet_activity.*
-import kotlinx.coroutines.processNextEventInCurrentThread
+import java.text.DecimalFormat
 
-class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity) {
+class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), WeightAfterDialog.Callbacks, WeightUntilDialog.Callbacks {
 
     private var historyDiet: HistoryDiet? = null
-    private var isNeedShowAnim = false
-
+    private var isInteractive = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         historyDiet = intent.getSerializableExtra(TAG_HISTORY_DIET) as HistoryDiet
-        isNeedShowAnim = intent.getBooleanExtra(TAG_INTERACTIVE_STATE, false)
+        isInteractive = intent.getBooleanExtra(TAG_INTERACTIVE_STATE, false)
 
         cvTop.setBackgroundResource(R.drawable.card_history_shape)
         updateUI()
+        setListeners()
 
         setDifficulty(0)
         setGrade(4)
         sbDifficulty.progress = 0
         sbGrade.progress = 4
+    }
+
+    override fun changeAfterWeight(kilo: Int, gramm: Int) {
+        historyDiet!!.weightAfter = HistoryFormatter.convertTwoNumbersToFloat(kilo, gramm)
+        tvAfterWeight.text = "${historyDiet!!.weightAfter} ${getString(R.string.kg_brok)}"
+        setWeightDiff()
+    }
+
+    override fun changeUntilWeight(kilo: Int, gramm: Int) {
+        historyDiet!!.weightUntil = HistoryFormatter.convertTwoNumbersToFloat(kilo, gramm)
+        tvUntilWeight.text = "${historyDiet!!.weightUntil} ${getString(R.string.kg_brok)}"
+        setWeightDiff()
+    }
+
+    private fun setListeners() {
+        llWeightUntil.setOnClickListener {
+            WeightUntilDialog
+                    .newInstance(HistoryFormatter.convertFloatToTwoNumbers(historyDiet!!.weightUntil))
+                    .show(supportFragmentManager, "")
+        }
+
+        llWeightAfter.setOnClickListener {
+            WeightAfterDialog
+                    .newInstance(HistoryFormatter.convertFloatToTwoNumbers(historyDiet!!.weightAfter))
+                    .show(supportFragmentManager, "")
+        }
     }
 
     private fun updateUI() {
@@ -63,19 +92,51 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity) {
 
         setGrade(historyDiet!!.satisfaction)
         sbGrade.progress = historyDiet!!.satisfaction
+
+        tvUntilWeight.text = "${historyDiet!!.weightUntil} ${getString(R.string.kg_brok)}"
+        tvAfterWeight.text = "${historyDiet!!.weightAfter} ${getString(R.string.kg_brok)}"
+
+        if (!isInteractive) {
+            ivEditAfter.visibility = View.INVISIBLE
+            ivEditUntil.visibility = View.INVISIBLE
+        }
+
+        setWeightDiff()
+    }
+
+    private fun setWeightDiff() {
+        var isDecrease = historyDiet!!.weightUntil > historyDiet!!.weightAfter
+
+        var formater = DecimalFormat("#0.00")
+
+        if (isDecrease) {
+            tvDiffWeight.text = "${formater.format(historyDiet!!.weightUntil - historyDiet!!.weightAfter)} ${getString(R.string.kg_brok)}"
+            tvDiffWeight.setTextColor(resources.getColor(R.color.decrease_weight))
+            lavStatus.pauseAnimation()
+            lavStatus.setAnimation("history_diff_decrease.json")
+            lavStatus.rotation = 0.0f
+            lavStatus.playAnimation()
+        } else {
+            tvDiffWeight.text = "${formater.format(historyDiet!!.weightAfter - historyDiet!!.weightUntil)} ${getString(R.string.kg_brok)}"
+            tvDiffWeight.setTextColor(resources.getColor(R.color.increase_weight))
+            lavStatus.pauseAnimation()
+            lavStatus.setAnimation("history_diff_increase.json")
+            lavStatus.rotation = 180.0f
+            lavStatus.playAnimation()
+        }
     }
 
     private fun bindHeadAnim() {
         if (historyDiet?.state == Const.COMPLETED_DIET) {
             lavWin.visibility = View.VISIBLE
-            if (isNeedShowAnim) {
+            if (isInteractive) {
                 lavWin.playAnimation()
             } else {
                 lavWin.progress = 1.0f
             }
         } else {
             lavLose.visibility = View.VISIBLE
-            if (isNeedShowAnim) {
+            if (isInteractive) {
                 lavLose.playAnimation()
             } else {
                 lavLose.progress = 1.0f
