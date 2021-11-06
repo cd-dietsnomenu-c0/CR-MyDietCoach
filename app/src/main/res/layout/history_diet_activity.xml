@@ -16,6 +16,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="left|top"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="38dp"
+                android:padding="10dp"
+                android:elevation="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/back_arrow"
+                android:background="@drawable/ic_circle"/>
+
 
             <ImageView
                 android:id="@+id/ivHead"
@@ -694,7 +708,7 @@
                 android:orientation="vertical">
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:layout_width="270dp"
+                    android:layout_width="290dp"
                     android:layout_height="200dp"
                     android:layout_gravity="center_horizontal"
                     app:lottie_autoPlay="true"
@@ -714,6 +728,7 @@
 
 
                 <EditText
+                    android:id="@+id/edtReview"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_marginStart="16dp"
@@ -740,7 +755,7 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/btnBuy"
+            android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

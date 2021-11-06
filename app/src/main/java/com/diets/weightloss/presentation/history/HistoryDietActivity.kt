@@ -4,26 +4,28 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.diets.weightloss.Const
 import com.diets.weightloss.R
 import com.diets.weightloss.common.db.entities.HistoryDiet
+import com.diets.weightloss.presentation.history.dialogs.AttentionExitDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightAfterDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightUntilDialog
 import com.diets.weightloss.utils.history.HistoryFormatter
+import kotlinx.android.synthetic.main.fr_types.*
 import kotlinx.android.synthetic.main.history_diet_activity.*
 import java.text.DecimalFormat
 
-class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), WeightAfterDialog.Callbacks, WeightUntilDialog.Callbacks {
+class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), WeightAfterDialog.Callbacks, WeightUntilDialog.Callbacks, AttentionExitDialog.Callbacks {
 
     private var historyDiet: HistoryDiet? = null
     private var isInteractive = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         historyDiet = intent.getSerializableExtra(TAG_HISTORY_DIET) as HistoryDiet
         isInteractive = intent.getBooleanExtra(TAG_INTERACTIVE_STATE, false)
 
@@ -35,6 +37,18 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         setGrade(4)
         sbDifficulty.progress = 0
         sbGrade.progress = 4
+    }
+
+    override fun saveAndExit() {
+        finish()
+    }
+
+    override fun onBackPressed() {
+        if (isInteractive) {
+            AttentionExitDialog().show(supportFragmentManager, "")
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun changeAfterWeight(kilo: Int, gramm: Int) {
@@ -50,16 +64,22 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
     }
 
     private fun setListeners() {
-        llWeightUntil.setOnClickListener {
-            WeightUntilDialog
-                    .newInstance(HistoryFormatter.convertFloatToTwoNumbers(historyDiet!!.weightUntil))
-                    .show(supportFragmentManager, "")
-        }
+        if (isInteractive) {
+            llWeightUntil.setOnClickListener {
+                WeightUntilDialog
+                        .newInstance(HistoryFormatter.convertFloatToTwoNumbers(historyDiet!!.weightUntil))
+                        .show(supportFragmentManager, "")
+            }
 
-        llWeightAfter.setOnClickListener {
-            WeightAfterDialog
-                    .newInstance(HistoryFormatter.convertFloatToTwoNumbers(historyDiet!!.weightAfter))
-                    .show(supportFragmentManager, "")
+            llWeightAfter.setOnClickListener {
+                WeightAfterDialog
+                        .newInstance(HistoryFormatter.convertFloatToTwoNumbers(historyDiet!!.weightAfter))
+                        .show(supportFragmentManager, "")
+            }
+
+        }
+        ivBack.setOnClickListener {
+            onBackPressed()
         }
     }
 
@@ -87,6 +107,8 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
             }
         }
 
+        edtReview.isEnabled = isInteractive
+
         setDifficulty(historyDiet!!.userDifficulty)
         sbDifficulty.progress = historyDiet!!.userDifficulty
 
@@ -99,9 +121,11 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         if (!isInteractive) {
             ivEditAfter.visibility = View.INVISIBLE
             ivEditUntil.visibility = View.INVISIBLE
+            btnSave.visibility = View.GONE
         }
 
         setWeightDiff()
+
     }
 
     private fun setWeightDiff() {
@@ -146,29 +170,34 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
 
 
     private fun bindSeekbars() {
-        sbDifficulty.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                setDifficulty(progress)
-            }
+        sbDifficulty.isEnabled = isInteractive
+        sbGrade.isEnabled = isInteractive
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
+        if (isInteractive) {
+            sbDifficulty.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    setDifficulty(progress)
+                }
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-        })
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                }
 
-        sbGrade.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                setGrade(progress)
-            }
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                }
+            })
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
+            sbGrade.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    setGrade(progress)
+                }
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-        })
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                }
+            })
+        }
     }
 
     private fun setGrade(progress: Int) {

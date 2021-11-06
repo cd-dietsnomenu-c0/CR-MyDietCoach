@@ -23,22 +23,10 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setTopMargin()
         fillDietList()
         updateUI()
     }
 
-    private fun setTopMargin() {
-        var height = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            height = resources.getDimensionPixelSize(resourceId)
-        }
-
-        var params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
-        params.setMargins(0, height, 0, 0)
-        flParent.layoutParams = params
-    }
 
     private fun updateUI() {
         if (listDiet.size == 0) {

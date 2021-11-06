@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_wallpapers_btn" />
-                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\image (1).svg" />
+                            <entry key="outputName" value="ic_caution" />
+                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\caution.svg" />
                           </map>
                         </option>
                       </PersistentState>
