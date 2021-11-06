@@ -55,8 +55,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             var intent = if (isFirstTime && PreferenceProvider.isNeedPrem == ABConfig.PREM_NEED) {
                 Intent(this, PremiumHostActivity::class.java)
             } else {
-                //Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
-                Intent(this, HistoryDietActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
+                Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
+                //Intent(this, HistoryDietActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             }
             Ampl.startAfterSplash()
             startActivity(intent)

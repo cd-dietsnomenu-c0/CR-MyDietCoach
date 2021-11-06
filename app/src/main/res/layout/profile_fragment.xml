@@ -119,48 +119,20 @@
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Вадим Казак" />
 
-                    <Button
-                        android:id="@+id/btnFavorites"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="44dp"
-                        android:background="@drawable/shape_favorites_button"
-                        android:drawableLeft="@drawable/ic_favorites_button"
-                        android:drawablePadding="8dp"
-                        android:paddingLeft="22dp"
-                        android:paddingRight="30dp"
-                        android:text="@string/favorites"
-                        app:layout_constraintEnd_toStartOf="@+id/btnTrophy"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvName" />
-
-                    <Button
-                        android:id="@+id/btnTrophy"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/shape_favorites_button"
-                        android:drawableRight="@drawable/ic_diamond_prem"
-                        android:drawablePadding="12dp"
-                        android:paddingLeft="30dp"
-                        android:paddingRight="18dp"
-                        android:text="@string/bnv_prem"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/btnFavorites"
-                        app:layout_constraintTop_toTopOf="@+id/btnFavorites" />
-
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView6"
                         android:layout_width="0dp"
                         android:layout_height="70dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="44dp"
+                        android:layout_marginEnd="8dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="4dp"
-                        app:layout_constraintEnd_toEndOf="@+id/btnFavorites"
-                        app:layout_constraintStart_toStartOf="@+id/btnFavorites"
-                        app:layout_constraintTop_toBottomOf="@+id/btnFavorites">
+                        app:layout_constraintEnd_toStartOf="@+id/cardView8"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvName">
 
                         <FrameLayout
                             android:id="@+id/flWeight"
@@ -234,12 +206,15 @@
                         android:id="@+id/cardView8"
                         android:layout_width="0dp"
                         android:layout_height="70dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="16dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="4dp"
-                        app:layout_constraintEnd_toEndOf="@+id/btnTrophy"
-                        app:layout_constraintStart_toStartOf="@+id/btnTrophy"
-                        app:layout_constraintTop_toBottomOf="@+id/btnFavorites">
+                        app:layout_constraintBottom_toBottomOf="@+id/cardView6"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/cardView6"
+                        app:layout_constraintTop_toTopOf="@+id/btnFavorites">
 
                         <FrameLayout
                             android:id="@+id/flWater"
@@ -311,12 +286,14 @@
                         android:id="@+id/cardView61"
                         android:layout_width="0dp"
                         android:layout_height="70dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="4dp"
-                        app:layout_constraintEnd_toEndOf="@+id/cardView8"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/btnFavorites"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cardView6">
 
                         <FrameLayout
@@ -379,7 +356,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView5"
+                        android:id="@+id/cardView52"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -390,6 +367,106 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cardView61">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="8dp"
+                                android:text="Основное" />
+
+                            <View
+                                android:id="@+id/divider18"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="8dp"
+                                android:background="?android:attr/listDivider" />
+
+                            <Button
+                                android:id="@+id/btnPremium"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginRight="16dp"
+                                android:background="?selectableItemBackground"
+                                android:drawableLeft="@drawable/ic_diamond_prem"
+                                android:drawablePadding="12dp"
+                                android:gravity="left|center_vertical"
+                                android:text="@string/bnv_prem"
+                                android:textColor="@color/black"
+                                android:textSize="10dp" />
+
+                            <Button
+                                android:id="@+id/btnFavorites"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="16dp"
+                                android:background="?selectableItemBackground"
+                                android:drawableLeft="@drawable/ic_favorites_button"
+                                android:drawablePadding="12dp"
+                                android:gravity="left|center_vertical"
+                                android:text="Сохраненные диеты"
+                                android:textColor="@color/black"
+                                android:textSize="10dp" />
+
+
+                            <Button
+                                android:id="@+id/btnHistory"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="16dp"
+                                android:background="?selectableItemBackground"
+                                android:drawableLeft="@drawable/ic_history_enter"
+                                android:drawablePadding="12dp"
+                                android:gravity="left|center_vertical"
+                                android:text="История пройденных диет"
+                                android:textColor="@color/black"
+                                android:textSize="10dp" />
+
+                            <Button
+                                android:id="@+id/btnWallpapers"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="16dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="?selectableItemBackground"
+                                android:drawableLeft="@drawable/ic_wallpapers_btn"
+                                android:drawablePadding="12dp"
+                                android:gravity="left|center_vertical"
+                                android:text="Оформление"
+                                android:textColor="@color/black"
+                                android:textSize="10dp" />
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView52">
 
                         <LinearLayout
                             android:layout_width="match_parent"

@@ -44,21 +44,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--<activity
+        <activity
             android:name="com.diets.weightloss.SplashActivity"
             android:theme="@style/Theme.AppCompat.Translucent">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>-->
-
-
-
-        <activity
-            android:name=".presentation.history.HistoryListDietsActivity"
-            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -87,10 +75,10 @@
             />
 
 
-        <!--<activity
+        <activity
             android:name="com.diets.weightloss.presentation.history.HistoryListDietsActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            />-->
+            />
 
         <activity
             android:name=".presentation.premium.PremiumHostActivity"

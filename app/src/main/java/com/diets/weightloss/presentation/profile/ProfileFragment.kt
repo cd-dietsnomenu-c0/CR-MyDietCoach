@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide
 import com.diets.weightloss.App
 import com.diets.weightloss.Config
 import com.diets.weightloss.R
+import com.diets.weightloss.presentation.history.HistoryListDietsActivity
 import com.diets.weightloss.presentation.premium.PremiumHostActivity
 import com.diets.weightloss.presentation.profile.backgrounds.pager.BacksVPAdapter
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.AnimBacksFragment
@@ -159,18 +160,29 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
     }
 
     private fun setClickListeners() {
+        btnHistory.setOnClickListener {
+            startActivity(Intent(activity, HistoryListDietsActivity::class.java))
+        }
+
+
         btnFavorites.setOnClickListener {
             Ampl.openFavorites()
             startActivity(Intent(activity, FavoritesActivity::class.java))
         }
 
-        btnTrophy.setOnClickListener {
+        btnPremium.setOnClickListener {
             startActivity(PremiumHostActivity.getIntentProfile(requireActivity()))
         }
 
         tvName.setOnClickListener {
             //nameDialog.show(activity!!.supportFragmentManager, "NameDialog")
             openMeasActivity()
+        }
+
+        btnWallpapers.setOnClickListener {
+            bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            ivBSBackground.visibility = View.VISIBLE
+            PreferenceProvider.setCountIntro(MAX_ATEMPT_INTRO)
         }
 
         ivHeadBack.setOnClickListener {
