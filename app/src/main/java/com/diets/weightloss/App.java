@@ -38,7 +38,8 @@ public class App extends MultiDexApplication {
         createNotificationChannel(getContext());
 
         db = Room.databaseBuilder(this, DietDatabase.class, "dietPlans")
-                .addMigrations(Migrations.INSTANCE.getMigration_1_2(), Migrations.INSTANCE.getMigration_2_3(), Migrations.INSTANCE.getMigration_3_4())
+                .addMigrations(Migrations.INSTANCE.getMigration_1_2(), Migrations.INSTANCE.getMigration_2_3(),
+                        Migrations.INSTANCE.getMigration_3_4(), Migrations.INSTANCE.getMigration_4_5())
                 .allowMainThreadQueries()
                 .build();
 

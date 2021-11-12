@@ -24,4 +24,10 @@ object Migrations {
             database.execSQL("create table BadMig (id int (20) NOT NULL, PRIMARY KEY (id));")
         }
     }
+
+    val migration_4_5 = object : Migration(4, 5) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("create table HistoryDiet (id INTEGER NOT NULL, dietNumber INTEGER NOT NULL, startTime INTEGER NOT NULL, endTime INTEGER NOT NULL, state INTEGER NOT NULL, difficulty INTEGER NOT NULL, loseLifes INTEGER NOT NULL, userDifficulty INTEGER NOT NULL, satisfaction INTEGER NOT NULL, comment TEXT NOT NULL, weightUntil FLOAT NOT NULL, weightAfter FLOAT NOT NULL, PRIMARY KEY (id));")
+        }
+    }
 }

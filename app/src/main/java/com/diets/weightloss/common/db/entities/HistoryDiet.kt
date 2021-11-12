@@ -1,9 +1,13 @@
 package com.diets.weightloss.common.db.entities
 
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+import com.diets.weightloss.model.interactive.Diet
 import java.io.Serializable
 
-
-data class HistoryDiet(var index: Int,
+@Entity
+data class HistoryDiet(@PrimaryKey(autoGenerate = true) var id: Long,
                        var dietNumber: Int,
                        var startTime: Long,
                        var endTime: Long,
@@ -13,11 +17,20 @@ data class HistoryDiet(var index: Int,
                        var userDifficulty: Int,
                        var satisfaction: Int,
                        var comment: String,
+                       @Ignore
                        var imageUrl: String,
+                       @Ignore
                        var name: String,
+                       @Ignore
                        var readableStart: String,
+                       @Ignore
                        var readableEnd: String,
+                       @Ignore
                        var readablePeriod: Int,
                        var weightUntil: Float,
                        var weightAfter: Float) : Serializable {
+
+    constructor() : this(0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            "", "", "", "", "", 0, 0f, 0f)
 }
