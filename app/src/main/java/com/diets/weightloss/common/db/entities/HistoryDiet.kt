@@ -17,6 +17,7 @@ data class HistoryDiet(@PrimaryKey(autoGenerate = true) var id: Long,
                        var userDifficulty: Int,
                        var satisfaction: Int,
                        var comment: String,
+
                        @Ignore
                        var imageUrl: String,
                        @Ignore
@@ -27,6 +28,7 @@ data class HistoryDiet(@PrimaryKey(autoGenerate = true) var id: Long,
                        var readableEnd: String,
                        @Ignore
                        var readablePeriod: Int,
+
                        var weightUntil: Float,
                        var weightAfter: Float) : Serializable {
 

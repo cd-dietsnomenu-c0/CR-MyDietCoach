@@ -36,11 +36,11 @@ class LoseAlert : DialogFragment() {
             dismiss()
         }
 
-        btnReplay.setOnClickListener {
+        /*btnReplay.setOnClickListener {
             Ampl.replayLoseDiet()
             (targetFragment as FragmentTracker).restartDiet()
             dismiss()
-        }
+        }*/
 
 
         btnShowAdd.setOnClickListener {

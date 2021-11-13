@@ -10,6 +10,7 @@ object Const {
 
     const val COMPLETED_DIET = 1
     const val UNCOMPLETED_DIET = 0
+    const val IN_PROGRESS_DIET = -1
 
 
     const val EASY_LEVEL = 2

@@ -2,9 +2,12 @@ package com.diets.weightloss.common
 
 import android.util.Log
 import com.diets.weightloss.App
+import com.diets.weightloss.Const
 import com.diets.weightloss.common.db.entities.DietPlanEntity
+import com.diets.weightloss.common.db.entities.HistoryDiet
 import com.diets.weightloss.common.db.utils.Checker
 import com.diets.weightloss.model.interactive.DietDay
+import com.diets.weightloss.utils.CustomDate
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -28,7 +31,7 @@ object DBHolder {
     init {
         dietPlanEntity = DietPlanEntity(0, 0, INIT_DIET,
                 false, false, 0, 0,
-                0, 0, 0, 0, 0, 0, mutableListOf())
+                0, 0, 0, 0, 0, 0, mutableListOf(), 0, 0, 0f)
     }
 
     fun set(dietPlanEntity: DietPlanEntity) {
@@ -67,6 +70,20 @@ object DBHolder {
         // set meals states (checked, non checked)
         setMeals(days)
         insertInDB()
+        addNewHistoryItem(dietPlanEntity)
+    }
+
+    private fun addNewHistoryItem(dietPlanEntity: DietPlanEntity) {
+        var history = HistoryDiet()
+        history.dietNumber = dietPlanEntity.id
+        history.startTime = CustomDate.getClearTime(Calendar.getInstance().timeInMillis)
+        history.state = Const.UNCOMPLETED_DIET
+        history.difficulty = dietPlanEntity.difficulty
+        history.loseLifes = 0
+        history.userDifficulty = 0
+        history.satisfaction = 4
+        history.comment = ""
+
     }
 
     fun bindNewDay(days: List<DietDay>): Int {
@@ -237,6 +254,6 @@ object DBHolder {
     fun setEmpty() {
         dietPlanEntity = DietPlanEntity(0, 0, NO_DIET_YET,
                 false, false, 0, 0,
-                0, 0, 0, 0, 0, 0, mutableListOf())
+                0, 0, 0, 0, 0, 0, mutableListOf(), 0, 0, 0f)
     }
 }

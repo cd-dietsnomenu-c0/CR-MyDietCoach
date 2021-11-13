@@ -59,46 +59,15 @@
                 android:gravity="center"
                 android:text="@string/rab_text_new" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="24dp"
-                android:orientation="horizontal">
 
-
-                <Button
-                    android:id="@+id/btnEnd"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical|left"
-                    android:layout_marginLeft="24dp"
-                    android:background="@drawable/shape_close_tracker"
-                    android:text="@string/rab_end"
-                    android:textSize="12sp" />
-
-                <Button
-                    android:id="@+id/btnReplay"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical|right"
-                    android:paddingHorizontal="20dp"
-                    android:layout_marginRight="24dp"
-                    android:drawableLeft="@drawable/ic_reload"
-                    android:background="@drawable/shape_replay_diet"
-                    android:text="@string/rab_replay"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </FrameLayout>
 
 
             <Button
                 android:id="@+id/btnShowAdd"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_gravity="center_horizontal"
@@ -107,6 +76,18 @@
                 android:background="@drawable/shape_get_live"
                 android:text="@string/get_play"
                 android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnEnd"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape_close_tracker"
+                android:text="@string/rab_end"
                 android:textSize="12sp" />
 
 

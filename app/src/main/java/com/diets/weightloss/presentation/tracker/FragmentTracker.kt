@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -26,9 +25,9 @@ import com.diets.weightloss.presentation.tracker.controller.eats.IEat
 import com.diets.weightloss.presentation.tracker.controller.lives.LiveAdapter
 import com.diets.weightloss.presentation.tracker.controller.menu.IMenu
 import com.diets.weightloss.presentation.tracker.controller.menu.MenuAdapter
+import com.diets.weightloss.utils.CustomDate
 import com.diets.weightloss.utils.ad.ActionAd
 import kotlinx.android.synthetic.main.fragment_tracker.*
-import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import java.util.*
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
@@ -130,7 +129,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     }
 
     fun restartDiet() {
-        var entity = DietPlanEntity(getDiet()!!, DBHolder.get().difficulty, DBHolder.getTomorrowTimeTrigger())
+        var entity = DietPlanEntity(getDiet()!!, DBHolder.get().difficulty, DBHolder.getTomorrowTimeTrigger(), CustomDate.getClearTime(Calendar.getInstance().timeInMillis))
         DBHolder.firstSet(entity, getDietDays()!!)
         startActivity(Intent(activity, LoadingActivity::class.java))
         activity!!.finish()
@@ -143,7 +142,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
 
     private fun bindTracker() {
-        if(DBHolder.getIfExist().name != DBHolder.NO_DIET_YET) {
+        if (DBHolder.getIfExist().name != DBHolder.NO_DIET_YET) {
             isCompleteAlertShowed = false
             isDayCompleted = false
             if (DBHolder.get().timeTrigger < Calendar.getInstance().timeInMillis) {
@@ -153,7 +152,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             if (dietState == DBHolder.DIET_COMPLETED) {
                 showCompletedAlert()
             } else if (dietState == DBHolder.DIET_LOSE) {
-                showLosedAlert()
+                runLosedFlow()
             }
             tvTrackerTitle.text = DBHolder.get().name
             currentDay = DBHolder.get().currentDay
@@ -165,8 +164,8 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         }
     }
 
-    private fun showLosedAlert() {
-        if(!loseFragment.isAdded) {
+    private fun runLosedFlow() {
+        if (!loseFragment.isAdded) {
             loseFragment.show(activity!!.supportFragmentManager, LOSE_TAG)
         }
     }

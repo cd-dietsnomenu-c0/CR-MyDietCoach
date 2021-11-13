@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_caution" />
-                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\caution.svg" />
+                            <entry key="outputName" value="ic_delete_weight_dialog" />
+                            <entry key="sourceFile" value="C:\Users\wadim\Desktop\delete.svg" />
                           </map>
                         </option>
                       </PersistentState>

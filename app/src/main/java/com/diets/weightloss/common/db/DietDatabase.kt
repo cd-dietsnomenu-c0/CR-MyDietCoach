@@ -14,5 +14,4 @@ import com.diets.weightloss.common.db.entities.water.WaterRate
 @Database(entities = [DietPlanEntity::class, FavoriteEntity::class, WaterIntake::class, DrinksCapacities::class, WaterRate::class, BadMig::class, HistoryDiet::class], version = 5, exportSchema = false)
 abstract class DietDatabase : RoomDatabase() {
     abstract fun dietDAO(): DietDAO
-
 }

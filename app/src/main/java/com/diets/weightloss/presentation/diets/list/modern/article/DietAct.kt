@@ -27,6 +27,7 @@ import com.diets.weightloss.presentation.diets.list.modern.article.controller.IC
 import com.diets.weightloss.presentation.diets.list.modern.article.controller.managers.LayoutManagerTopScroll
 import com.diets.weightloss.presentation.diets.list.modern.article.toasts.AddToast
 import com.diets.weightloss.presentation.tracker.LoadingActivity
+import com.diets.weightloss.utils.CustomDate
 import kotlinx.android.synthetic.main.diet_act.*
 import java.util.*
 
@@ -168,7 +169,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
 
     fun startDietPlan(difficulty: Int) {
         Ampl.choiseHardLevel()
-        var entity = DietPlanEntity(diet, difficulty, DBHolder.getTomorrowTimeTrigger())
+        var entity = DietPlanEntity(diet, difficulty, DBHolder.getTomorrowTimeTrigger(), CustomDate.getClearTime(Calendar.getInstance().timeInMillis))
         DBHolder.firstSet(entity, diet.days)
         startActivity(Intent(this, LoadingActivity::class.java))
         finishAffinity()
