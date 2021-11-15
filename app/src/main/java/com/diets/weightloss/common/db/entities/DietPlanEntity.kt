@@ -4,6 +4,9 @@ import androidx.room.*
 import com.diets.weightloss.model.interactive.Diet
 import com.diets.weightloss.common.db.DayLoseConverter
 
+const val DEFAULT_WEIGHT_UNTIL = 0f
+const val SKIP_WEIGHT_UNTIL = -1f
+
 @Entity
 @TypeConverters(DayLoseConverter::class)
 data class DietPlanEntity(
@@ -30,5 +33,6 @@ data class DietPlanEntity(
 
     constructor(diet: Diet, difficulty: Int, timeInMillis: Long, startTime : Long) : this(0, timeInMillis, diet.title, false,
             true, 0, 0, difficulty, 0,
-            0, 0, 0, 0, mutableListOf<Int>(), diet.index, startTime, 0f)
+            0, 0, 0, 0, mutableListOf<Int>(), diet.index, startTime, DEFAULT_WEIGHT_UNTIL)
 }
+

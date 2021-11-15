@@ -1,9 +1,15 @@
 package com.diets.weightloss.presentation.tracker
 
+import android.animation.ValueAnimator
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,6 +22,7 @@ import com.diets.weightloss.R
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.common.DBHolder
 import com.diets.weightloss.common.GlobalHolder
+import com.diets.weightloss.common.db.entities.DEFAULT_WEIGHT_UNTIL
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.presentation.diets.list.modern.article.DietAct
 import com.diets.weightloss.presentation.tracker.alerts.*
@@ -25,9 +32,17 @@ import com.diets.weightloss.presentation.tracker.controller.eats.IEat
 import com.diets.weightloss.presentation.tracker.controller.lives.LiveAdapter
 import com.diets.weightloss.presentation.tracker.controller.menu.IMenu
 import com.diets.weightloss.presentation.tracker.controller.menu.MenuAdapter
+import com.diets.weightloss.presentation.tracker.toasts.SaveWeightToast
 import com.diets.weightloss.utils.CustomDate
+import com.diets.weightloss.utils.FieldsWorker
+import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.ActionAd
+import com.diets.weightloss.utils.notif.services.TopicWorker
+import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.fragment_tracker.*
+import kotlinx.android.synthetic.main.fragment_tracker.btnSave
+import kotlinx.android.synthetic.main.fragment_tracker.edtWeight
+import kotlinx.android.synthetic.main.meas_activitys.*
 import java.util.*
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
@@ -154,6 +169,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             } else if (dietState == DBHolder.DIET_LOSE) {
                 runLosedFlow()
             }
+
             tvTrackerTitle.text = DBHolder.get().name
             currentDay = DBHolder.get().currentDay
             bindLives(DBHolder.get().difficulty, DBHolder.get().missingDays)
@@ -161,7 +177,118 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             bindMenu()
             bindDays()
             bindDayView()
+            bindWeight()
         }
+    }
+
+    private fun bindWeight() {
+        if (DBHolder.get().weightUntil == DEFAULT_WEIGHT_UNTIL) {
+            cvWeight.visibility = View.VISIBLE
+
+
+            btnClose.setOnClickListener {
+                DBHolder.setSkipWeight()
+                animSkip()
+            }
+
+            btnSave.setOnClickListener {
+                if (validateWeight()) {
+                    animSave()
+                }
+            }
+        }
+    }
+
+    private fun hideKeyboard() {
+        val imm: InputMethodManager =
+                requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        var view: View? = requireActivity().currentFocus
+        if (view == null) {
+            view = View(requireContext())
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun validateWeight(): Boolean {
+        return if (FieldsWorker.isCorrect(edtWeight.text.toString())) {
+            var weight = edtWeight.text.toString().toFloat()
+            if (weight in 21.0f..199.0f) {
+                hideKeyboard()
+                edtWeight.isEnabled = false
+                DBHolder.saveWeightUntil(weight)
+                true
+            } else {
+                Toast.makeText(activity, getString(R.string.input_error_not_in_limit), Toast.LENGTH_LONG).show()
+                false
+            }
+        } else {
+            Toast.makeText(activity, getString(R.string.input_error_empty), Toast.LENGTH_LONG).show()
+            false
+        }
+    }
+
+    private fun animSave() {
+        var toUp = ValueAnimator.ofFloat(rvEats.translationY, rvEats.translationY - cvWeight.height)
+        toUp.addUpdateListener {
+            rvEats.translationY = it.animatedValue as Float
+            if (it.animatedFraction.toString().toFloat() >= 0.98f) {
+                rvEats.translationY = rvEats.translationY + cvWeight.height
+                cvWeight.visibility = View.GONE
+                SaveWeightToast.show(requireContext())
+            }
+        }
+
+        var toRight = ValueAnimator.ofFloat(-100f, 2_000f)
+        toRight.duration = 500L
+        toRight.addUpdateListener {
+            cvWeight.translationX = it.animatedValue as Float
+            if (it.animatedFraction.toString().toFloat() >= 0.98f) {
+                toUp.start()
+            }
+        }
+
+        var toLeft = ValueAnimator.ofFloat(cvWeight.translationX, -100f)
+        toLeft.duration = 150L
+        toLeft.addUpdateListener {
+            cvWeight.translationX = it.animatedValue as Float
+            if (it.animatedFraction.toString().toFloat() >= 0.98f) {
+                toRight.start()
+            }
+        }
+
+        toLeft.start()
+    }
+
+    private fun animSkip() {
+        var toUp = ValueAnimator.ofFloat(rvEats.translationY, rvEats.translationY - cvWeight.height)
+        toUp.addUpdateListener {
+            rvEats.translationY = it.animatedValue as Float
+            if (it.animatedFraction.toString().toFloat() >= 0.98f) {
+                rvEats.translationY = rvEats.translationY + cvWeight.height
+                cvWeight.visibility = View.GONE
+            }
+        }
+
+        var toLeft = ValueAnimator.ofFloat(100f, -2_000f)
+        toLeft.duration = 500L
+        toLeft.addUpdateListener {
+            cvWeight.translationX = it.animatedValue as Float
+            if (it.animatedFraction.toString().toFloat() >= 0.98f) {
+                toUp.start()
+                //cvWeight.visibility = View.GONE
+            }
+        }
+
+        var toRight = ValueAnimator.ofFloat(cvWeight.translationX, 100f)
+        toRight.duration = 150L
+        toRight.addUpdateListener {
+            cvWeight.translationX = it.animatedValue as Float
+            if (it.animatedFraction.toString().toFloat() >= 0.98f) {
+                toLeft.start()
+            }
+        }
+
+        toRight.start()
     }
 
     private fun runLosedFlow() {

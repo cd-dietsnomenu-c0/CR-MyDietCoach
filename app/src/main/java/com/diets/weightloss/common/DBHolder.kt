@@ -5,6 +5,7 @@ import com.diets.weightloss.App
 import com.diets.weightloss.Const
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.common.db.entities.HistoryDiet
+import com.diets.weightloss.common.db.entities.SKIP_WEIGHT_UNTIL
 import com.diets.weightloss.common.db.utils.Checker
 import com.diets.weightloss.model.interactive.DietDay
 import com.diets.weightloss.utils.CustomDate
@@ -255,5 +256,15 @@ object DBHolder {
         dietPlanEntity = DietPlanEntity(0, 0, NO_DIET_YET,
                 false, false, 0, 0,
                 0, 0, 0, 0, 0, 0, mutableListOf(), 0, 0, 0f)
+    }
+
+    fun setSkipWeight() {
+        dietPlanEntity.weightUntil = SKIP_WEIGHT_UNTIL
+        insertInDB()
+    }
+
+    fun saveWeightUntil(weight: Float) {
+        dietPlanEntity.weightUntil = weight
+        insertInDB()
     }
 }

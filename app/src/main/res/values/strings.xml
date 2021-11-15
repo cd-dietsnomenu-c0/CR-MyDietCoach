@@ -694,6 +694,7 @@
     <string name="rab_text_new">Но не стоит расстраиваться!\nВажно не опускать руки и упорно идти к своей цели несмотря ни на что!\n Так же вы можете продолжить диету с последнего возможного дня</string>
     <string name="uncompleted_history">провалена</string>
     <string name="completed_history">завершена</string>
+    <string name="save_until_weight">Вес сохранен</string>
 
     <string-array name="frequent_types">
         <item>Каждые 30 минут</item>

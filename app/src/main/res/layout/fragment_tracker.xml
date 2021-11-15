@@ -298,11 +298,13 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="12dp"
+                android:visibility="gone"
                 app:cardElevation="5dp">
 
 
@@ -377,6 +379,7 @@
                                 android:orientation="horizontal">
 
                                 <EditText
+                                    android:id="@+id/edtWeight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:minWidth="30dp"
@@ -427,6 +430,7 @@
                         android:orientation="horizontal">
 
                         <Button
+                            android:id="@+id/btnClose"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:layout_marginBottom="4dp"
@@ -437,6 +441,7 @@
                             android:textSize="11sp" />
 
                         <Button
+                            android:id="@+id/btnSave"
                             android:layout_width="140dp"
                             android:layout_height="30dp"
                             android:layout_marginStart="16dp"
