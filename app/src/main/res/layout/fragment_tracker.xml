@@ -371,22 +371,25 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
                                 android:layout_gravity="center_horizontal"
                                 android:orientation="horizontal">
 
                                 <EditText
-                                    android:layout_width="70dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:minWidth="30dp"
                                     android:theme="@style/WeightTracker"
                                     android:layout_gravity="center_vertical"
                                     android:background="@android:color/transparent"
                                     android:fontFamily="@font/roboto_medium"
                                     android:gravity="center_horizontal"
-                                    android:maxLength="3"
-                                    android:text="90"
+                                    android:maxLength="5"
+                                    android:text="100"
                                     android:inputType="numberDecimal"
                                     android:textColor="@color/white"
-                                    android:textSize="42sp" />
+                                    android:textSize="28sp" />
 
 
                                 <TextView
@@ -397,7 +400,7 @@
                                     android:text="@string/kg_brok"
                                     android:layout_marginStart="6dp"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp" />
+                                    android:textSize="15sp" />
 
 
 
@@ -406,7 +409,7 @@
 
                             <View
                                 android:id="@+id/divider30"
-                                android:layout_width="100dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_weight="1"
                                 android:background="@color/white" />
