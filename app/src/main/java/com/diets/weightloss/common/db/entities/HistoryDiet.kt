@@ -6,6 +6,11 @@ import androidx.room.PrimaryKey
 import com.diets.weightloss.model.interactive.Diet
 import java.io.Serializable
 
+const val COMPLETED_DIET = 1
+const val LOSE_DIET = 0
+const val BREAK_DIET = -1
+
+
 @Entity
 data class HistoryDiet(@PrimaryKey(autoGenerate = true) var id: Long,
                        var dietNumber: Int,
@@ -33,6 +38,7 @@ data class HistoryDiet(@PrimaryKey(autoGenerate = true) var id: Long,
                        var weightAfter: Float) : Serializable {
 
     constructor() : this(0, 0, 0, 0,
-            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 4,
             "", "", "", "", "", 0, 0f, 0f)
+
 }

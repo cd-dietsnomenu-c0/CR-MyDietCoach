@@ -4,8 +4,6 @@ import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
@@ -14,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.diets.weightloss.App
 import com.diets.weightloss.Config
 import com.diets.weightloss.MainActivity
 import com.diets.weightloss.model.interactive.Diet
@@ -22,6 +21,7 @@ import com.diets.weightloss.R
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.common.DBHolder
 import com.diets.weightloss.common.GlobalHolder
+import com.diets.weightloss.common.db.entities.COMPLETED_DIET
 import com.diets.weightloss.common.db.entities.DEFAULT_WEIGHT_UNTIL
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.presentation.diets.list.modern.article.DietAct
@@ -35,14 +35,10 @@ import com.diets.weightloss.presentation.tracker.controller.menu.MenuAdapter
 import com.diets.weightloss.presentation.tracker.toasts.SaveWeightToast
 import com.diets.weightloss.utils.CustomDate
 import com.diets.weightloss.utils.FieldsWorker
-import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.ActionAd
-import com.diets.weightloss.utils.notif.services.TopicWorker
-import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.fragment_tracker.*
 import kotlinx.android.synthetic.main.fragment_tracker.btnSave
 import kotlinx.android.synthetic.main.fragment_tracker.edtWeight
-import kotlinx.android.synthetic.main.meas_activitys.*
 import java.util.*
 
 class FragmentTracker : Fragment(R.layout.fragment_tracker) {
@@ -137,11 +133,6 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         startActivity(intent)
     }
 
-    fun closeDiet() {
-        DBHolder.delete()
-        startActivity(Intent(activity, MainActivity::class.java))
-        activity!!.finish()
-    }
 
     fun restartDiet() {
         var entity = DietPlanEntity(getDiet()!!, DBHolder.get().difficulty, DBHolder.getTomorrowTimeTrigger(), CustomDate.getClearTime(Calendar.getInstance().timeInMillis))
@@ -165,7 +156,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             }
 
             if (dietState == DBHolder.DIET_COMPLETED) {
-                showCompletedAlert()
+                runCompletedFlow()
             } else if (dietState == DBHolder.DIET_LOSE) {
                 runLosedFlow()
             }
@@ -178,6 +169,10 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             bindDays()
             bindDayView()
             bindWeight()
+
+            btnSend.setOnClickListener {
+                closeDiet(true, COMPLETED_DIET)
+            }
         }
     }
 
@@ -297,11 +292,26 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         }
     }
 
-    private fun showCompletedAlert() {
-        if (!isCompleteAlertShowed && !completeAlert.isAdded) {
+    private fun runCompletedFlow() {
+        /*if (!isCompleteAlertShowed && !completeAlert.isAdded) {
             completeAlert.show(activity!!.supportFragmentManager, CONGRATE_TAG)
             isCompleteAlertShowed = true
+        }*/
+        closeDiet(true, COMPLETED_DIET)
+    }
+
+    fun closeDiet(isNeedShowHistory: Boolean, dietState : Int) {
+        var dietHistory = DBHolder.createDietHistory(dietState)
+
+        DBHolder.insertHistoryDietInDB(dietHistory)
+        //DBHolder.delete()
+
+        var intent = Intent(requireActivity(), MainActivity::class.java)
+        if (isNeedShowHistory){
+            intent.putExtra(MainActivity.DIET_HISTORY_KEY, dietHistory)
         }
+        startActivity(intent)
+        activity!!.finish()
     }
 
 
@@ -380,7 +390,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             lavCompleteDay.playAnimation()
         }
         if (isDietCompleteNow()) {
-            showCompletedAlert()
+            runCompletedFlow()
         }
     }
 

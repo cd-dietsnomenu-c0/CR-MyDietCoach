@@ -6,9 +6,9 @@ import com.diets.weightloss.Const
 import com.diets.weightloss.common.db.entities.DietPlanEntity
 import com.diets.weightloss.common.db.entities.HistoryDiet
 import com.diets.weightloss.common.db.entities.SKIP_WEIGHT_UNTIL
-import com.diets.weightloss.common.db.utils.Checker
 import com.diets.weightloss.model.interactive.DietDay
 import com.diets.weightloss.utils.CustomDate
+import com.diets.weightloss.utils.history.HistoryProvider
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -166,6 +166,16 @@ object DBHolder {
                 .subscribe({ _ -> Log.e("LOL", "saved") }) { obj: Throwable -> obj.printStackTrace() }
     }
 
+    fun insertHistoryDietInDB(dietHistory: HistoryDiet) {
+        Single.fromCallable {
+            App.getInstance().db.dietHistoryDAO().insert(dietHistory)
+            null
+        }
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ _ -> Log.e("LOL", "saved") }) { obj: Throwable -> obj.printStackTrace() }
+    }
+
     private fun setMeals(days: List<DietDay>) {
         dietPlanEntity.breakfastState = NOT_USE
         dietPlanEntity.lunchState = NOT_USE
@@ -267,4 +277,19 @@ object DBHolder {
         dietPlanEntity.weightUntil = weight
         insertInDB()
     }
+
+    fun createDietHistory(dietState: Int): HistoryDiet {
+        var historyDiet = HistoryDiet()
+        historyDiet.dietNumber = dietPlanEntity.dietNumber
+        historyDiet.startTime = dietPlanEntity.startTime
+        historyDiet.endTime = CustomDate.getClearTime(Calendar.getInstance().timeInMillis)
+        historyDiet.state = dietState
+        historyDiet.difficulty = dietPlanEntity.difficulty
+        historyDiet.loseLifes = dietPlanEntity.missingDays
+        historyDiet.weightUntil = dietPlanEntity.weightUntil
+        historyDiet.weightAfter = historyDiet.weightUntil
+        historyDiet = HistoryProvider.addAdditionalProperties(historyDiet)
+        return historyDiet
+    }
+
 }

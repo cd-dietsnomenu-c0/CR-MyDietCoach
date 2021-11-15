@@ -57,4 +57,5 @@ interface DietDAO {
 
     @Query("select * from WaterRate")
     fun getAllWaterRates(): List<WaterRate>
+
 }

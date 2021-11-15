@@ -1,20 +1,19 @@
 package com.diets.weightloss.presentation.history
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diets.weightloss.R
-import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.common.db.entities.HistoryDiet
 import com.diets.weightloss.presentation.history.controller.HistoryClickListener
 import com.diets.weightloss.presentation.history.controller.HistoryDietAdapter
-import com.diets.weightloss.utils.TimeConverter
+import com.diets.weightloss.utils.history.HistoryProvider
 import kotlinx.android.synthetic.main.fr_types.*
 import kotlinx.android.synthetic.main.history_list_diets_activity.*
-import java.sql.Time
+import java.io.Serializable
 
 class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_activity) {
 
@@ -23,8 +22,15 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        fillDietList()
+        checkIntent()
         updateUI()
+    }
+
+    private fun checkIntent() {
+        if (intent.getSerializableExtra(DIET_HISTORY_TAG) != null){
+            var historyDiet = intent.getSerializableExtra(DIET_HISTORY_TAG) as HistoryDiet
+            startActivity(HistoryDietActivity.getIntent(this@HistoryListDietsActivity, historyDiet, true))
+        }
     }
 
 
@@ -61,23 +67,19 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
 
     private fun loadAdditionalProperties() {
         for (i in listDiet.indices) {
-            var diet = GlobalHolder.getGlobal().allDiets.dietList.find {
-                it.index == listDiet[i].dietNumber
-            }
-            var historyDiet = listDiet[i]
-            historyDiet.imageUrl = diet!!.mainImage
-            historyDiet.name = diet!!.title
-            historyDiet.readableStart = TimeConverter.fromMillisToString(historyDiet.startTime)
-            historyDiet.readableEnd = TimeConverter.fromMillisToString(historyDiet.endTime)
-            historyDiet.readablePeriod = TimeConverter.getPeriod(historyDiet.startTime, historyDiet.endTime)
-            listDiet[i] = historyDiet
+            listDiet[i] = HistoryProvider.addAdditionalProperties(listDiet[i])
         }
     }
 
-    private fun fillDietList() {
-        listDiet.add(HistoryDiet(0, 3, 1633888830, 1633888830, 0, 2, 2, 3, 4, "kek", "", "", "", "", 0, 45f, 49.7f))
-        listDiet.add(HistoryDiet(0, 32, 1633888830, 1633888830, 1, 2, 2, 3, 4, "kek", "", "", "", "", 0, 45.8f, 49.7f))
-        listDiet.add(HistoryDiet(0, 6, 1633888830, 1633888830, 0, 2, 2, 3, 4, "kek", "", "", "", "", 0, 45.8f, 49.7f))
-        listDiet.add(HistoryDiet(0, 9, 1633888830, 1633888830, 1, 2, 2, 3, 4, "kek", "", "", "", "", 0, 45.8f, 49.7f))
+    companion object{
+        private const val DIET_HISTORY_TAG = "DIET_HISTORY_TAG"
+
+        fun getIntent(historyDiet: HistoryDiet, context: Context) : Intent {
+            var intent = Intent(context, HistoryListDietsActivity::class.java)
+            intent.putExtra(DIET_HISTORY_TAG, historyDiet)
+            return intent
+        }
     }
+
+
 }

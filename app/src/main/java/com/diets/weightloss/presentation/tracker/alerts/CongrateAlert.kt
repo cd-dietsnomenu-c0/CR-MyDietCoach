@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.diets.weightloss.R
+import com.diets.weightloss.common.db.entities.COMPLETED_DIET
 import com.diets.weightloss.presentation.tracker.FragmentTracker
 import kotlinx.android.synthetic.main.alert_congrate.*
 
@@ -32,7 +33,7 @@ class CongrateAlert : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fabEnd.setOnClickListener {
-            (targetFragment as FragmentTracker).closeDiet()
+            (targetFragment as FragmentTracker).closeDiet(false, COMPLETED_DIET)
             dismiss()
         }
 

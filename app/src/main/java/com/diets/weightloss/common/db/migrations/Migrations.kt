@@ -30,7 +30,7 @@ object Migrations {
             database.execSQL("create table HistoryDiet (id INTEGER NOT NULL, dietNumber INTEGER NOT NULL, startTime INTEGER NOT NULL, endTime INTEGER NOT NULL, state INTEGER NOT NULL, difficulty INTEGER NOT NULL, loseLifes INTEGER NOT NULL, userDifficulty INTEGER NOT NULL, satisfaction INTEGER NOT NULL, comment TEXT NOT NULL, weightUntil FLOAT NOT NULL, weightAfter FLOAT NOT NULL, PRIMARY KEY (id));")
             database.execSQL("alter table DietPlanEntity add column dietNumber INTEGER DEFAULT 0 NOT NULL;")
             database.execSQL("alter table DietPlanEntity add column startTime INTEGER DEFAULT 0 NOT NULL;")
-            database.execSQL("alter table DietPlanEntity add column weightUntil INTEGER DEFAULT 0 NOT NULL;")
+            database.execSQL("alter table DietPlanEntity add column weightUntil FLOAT DEFAULT 0 NOT NULL;")
         }
     }
 }

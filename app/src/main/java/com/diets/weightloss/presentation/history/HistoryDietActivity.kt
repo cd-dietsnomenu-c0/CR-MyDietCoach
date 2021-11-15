@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -14,8 +13,7 @@ import com.diets.weightloss.common.db.entities.HistoryDiet
 import com.diets.weightloss.presentation.history.dialogs.AttentionExitDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightAfterDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightUntilDialog
-import com.diets.weightloss.utils.history.HistoryFormatter
-import kotlinx.android.synthetic.main.fr_types.*
+import com.diets.weightloss.utils.history.HistoryProvider
 import kotlinx.android.synthetic.main.history_diet_activity.*
 import java.text.DecimalFormat
 
@@ -52,13 +50,13 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
     }
 
     override fun changeAfterWeight(kilo: Int, gramm: Int) {
-        historyDiet!!.weightAfter = HistoryFormatter.convertTwoNumbersToFloat(kilo, gramm)
+        historyDiet!!.weightAfter = HistoryProvider.convertTwoNumbersToFloat(kilo, gramm)
         tvAfterWeight.text = "${historyDiet!!.weightAfter} ${getString(R.string.kg_brok)}"
         setWeightDiff()
     }
 
     override fun changeUntilWeight(kilo: Int, gramm: Int) {
-        historyDiet!!.weightUntil = HistoryFormatter.convertTwoNumbersToFloat(kilo, gramm)
+        historyDiet!!.weightUntil = HistoryProvider.convertTwoNumbersToFloat(kilo, gramm)
         tvUntilWeight.text = "${historyDiet!!.weightUntil} ${getString(R.string.kg_brok)}"
         setWeightDiff()
     }
@@ -67,13 +65,13 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         if (isInteractive) {
             llWeightUntil.setOnClickListener {
                 WeightUntilDialog
-                        .newInstance(HistoryFormatter.convertFloatToTwoNumbers(historyDiet!!.weightUntil))
+                        .newInstance(HistoryProvider.convertFloatToTwoNumbers(historyDiet!!.weightUntil))
                         .show(supportFragmentManager, "")
             }
 
             llWeightAfter.setOnClickListener {
                 WeightAfterDialog
-                        .newInstance(HistoryFormatter.convertFloatToTwoNumbers(historyDiet!!.weightAfter))
+                        .newInstance(HistoryProvider.convertFloatToTwoNumbers(historyDiet!!.weightAfter))
                         .show(supportFragmentManager, "")
             }
 

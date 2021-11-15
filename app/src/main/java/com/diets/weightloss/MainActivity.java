@@ -20,11 +20,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.diets.weightloss.common.DBHolder;
 import com.diets.weightloss.common.GlobalHolder;
+import com.diets.weightloss.common.db.entities.HistoryDiet;
 import com.diets.weightloss.common.db.utils.Checker;
 import com.diets.weightloss.model.Global;
 import com.diets.weightloss.presentation.calculators.FragmentCalculators;
 import com.diets.weightloss.presentation.diets.FragmentTypes;
 import com.diets.weightloss.presentation.history.HistoryDietActivity;
+import com.diets.weightloss.presentation.history.HistoryListDietsActivity;
 import com.diets.weightloss.presentation.profile.ProfileFragment;
 import com.diets.weightloss.presentation.tracker.FragmentTracker;
 import com.diets.weightloss.presentation.water.FragmentWaterTracker;
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     private final int COUNT_RUN_BETWEEN_SHOW_GRADE = 3;
 
     private boolean isHasEatTracker = true;
+
+    public static String DIET_HISTORY_KEY = "DIET_HISTORY_KEY";
 
     private BottomNavigationView.OnNavigationItemSelectedListener bnvListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -178,6 +182,9 @@ public class MainActivity extends AppCompatActivity {
         if (getIntent().getStringExtra(Config.PUSH_TAG) != null
                 && getIntent().getStringExtra(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)) {
             AdWorker.INSTANCE.getShow();
+        } else if (getIntent().getSerializableExtra(DIET_HISTORY_KEY) != null) {
+            HistoryDiet history = (HistoryDiet) getIntent().getSerializableExtra(DIET_HISTORY_KEY);
+            startActivity(HistoryListDietsActivity.Companion.getIntent(history, this));
         }
     }
 

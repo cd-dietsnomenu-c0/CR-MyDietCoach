@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.diets.weightloss.R
+import com.diets.weightloss.common.db.entities.LOSE_DIET
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.toasts.InfoLockToast
 import com.diets.weightloss.presentation.tracker.FragmentTracker
 import com.diets.weightloss.presentation.tracker.toasts.NotShowAdInfoToast
@@ -32,7 +33,7 @@ class LoseAlert : DialogFragment() {
 
         btnEnd.setOnClickListener {
             Ampl.closeLoseDiet()
-            (targetFragment as FragmentTracker).closeDiet()
+            (targetFragment as FragmentTracker).closeDiet(true, LOSE_DIET)
             dismiss()
         }
 

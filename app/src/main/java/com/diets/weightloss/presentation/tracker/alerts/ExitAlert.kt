@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.diets.weightloss.R
+import com.diets.weightloss.common.db.entities.BREAK_DIET
 import com.diets.weightloss.presentation.tracker.FragmentTracker
 import kotlinx.android.synthetic.main.exit_alert.*
 
@@ -23,7 +24,7 @@ class ExitAlert : DialogFragment() {
         }
 
         btnExit.setOnClickListener {
-            (targetFragment as FragmentTracker).closeDiet()
+            (targetFragment as FragmentTracker).closeDiet(false, BREAK_DIET)
             dismiss()
         }
     }
