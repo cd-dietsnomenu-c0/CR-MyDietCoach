@@ -7,6 +7,10 @@ import com.diets.weightloss.common.db.DayLoseConverter
 const val DEFAULT_WEIGHT_UNTIL = 0f
 const val SKIP_WEIGHT_UNTIL = -1f
 
+const val EASY_LEVEL = 2
+const val NORMAL_LEVEL = 1
+const val HARD_LEVEL = 0
+
 @Entity
 @TypeConverters(DayLoseConverter::class)
 data class DietPlanEntity(

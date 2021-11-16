@@ -121,6 +121,7 @@
 
     <color name="increase_weight">#F86A67</color>
     <color name="decrease_weight">#4CAF50</color>
+    <color name="pause_weight">#FF9800</color>
 
 
 </resources>

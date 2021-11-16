@@ -1,15 +1,23 @@
 package com.diets.weightloss.presentation.history
 
+import android.animation.Animator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
+import android.graphics.Point
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.diets.weightloss.Const
 import com.diets.weightloss.R
+import com.diets.weightloss.common.db.entities.EASY_LEVEL
+import com.diets.weightloss.common.db.entities.HARD_LEVEL
 import com.diets.weightloss.common.db.entities.HistoryDiet
+import com.diets.weightloss.common.db.entities.NORMAL_LEVEL
 import com.diets.weightloss.presentation.history.dialogs.AttentionExitDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightAfterDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightUntilDialog
@@ -30,11 +38,6 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         cvTop.setBackgroundResource(R.drawable.card_history_shape)
         updateUI()
         setListeners()
-
-        setDifficulty(0)
-        setGrade(4)
-        sbDifficulty.progress = 0
-        sbGrade.progress = 4
     }
 
     override fun saveAndExit() {
@@ -90,14 +93,14 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         tvEnd.text = historyDiet!!.readableEnd
         tvTime.text = resources.getQuantityString(R.plurals.days_plur, historyDiet!!.readablePeriod, historyDiet!!.readablePeriod)
         tvLostDays.text = resources.getQuantityString(R.plurals.lifes_plur, historyDiet!!.loseLifes, historyDiet!!.loseLifes)
-        tvDifficulty.text = when (historyDiet!!.difficulty) {
-            Const.EASY_LEVEL -> {
+        tvHardLevel.text = when (historyDiet!!.difficulty) {
+            EASY_LEVEL -> {
                 getString(R.string.easy_diff)
             }
-            Const.NORMAL_LEVEL -> {
+            NORMAL_LEVEL -> {
                 getString(R.string.med_diff_desc)
             }
-            Const.HARD_LEVEL -> {
+            HARD_LEVEL -> {
                 getString(R.string.hard_diff)
             }
             else -> {
@@ -127,24 +130,34 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
     }
 
     private fun setWeightDiff() {
-        var isDecrease = historyDiet!!.weightUntil > historyDiet!!.weightAfter
 
         var formater = DecimalFormat("#0.00")
 
-        if (isDecrease) {
-            tvDiffWeight.text = "${formater.format(historyDiet!!.weightUntil - historyDiet!!.weightAfter)} ${getString(R.string.kg_brok)}"
-            tvDiffWeight.setTextColor(resources.getColor(R.color.decrease_weight))
-            lavStatus.pauseAnimation()
-            lavStatus.setAnimation("history_diff_decrease.json")
-            lavStatus.rotation = 0.0f
-            lavStatus.playAnimation()
-        } else {
-            tvDiffWeight.text = "${formater.format(historyDiet!!.weightAfter - historyDiet!!.weightUntil)} ${getString(R.string.kg_brok)}"
-            tvDiffWeight.setTextColor(resources.getColor(R.color.increase_weight))
-            lavStatus.pauseAnimation()
-            lavStatus.setAnimation("history_diff_increase.json")
-            lavStatus.rotation = 180.0f
-            lavStatus.playAnimation()
+        when {
+            historyDiet!!.weightUntil > historyDiet!!.weightAfter -> {
+                tvDiffWeight.text = "${formater.format(historyDiet!!.weightUntil - historyDiet!!.weightAfter)} ${getString(R.string.kg_brok)}".replace(",", ".")
+                tvDiffWeight.setTextColor(resources.getColor(R.color.decrease_weight))
+                lavStatus.pauseAnimation()
+                lavStatus.setAnimation("history_diff_decrease.json")
+                lavStatus.rotation = 0.0f
+                lavStatus.playAnimation()
+                lavStatus.visibility = View.VISIBLE
+            }
+            historyDiet!!.weightUntil < historyDiet!!.weightAfter -> {
+                tvDiffWeight.text = "${formater.format(historyDiet!!.weightAfter - historyDiet!!.weightUntil)} ${getString(R.string.kg_brok)}".replace(",", ".")
+                tvDiffWeight.setTextColor(resources.getColor(R.color.increase_weight))
+                lavStatus.pauseAnimation()
+                lavStatus.setAnimation("history_diff_increase.json")
+                lavStatus.rotation = 180.0f
+                lavStatus.playAnimation()
+                lavStatus.visibility = View.VISIBLE
+            }
+            else -> {
+                tvDiffWeight.text = "${formater.format(historyDiet!!.weightAfter - historyDiet!!.weightUntil)} ${getString(R.string.kg_brok)}".replace(",", ".")
+                tvDiffWeight.setTextColor(resources.getColor(R.color.pause_weight))
+                lavStatus.pauseAnimation()
+                lavStatus.visibility = View.INVISIBLE
+            }
         }
     }
 
@@ -153,6 +166,7 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
             lavWin.visibility = View.VISIBLE
             if (isInteractive) {
                 lavWin.playAnimation()
+                startAnimFireworks()
             } else {
                 lavWin.progress = 1.0f
             }
@@ -164,6 +178,43 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
                 lavLose.progress = 1.0f
             }
         }
+    }
+
+    private fun startAnimFireworks() {
+        var counter = 0
+
+        lavFirework.visibility = View.VISIBLE
+        var alpha = ValueAnimator.ofFloat(lavFirework.alpha, 0.0f)
+        alpha.duration = 2_000L
+        alpha.addUpdateListener {
+            lavFirework.alpha = it.animatedValue as Float
+
+            if (it.animatedFraction == 1.0f){
+                lavFirework.pauseAnimation()
+                lavFirework.visibility = View.GONE
+            }
+        }
+
+
+        lavFirework.addAnimatorListener(object : Animator.AnimatorListener{
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationRepeat(animation: Animator?) {
+                counter ++
+                if (counter == 1){
+                    alpha.start()
+                }
+            }
+        })
+
+        lavFirework.playAnimation()
     }
 
 

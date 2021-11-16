@@ -13,7 +13,5 @@ object Const {
     const val IN_PROGRESS_DIET = -1
 
 
-    const val EASY_LEVEL = 2
-    const val NORMAL_LEVEL = 1
-    const val HARD_LEVEL = 0
+
 }

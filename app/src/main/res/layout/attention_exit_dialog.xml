@@ -68,6 +68,7 @@
                     android:background="@drawable/shape_cancel_save"
                     android:text="отмена"
                     android:paddingHorizontal="22dp"
+                    android:layout_marginStart="6dp"
                     android:layout_marginBottom="4dp"
                     android:textColor="#333333"
                     android:textSize="11sp" />
@@ -82,6 +83,7 @@
                     android:layout_marginStart="16dp"
                     android:textColor="@color/white"
                     android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="6dp"
                     android:textSize="11sp" />
 
 

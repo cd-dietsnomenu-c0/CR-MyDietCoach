@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.diets.weightloss.App
 import com.diets.weightloss.R
 import com.diets.weightloss.common.db.entities.HistoryDiet
 import com.diets.weightloss.presentation.history.controller.HistoryClickListener
@@ -23,11 +25,18 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkIntent()
-        updateUI()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        App.getInstance().db.dietHistoryDAO().getAll().observe(this, Observer {
+            listDiet = ArrayList(it)
+            updateUI()
+        })
     }
 
     private fun checkIntent() {
-        if (intent.getSerializableExtra(DIET_HISTORY_TAG) != null){
+        if (intent.getSerializableExtra(DIET_HISTORY_TAG) != null) {
             var historyDiet = intent.getSerializableExtra(DIET_HISTORY_TAG) as HistoryDiet
             startActivity(HistoryDietActivity.getIntent(this@HistoryListDietsActivity, historyDiet, true))
         }
@@ -71,10 +80,10 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
         }
     }
 
-    companion object{
+    companion object {
         private const val DIET_HISTORY_TAG = "DIET_HISTORY_TAG"
 
-        fun getIntent(historyDiet: HistoryDiet, context: Context) : Intent {
+        fun getIntent(historyDiet: HistoryDiet, context: Context): Intent {
             var intent = Intent(context, HistoryListDietsActivity::class.java)
             intent.putExtra(DIET_HISTORY_TAG, historyDiet)
             return intent

@@ -24,7 +24,7 @@ object HistoryProvider {
         historyDiet.name = diet!!.title
         historyDiet.readableStart = TimeConverter.fromMillisToString(historyDiet.startTime)
         historyDiet.readableEnd = TimeConverter.fromMillisToString(historyDiet.endTime)
-        historyDiet.readablePeriod = TimeConverter.getPeriod(historyDiet.startTime, historyDiet.endTime)
+        historyDiet.readablePeriod = TimeConverter.getPeriod(historyDiet.startTime, historyDiet.endTime) + 1
         return historyDiet
     }
 
