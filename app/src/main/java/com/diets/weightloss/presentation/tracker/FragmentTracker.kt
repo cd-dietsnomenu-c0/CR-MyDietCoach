@@ -21,6 +21,7 @@ import com.diets.weightloss.R
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.common.DBHolder
 import com.diets.weightloss.common.GlobalHolder
+import com.diets.weightloss.common.db.entities.BREAK_DIET
 import com.diets.weightloss.common.db.entities.COMPLETED_DIET
 import com.diets.weightloss.common.db.entities.DEFAULT_WEIGHT_UNTIL
 import com.diets.weightloss.common.db.entities.DietPlanEntity
@@ -302,8 +303,9 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
 
     fun closeDiet(isNeedShowHistory: Boolean, dietState : Int) {
         var dietHistory = DBHolder.createDietHistory(dietState)
-
-        DBHolder.insertHistoryDietInDB(dietHistory)
+        if (dietHistory.state != BREAK_DIET) {
+            DBHolder.insertHistoryDietInDB(dietHistory)
+        }
         //DBHolder.delete()
 
         var intent = Intent(requireActivity(), MainActivity::class.java)

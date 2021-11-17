@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.diets.weightloss.Const
 import com.diets.weightloss.R
+import com.diets.weightloss.common.DBHolder
 import com.diets.weightloss.common.db.entities.EASY_LEVEL
 import com.diets.weightloss.common.db.entities.HARD_LEVEL
 import com.diets.weightloss.common.db.entities.HistoryDiet
@@ -41,6 +42,7 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
     }
 
     override fun saveAndExit() {
+        saveDietHistory()
         finish()
     }
 
@@ -82,6 +84,20 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         ivBack.setOnClickListener {
             onBackPressed()
         }
+
+        btnSave.setOnClickListener {
+            saveDietHistory()
+        }
+    }
+
+    private fun saveDietHistory() {
+        historyDiet!!.weightUntil = tvUntilWeight.text.toString().toFloat()
+        historyDiet!!.weightAfter = tvAfterWeight.text.toString().toFloat()
+        historyDiet!!.userDifficulty = sbDifficulty.progress
+        historyDiet!!.satisfaction = sbGrade.progress
+        historyDiet!!.comment = edtReview.text.toString()
+
+        DBHolder.insertHistoryDietInDB(historyDiet!!)
     }
 
     private fun updateUI() {
@@ -189,14 +205,14 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         alpha.addUpdateListener {
             lavFirework.alpha = it.animatedValue as Float
 
-            if (it.animatedFraction == 1.0f){
+            if (it.animatedFraction == 1.0f) {
                 lavFirework.pauseAnimation()
                 lavFirework.visibility = View.GONE
             }
         }
 
 
-        lavFirework.addAnimatorListener(object : Animator.AnimatorListener{
+        lavFirework.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator?) {
             }
 
@@ -207,8 +223,8 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
             }
 
             override fun onAnimationRepeat(animation: Animator?) {
-                counter ++
-                if (counter == 1){
+                counter++
+                if (counter == 1) {
                     alpha.start()
                 }
             }

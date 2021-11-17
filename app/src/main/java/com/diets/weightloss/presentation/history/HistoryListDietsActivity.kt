@@ -15,6 +15,7 @@ import com.diets.weightloss.presentation.history.controller.HistoryDietAdapter
 import com.diets.weightloss.utils.history.HistoryProvider
 import kotlinx.android.synthetic.main.fr_types.*
 import kotlinx.android.synthetic.main.history_list_diets_activity.*
+import kotlinx.android.synthetic.main.load_fragment.*
 import java.io.Serializable
 
 class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_activity) {
@@ -49,14 +50,17 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
         } else {
             loadAdditionalProperties()
 
+            lavLoading.pauseAnimation()
+            lavLoading.visibility = View.INVISIBLE
+
             rvHistory.layoutManager = LinearLayoutManager(this)
             adapter = HistoryDietAdapter(listDiet, object : HistoryClickListener {
                 override fun onClick(position: Int) {
-                    startActivity(HistoryDietActivity.getIntent(this@HistoryListDietsActivity, listDiet[position], true))
+                    startActivity(HistoryDietActivity.getIntent(this@HistoryListDietsActivity, listDiet[position], false))
                 }
             })
             rvHistory.adapter = adapter
-
+            rvHistory.visibility = View.VISIBLE
             ivBackToolbar.setOnClickListener {
                 onBackPressed()
             }
@@ -64,6 +68,9 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
     }
 
     private fun setEmptyUI() {
+        lavLoading.pauseAnimation()
+
+        lavLoading.visibility = View.INVISIBLE
         llHistory.visibility = View.INVISIBLE
         llEmpty.visibility = View.VISIBLE
         ivBack.visibility = View.VISIBLE
@@ -78,6 +85,7 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
         for (i in listDiet.indices) {
             listDiet[i] = HistoryProvider.addAdditionalProperties(listDiet[i])
         }
+        listDiet.reverse()
     }
 
     companion object {

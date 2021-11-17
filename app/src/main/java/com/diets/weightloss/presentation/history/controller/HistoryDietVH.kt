@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.diets.weightloss.Const
 import com.diets.weightloss.R
+import com.diets.weightloss.common.db.entities.BREAK_DIET
+import com.diets.weightloss.common.db.entities.COMPLETED_DIET
 import com.diets.weightloss.common.db.entities.HistoryDiet
+import com.diets.weightloss.common.db.entities.LOSE_DIET
 import kotlinx.android.synthetic.main.history_diet_vh.view.*
 
 class HistoryDietVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val clickListener: HistoryClickListener)
@@ -25,15 +28,19 @@ class HistoryDietVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val cl
         Glide.with(itemView.context).load(historyDiet.imageUrl).into(itemView.ivImage)
         itemView.tvName.text = historyDiet.name
         itemView.tvTime.text = "${historyDiet.readableStart} - ${historyDiet.readableEnd}"
-
-        if (historyDiet.state == Const.UNCOMPLETED_DIET) {
-            itemView.tvState.background = itemView.resources.getDrawable(R.drawable.shape_history_uncomplete)
-            itemView.tvState.text = itemView.resources.getString(R.string.uncompleted_history)
-        } else {
-            itemView.tvState.background = itemView.resources.getDrawable(R.drawable.shape_history_complete)
-            itemView.tvState.text = itemView.resources.getString(R.string.completed_history)
+        when (historyDiet.state) {
+            LOSE_DIET -> {
+                itemView.tvState.background = itemView.resources.getDrawable(R.drawable.shape_history_uncomplete)
+                itemView.tvState.text = itemView.resources.getString(R.string.uncompleted_history)
+            }
+            COMPLETED_DIET -> {
+                itemView.tvState.background = itemView.resources.getDrawable(R.drawable.shape_history_complete)
+                itemView.tvState.text = itemView.resources.getString(R.string.completed_history)
+            }
+            /*else -> {
+                itemView.tvState.background = itemView.resources.getDrawable(R.drawable.shape_history_break)
+                itemView.tvState.text = itemView.resources.getString(R.string.break_history)
+            }*/
         }
-
-
     }
 }
