@@ -227,7 +227,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         var toUp = ValueAnimator.ofFloat(rvEats.translationY, rvEats.translationY - cvWeight.height)
         toUp.addUpdateListener {
             rvEats.translationY = it.animatedValue as Float
-            if (it.animatedFraction.toString().toFloat() >= 0.98f) {
+            if (it.animatedFraction.toString().toFloat() == 1.0f) {
                 rvEats.translationY = rvEats.translationY + cvWeight.height
                 cvWeight.visibility = View.GONE
                 SaveWeightToast.show(requireContext())

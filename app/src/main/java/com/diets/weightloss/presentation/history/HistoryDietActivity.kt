@@ -5,6 +5,8 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
@@ -179,7 +181,24 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         }
 
         setWeightDiff()
+        if (isInteractive){
+            setSymbolCounter()
+        }
+    }
 
+    private fun setSymbolCounter() {
+        tvSymbolCounter.visibility = View.VISIBLE
+        edtReview.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                tvSymbolCounter.text = getString(R.string.history_symbol_counter, s!!.length.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
     }
 
     private fun setWeightDiff() {
