@@ -696,6 +696,11 @@
     <string name="completed_history">завершена</string>
     <string name="break_history">прервана</string>
     <string name="save_until_weight">Вес сохранен</string>
+    <string name="review_history_completed">Удалось закончить диету \"%s\"! На мой взгляд диета проходится %s. Можно поставить диете оценку \"%s\". %s</string>
+    <string name="review_history_uncompleted">Не удалось закончить диету \"%s\"! На мой взгляд диета проходится %s. Можно поставить диете оценку \"%s\". %s</string>
+    <string name="weight_not_change">Вес не изменился :(</string>
+    <string name="weight_decrease">Вес уменьшился на %s !!!</string>
+    <string name="weight_increase">Вес увеличился на %s :(</string>
 
     <string-array name="frequent_types">
         <item>Каждые 30 минут</item>

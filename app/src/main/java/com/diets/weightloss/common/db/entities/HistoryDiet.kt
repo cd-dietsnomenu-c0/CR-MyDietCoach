@@ -10,6 +10,7 @@ const val COMPLETED_DIET = 1
 const val LOSE_DIET = 0
 const val BREAK_DIET = -1
 
+const val UNKNOWN_PERIOD = -1
 
 @Entity
 data class HistoryDiet(@PrimaryKey(autoGenerate = true) var id: Long,

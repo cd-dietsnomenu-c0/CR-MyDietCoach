@@ -2,6 +2,7 @@ package com.diets.weightloss.utils.history
 
 import com.diets.weightloss.common.GlobalHolder
 import com.diets.weightloss.common.db.entities.HistoryDiet
+import com.diets.weightloss.common.db.entities.UNKNOWN_PERIOD
 import com.diets.weightloss.model.interactive.Diet
 import com.diets.weightloss.utils.TimeConverter
 
@@ -22,9 +23,20 @@ object HistoryProvider {
         var diet = findDiet(historyDiet)
         historyDiet.imageUrl = diet!!.mainImage
         historyDiet.name = diet!!.title
-        historyDiet.readableStart = TimeConverter.fromMillisToString(historyDiet.startTime)
         historyDiet.readableEnd = TimeConverter.fromMillisToString(historyDiet.endTime)
-        historyDiet.readablePeriod = TimeConverter.getPeriod(historyDiet.startTime, historyDiet.endTime) + 1
+
+        if (historyDiet.startTime == 0L){
+            historyDiet.readableStart = "-"
+        }else{
+            historyDiet.readableStart = TimeConverter.fromMillisToString(historyDiet.startTime)
+        }
+
+        if (historyDiet.startTime == 0L){
+            historyDiet.readablePeriod = UNKNOWN_PERIOD
+        }else{
+            historyDiet.readablePeriod = TimeConverter.getPeriod(historyDiet.startTime, historyDiet.endTime) + 1
+        }
+
         return historyDiet
     }
 

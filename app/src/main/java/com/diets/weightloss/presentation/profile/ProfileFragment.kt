@@ -234,7 +234,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         }
 
         btnShare.setOnClickListener {
-
             Ampl.openSettingsShare()
             var intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain"

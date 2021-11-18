@@ -4,21 +4,16 @@ import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
-import android.graphics.Point
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.diets.weightloss.App
 import com.diets.weightloss.Const
 import com.diets.weightloss.R
 import com.diets.weightloss.common.DBHolder
-import com.diets.weightloss.common.db.entities.EASY_LEVEL
-import com.diets.weightloss.common.db.entities.HARD_LEVEL
-import com.diets.weightloss.common.db.entities.HistoryDiet
-import com.diets.weightloss.common.db.entities.NORMAL_LEVEL
+import com.diets.weightloss.common.db.entities.*
 import com.diets.weightloss.presentation.history.dialogs.AttentionExitDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightAfterDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightUntilDialog
@@ -26,10 +21,16 @@ import com.diets.weightloss.utils.history.HistoryProvider
 import kotlinx.android.synthetic.main.history_diet_activity.*
 import java.text.DecimalFormat
 
+private const val WEIGHT_INCREASE = 1
+private const val WEIGHT_DECREASE = -1
+private const val WEIGHT_NOT_CHANGE = 0
+
 class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), WeightAfterDialog.Callbacks, WeightUntilDialog.Callbacks, AttentionExitDialog.Callbacks {
 
     private var historyDiet: HistoryDiet? = null
     private var isInteractive = false
+
+    private var weightDiffState = WEIGHT_NOT_CHANGE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,13 +87,48 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         }
 
         btnSave.setOnClickListener {
-            saveDietHistory()
+            saveAndExit()
+        }
+
+        ivShare.setOnClickListener {
+            share(getReview())
+        }
+    }
+
+    private fun share(review: String) {
+        var intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, review + "\n"
+                + "https://play.google.com/store/apps/details?id=${App.getInstance().packageName}")
+        startActivity(intent)
+    }
+
+    private fun getReview(): String {
+        return if (historyDiet!!.state == COMPLETED_DIET) {
+            getString(R.string.review_history_completed, tvName.text, tvDifficulty.text.toString().toLowerCase(), tvGrade.text, getWeightDiff())
+        } else {
+            getString(R.string.review_history_uncompleted, tvName.text, tvDifficulty.text.toString().toLowerCase(), tvGrade.text, getWeightDiff())
+        }
+    }
+
+    private fun getWeightDiff(): String {
+        return when (weightDiffState) {
+            WEIGHT_NOT_CHANGE -> getString(R.string.weight_not_change)
+            WEIGHT_INCREASE -> {
+                getString(R.string.weight_increase, tvDiffWeight.text)
+            }
+            WEIGHT_DECREASE -> {
+                getString(R.string.weight_decrease, tvDiffWeight.text)
+            }
+            else -> {
+                getString(R.string.weight_not_change)
+            }
         }
     }
 
     private fun saveDietHistory() {
-        historyDiet!!.weightUntil = tvUntilWeight.text.toString().toFloat()
-        historyDiet!!.weightAfter = tvAfterWeight.text.toString().toFloat()
+        historyDiet!!.weightUntil = tvUntilWeight.text.toString().split(" ")[0].toFloat()
+        historyDiet!!.weightAfter = tvAfterWeight.text.toString().split(" ")[0].toFloat()
         historyDiet!!.userDifficulty = sbDifficulty.progress
         historyDiet!!.satisfaction = sbGrade.progress
         historyDiet!!.comment = edtReview.text.toString()
@@ -125,6 +161,7 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         }
 
         edtReview.isEnabled = isInteractive
+        edtReview.setText(historyDiet!!.comment)
 
         setDifficulty(historyDiet!!.userDifficulty)
         sbDifficulty.progress = historyDiet!!.userDifficulty
@@ -158,6 +195,7 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
                 lavStatus.rotation = 0.0f
                 lavStatus.playAnimation()
                 lavStatus.visibility = View.VISIBLE
+                weightDiffState = WEIGHT_DECREASE
             }
             historyDiet!!.weightUntil < historyDiet!!.weightAfter -> {
                 tvDiffWeight.text = "${formater.format(historyDiet!!.weightAfter - historyDiet!!.weightUntil)} ${getString(R.string.kg_brok)}".replace(",", ".")
@@ -167,18 +205,22 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
                 lavStatus.rotation = 180.0f
                 lavStatus.playAnimation()
                 lavStatus.visibility = View.VISIBLE
+                weightDiffState = WEIGHT_INCREASE
             }
             else -> {
                 tvDiffWeight.text = "${formater.format(historyDiet!!.weightAfter - historyDiet!!.weightUntil)} ${getString(R.string.kg_brok)}".replace(",", ".")
                 tvDiffWeight.setTextColor(resources.getColor(R.color.pause_weight))
                 lavStatus.pauseAnimation()
                 lavStatus.visibility = View.INVISIBLE
+                weightDiffState = WEIGHT_NOT_CHANGE
             }
         }
     }
 
     private fun bindHeadAnim() {
         if (historyDiet?.state == Const.COMPLETED_DIET) {
+            tvState.background = resources.getDrawable(R.drawable.shape_history_complete)
+            tvState.text = resources.getString(R.string.completed_history)
             lavWin.visibility = View.VISIBLE
             if (isInteractive) {
                 lavWin.playAnimation()
@@ -187,6 +229,8 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
                 lavWin.progress = 1.0f
             }
         } else {
+            tvState.background = resources.getDrawable(R.drawable.shape_history_uncomplete)
+            tvState.text = resources.getString(R.string.uncompleted_history)
             lavLose.visibility = View.VISIBLE
             if (isInteractive) {
                 lavLose.playAnimation()
