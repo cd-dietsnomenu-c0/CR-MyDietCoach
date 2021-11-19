@@ -80,7 +80,7 @@
         android:layout_height="40dp"
         android:layout_gravity="left|top"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="46dp"
         android:padding="10dp"
         android:elevation="3dp"
         android:visibility="invisible"

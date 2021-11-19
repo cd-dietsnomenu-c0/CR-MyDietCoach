@@ -66,6 +66,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        PreferenceProvider.isNeedShowAddingHistory = false
         Ampl.runApp()
         bindLocale()
         bindFCM()

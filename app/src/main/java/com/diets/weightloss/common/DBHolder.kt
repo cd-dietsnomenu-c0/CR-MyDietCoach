@@ -280,6 +280,7 @@ object DBHolder {
 
     fun createDietHistory(dietState: Int): HistoryDiet {
         var historyDiet = HistoryDiet()
+        historyDiet.id = Calendar.getInstance().timeInMillis
         historyDiet.dietNumber = dietPlanEntity.dietNumber
         historyDiet.startTime = dietPlanEntity.startTime
         historyDiet.endTime = CustomDate.getClearTime(Calendar.getInstance().timeInMillis)

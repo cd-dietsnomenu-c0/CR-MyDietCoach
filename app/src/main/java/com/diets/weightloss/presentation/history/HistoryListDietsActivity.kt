@@ -12,11 +12,11 @@ import com.diets.weightloss.R
 import com.diets.weightloss.common.db.entities.HistoryDiet
 import com.diets.weightloss.presentation.history.controller.HistoryClickListener
 import com.diets.weightloss.presentation.history.controller.HistoryDietAdapter
+import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.history.HistoryProvider
 import kotlinx.android.synthetic.main.fr_types.*
 import kotlinx.android.synthetic.main.history_list_diets_activity.*
 import kotlinx.android.synthetic.main.load_fragment.*
-import java.io.Serializable
 
 class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_activity) {
 
@@ -28,12 +28,19 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
         checkIntent()
     }
 
-    override fun onResume() {
-        super.onResume()
+
+
+    override fun onStart() {
+        super.onStart()
         App.getInstance().db.dietHistoryDAO().getAll().observe(this, Observer {
             listDiet = ArrayList(it)
             updateUI()
         })
+    }
+
+    override fun onStop() {
+        super.onStop()
+        App.getInstance().db.dietHistoryDAO().getAll().removeObservers(this)
     }
 
     private fun checkIntent() {
@@ -58,7 +65,7 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
                 override fun onClick(position: Int) {
                     startActivity(HistoryDietActivity.getIntent(this@HistoryListDietsActivity, listDiet[position], false))
                 }
-            })
+            }, PreferenceProvider.isNeedShowAddingHistory)
             rvHistory.adapter = adapter
             rvHistory.visibility = View.VISIBLE
             ivBackToolbar.setOnClickListener {

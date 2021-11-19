@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.common.db.entities.HistoryDiet
 
-class HistoryDietAdapter(val listDiet: List<HistoryDiet>, val clickListener: HistoryClickListener) : RecyclerView.Adapter<HistoryDietVH>() {
+class HistoryDietAdapter(val listDiet: List<HistoryDiet>, val clickListener: HistoryClickListener, isNeedShowAddingHistory: Boolean) : RecyclerView.Adapter<HistoryDietVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryDietVH {
         var inflater = LayoutInflater.from(parent.context)

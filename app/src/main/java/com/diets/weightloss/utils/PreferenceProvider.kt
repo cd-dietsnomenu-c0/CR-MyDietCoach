@@ -290,4 +290,10 @@ object PreferenceProvider {
         get() = getInstance()?.getString(ANIM_BACK_STATE_TAG, DEF_BACK_STATE)!!
         set(value) = editor { it?.putString(ANIM_BACK_STATE_TAG, value) }!!
 
+
+    private const val NEED_SHOW_ADD_HISTORY_TAG = "NEED_SHOW_ADD_HISTORY_TAG"
+    var isNeedShowAddingHistory: Boolean
+        get() = getInstance()?.getBoolean(NEED_SHOW_ADD_HISTORY_TAG, false)!!
+        set(value) = editor { it?.putBoolean(NEED_SHOW_ADD_HISTORY_TAG, value) }!!
+
 }
