@@ -25,7 +25,9 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        checkIntent()
+        if (savedInstanceState == null){
+            checkIntent()
+        }
     }
 
 
@@ -46,6 +48,7 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
     private fun checkIntent() {
         if (intent.getSerializableExtra(DIET_HISTORY_TAG) != null) {
             var historyDiet = intent.getSerializableExtra(DIET_HISTORY_TAG) as HistoryDiet
+            intent.putExtra(DIET_HISTORY_TAG, HistoryDiet())
             startActivity(HistoryDietActivity.getIntent(this@HistoryListDietsActivity, historyDiet, true))
         }
     }

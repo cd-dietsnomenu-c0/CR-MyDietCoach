@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkDB(savedInstanceState);
-        checkIntent();
+        checkIntent(savedInstanceState);
         fragmentManager = getSupportFragmentManager();
 
         Ampl.Companion.showMainScreen();
@@ -178,11 +178,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void checkIntent() {
+    private void checkIntent(Bundle savedInstanceState) {
         if (getIntent().getStringExtra(Config.PUSH_TAG) != null
                 && getIntent().getStringExtra(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)) {
             AdWorker.INSTANCE.getShow();
-        } else if (getIntent().getSerializableExtra(DIET_HISTORY_KEY) != null) {
+        } else if (savedInstanceState == null && getIntent().getSerializableExtra(DIET_HISTORY_KEY) != null) {
             HistoryDiet history = (HistoryDiet) getIntent().getSerializableExtra(DIET_HISTORY_KEY);
             startActivity(HistoryListDietsActivity.Companion.getIntent(history, this));
         }
