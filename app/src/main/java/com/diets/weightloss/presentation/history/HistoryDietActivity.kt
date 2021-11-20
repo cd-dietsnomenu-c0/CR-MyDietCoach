@@ -19,6 +19,7 @@ import com.diets.weightloss.common.db.entities.*
 import com.diets.weightloss.presentation.history.dialogs.AttentionExitDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightAfterDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightUntilDialog
+import com.diets.weightloss.presentation.history.toasts.SaveToast
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.history.HistoryProvider
 import kotlinx.android.synthetic.main.history_diet_activity.*
@@ -47,6 +48,7 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
 
     override fun saveAndExit() {
         saveDietHistory()
+        SaveToast.show(this)
         finish()
     }
 

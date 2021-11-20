@@ -12,6 +12,7 @@ import com.diets.weightloss.R
 import com.diets.weightloss.common.db.entities.HistoryDiet
 import com.diets.weightloss.presentation.history.controller.HistoryClickListener
 import com.diets.weightloss.presentation.history.controller.HistoryDietAdapter
+import com.diets.weightloss.presentation.history.toasts.SaveToast
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.history.HistoryProvider
 import kotlinx.android.synthetic.main.fr_types.*
