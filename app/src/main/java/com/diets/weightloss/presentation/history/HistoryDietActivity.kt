@@ -8,7 +8,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.SeekBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.diets.weightloss.App
@@ -20,9 +23,14 @@ import com.diets.weightloss.presentation.history.dialogs.AttentionExitDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightAfterDialog
 import com.diets.weightloss.presentation.history.dialogs.WeightUntilDialog
 import com.diets.weightloss.presentation.history.toasts.SaveToast
-import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.ad.AdWorker
+import com.diets.weightloss.utils.ad.NativeSpeaker
 import com.diets.weightloss.utils.history.HistoryProvider
+import com.google.android.gms.ads.formats.UnifiedNativeAd
+import kotlinx.android.synthetic.main.history_ad_include.*
+import kotlinx.android.synthetic.main.history_ad_include.ad_view
 import kotlinx.android.synthetic.main.history_diet_activity.*
+import kotlinx.android.synthetic.main.history_second_ad_include.*
 import java.text.DecimalFormat
 
 private const val WEIGHT_INCREASE = 1
@@ -44,6 +52,59 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         cvTop.setBackgroundResource(R.drawable.card_history_shape)
         updateUI()
         setListeners()
+
+        AdWorker.observeOnNativeList(object : NativeSpeaker {
+            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                if (nativeList.size > 0) {
+                    loadFirstNative(nativeList[0])
+                    if (nativeList.size > 1){
+                        loadSecondNative(nativeList[1])
+                    }else{
+                        loadSecondNative(nativeList[0])
+                    }
+                }
+            }
+        })
+    }
+
+    private fun loadFirstNative(nativeAd: UnifiedNativeAd) {
+        ad_view.mediaView = ad_media
+        ad_view.headlineView = ad_headline
+        ad_view.bodyView = ad_body
+        ad_view.callToActionView = ad_call_to_action
+        ad_view.iconView = ad_icon
+        (ad_view.headlineView as TextView).text = nativeAd.headline
+        (ad_view.bodyView as TextView).text = nativeAd.body
+        (ad_view.callToActionView as Button).text = nativeAd.callToAction
+        val icon = nativeAd.icon
+        if (icon == null) {
+            ad_view.iconView.visibility = View.INVISIBLE
+        } else {
+            (ad_view.iconView as ImageView).setImageDrawable(icon.drawable)
+            ad_view.iconView.visibility = View.VISIBLE
+        }
+        ad_view.setNativeAd(nativeAd)
+        flAdContainer.visibility = View.VISIBLE
+    }
+
+    private fun loadSecondNative(nativeAd: UnifiedNativeAd) {
+        ad_view_second.mediaView = ad_media_second
+        ad_view_second.headlineView = ad_headline_second
+        ad_view_second.bodyView = ad_body_second
+        ad_view_second.callToActionView = ad_call_to_action_second
+        ad_view_second.iconView = ad_icon_second
+        (ad_view_second.headlineView as TextView).text = nativeAd.headline
+        (ad_view_second.bodyView as TextView).text = nativeAd.body
+        (ad_view_second.callToActionView as Button).text = nativeAd.callToAction
+        val icon = nativeAd.icon
+        if (icon == null) {
+            ad_view_second.iconView.visibility = View.INVISIBLE
+        } else {
+            (ad_view_second.iconView as ImageView).setImageDrawable(icon.drawable)
+            ad_view_second.iconView.visibility = View.VISIBLE
+        }
+        ad_view_second.setNativeAd(nativeAd)
+        flAdContainerSecond.visibility = View.VISIBLE
     }
 
     override fun saveAndExit() {
@@ -139,7 +200,6 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         historyDiet!!.comment = edtReview.text.toString()
 
         DBHolder.insertHistoryDietInDB(historyDiet!!)
-        PreferenceProvider.isNeedShowAddingHistory = true
     }
 
     private fun updateUI() {

@@ -14,7 +14,10 @@ import com.diets.weightloss.presentation.history.controller.HistoryClickListener
 import com.diets.weightloss.presentation.history.controller.HistoryDietAdapter
 import com.diets.weightloss.presentation.history.toasts.SaveToast
 import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.ad.AdWorker
+import com.diets.weightloss.utils.ad.NativeSpeaker
 import com.diets.weightloss.utils.history.HistoryProvider
+import com.google.android.gms.ads.formats.UnifiedNativeAd
 import kotlinx.android.synthetic.main.fr_types.*
 import kotlinx.android.synthetic.main.history_list_diets_activity.*
 import kotlinx.android.synthetic.main.load_fragment.*
@@ -69,8 +72,15 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
                 override fun onClick(position: Int) {
                     startActivity(HistoryDietActivity.getIntent(this@HistoryListDietsActivity, listDiet[position], false))
                 }
-            }, PreferenceProvider.isNeedShowAddingHistory)
+            }, arrayListOf())
             rvHistory.adapter = adapter
+
+            AdWorker.observeOnNativeList(object : NativeSpeaker {
+                override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                    adapter!!.insertAds(nativeList)
+                }
+            })
+
             rvHistory.visibility = View.VISIBLE
             ivBackToolbar.setOnClickListener {
                 onBackPressed()

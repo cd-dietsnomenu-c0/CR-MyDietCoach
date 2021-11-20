@@ -4,11 +4,12 @@
 
 
     <!--wadimKazak-->
-    <string name="admob_key" translatable="false">ca-app-pub-2555056002292788~3750621051</string>
+    <!--work-->
+    <!--<string name="admob_key" translatable="false">ca-app-pub-2555056002292788~3750621051</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-2555056002292788/3064241259</string>
     <string name="banner_id" translatable="false">ca-app-pub-2555056002292788/9629649606</string>
     <string name="native_ad" translatable="false">ca-app-pub-2555056002292788/3938339229</string>
-    <string name="reward_id" translatable="false">ca-app-pub-2555056002292788/7698422502</string>
+    <string name="reward_id" translatable="false">ca-app-pub-2555056002292788/7698422502</string>-->
 
     <!--diNahuiPizdec-->
     <!--WORK-->
@@ -19,11 +20,11 @@
     -->
 
     <!--Test-->
-    <!--<string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
-    <string name="reward_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>-->
+    <string name="reward_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
 
     <string name="react_channel_id" translatable="false">com.weightloss.diets</string>
     <string name="water_channel_id" translatable="false">com.weightloss.diets.water</string>
