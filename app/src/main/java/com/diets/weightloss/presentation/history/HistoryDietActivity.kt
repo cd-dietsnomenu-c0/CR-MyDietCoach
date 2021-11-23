@@ -209,7 +209,12 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         tvName.text = historyDiet!!.name
         tvStart.text = historyDiet!!.readableStart
         tvEnd.text = historyDiet!!.readableEnd
-        tvTime.text = resources.getQuantityString(R.plurals.days_plur, historyDiet!!.readablePeriod, historyDiet!!.readablePeriod)
+        if (historyDiet!!.startTime != 0L){
+            tvTime.text = resources.getQuantityString(R.plurals.days_plur, historyDiet!!.readablePeriod, historyDiet!!.readablePeriod)
+        }else{
+            tvTime.text = "-"
+        }
+
         tvLostDays.text = resources.getQuantityString(R.plurals.lifes_plur, historyDiet!!.loseLifes, historyDiet!!.loseLifes)
         tvHardLevel.text = when (historyDiet!!.difficulty) {
             EASY_LEVEL -> {

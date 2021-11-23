@@ -703,6 +703,7 @@
     <string name="weight_decrease">Вес уменьшился на %s !!!</string>
     <string name="weight_increase">Вес увеличился на %s :(</string>
     <string name="history_symbol_counter">%s/250</string>
+    <string name="load_win">Загрузка...</string>
 
     <string-array name="frequent_types">
         <item>Каждые 30 минут</item>

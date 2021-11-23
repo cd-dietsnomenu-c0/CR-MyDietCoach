@@ -27,7 +27,11 @@ class HistoryDietVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup, val cl
     fun bind(historyDiet: HistoryDiet) {
         Glide.with(itemView.context).load(historyDiet.imageUrl).into(itemView.ivImage)
         itemView.tvName.text = historyDiet.name
-        itemView.tvTime.text = "${historyDiet.readableStart} - ${historyDiet.readableEnd}"
+        if (historyDiet.startTime != 0L) {
+            itemView.tvTime.text = "${historyDiet.readableStart} - ${historyDiet.readableEnd}"
+        }else{
+            itemView.tvTime.visibility = View.GONE
+        }
         when (historyDiet.state) {
             LOSE_DIET -> {
                 itemView.tvState.background = itemView.resources.getDrawable(R.drawable.shape_history_uncomplete)

@@ -67,28 +67,54 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="2dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_gravity="center_horizontal"
                 android:paddingHorizontal="24dp"
+                android:fontFamily="@font/roboto_medium"
                 android:drawableLeft="@drawable/ic_play_button"
                 android:background="@drawable/shape_get_live"
                 android:text="@string/get_play"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/btnEnd"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/shape_close_tracker"
-                android:text="@string/rab_end"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/shape_close_tracker"
+                    android:text="@string/rab_end"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvLoad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/load_win"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_medium"
+                    android:translationX="-400dp"/>
+
+
+            </FrameLayout>
+
+
+
+
+
 
 
         </LinearLayout>

@@ -137,9 +137,9 @@
                                     android:id="@+id/tvStart"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="8dp"
                                     android:fontFamily="@font/roboto_bold"
-                                    android:text="12.12.1992"
                                     android:textColor="#32374c" />
 
                             </LinearLayout>
@@ -173,7 +173,6 @@
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="8dp"
                                     android:fontFamily="@font/roboto_bold"
-                                    android:text="10 дней"
                                     android:textColor="#32374c" />
 
                             </LinearLayout>
@@ -206,6 +205,7 @@
                                     android:id="@+id/tvEnd"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="8dp"
                                     android:fontFamily="@font/roboto_bold"
                                     android:text="22.12.1992"

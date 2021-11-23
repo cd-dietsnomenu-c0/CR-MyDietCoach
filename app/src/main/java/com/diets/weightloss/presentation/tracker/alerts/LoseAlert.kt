@@ -1,5 +1,6 @@
 package com.diets.weightloss.presentation.tracker.alerts
 
+import android.animation.ValueAnimator
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.diets.weightloss.R
 import com.diets.weightloss.common.db.entities.LOSE_DIET
-import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.toasts.InfoLockToast
 import com.diets.weightloss.presentation.tracker.FragmentTracker
 import com.diets.weightloss.presentation.tracker.toasts.NotShowAdInfoToast
 import com.diets.weightloss.utils.PreferenceProvider
@@ -33,8 +33,10 @@ class LoseAlert : DialogFragment() {
 
         btnEnd.setOnClickListener {
             Ampl.closeLoseDiet()
-            (targetFragment as FragmentTracker).closeDiet(true, LOSE_DIET)
-            dismiss()
+            runAnim()
+            btnShowAdd.setOnClickListener(null)
+            //(targetFragment as FragmentTracker).closeDiet(true, LOSE_DIET)
+            //dismiss()
         }
 
         /*btnReplay.setOnClickListener {
@@ -48,6 +50,31 @@ class LoseAlert : DialogFragment() {
             Ampl.clickRewardDiet()
             showRewardVideo()
         }
+    }
+
+    private fun runAnim() {
+        var isStartedShow = false
+
+        var showLoad = ValueAnimator.ofFloat(tvLoad.translationX, 0f)
+        showLoad.duration = 700L
+        showLoad.addUpdateListener {
+            tvLoad.translationX = it.animatedValue as Float
+            if (it.animatedFraction == 1.0f){
+                (targetFragment as FragmentTracker).closeDiet(true, LOSE_DIET)
+            }
+        }
+
+        var hideBtn = ValueAnimator.ofFloat(btnEnd.translationX, 4000f)
+        hideBtn.duration = 1_000L
+        hideBtn.addUpdateListener {
+            btnEnd.translationX = it.animatedValue as Float
+            if (it.animatedFraction >= 0.2f && !isStartedShow){
+                isStartedShow = true
+                showLoad.start()
+            }
+        }
+        hideBtn.start()
+
     }
 
 

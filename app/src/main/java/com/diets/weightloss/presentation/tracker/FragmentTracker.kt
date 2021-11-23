@@ -42,7 +42,7 @@ import kotlinx.android.synthetic.main.fragment_tracker.btnSave
 import kotlinx.android.synthetic.main.fragment_tracker.edtWeight
 import java.util.*
 
-class FragmentTracker : Fragment(R.layout.fragment_tracker) {
+class FragmentTracker : Fragment(R.layout.fragment_tracker), BlockWinDialog.Callback {
 
     val CONGRATE_TAG = "CONGRATE_TAG"
     val LOSE_TAG = "LOSE_TAG"
@@ -61,9 +61,10 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
     lateinit var daysAdapter: DayAdapter
 
     lateinit var exitAlert: DialogFragment
-    lateinit var completeAlert: DialogFragment
+    //lateinit var completeAlert: DialogFragment
     lateinit var loseFragment: DialogFragment
     lateinit var cheatMealAlert: DialogFragment
+    lateinit var winBlockDialog: DialogFragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -115,14 +116,17 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         exitAlert = ExitAlert()
         exitAlert.setTargetFragment(this, 0)
 
-        completeAlert = CongrateAlert()
-        completeAlert.setTargetFragment(this, 0)
+        /*completeAlert = CongrateAlert()
+        completeAlert.setTargetFragment(this, 0)*/
 
         loseFragment = LoseAlert()
         loseFragment.setTargetFragment(this, 0)
 
         cheatMealAlert = CheatMealAlert()
         cheatMealAlert.setTargetFragment(this, 0)
+
+        winBlockDialog = BlockWinDialog()
+        winBlockDialog.setTargetFragment(this, 0)
     }
 
     fun share() {
@@ -170,10 +174,6 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
             bindDays()
             bindDayView()
             bindWeight()
-
-            btnSend.setOnClickListener {
-                closeDiet(true, COMPLETED_DIET)
-            }
         }
     }
 
@@ -293,12 +293,15 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         }
     }
 
-    private fun runCompletedFlow() {
-        /*if (!isCompleteAlertShowed && !completeAlert.isAdded) {
-            completeAlert.show(activity!!.supportFragmentManager, CONGRATE_TAG)
-            isCompleteAlertShowed = true
-        }*/
+    override fun endAnim() {
         closeDiet(true, COMPLETED_DIET)
+    }
+
+    private fun runCompletedFlow() {
+        if (!isCompleteAlertShowed && !winBlockDialog.isAdded) {
+            winBlockDialog.show(activity!!.supportFragmentManager, CONGRATE_TAG)
+            isCompleteAlertShowed = true
+        }
     }
 
     fun closeDiet(isNeedShowHistory: Boolean, dietState : Int) {
@@ -306,7 +309,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker) {
         if (dietHistory.state != BREAK_DIET) {
             DBHolder.insertHistoryDietInDB(dietHistory)
         }
-        //DBHolder.delete()
+        DBHolder.delete()
 
         var intent = Intent(requireActivity(), MainActivity::class.java)
         if (isNeedShowHistory){
