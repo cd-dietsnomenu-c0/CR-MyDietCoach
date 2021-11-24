@@ -64,7 +64,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         tvDate.text = "${resources.getString(R.string.together)} ${PreferenceProvider.getFirstTime()}"
         cvParent.setBackgroundResource(R.drawable.shape_profile_card)
         setHeadBack(PreferenceProvider.typeHead, PreferenceProvider.animIndex)
-        setAvatar()
         setClickListeners()
         nameDialog.setTargetFragment(this, 0)
         bsBehavior = BottomSheetBehavior.from(llBottomSheet)
@@ -95,6 +94,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         }
 
         bindBacksChoicer()
+
+        if (PreferenceProvider.isHasPremium){
+            btnPremium.visibility = View.GONE
+        }
     }
 
     private fun bindBacksChoicer() {
@@ -294,7 +297,11 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
     }
 
     private fun setDefaultAvatar() {
-        Glide.with(this).load(R.drawable.woman).into(ivAvatar)
+        if (PreferenceProvider.getSex() == PreferenceProvider.SEX_TYPE_FEMALE || PreferenceProvider.getSex() == PreferenceProvider.EMPTY){
+            Glide.with(this).load(R.drawable.avatar_woman).into(ivAvatar)
+        }else{
+            Glide.with(this).load(R.drawable.avatar_man).into(ivAvatar)
+        }
     }
 
     private fun createImageFile(): File {
@@ -371,6 +378,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         super.onResume()
         bindName()
         bindFields()
+        setAvatar()
     }
 
 

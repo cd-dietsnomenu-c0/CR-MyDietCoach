@@ -73,7 +73,7 @@ dependencies {
     implementation 'com.amplitude:android-sdk:2.23.2'
 
     //Billing
-    implementation "com.android.billingclient:billing:2.0.1"
+    implementation "com.android.billingclient:billing:4.0.0"
 
     // RX
     implementation 'io.reactivex.rxjava2:rxjava:2.2.8'

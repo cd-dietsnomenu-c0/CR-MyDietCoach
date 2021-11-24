@@ -387,15 +387,16 @@
                                 android:layout_marginLeft="8dp"
                                 android:layout_marginTop="2dp"
                                 android:layout_marginRight="8dp"
-                                android:background="?android:attr/listDivider" />
+                                android:background="?android:attr/listDivider"
+                                android:layout_marginBottom="12dp"/>
 
                             <Button
                                 android:id="@+id/btnPremium"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="16dp"
-                                android:layout_marginTop="12dp"
                                 android:layout_marginRight="16dp"
+                                android:layout_marginBottom="2dp"
                                 android:background="?selectableItemBackground"
                                 android:drawableLeft="@drawable/ic_diamond_prem"
                                 android:drawablePadding="12dp"
@@ -409,7 +410,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="16dp"
-                                android:layout_marginTop="2dp"
                                 android:layout_marginRight="16dp"
                                 android:background="?selectableItemBackground"
                                 android:drawableLeft="@drawable/ic_favorites_button"
@@ -487,14 +487,14 @@
                                 android:layout_marginLeft="8dp"
                                 android:layout_marginTop="2dp"
                                 android:layout_marginRight="8dp"
-                                android:background="?android:attr/listDivider" />
+                                android:background="?android:attr/listDivider"
+                                android:layout_marginBottom="12dp"/>
 
                             <Button
                                 android:id="@+id/btnGrade"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="16dp"
-                                android:layout_marginTop="12dp"
                                 android:layout_marginRight="16dp"
                                 android:background="?selectableItemBackground"
                                 android:drawableLeft="@drawable/ic_grade_button_profile"
