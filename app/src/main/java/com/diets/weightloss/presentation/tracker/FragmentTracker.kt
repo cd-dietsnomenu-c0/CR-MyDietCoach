@@ -21,10 +21,7 @@ import com.diets.weightloss.R
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.common.DBHolder
 import com.diets.weightloss.common.GlobalHolder
-import com.diets.weightloss.common.db.entities.BREAK_DIET
-import com.diets.weightloss.common.db.entities.COMPLETED_DIET
-import com.diets.weightloss.common.db.entities.DEFAULT_WEIGHT_UNTIL
-import com.diets.weightloss.common.db.entities.DietPlanEntity
+import com.diets.weightloss.common.db.entities.*
 import com.diets.weightloss.presentation.diets.list.modern.article.DietAct
 import com.diets.weightloss.presentation.tracker.alerts.*
 import com.diets.weightloss.presentation.tracker.controller.DayAdapter
@@ -36,6 +33,7 @@ import com.diets.weightloss.presentation.tracker.controller.menu.MenuAdapter
 import com.diets.weightloss.presentation.tracker.toasts.SaveWeightToast
 import com.diets.weightloss.utils.CustomDate
 import com.diets.weightloss.utils.FieldsWorker
+import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.ActionAd
 import kotlinx.android.synthetic.main.fragment_tracker.*
 import kotlinx.android.synthetic.main.fragment_tracker.btnSave
@@ -61,6 +59,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker), BlockWinDialog.Call
     lateinit var daysAdapter: DayAdapter
 
     lateinit var exitAlert: DialogFragment
+
     //lateinit var completeAlert: DialogFragment
     lateinit var loseFragment: DialogFragment
     lateinit var cheatMealAlert: DialogFragment
@@ -304,7 +303,19 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker), BlockWinDialog.Call
         }
     }
 
-    fun closeDiet(isNeedShowHistory: Boolean, dietState : Int) {
+    fun closeDiet(isNeedShowHistory: Boolean, dietState: Int) {
+
+        when (dietState) {
+            COMPLETED_DIET -> {
+                PreferenceProvider.countCompleteDiets = PreferenceProvider.countCompleteDiets + 1
+                Ampl.completeDiet()
+            }
+            LOSE_DIET -> {
+                PreferenceProvider.countLoseDiets = PreferenceProvider.countLoseDiets + 1
+                Ampl.uncompleteDiet()
+            }
+        }
+
         var dietHistory = DBHolder.createDietHistory(dietState)
         if (dietHistory.state != BREAK_DIET) {
             DBHolder.insertHistoryDietInDB(dietHistory)
@@ -312,7 +323,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker), BlockWinDialog.Call
         DBHolder.delete()
 
         var intent = Intent(requireActivity(), MainActivity::class.java)
-        if (isNeedShowHistory){
+        if (isNeedShowHistory) {
             intent.putExtra(MainActivity.DIET_HISTORY_KEY, dietHistory)
         }
         startActivity(intent)

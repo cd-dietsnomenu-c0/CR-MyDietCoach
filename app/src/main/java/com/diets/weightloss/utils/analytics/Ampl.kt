@@ -365,5 +365,13 @@ class Ampl {
                 4 -> FBAnalytic.gradeFifthStars()
             }
         }
+
+        fun completeDiet() {
+            Amplitude.getInstance().logEvent("complete_diet")
+        }
+
+        fun uncompleteDiet() {
+            Amplitude.getInstance().logEvent("lose_diet")
+        }
     }
 }

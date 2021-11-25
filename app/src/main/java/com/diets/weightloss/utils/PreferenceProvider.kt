@@ -291,5 +291,16 @@ object PreferenceProvider {
         set(value) = editor { it?.putString(ANIM_BACK_STATE_TAG, value) }!!
 
 
+    private const val LOSE_DIET_TAG = "LOSE_DIET_TAG"
+    var countLoseDiets: Int
+        get() = getInstance()?.getInt(LOSE_DIET_TAG, 0)!!
+        set(value) = editor { it?.putInt(LOSE_DIET_TAG, value) }!!
+
+    private const val COMPLETE_DIET_TAG = "COMPLETE_DIET_TAG"
+    var countCompleteDiets: Int
+        get() = getInstance()?.getInt(COMPLETE_DIET_TAG, 0)!!
+        set(value) = editor { it?.putInt(COMPLETE_DIET_TAG, value) }!!
+
+
 
 }
