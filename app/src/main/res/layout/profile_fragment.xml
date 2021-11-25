@@ -415,7 +415,7 @@
                                 android:drawableLeft="@drawable/ic_favorites_button"
                                 android:drawablePadding="12dp"
                                 android:gravity="left|center_vertical"
-                                android:text="Сохраненные диеты"
+                                android:text="@string/saved_diets"
                                 android:textColor="@color/black"
                                 android:textSize="10dp" />
 
@@ -431,7 +431,7 @@
                                 android:drawableLeft="@drawable/ic_history_enter"
                                 android:drawablePadding="12dp"
                                 android:gravity="left|center_vertical"
-                                android:text="История пройденных диет"
+                                android:text="@string/history_diets_prof"
                                 android:textColor="@color/black"
                                 android:textSize="10dp" />
 
@@ -447,7 +447,7 @@
                                 android:drawableLeft="@drawable/ic_wallpapers_btn"
                                 android:drawablePadding="12dp"
                                 android:gravity="left|center_vertical"
-                                android:text="Оформление"
+                                android:text="@string/wallpapers_prof"
                                 android:textColor="@color/black"
                                 android:textSize="10dp" />
 

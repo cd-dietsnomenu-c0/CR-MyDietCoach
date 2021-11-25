@@ -734,6 +734,9 @@
     <string name="your_weight_prop_his">Укажите ваш вес до начала диеты</string>
     <string name="close_weight_your_his">закрыть</string>
     <string name="save_your_weight_his">сохранить</string>
+    <string name="saved_diets">Сохраненные диеты</string>
+    <string name="history_diets_prof">История пройденных диет</string>
+    <string name="wallpapers_prof">Оформление</string>
 
     <string-array name="frequent_types">
         <item>Каждые 30 минут</item>
