@@ -345,7 +345,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/roboto_bold"
-                                    android:text="Ваш вес"
+                                    android:text="@string/your_weight_his"
                                     android:textColor="@color/white"
                                     android:textSize="22sp" />
 
@@ -353,7 +353,7 @@
                                     android:layout_width="120dp"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/roboto"
-                                    android:text="Укажите ваш вес до начала диеты"
+                                    android:text="@string/your_weight_prop_his"
                                     android:textColor="#E6FFFFFF"
                                     android:textSize="10sp" />
 
@@ -436,7 +436,7 @@
                             android:layout_marginBottom="4dp"
                             android:background="@drawable/shape_weight_cancel"
                             android:fontFamily="@font/roboto_medium"
-                            android:text="закрыть"
+                            android:text="@string/close_weight_your_his"
                             android:textColor="@color/white"
                             android:textSize="11sp" />
 
@@ -448,7 +448,7 @@
                             android:layout_marginBottom="4dp"
                             android:background="@drawable/shape_weight_save"
                             android:fontFamily="@font/roboto_medium"
-                            android:text="сохранить"
+                            android:text="@string/save_your_weight_his"
                             android:textColor="#6457cc"
                             android:textSize="11sp" />
 

@@ -58,7 +58,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="История диет"
+                android:text="@string/diet_history"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -127,7 +127,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:text="После завершения любой диеты она отобразиться здесь"
+            android:text="@string/placeholder_history"
             android:textColor="#afc9ff"
             android:textSize="16sp"
             android:translationY="-20dp" />

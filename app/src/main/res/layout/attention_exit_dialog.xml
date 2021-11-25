@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Сохранить и выйти?"
+                android:text="@string/exit_and_save"
                 android:textColor="#333333"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="24dp"
@@ -45,7 +45,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/roboto"
-                android:text="Все данные будут сохранены без возможности редактирования"
+                android:text="@string/exit_prop"
                 android:gravity="center_horizontal"
                 android:textColor="#807F7F" />
 
@@ -66,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:background="@drawable/shape_cancel_save"
-                    android:text="отмена"
+                    android:text="@string/sleep_cancel"
                     android:paddingHorizontal="22dp"
                     android:layout_marginStart="6dp"
                     android:layout_marginBottom="4dp"
@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:background="@drawable/shape_exit"
-                    android:text="сохранить и выйти"
+                    android:text="@string/btn_save_and_exit"
                     android:paddingHorizontal="22dp"
                     android:layout_marginStart="16dp"
                     android:textColor="@color/white"

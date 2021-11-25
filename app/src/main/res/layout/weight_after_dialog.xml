@@ -30,7 +30,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Вес после диеты"
+                    android:text="@string/weight_after_dialog_his"
                     android:layout_gravity="center_vertical"
                     android:textColor="#333333"
                     android:textSize="22sp"

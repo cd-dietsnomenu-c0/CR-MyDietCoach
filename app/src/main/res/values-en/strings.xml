@@ -347,6 +347,48 @@
     <string name="remove_ads_white_text">We don\'t like ads, but without them we cannot maintain and support the app. Buying a subscription is your invaluable help and the least we can do for you in return is disable ads</string>
     <string name="continue_prem">continue</string>
     <string name="text_post_prem">You have purchased a premium subscription and now you have disabled ads. We\'re deeply indebted to you for app support!</string>
+    <string name="uncompleted_history">failed</string>
+    <string name="completed_history">completed</string>
+    <string name="break_history">interrupted</string>
+    <string name="save_until_weight">Weight saved</string>
+    <string name="review_history_completed">I managed to finish the \"%s\" diet! In my opinion, the diet is going through %s. You can give the diet a rating of \"%s\". %s</string>
+    <string name="review_history_uncompleted">Couldn\'t finish the \"%s\" diet! In my opinion, the diet is going through %s. You can give the diet a score of \"%s\". %s</string>
+    <string name="weight_not_change">The weight has not changed :(</string>
+    <string name="weight_decrease">The weight decreased by %s !!!</string>
+    <string name="weight_increase">The weight has increased by %s :(</string>
+    <string name="history_symbol_counter">%s/250</string>
+    <string name="load_win">Loading...</string>
+    <string name="placeholder_history">After completing any diet, it will be displayed here</string>
+    <string name="diet_history">History of diets</string>
+    <string name="start_history">Beginning</string>
+    <string name="lenght_history">Duration</string>
+    <string name="end_history">End</string>
+    <string name="lifes_history">Lost</string>
+    <string name="diff_history">Complexity</string>
+    <string name="weight_diff_history">How much has your weight changed</string>
+    <string name="label_weight_diff_his">Weight Change</string>
+    <string name="weight_before">Weight before</string>
+    <string name="weight_after">Weight after</string>
+    <string name="diff_diet">Difficulty of passage</string>
+    <string name="diff_diet_prop">How difficult was it for you to complete the diet?</string>
+    <string name="diet_grade_his">Diet evaluation</string>
+    <string name="grade_diet_prop_his">How would you rate this diet?</string>
+    <string name="review_diet_his">Review</string>
+    <string name="review_hint_his">A place for your review</string>
+    <string name="btn_his_save">Save</string>
+    <string name="refresh_his">History updated</string>
+    <string name="exit_and_save">Save and exit?</string>
+    <string name="exit_prop">All data will be saved without the possibility of editing</string>
+    <string name="cancel_his">cancel</string>
+    <string name="btn_save_and_exit">exit and save</string>
+    <string name="weight_after_dialog_his">Weight after the diet</string>
+    <string name="weight_before_dialog_his">Weight before the diet</string>
+    <string name="your_weight_his">Your weight</string>
+    <string name="your_weight_prop_his">State your weight before starting the diet</string>
+    <string name="close_weight_your_his">close</string>
+    <string name="save_your_weight_his">save</string>
+    <string name="new_terms_month">Recurring billing. Cancellation at any time. Payment will be deducted from your Google Pay account when you confirm the purchase. Subscription will automatically renew unless auto-renewal is disabled at least 24 hours before the end of the current period. Subscription renewal fee will be deducted from the account within 24 hours before the end of the current period with the renewal cost. Subscriptions can be managed by the user, and auto-renewal can be disabled by going to the user account settings after purchase. Any unused portion of the free trial period, if offered, will be canceled when the user purchases a subscription for that publication, if applicable. Subscription Duration: 1 MONTH Price: Free for 7 days, then %s /month after free trial. Subscription Duration: 1 YEAR Price: Free for 7 days, then %s /year after the free trial.</string>
+
 
 
     <plurals name="days_plur">
@@ -357,6 +399,30 @@
         <item quantity="other">%1$d days</item>
     </plurals>
 
+    <plurals name="lifes_plur">
+        <item quantity="one">%1$d life</item>
+        <item quantity="two">%1$d lives</item>
+        <item quantity="few">%1$d lives</item>
+        <item quantity="many">%1$d lives</item>
+        <item quantity="other">%1$d lives</item>
+    </plurals>
+
+
+    <string-array name="text_diff">
+        <item>Very easy</item>
+        <item>Easily</item>
+        <item>Normal</item>
+        <item>Hard</item>
+        <item>Very difficult</item>
+    </string-array>
+
+    <string-array name="text_grade">
+        <item>Too bad</item>
+        <item>Bad</item>
+        <item>Satisfactory</item>
+        <item>Good</item>
+        <item>Great</item>
+    </string-array>
 
     <string-array name="langs">
         <item>Default</item>

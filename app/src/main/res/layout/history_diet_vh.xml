@@ -50,7 +50,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvName"
-                    android:text="Куриная диета"
                     android:textSize="18sp"
                     android:fontFamily="@font/roboto_medium"
                     android:textColor="#32374c"/>

@@ -705,6 +705,35 @@
     <string name="weight_increase">Вес увеличился на %s :(</string>
     <string name="history_symbol_counter">%s/250</string>
     <string name="load_win">Загрузка...</string>
+    <string name="placeholder_history">После завершения любой диеты она отобразиться здесь</string>
+    <string name="diet_history">История диет</string>
+    <string name="start_history">Начало</string>
+    <string name="lenght_history">Длительность</string>
+    <string name="end_history">Конец</string>
+    <string name="lifes_history">Потеряно</string>
+    <string name="diff_history">Сложность</string>
+    <string name="weight_diff_history">Насколько изменился ваш вес</string>
+    <string name="label_weight_diff_his">Изменение веса</string>
+    <string name="weight_before">Вес до</string>
+    <string name="weight_after">Вес после</string>
+    <string name="diff_diet">Сложность прохождения</string>
+    <string name="diff_diet_prop">Насколько сложно Вам было довести диету до конца?</string>
+    <string name="diet_grade_his">Оценка диете</string>
+    <string name="grade_diet_prop_his">Какую оценку Вы поставили бы этой диете?</string>
+    <string name="review_diet_his">Отзыв</string>
+    <string name="review_hint_his">Место для вашего отзыва</string>
+    <string name="btn_his_save">Сохранить</string>
+    <string name="refresh_his">История обновлена</string>
+    <string name="exit_and_save">Сохранить и выйти?</string>
+    <string name="exit_prop">Все данные будут сохранены без возможности редактирования</string>
+    <string name="cancel_his">отмена</string>
+    <string name="btn_save_and_exit">сохранить и выйти</string>
+    <string name="weight_after_dialog_his">Вес после диеты</string>
+    <string name="weight_before_dialog_his">Вес до диеты</string>
+    <string name="your_weight_his">Ваш вес</string>
+    <string name="your_weight_prop_his">Укажите ваш вес до начала диеты</string>
+    <string name="close_weight_your_his">закрыть</string>
+    <string name="save_your_weight_his">сохранить</string>
 
     <string-array name="frequent_types">
         <item>Каждые 30 минут</item>

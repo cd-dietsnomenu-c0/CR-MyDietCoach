@@ -35,7 +35,7 @@
             android:textColor="#4CAF50"
             android:gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="История обновлена"
+            android:text="@string/refresh_his"
             tools:layout_editor_absoluteX="287dp"
             tools:layout_editor_absoluteY="178dp" />
 
