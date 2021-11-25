@@ -24,7 +24,6 @@ class PremiumFragment : Fragment(R.layout.premium_fragment), ThankDialog.Callbac
     var yearPrice = ""
     var monthPrice = ""
 
-    var termsYear = ""
     var termsMonth = ""
 
     var where = Ampl.make_purchase_inside
@@ -55,8 +54,7 @@ class PremiumFragment : Fragment(R.layout.premium_fragment), ThankDialog.Callbac
 
         oldYearPrice = "${formatter.format(oldYearPriceValue)} ${PreferenceProvider.premiumUnit}"
 
-        termsMonth = getString(R.string.month_terms, monthPrice)
-        termsYear = getString(R.string.year_terms, yearPrice)
+        termsMonth = getString(R.string.new_terms_month, monthPrice, yearPrice )
 
         selectMonth()
         flMonth.setOnClickListener {
@@ -120,7 +118,7 @@ class PremiumFragment : Fragment(R.layout.premium_fragment), ThankDialog.Callbac
         ivBackMonth.isSelected = false
         ivBackYear.isSelected = true
 
-        tvPlayTerms.text = termsYear
+        tvPlayTerms.text = termsMonth
         setYear()
     }
 

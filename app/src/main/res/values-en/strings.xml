@@ -549,6 +549,7 @@
     <string name="get_life_text">But be careful. The more often you take this opportunity, the less effective the diet will be</string>
     <string name="get_life_btn">got it</string>
     <string name="rab_text_new">But don\'t be discouraged! It\'s important not to give up and persevere toward your goal no matter what!</string>
+    <string name="new_terms">Repetitive billing. Cancellation at any time. Payment will be deducted from your Google Pay account when you confirm the purchase. Subscription automatically renews unless auto-renewal is disabled at least 24 hours before the end of the current period. Subscription renewal fee will be deducted from the account within 24 hours before the end of the current period with the renewal cost. Subscriptions can be managed by the user, and auto-renewal can be disabled by going to the user account settings after purchase. Any unused portion of the free trial period, if offered, will be canceled when the user purchases a subscription for that publication, if applicable. Subscription Duration: 1 MONTH Price: Free for 7 days, then %s /month after free trial. Subscription Duration: 1 YEAR Price: Free for 7 days, then %s /year after the free trial.</string>
 
     <string-array name="frequent_types">
         <item>Every 30 minutes</item>
