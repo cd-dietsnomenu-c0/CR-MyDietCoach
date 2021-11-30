@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.diets.weightloss.App
@@ -26,6 +27,7 @@ import com.diets.weightloss.presentation.premium.PremiumHostActivity
 import com.diets.weightloss.presentation.profile.backgrounds.pager.BacksVPAdapter
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.AnimBacksFragment
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.statics.StaticBacksFragment
+import com.diets.weightloss.presentation.profile.controller.BadgeAdapter
 import com.diets.weightloss.presentation.profile.dialogs.LanguageWarningDialog
 import com.diets.weightloss.presentation.profile.dialogs.NameDialog
 import com.diets.weightloss.presentation.profile.favorites.FavoritesActivity
@@ -98,6 +100,11 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), LanguageWarningDial
         if (PreferenceProvider.isHasPremium){
             btnPremium.visibility = View.GONE
         }
+
+        rvBadges.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        var adapter = BadgeAdapter()
+        rvBadges.adapter = adapter
+
     }
 
     private fun bindBacksChoicer() {
