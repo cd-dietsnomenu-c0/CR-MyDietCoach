@@ -91,7 +91,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             }
         }
 
-        var moveToLeft = ValueAnimator.ofFloat(ivLogo.translationX, -270f)
+        var moveToLeft = ValueAnimator.ofFloat(ivLogo.translationX, -230f)
         moveToLeft.duration = 700L
         moveToLeft.addUpdateListener {
             ivLogo.translationX = it.animatedValue as Float

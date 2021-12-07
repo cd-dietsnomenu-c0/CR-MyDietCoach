@@ -12,7 +12,7 @@
         android:fontFamily="@font/roboto_black"
         android:layout_gravity="center"
         android:layout_marginStart="40dp"
-        android:text="DIETS"
+        android:text="DIET"
         android:alpha="0"
         android:textColor="@color/splash_letter"
         android:textSize="70sp" />

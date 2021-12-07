@@ -17,6 +17,7 @@ import com.diets.weightloss.common.db.DietDatabase;
 import com.diets.weightloss.common.db.migrations.Migrations;
 import com.diets.weightloss.utils.inapp.SubscriptionProvider;
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.userexperior.UserExperior;
 
 public class App extends MultiDexApplication {
@@ -47,6 +48,18 @@ public class App extends MultiDexApplication {
                 getApplicationContext(),
                 getString(R.string.release_user_expirior_id)
         );
+
+        try {
+            UserExperior.setUserIdentifier(Amplitude.getInstance().getDeviceId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            FirebaseCrashlytics.getInstance().setUserId(Amplitude.getInstance().getDeviceId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //Bugsee.launch(this, "5bdc0639-f870-4536-8038-8977c685cfc7");
     }
