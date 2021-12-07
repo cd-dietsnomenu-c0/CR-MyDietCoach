@@ -1,5 +1,6 @@
 package com.diets.weightloss
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -74,11 +75,32 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             openFromPush()
         }
         bindTest()
-        loadAnimations()
-        playAnim()
+        runAnim()
         loadData()
         setFirstTime()
         SubscriptionProvider.startGettingPrice()
+    }
+
+    private fun runAnim(){
+        var show =  ValueAnimator.ofFloat(tvText.alpha, 1f)
+        show.duration = 400L
+        show.addUpdateListener {
+            tvText.alpha = it.animatedValue as Float
+            if (it.animatedFraction == 1.0f){
+                post()
+            }
+        }
+
+        var moveToLeft = ValueAnimator.ofFloat(ivLogo.translationX, -270f)
+        moveToLeft.duration = 700L
+        moveToLeft.addUpdateListener {
+            ivLogo.translationX = it.animatedValue as Float
+            if (it.animatedFraction == 1.0f){
+                init(this@SplashActivity)
+                show.start()
+            }
+        }
+        moveToLeft.start()
     }
 
     private fun bindFCM() {
@@ -162,65 +184,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
     }
 
-    private fun loadAnimations() {
-        scale = AnimationUtils.loadAnimation(this, R.anim.scale_splash)
-        alpha = AnimationUtils.loadAnimation(this, R.anim.alpha_splash)
-        alphaText = AnimationUtils.loadAnimation(this, R.anim.alpha_splash)
 
-        alpha.fillAfter = true
-        alpha.isFillEnabled = true
-        scale.fillAfter = true
-        scale.isFillEnabled = true
-
-        scale.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationRepeat(animation: Animation?) {
-
-            }
-
-            override fun onAnimationEnd(animation: Animation?) {
-                ivLogo.startAnimation(alpha)
-                tvText.startAnimation(alphaText)
-                tvText.visibility = View.VISIBLE
-                ivLogo.visibility = View.VISIBLE
-                init(this@SplashActivity)
-            }
-
-            override fun onAnimationStart(animation: Animation?) {
-            }
-        })
-
-        alphaText.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationRepeat(animation: Animation?) {
-
-            }
-
-            override fun onAnimationEnd(animation: Animation?) {
-                post()
-                Log.e("LOL", "anim")
-            }
-
-            override fun onAnimationStart(animation: Animation?) {
-            }
-        })
-    }
-
-
-    private fun playAnim() {
-        lavLetter.setRenderMode(RenderMode.SOFTWARE)
-        lavLetter.setAnimation("splash_letter.json")
-        lavLetter.speed = 2.5f
-        lavLetter.playAnimation()
-        lavLetter.addAnimatorUpdateListener {
-            try {
-                if ((it.animatedValue as Float * 100).toInt() == 99) {
-                    lavLetter.startAnimation(scale)
-                }
-            } catch (ex: java.lang.Exception) {
-                post()
-                Log.e("LOL", "anim")
-            }
-        }
-    }
 
     private fun loadData() {
         loadDietData()
