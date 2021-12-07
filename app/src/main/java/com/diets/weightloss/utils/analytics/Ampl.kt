@@ -246,7 +246,7 @@ class Ampl {
 
 
 
-        val make_purchase = "make_purchase"
+        val make_purchase = "make_trial"
 
         val make_purchase_where = "where"
         val which_twice = "which_twice"
@@ -355,7 +355,7 @@ class Ampl {
             } catch (exception: JSONException) {
                 exception.printStackTrace()
             }
-            Amplitude.getInstance().logEvent(make_purchase, eventProperties)
+            Amplitude.getInstance().logEvent("click_grade", eventProperties)
 
             when(count){
                 0 -> FBAnalytic.gradeOneStar()

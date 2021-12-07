@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 
 android {
@@ -109,6 +110,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-config'
+    implementation 'com.google.firebase:firebase-perf'
 
     implementation 'com.google.android.gms:play-services-ads:19.8.0'
 
