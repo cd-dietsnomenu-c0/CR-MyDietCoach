@@ -53,7 +53,6 @@ class FCMService : FirebaseMessagingService() {
     private fun showEatTrackerNotif() {
         if (isHasFood()) {
             Ampl.showEatNotif()
-            PreferenceProvider.lastTimeWaterNotif = Calendar.getInstance().timeInMillis
             var intent = Intent(this, SplashActivity::class.java)
             intent.putExtra(Config.PUSH_TAG, Config.OPEN_FROM_PUSH)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
