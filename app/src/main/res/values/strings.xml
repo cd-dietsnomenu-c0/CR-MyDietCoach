@@ -737,6 +737,7 @@
     <string name="saved_diets">Сохраненные диеты</string>
     <string name="history_diets_prof">История пройденных диет</string>
     <string name="wallpapers_prof">Оформление</string>
+    <string name="water_complete_day">Норма на сегодня выполнена!\n Вы молодец 🏆</string>
 
     <string-array name="frequent_types">
         <item>Каждые 30 минут</item>

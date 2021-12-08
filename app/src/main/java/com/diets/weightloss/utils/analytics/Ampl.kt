@@ -373,5 +373,19 @@ class Ampl {
         fun uncompleteDiet() {
             Amplitude.getInstance().logEvent("lose_diet")
         }
+
+        fun succeesBilling() {
+            Amplitude.getInstance().logEvent("succees_billing")
+        }
+
+        fun errorBilling(code : Int) {
+            val eventProperties = JSONObject()
+            try {
+                eventProperties.put("code", code.toString())
+            } catch (exception: JSONException) {
+                exception.printStackTrace()
+            }
+            Amplitude.getInstance().logEvent("error_billing", eventProperties)
+        }
     }
 }

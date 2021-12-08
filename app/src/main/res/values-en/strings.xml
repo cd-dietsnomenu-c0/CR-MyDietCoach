@@ -391,6 +391,7 @@
     <string name="saved_diets">Saved diets</string>
     <string name="history_diets_prof">The history of the passed diets</string>
     <string name="wallpapers_prof">Design</string>
+    <string name="water_complete_day">You\'re done for the day!\n You\'re doing great 🏆</string>
 
 
     <plurals name="days_plur">
@@ -599,7 +600,7 @@
     <string name="water_title">Water balance</string>
     <string name="water_sport">Sport</string>
     <string name="water_hot">Heat</string>
-    <string name="water_l">л</string>
+    <string name="water_l">l</string>
     <string name="water_ml">ml</string>
     <string name="water_quick_add">add</string>
     <string name="notif_attention">WARNING</string>

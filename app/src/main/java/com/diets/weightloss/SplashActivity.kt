@@ -97,16 +97,17 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         show.addUpdateListener {
             tvText.alpha = it.animatedValue as Float
             if (it.animatedFraction == 1.0f){
-                //post()
+                init(this@SplashActivity)
+                post()
             }
         }
 
         var moveToLeft = ValueAnimator.ofFloat(ivLogo.translationX, px)
-        moveToLeft.duration = 400L
+        moveToLeft.duration = 600L
         moveToLeft.addUpdateListener {
             ivLogo.translationX = it.animatedValue as Float
             if (it.animatedFraction == 1.0f){
-                init(this@SplashActivity)
+                //init(this@SplashActivity)
                 show.start()
             }
         }

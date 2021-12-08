@@ -229,12 +229,11 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvLives"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="4dp"
                             app:layout_constraintBottom_toBottomOf="@+id/divider7"
-                            app:layout_constraintEnd_toEndOf="@+id/rvMenu"
                             app:layout_constraintStart_toStartOf="@+id/tvTitleLives"
                             app:layout_constraintTop_toBottomOf="@+id/tvTitleLives" />
 

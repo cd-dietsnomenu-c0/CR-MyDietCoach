@@ -143,7 +143,7 @@
                                     android:layout_marginEnd="16dp"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="24dp"
-                                    android:text="Норма на сегодня выполнена!\n Вы молодец 🏆"
+                                    android:text="@string/water_complete_day"
                                     android:textColor="@color/white"
                                     android:gravity="center"
                                     android:fontFamily="@font/roboto_bold"

@@ -7,6 +7,7 @@ import android.util.Log
 import com.android.billingclient.api.*
 import com.diets.weightloss.presentation.premium.IDS
 import com.diets.weightloss.utils.PreferenceProvider
+import com.diets.weightloss.utils.analytics.Ampl
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -82,6 +83,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
         playStoreBillingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
             when (billingResult.responseCode) {
                 BillingClient.BillingResponseCode.OK -> {
+                    Ampl.succeesBilling()
                     if (skuDetailsList.orEmpty().isNotEmpty()) {
                         skuDetailsList!!.forEach {
                             skuDetails[TRACKER_TAG] = it
@@ -92,6 +94,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                     }
                 }
                 else -> {
+                    Ampl.errorBilling(billingResult.responseCode)
                 }
             }
         }
