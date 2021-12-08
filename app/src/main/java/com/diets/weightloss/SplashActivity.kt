@@ -8,6 +8,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -42,9 +43,6 @@ import java.util.*
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
-    lateinit var scale: Animation
-    lateinit var alpha: Animation
-    lateinit var alphaText: Animation
     var goCounter = 0
     var maxGoCounter = 4
     var openFrom = ""
@@ -57,7 +55,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 Intent(this, PremiumHostActivity::class.java)
             } else {
                 Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
-                //Intent(this, HistoryDietActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
             }
             Ampl.startAfterSplash()
             startActivity(intent)
@@ -75,24 +72,37 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             openFromPush()
         }
         bindTest()
-        runAnim()
         loadData()
         setFirstTime()
         SubscriptionProvider.startGettingPrice()
     }
 
+
+    override fun onPostResume() {
+        super.onPostResume()
+        runAnim()
+    }
+
     private fun runAnim(){
+        val dip = -72f
+        val r: Resources = resources
+        val px = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dip,
+                r.displayMetrics
+        )
+
         var show =  ValueAnimator.ofFloat(tvText.alpha, 1f)
         show.duration = 400L
         show.addUpdateListener {
             tvText.alpha = it.animatedValue as Float
             if (it.animatedFraction == 1.0f){
-                post()
+                //post()
             }
         }
 
-        var moveToLeft = ValueAnimator.ofFloat(ivLogo.translationX, -230f)
-        moveToLeft.duration = 700L
+        var moveToLeft = ValueAnimator.ofFloat(ivLogo.translationX, px)
+        moveToLeft.duration = 400L
         moveToLeft.addUpdateListener {
             ivLogo.translationX = it.animatedValue as Float
             if (it.animatedFraction == 1.0f){
