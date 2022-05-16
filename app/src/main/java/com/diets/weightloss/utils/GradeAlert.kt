@@ -47,8 +47,10 @@ class GradeAlert : DialogFragment() {
         showLabel = AnimationUtils.loadAnimation(view.context, R.anim.show_rate_label)
         hideLabel = AnimationUtils.loadAnimation(view.context, R.anim.hide_rate_label)
         showClaim = AnimationUtils.loadAnimation(view.context, R.anim.show_claim_edt)
+
         labels = listOf<TextView>(tvFirst, tvSecond, tvThird, tvFirth, tvFifth)
         lavs = listOf<LottieAnimationView>(lav0, lav1, lav2, lav3, lav4)
+
         setClickListeners()
 
         btnLater.setOnClickListener {

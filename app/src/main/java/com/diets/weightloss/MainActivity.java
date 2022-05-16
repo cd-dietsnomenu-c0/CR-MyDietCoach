@@ -274,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
     public void goToMarket() {
         FBAnalytic.INSTANCE.goToGrade();
         isNeedShowThank = true;
+
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("market://details?id=" + MainActivity.this.getPackageName()));
         startActivity(intent);
