@@ -3,13 +3,20 @@
     <string name="check_your_connect">Check your internet</string>
 
 
+
+    <!--YAD-->
+    <string name="app_id" translatable="false">1639065</string>
+    <string name="banner_id" translatable="false">R-M-1639065-2</string>
+    <string name="native_id" translatable="false">R-M-1639065-1</string>
+    <string name="inter_id" translatable="false">R-M-1639065-3</string>
+
     <!--wadimKazak-->
     <!--work-->
-    <string name="admob_key" translatable="false">ca-app-pub-2555056002292788~3750621051</string>
+    <!--<string name="admob_key" translatable="false">ca-app-pub-2555056002292788~3750621051</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-2555056002292788/3064241259</string>
     <string name="banner_id" translatable="false">ca-app-pub-2555056002292788/9629649606</string>
     <string name="native_ad" translatable="false">ca-app-pub-2555056002292788/3938339229</string>
-    <string name="reward_id" translatable="false">ca-app-pub-2555056002292788/7698422502</string>
+    <string name="reward_id" translatable="false">ca-app-pub-2555056002292788/7698422502</string>-->
 
     <!--diNahuiPizdec-->
     <!--WORK-->

@@ -15,17 +15,18 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.diets.weightloss.utils.PreferenceProvider;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.diets.weightloss.R;
 import com.diets.weightloss.utils.ad.AdWorker;
 import com.diets.weightloss.utils.analytics.Ampl;
+import com.yandex.mobile.ads.banner.AdSize;
+import com.yandex.mobile.ads.banner.BannerAdView;
+import com.yandex.mobile.ads.common.AdRequest;
 
 import java.util.ArrayList;
 
 public class ActivityCalculatorIMT extends AppCompatActivity {
-    private AdView ban;
+    private BannerAdView ban;
     private Button btnCalculate;
     private EditText edtHeight, edtWeight;
     private double weight, height;
@@ -46,6 +47,8 @@ public class ActivityCalculatorIMT extends AppCompatActivity {
         Ampl.Companion.openCalcualtor("imt");
         if (!PreferenceProvider.INSTANCE.isHasPremium()) {
             ban = findViewById(R.id.appodealBannerView);
+            ban.setAdUnitId(getString(R.string.banner_id));
+            ban.setAdSize(AdSize.FULL_SCREEN);
             ban.setVisibility(View.VISIBLE);
             ban.loadAd(new AdRequest.Builder().build());
         }

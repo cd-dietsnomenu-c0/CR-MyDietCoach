@@ -8,11 +8,11 @@ apply plugin: 'com.google.firebase.firebase-perf'
 
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         applicationId "com.diets.weightloss"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 25
         versionName "1.0.21"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -112,7 +112,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-config'
     implementation 'com.google.firebase:firebase-perf'
 
-    implementation 'com.google.android.gms:play-services-ads:19.8.0'
+    implementation 'com.yandex.android:mobileads:5.0.0'
+    implementation 'com.yandex.android:mobmetricalib:4.1.1'
+
 
     //implementation 'com.bugsee:bugsee-android:+'
 }

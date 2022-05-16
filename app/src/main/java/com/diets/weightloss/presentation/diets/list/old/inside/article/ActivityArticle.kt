@@ -13,7 +13,8 @@ import com.diets.weightloss.presentation.diets.list.old.inside.article.controlle
 import com.diets.weightloss.utils.PreferenceProvider.isHasPremium
 import com.diets.weightloss.utils.ad.AdWorker
 import com.diets.weightloss.utils.analytics.Ampl
-import com.google.android.gms.ads.AdRequest
+import com.yandex.mobile.ads.banner.AdSize
+import com.yandex.mobile.ads.common.AdRequest
 import kotlinx.android.synthetic.main.fr_article.*
 
 class ActivityArticle : AppCompatActivity(R.layout.fr_article) {
@@ -28,6 +29,8 @@ class ActivityArticle : AppCompatActivity(R.layout.fr_article) {
         AdWorker.checkLoad()
         if (!isHasPremium) {
             appodealBannerView.visibility = View.VISIBLE
+            appodealBannerView.setAdUnitId(getString(R.string.banner_id))
+            appodealBannerView.setAdSize(AdSize.FULL_SCREEN)
             appodealBannerView.loadAd(AdRequest.Builder().build())
         }
         var subsection = intent.getSerializableExtra(Config.ITEM_DATA) as Subsection

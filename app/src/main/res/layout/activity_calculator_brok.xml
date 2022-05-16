@@ -210,14 +210,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-        <com.google.android.gms.ads.AdView
+        <com.yandex.mobile.ads.banner.BannerAdView
             android:id="@+id/appodealBannerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:adSize="SMART_BANNER"
             android:visibility="gone"
-            app:adUnitId="@string/banner_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />

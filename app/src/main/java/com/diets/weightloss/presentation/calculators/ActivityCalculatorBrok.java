@@ -14,12 +14,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.diets.weightloss.utils.PreferenceProvider;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.diets.weightloss.R;
 import com.diets.weightloss.utils.ad.AdWorker;
 import com.diets.weightloss.utils.analytics.Ampl;
+import com.yandex.mobile.ads.banner.AdSize;
+import com.yandex.mobile.ads.banner.BannerAdView;
+import com.yandex.mobile.ads.common.AdRequest;
 
 
 public class ActivityCalculatorBrok extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
     private RadioButton rbFemale, rbMale;
     private Button btnCalculate;
     private ImageView ivBack;
-    private AdView ban;
+    private BannerAdView ban;
     int growth, girth, age, femaleDownFlag = 14, femaleUpFlag = 18, maleDownFlag = 17, maleUpFlag = 20, minNumber = 0;
     double idealWeight;
     boolean ast = false, normo = false, hyper = false;
@@ -47,6 +48,8 @@ public class ActivityCalculatorBrok extends AppCompatActivity {
         Ampl.Companion.openCalcualtor("brok");
         if (!PreferenceProvider.INSTANCE.isHasPremium()) {
             ban = findViewById(R.id.appodealBannerView);
+            ban.setAdUnitId(getString(R.string.banner_id));
+            ban.setAdSize(AdSize.FULL_SCREEN);
             ban.loadAd(new AdRequest.Builder().build());
         }
         edtBrokGrowth = findViewById(R.id.edtBrokGrowth);
