@@ -3,17 +3,23 @@ package com.diets.weightloss.utils.ad
 import android.content.Context
 import android.util.Log
 import com.diets.weightloss.App
-import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.diets.weightloss.Config
 import com.diets.weightloss.R
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.utils.analytics.FBAnalytic
 import com.google.android.gms.ads.*
-import com.google.android.gms.ads.rewarded.RewardedAd
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.google.firebase.analytics.FirebaseAnalytics
-import kotlin.random.Random
+import com.yandex.mobile.ads.common.AdRequest
+import com.yandex.mobile.ads.common.AdRequestError
+import com.yandex.mobile.ads.common.ImpressionData
+import com.yandex.mobile.ads.interstitial.InterstitialAd
+import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
+import com.yandex.mobile.ads.nativeads.NativeAd
+import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration
+import com.yandex.mobile.ads.nativeads.NativeBulkAdLoadListener
+import com.yandex.mobile.ads.nativeads.NativeBulkAdLoader
+import com.yandex.mobile.ads.rewarded.RewardedAd
+import java.util.*
 
 object AdWorker {
     private const val MAX_REQUEST_AD = 3
@@ -22,13 +28,16 @@ object AdWorker {
     private const val MAX_QUERY = 3
     private var counterFailed = 0
     var isFailedLoad = false
-    var adsList: ArrayList<UnifiedNativeAd> = arrayListOf()
-    var bufferAdsList: ArrayList<UnifiedNativeAd> = arrayListOf()
-    var adLoader: AdLoader? = null
+    var adsList: ArrayList<NativeAd> = arrayListOf()
+    var bufferAdsList: ArrayList<NativeAd> = arrayListOf()
+    var adLoader: NativeBulkAdLoader? = null
     var nativeSpeaker: NativeSpeaker? = null
     var isNeedShowNow = false
     private var counterRewardFailed = 0
     private const val MAX_QUERY_REWARD_VIDEO = 3
+
+    private val MAX_REQUEST_NATIVE_AD = 3
+    private var nativeAdRequestCounter = 0
 
     init {
         FrequencyManager.runSetup()
@@ -37,67 +46,90 @@ object AdWorker {
 
     fun init(context: Context) {
         inter = InterstitialAd(context)
-        inter?.adUnitId = context.getString(R.string.interstitial_id)
+        inter?.setAdUnitId(context.getString(R.string.inter_id))
         inter?.loadAd(AdRequest.Builder().build())
-        loadReward()
-        loadNative(context)
-        inter?.adListener = object : AdListener() {
+        //loadNative()
+        inter?.setInterstitialAdEventListener(object : InterstitialAdEventListener {
 
-            override fun onAdFailedToLoad(p0: Int) {
-                Ampl.failedOneLoads(p0)
+            override fun onAdFailedToLoad(p0: AdRequestError) {
+                //Ampl.failedOneLoads()
                 counterFailed++
                 if (counterFailed <= MAX_QUERY) {
                     reload()
                 } else {
-                    Ampl.failedAllLoads(p0)
+                    //Ampl.failedAllLoads()
                     isFailedLoad = true
                 }
             }
 
-            override fun onAdClosed() {
+            override fun onAdShown() {
+            }
+
+            override fun onAdDismissed() {
                 inter?.loadAd(AdRequest.Builder().build())
             }
 
+            override fun onAdClicked() {
+            }
+
+            override fun onLeftApplication() {
+            }
+
+            override fun onReturnedToApplication() {
+            }
+
+            override fun onImpression(p0: ImpressionData?) {
+            }
+
+
             override fun onAdLoaded() {
-                super.onAdLoaded()
-                if (isNeedShowNow && needShow() && !Config.FOR_TEST) {
+                if (isNeedShowNow && needShow()) {
                     isNeedShowNow = false
                     inter?.show()
                     Ampl.showAd()
                 }
             }
+        })
 
-            override fun onAdClicked() {
-                super.onAdClicked()
-                FBAnalytic.adClick()
-            }
-        }
     }
 
-    private fun loadNative(context: Context) {
+    private fun loadNative() {
         if (!Config.FOR_TEST) {
-            if (!PreferenceProvider.isHasPremium) {
-                adLoader = AdLoader
-                        .Builder(context, context.getString(R.string.native_ad))
-                        .forUnifiedNativeAd { nativeAD ->
-                            bufferAdsList.add(nativeAD)
-                            if (!adLoader!!.isLoading) {
+            /*if (!PreferenceProvider.isHasPremium) {
+                adLoader = NativeBulkAdLoader(App.getContext())
+                adLoader!!.setNativeBulkAdLoadListener(object : NativeBulkAdLoadListener {
+                    override fun onAdsLoaded(p0: MutableList<NativeAd>) {
+                        if (p0.size > 0){
+                            bufferAdsList = ArrayList(p0)
+                            endLoading()
+                        }else{
+                            nativeAdRequestCounter ++
+                            if (nativeAdRequestCounter > MAX_REQUEST_NATIVE_AD){
                                 endLoading()
+                            }else{
+                                loadNative()
                             }
-                        }.withAdListener(object : AdListener() {
-                            override fun onAdFailedToLoad(p0: Int) {
-                                if (!adLoader!!.isLoading) {
-                                    endLoading()
-                                }
-                            }
-                        }).build()
-                adLoader?.loadAds(AdRequest.Builder().build(), Config.NATIVE_ITEMS_MAX)
-            }
+                        }
+                    }
+
+                    override fun onAdsFailedToLoad(p0: AdRequestError) {
+                        nativeAdRequestCounter ++
+                        if (nativeAdRequestCounter > MAX_REQUEST_NATIVE_AD){
+                            endLoading()
+                        }else{
+                            loadNative()
+                        }
+                    }
+                })
+
+                var config = NativeAdRequestConfiguration.Builder(App.getContext().getString(R.string.native_id)).build()
+                adLoader!!.loadAds(config, Config.NATIVE_ITEMS_MAX)
+            }*/
         }
     }
 
     fun loadReward() {
-        var context = App.getInstance()
+        /*var context = App.getInstance()
         RewardedAd.load(
                 context,
                 context.resources.getString(R.string.reward_id),
@@ -119,7 +151,7 @@ object AdWorker {
                         counterRewardFailed = 0
                         rewardedAd = p0
                     }
-                })
+                })*/
     }
 
     fun getRewardAd() : RewardedAd?{
@@ -146,7 +178,7 @@ object AdWorker {
 
     fun refreshNativeAd(context: Context) {
         nativeSpeaker = null
-        loadNative(context)
+        loadNative()
     }
 
     private fun reload() {
@@ -210,7 +242,7 @@ object AdWorker {
         if (Config.FOR_TEST) {
             return false
         } else {
-            return Random.nextInt(100) <= PreferenceProvider.frequencyPercent
+            return Random().nextInt(100) <= PreferenceProvider.frequencyPercent
         }
     }
 }

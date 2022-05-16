@@ -16,7 +16,6 @@ import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic
 import com.diets.weightloss.presentation.profile.backgrounds.pager.pages.dynamic.toasts.InfoLockToast
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.AdWorker
-import com.google.android.gms.ads.FullScreenContentCallback
 import kotlinx.android.synthetic.main.item_head.*
 import kotlinx.android.synthetic.main.preview_dialog.*
 
@@ -67,7 +66,7 @@ class PreviewDialog : DialogFragment() {
     }
 
     private fun showRewardVideo() {
-        if (AdWorker.getRewardAd() != null) {
+        /*if (AdWorker.getRewardAd() != null) {
             AdWorker.getRewardAd()!!.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent()
@@ -83,9 +82,9 @@ class PreviewDialog : DialogFragment() {
             AdWorker.getRewardAd()!!.show(requireActivity()) {
                 isAdWatched = true
             }
-        } else {
+        } else {*/
             unlockBack()
-        }
+        //}
     }
 
 

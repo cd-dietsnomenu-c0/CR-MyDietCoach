@@ -1,7 +1,8 @@
 package com.diets.weightloss.utils.ad
 
-import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.yandex.mobile.ads.nativeads.NativeAd
+import java.util.*
 
 interface NativeSpeaker {
-    fun loadFin(nativeList : ArrayList<UnifiedNativeAd>)
+    fun loadFin(nativeList : ArrayList<NativeAd>)
 }

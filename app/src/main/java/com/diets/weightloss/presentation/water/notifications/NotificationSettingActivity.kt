@@ -15,12 +15,13 @@ import com.diets.weightloss.utils.notif.services.TopicWorker
 import com.diets.weightloss.utils.water.workers.DaysWorkers
 import com.diets.weightloss.utils.water.workers.FrequentWorker
 import com.diets.weightloss.utils.water.workers.TimeNotifWorker
-import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.yandex.mobile.ads.nativeads.NativeAd
 import kotlinx.android.synthetic.main.load_ad_include.*
 import kotlinx.android.synthetic.main.meas_activitys.*
 import kotlinx.android.synthetic.main.notification_settings_activity.*
 import kotlinx.android.synthetic.main.notification_settings_activity.flAdContainer
 import kotlinx.android.synthetic.main.notification_settings_activity.ivBack
+import java.util.*
 
 class NotificationSettingActivity : AppCompatActivity(R.layout.notification_settings_activity),
         StartDialog.Callbacks, EndDialog.Callbacks, FrequentDialog.Callbacks, DaysDialog.Callbacks {
@@ -49,7 +50,7 @@ class NotificationSettingActivity : AppCompatActivity(R.layout.notification_sett
         bindValues()
 
         AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 if (nativeList.size > 0) {
                     loadNative(nativeList[0])
                 }
@@ -57,8 +58,8 @@ class NotificationSettingActivity : AppCompatActivity(R.layout.notification_sett
         })
     }
 
-    private fun loadNative(nativeAd: UnifiedNativeAd) {
-        ad_view.mediaView = ad_media
+    private fun loadNative(nativeAd: NativeAd) {
+        /*ad_view.mediaView = ad_media
         ad_view.headlineView = ad_headline
         ad_view.bodyView = ad_body
         ad_view.callToActionView = ad_call_to_action
@@ -75,7 +76,7 @@ class NotificationSettingActivity : AppCompatActivity(R.layout.notification_sett
         }
         ad_view.setNativeAd(nativeAd)
 
-        flAdContainer.visibility = View.VISIBLE
+        flAdContainer.visibility = View.VISIBLE*/
     }
 
     private fun bindValues() {

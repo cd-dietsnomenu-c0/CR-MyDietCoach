@@ -12,12 +12,11 @@ import com.diets.weightloss.presentation.water.statistics.pager.pages.marathons.
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.AdWorker
 import com.diets.weightloss.utils.ad.NativeSpeaker
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.yandex.mobile.ads.nativeads.NativeAd
 import kotlinx.android.synthetic.main.marathon_fragment.*
-import kotlinx.android.synthetic.main.marathon_fragment.banner
 import kotlinx.android.synthetic.main.marathon_fragment.llEmptyState
 import kotlinx.android.synthetic.main.segmentation_fragment.*
+import java.util.*
 
 class MarathonFragment : Fragment(R.layout.marathon_fragment) {
 
@@ -43,8 +42,8 @@ class MarathonFragment : Fragment(R.layout.marathon_fragment) {
         llEmptyState.visibility = View.VISIBLE
 
         if (!PreferenceProvider.isHasPremium){
-            banner.visibility = View.VISIBLE
-            banner.loadAd(AdRequest.Builder().build())
+            /*banner.visibility = View.VISIBLE
+            banner.loadAd(AdRequest.Builder().build())*/
         }
     }
 
@@ -54,7 +53,7 @@ class MarathonFragment : Fragment(R.layout.marathon_fragment) {
         rvMarathon.adapter = adapter
 
         AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 adapter.insertAds(nativeList)
             }
         })

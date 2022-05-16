@@ -16,7 +16,6 @@ import com.amplitude.api.Amplitude;
 import com.diets.weightloss.common.db.DietDatabase;
 import com.diets.weightloss.common.db.migrations.Migrations;
 import com.diets.weightloss.utils.inapp.SubscriptionProvider;
-import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.userexperior.UserExperior;
 
@@ -30,7 +29,7 @@ public class App extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
 
-        MobileAds.initialize(this);
+        //MobileAds.initialize(this);
         SubscriptionProvider.INSTANCE.init(this);
         Amplitude.getInstance().initialize(this, "d0d5dffefe8b29a89279f15daf6d62b5").
                 enableForegroundTracking(this);

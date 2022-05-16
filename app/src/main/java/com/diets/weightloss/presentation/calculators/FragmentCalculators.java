@@ -14,11 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.diets.weightloss.R;
 import com.diets.weightloss.utils.ad.AdWorker;
 import com.diets.weightloss.utils.ad.NativeSpeaker;
 import com.diets.weightloss.presentation.calculators.controllers.CalculatingAdapter;
+import com.yandex.mobile.ads.nativeads.NativeAd;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -54,7 +54,7 @@ public class FragmentCalculators extends Fragment {
         rvListOfCalculating.setAdapter(adapter);
         AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
             @Override
-            public void loadFin(@NotNull ArrayList<UnifiedNativeAd> nativeList) {
+            public void loadFin(@NotNull ArrayList<NativeAd> nativeList) {
                 adapter.insertAds(nativeList);
             }
         });

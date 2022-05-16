@@ -18,13 +18,13 @@ import com.diets.weightloss.presentation.water.statistics.pager.pages.frequency.
 import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.ad.AdWorker
 import com.diets.weightloss.utils.ad.NativeSpeaker
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.yandex.mobile.ads.nativeads.NativeAd
 import kotlinx.android.synthetic.main.load_ad_include.*
 import kotlinx.android.synthetic.main.meas_activitys.*
 import kotlinx.android.synthetic.main.segmentation_fragment.*
 import java.text.DecimalFormat
 import java.text.FieldPosition
+import java.util.*
 
 
 class SegmentationFragment : Fragment(R.layout.segmentation_fragment) {
@@ -64,7 +64,7 @@ class SegmentationFragment : Fragment(R.layout.segmentation_fragment) {
         rvFrequency.adapter = adapter
 
         AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 adapter.insertAds(nativeList)
             }
         })
@@ -97,8 +97,8 @@ class SegmentationFragment : Fragment(R.layout.segmentation_fragment) {
         rvFrequency.visibility = View.GONE
 
         if (!PreferenceProvider.isHasPremium){
-            banner.visibility = View.VISIBLE
-            banner.loadAd(AdRequest.Builder().build())
+            /*banner.visibility = View.VISIBLE
+            banner.loadAd(AdRequest.Builder().build())*/
         }
     }
 

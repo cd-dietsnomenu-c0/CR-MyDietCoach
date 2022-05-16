@@ -8,7 +8,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.diets.weightloss.App
 import com.diets.weightloss.Config
 import com.diets.weightloss.model.interactive.*
@@ -28,6 +27,7 @@ import com.diets.weightloss.presentation.diets.list.modern.article.controller.ma
 import com.diets.weightloss.presentation.diets.list.modern.article.toasts.AddToast
 import com.diets.weightloss.presentation.tracker.LoadingActivity
 import com.diets.weightloss.utils.CustomDate
+import com.yandex.mobile.ads.nativeads.NativeAd
 import kotlinx.android.synthetic.main.diet_act.*
 import java.util.*
 
@@ -69,7 +69,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         }, arrayListOf())
         rvDiet.adapter = adapter
         AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 adapter.insertAds(nativeList)
             }
         })

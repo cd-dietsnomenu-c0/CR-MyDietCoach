@@ -3,14 +3,16 @@ package com.diets.weightloss.presentation.profile.favorites.controllers
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.diets.weightloss.Config
 import com.diets.weightloss.model.interactive.Diet
 import com.diets.weightloss.presentation.diets.list.ItemClick
 import com.diets.weightloss.presentation.diets.list.modern.controllers.InteractiveVH
 import com.diets.weightloss.presentation.diets.list.modern.controllers.NativeVH
+import com.diets.weightloss.presentation.history.controller.ADVH
+import com.yandex.mobile.ads.nativeads.NativeAd
+import java.util.*
 
-class FavoritesAdapter(val allDiets: MutableList<Diet>, var itemClick: ItemClick, var nativeList : ArrayList<UnifiedNativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FavoritesAdapter(val allDiets: MutableList<Diet>, var itemClick: ItemClick, var nativeList : ArrayList<NativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val ITEM_TYPE = 0
     val AD_TYPE = 1
     var counter = 0
@@ -51,7 +53,7 @@ class FavoritesAdapter(val allDiets: MutableList<Diet>, var itemClick: ItemClick
         when(getItemViewType(position)){
             ITEM_TYPE ->(holder as InteractiveVH).bind(allDiets[getRealPosition(position)].title,
                     allDiets[getRealPosition(position)].mainImage, allDiets[getRealPosition(position)].isNew, allDiets[getRealPosition(position)].shortIntroduction, allDiets[getRealPosition(position)].days.size, "Фавориты", allDiets[getRealPosition(position)].kcal)
-            AD_TYPE ->(holder as NativeVH).bind(nativeList[getAdPosition()])
+            AD_TYPE ->(holder as com.diets.weightloss.presentation.diets.controller.ADVH).bind(nativeList[getAdPosition()])
         }
     }
 
@@ -63,7 +65,7 @@ class FavoritesAdapter(val allDiets: MutableList<Diet>, var itemClick: ItemClick
         }
     }
 
-    fun insertAds(listAds: ArrayList<UnifiedNativeAd>) {
+    fun insertAds(listAds: ArrayList<NativeAd>) {
         nativeList = listAds
         notifyDataSetChanged()
     }

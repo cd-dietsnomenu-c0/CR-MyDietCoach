@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.model.water.WaterMarathon
+import com.diets.weightloss.presentation.diets.controller.ADVH
 import com.diets.weightloss.presentation.diets.list.modern.controllers.NativeVH
-import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.yandex.mobile.ads.nativeads.NativeAd
 import java.lang.Exception
 
-class MarathonAdapter(val list: List<WaterMarathon>, var nativeList: ArrayList<UnifiedNativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MarathonAdapter(val list: List<WaterMarathon>, var nativeList: ArrayList<NativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var counter = 0
 
@@ -33,7 +34,7 @@ class MarathonAdapter(val list: List<WaterMarathon>, var nativeList: ArrayList<U
         }
     }
 
-    fun insertAds(listAds: ArrayList<UnifiedNativeAd>) {
+    fun insertAds(listAds: ArrayList<NativeAd>) {
         nativeList = listAds
         notifyDataSetChanged()
     }
@@ -57,7 +58,7 @@ class MarathonAdapter(val list: List<WaterMarathon>, var nativeList: ArrayList<U
             SECOND_PLACE_TYPE -> (holder as SecondPlaceVH).bind(list[1])
             THIRD_PLACE_TYPE -> (holder as ThirdPlaceVH).bind(list[2])
             OTHER_PLACE_TYPE -> (holder as OtherPlaceVH).bind(list[getOtherPosition(position)])
-            AD_TYPE -> (holder as NativeWaterVH).bind(nativeList[getAdPosition()])
+            AD_TYPE -> (holder as ADVH).bind(nativeList[getAdPosition()])
             else -> Exception()
         }
     }

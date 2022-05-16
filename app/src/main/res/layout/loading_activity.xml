@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lavLoading"
         tools:text="Loading..." />
 
-    <FrameLayout
+    <!--<FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="invisible"
@@ -47,5 +47,8 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <include layout="@layout/load_ad_include" />
-    </FrameLayout>
+    </FrameLayout>-->
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

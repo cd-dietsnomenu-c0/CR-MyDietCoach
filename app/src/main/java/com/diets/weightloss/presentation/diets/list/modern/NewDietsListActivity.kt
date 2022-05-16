@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.diets.weightloss.Config
 import com.diets.weightloss.model.interactive.AllDiets
 import com.diets.weightloss.R
@@ -14,7 +13,9 @@ import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.presentation.diets.list.ItemClick
 import com.diets.weightloss.presentation.diets.list.modern.article.DietAct
 import com.diets.weightloss.presentation.diets.list.modern.controllers.InteractiveAdapter
+import com.yandex.mobile.ads.nativeads.NativeAd
 import kotlinx.android.synthetic.main.new_diets_list_activity.*
+import java.util.*
 
 class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity) {
 
@@ -45,7 +46,7 @@ class NewDietsListActivity : AppCompatActivity(R.layout.new_diets_list_activity)
         }, arrayListOf(), typeName!!, isHasHead)
         rvListDiets.adapter = adapter
         AdWorker.observeOnNativeList(object : NativeSpeaker{
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 adapter.insertAds(nativeList)
             }
         })

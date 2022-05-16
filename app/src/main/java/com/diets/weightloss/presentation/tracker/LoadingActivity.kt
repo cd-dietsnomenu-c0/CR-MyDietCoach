@@ -11,15 +11,16 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.diets.weightloss.MainActivity
 import com.diets.weightloss.R
 import com.diets.weightloss.utils.ad.AdWorker
 import com.diets.weightloss.utils.ad.NativeSpeaker
 import com.diets.weightloss.utils.analytics.Ampl
+import com.yandex.mobile.ads.nativeads.NativeAd
 import kotlinx.android.synthetic.main.load_ad_include.*
 import kotlinx.android.synthetic.main.loading_activity.*
 import java.lang.Exception
+import java.util.*
 
 class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
 
@@ -30,7 +31,7 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
         super.onCreate(savedInstanceState)
         Ampl.startLoading()
         AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 if (nativeList.size > 0) {
                     loadNative(nativeList[0])
                 }
@@ -97,8 +98,8 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
         })
     }
 
-    private fun loadNative(nativeAd: UnifiedNativeAd) {
-        ad_view.mediaView = ad_media
+    private fun loadNative(nativeAd: NativeAd) {
+        /*ad_view.mediaView = ad_media
         ad_view.headlineView = ad_headline
         ad_view.bodyView = ad_body
         ad_view.callToActionView = ad_call_to_action
@@ -114,7 +115,7 @@ class LoadingActivity : AppCompatActivity(R.layout.loading_activity) {
             ad_view.iconView.visibility = View.VISIBLE
         }
         ad_view.setNativeAd(nativeAd)
-        flAdContainer.visibility = View.VISIBLE
+        flAdContainer.visibility = View.VISIBLE*/
     }
 
 

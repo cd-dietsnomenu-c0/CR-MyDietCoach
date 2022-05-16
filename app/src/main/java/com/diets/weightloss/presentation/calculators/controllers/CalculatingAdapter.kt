@@ -3,13 +3,14 @@ package com.diets.weightloss.presentation.calculators.controllers
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.diets.weightloss.presentation.diets.controller.ADVH
+import com.yandex.mobile.ads.nativeads.NativeAd
 import java.util.ArrayList
 
 class CalculatingAdapter(val titles: Array<String>,
                          val descriptions: Array<String>,
                          val gradients: Array<Int>,
-                         var nativeList: ArrayList<UnifiedNativeAd>,
+                         var nativeList: ArrayList<NativeAd>,
                          var itemClick: ClickItem) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var ITEM_TYPE = 0
@@ -40,7 +41,7 @@ class CalculatingAdapter(val titles: Array<String>,
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             ITEM_TYPE -> (holder as CalculatingVH).bind(titles[getItemPosition(position)], descriptions[getItemPosition(position)], gradients[getItemPosition(position)])
-            AD_TYPE -> (holder as AdVH).bind(nativeList[getAdNumber()])
+            AD_TYPE -> (holder as ADVH).bind(nativeList[getAdNumber()])
         }
     }
 
@@ -74,7 +75,7 @@ class CalculatingAdapter(val titles: Array<String>,
         }
     }
 
-    fun insertAds(listAds: ArrayList<UnifiedNativeAd>) {
+    fun insertAds(listAds: ArrayList<NativeAd>) {
         nativeList = listAds
         notifyDataSetChanged()
     }
