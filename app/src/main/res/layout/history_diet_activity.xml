@@ -583,7 +583,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp">
 
-            <include layout="@layout/history_ad_include" />
+            <!--<include layout="@layout/history_ad_include" />-->
         </FrameLayout>
 
         <androidx.cardview.widget.CardView
@@ -740,7 +740,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp">
 
-            <include layout="@layout/history_second_ad_include" />
+            <!--<include layout="@layout/history_second_ad_include" />-->
         </FrameLayout>
 
 

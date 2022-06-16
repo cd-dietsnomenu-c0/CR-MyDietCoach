@@ -3,12 +3,10 @@ package com.diets.weightloss;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -25,13 +23,11 @@ import com.diets.weightloss.common.db.utils.Checker;
 import com.diets.weightloss.model.Global;
 import com.diets.weightloss.presentation.calculators.FragmentCalculators;
 import com.diets.weightloss.presentation.diets.FragmentTypes;
-import com.diets.weightloss.presentation.history.HistoryDietActivity;
 import com.diets.weightloss.presentation.history.HistoryListDietsActivity;
 import com.diets.weightloss.presentation.profile.ProfileFragment;
 import com.diets.weightloss.presentation.tracker.FragmentTracker;
 import com.diets.weightloss.presentation.water.FragmentWaterTracker;
 import com.diets.weightloss.utils.GradeAlert;
-import com.diets.weightloss.utils.PreferenceProvider;
 import com.diets.weightloss.utils.ThankToast;
 import com.diets.weightloss.utils.ad.AdWorker;
 import com.diets.weightloss.utils.analytics.Ampl;
@@ -40,7 +36,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
