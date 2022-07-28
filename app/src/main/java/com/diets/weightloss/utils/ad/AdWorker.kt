@@ -95,7 +95,7 @@ object AdWorker {
 
     private fun loadNative() {
         if (!Config.FOR_TEST) {
-            /*if (!PreferenceProvider.isHasPremium) {
+            if (!PreferenceProvider.isHasPremium) {
                 adLoader = NativeBulkAdLoader(App.getContext())
                 adLoader!!.setNativeBulkAdLoadListener(object : NativeBulkAdLoadListener {
                     override fun onAdsLoaded(p0: MutableList<NativeAd>) {
@@ -124,7 +124,7 @@ object AdWorker {
 
                 var config = NativeAdRequestConfiguration.Builder(App.getContext().getString(R.string.native_id)).build()
                 adLoader!!.loadAds(config, Config.NATIVE_ITEMS_MAX)
-            }*/
+            }
         }
     }
 
