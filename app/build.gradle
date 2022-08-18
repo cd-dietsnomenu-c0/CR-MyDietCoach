@@ -13,8 +13,8 @@ android {
         applicationId "com.diets.weightloss"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 27
-        versionName "1.0.22r"
+        versionCode 28
+        versionName "1.0.23r"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }

@@ -48,7 +48,7 @@ object AdWorker {
         inter = InterstitialAd(context)
         inter?.setAdUnitId(context.getString(R.string.inter_id))
         inter?.loadAd(AdRequest.Builder().build())
-        //loadNative()
+        loadNative()
         inter?.setInterstitialAdEventListener(object : InterstitialAdEventListener {
 
             override fun onAdFailedToLoad(p0: AdRequestError) {
@@ -94,37 +94,40 @@ object AdWorker {
     }
 
     private fun loadNative() {
-        if (!Config.FOR_TEST) {
-            if (!PreferenceProvider.isHasPremium) {
-                adLoader = NativeBulkAdLoader(App.getContext())
-                adLoader!!.setNativeBulkAdLoadListener(object : NativeBulkAdLoadListener {
-                    override fun onAdsLoaded(p0: MutableList<NativeAd>) {
-                        if (p0.size > 0){
-                            bufferAdsList = ArrayList(p0)
-                            endLoading()
-                        }else{
-                            nativeAdRequestCounter ++
-                            if (nativeAdRequestCounter > MAX_REQUEST_NATIVE_AD){
-                                endLoading()
-                            }else{
-                                loadNative()
-                            }
-                        }
-                    }
-
-                    override fun onAdsFailedToLoad(p0: AdRequestError) {
+        if (!PreferenceProvider.isHasPremium) {
+            adLoader = NativeBulkAdLoader(App.getContext())
+            adLoader!!.setNativeBulkAdLoadListener(object : NativeBulkAdLoadListener {
+                override fun onAdsLoaded(p0: MutableList<NativeAd>) {
+                    if (p0.size >= Config.NATIVE_ITEMS_MAX){
+                        Ampl.loadedNative()
+                        bufferAdsList = ArrayList(p0)
+                        endLoading()
+                    }else{
                         nativeAdRequestCounter ++
                         if (nativeAdRequestCounter > MAX_REQUEST_NATIVE_AD){
+                            Ampl.lessNativeAdEnd()
                             endLoading()
                         }else{
+                            Ampl.lessNativeAd()
                             loadNative()
                         }
                     }
-                })
+                }
 
-                var config = NativeAdRequestConfiguration.Builder(App.getContext().getString(R.string.native_id)).build()
-                adLoader!!.loadAds(config, Config.NATIVE_ITEMS_MAX)
-            }
+                override fun onAdsFailedToLoad(p0: AdRequestError) {
+                    nativeAdRequestCounter ++
+                    if (nativeAdRequestCounter > MAX_REQUEST_NATIVE_AD){
+                        Ampl.failLoadNativeEnd()
+                        endLoading()
+                    }else{
+                        Ampl.failLoadNative()
+                        loadNative()
+                    }
+                }
+            })
+
+            var config = NativeAdRequestConfiguration.Builder(App.getContext().getString(R.string.native_id)).build()
+            adLoader!!.loadAds(config, Config.NATIVE_ITEMS_MAX)
         }
     }
 
@@ -177,8 +180,8 @@ object AdWorker {
     }
 
     fun refreshNativeAd(context: Context) {
-        nativeSpeaker = null
-        loadNative()
+        /*nativeSpeaker = null
+        loadNative()*/
     }
 
     private fun reload() {

@@ -58,7 +58,7 @@ class MarathonAdapter(val list: List<WaterMarathon>, var nativeList: ArrayList<N
             SECOND_PLACE_TYPE -> (holder as SecondPlaceVH).bind(list[1])
             THIRD_PLACE_TYPE -> (holder as ThirdPlaceVH).bind(list[2])
             OTHER_PLACE_TYPE -> (holder as OtherPlaceVH).bind(list[getOtherPosition(position)])
-            AD_TYPE -> (holder as ADVH).bind(nativeList[getAdPosition()])
+            AD_TYPE -> (holder as NativeWaterVH).bind()
             else -> Exception()
         }
     }

@@ -25,8 +25,8 @@ class CalculatingAdapter(val titles: Array<String>,
                     itemClick.click(getItemPosition(position))
                 }
             })
-            AD_TYPE -> AdVH(inflater, parent)
-            else -> AdVH(inflater, parent)
+            AD_TYPE -> ADVH(inflater, parent)
+            else -> ADVH(inflater, parent)
         }
     }
 

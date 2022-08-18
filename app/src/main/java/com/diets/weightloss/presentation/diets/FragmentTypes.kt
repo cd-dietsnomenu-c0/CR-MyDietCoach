@@ -2,6 +2,7 @@ package com.diets.weightloss.presentation.diets
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
@@ -54,14 +55,33 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
         })
         rvTypes.layoutManager = LinearLayoutManager(view.context)
         rvTypes.adapter = adapter
-        AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<NativeAd>) {
-                adapter.insertAds(nativeList)
-            }
-        })
+
 
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        if(!isHidden) {
+            AdWorker.observeOnNativeList(object : NativeSpeaker {
+                override fun loadFin(nativeList: ArrayList<NativeAd>) {
+                    adapter.insertAds(nativeList)
+                }
+            })
+        }
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden){
+            AdWorker.observeOnNativeList(object : NativeSpeaker {
+                override fun loadFin(nativeList: ArrayList<NativeAd>) {
+                    adapter.insertAds(nativeList)
+                }
+            })
+        }
+    }
+
 
     private fun setTopMargin() {
         var height = 0

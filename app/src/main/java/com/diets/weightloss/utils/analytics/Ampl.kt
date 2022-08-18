@@ -406,5 +406,38 @@ class Ampl {
             }
             Amplitude.getInstance().logEvent("error_native", eventProperties)
         }
+
+        fun attemptCounter() {
+            Amplitude.getInstance().logEvent("attempt_counter")
+        }
+
+        fun attemptNotLoaded() {
+            Amplitude.getInstance().logEvent("attempt_not_loaded")
+        }
+
+        fun loadedNative() {
+            Amplitude.getInstance().logEvent("loaded_native")
+        }
+
+        fun failLoadNative() {
+            Amplitude.getInstance().logEvent("fail_load_native")
+        }
+
+        fun lessNativeAd() {
+            Amplitude.getInstance().logEvent("less_native_ad")
+        }
+
+        fun lessNativeAdEnd() {
+            Amplitude.getInstance().logEvent("less_native_ad_end")
+        }
+
+        fun failLoadNativeEnd() {
+            Amplitude.getInstance().logEvent("fail_load_native_end")
+        }
+
     }
+
+
+
+
 }

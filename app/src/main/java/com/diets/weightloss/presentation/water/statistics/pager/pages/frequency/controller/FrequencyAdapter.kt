@@ -28,7 +28,7 @@ class FrequencyAdapter(val drinks: List<DrinksCapacities>, val centerPieText: Sp
             PIE_TYPE -> PieChartVH(inflater, parent)
             DIVIDER_TYPE -> DividerVH(inflater, parent)
             FREQUNECY_DETAIL_TYPE -> FrequencyDetailsVH(inflater, parent)
-            AD_TYPE -> NativeWaterVH(inflater, parent)
+            AD_TYPE -> ADVH(inflater, parent)
             else -> PieChartVH(inflater, parent)
         }
     }

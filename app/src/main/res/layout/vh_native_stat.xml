@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:visibility="gone"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.gms.ads.formats.UnifiedNativeAdView
+    <!--<com.google.android.gms.ads.formats.UnifiedNativeAdView
         android:id="@+id/ad_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -109,5 +110,5 @@
         </androidx.cardview.widget.CardView>
 
 
-    </com.google.android.gms.ads.formats.UnifiedNativeAdView>
+    </com.google.android.gms.ads.formats.UnifiedNativeAdView>-->
 </FrameLayout>

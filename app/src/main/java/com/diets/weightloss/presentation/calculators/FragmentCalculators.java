@@ -52,12 +52,32 @@ public class FragmentCalculators extends Fragment {
         adapter = new CalculatingAdapter(listOfTitles, listOfDescriptions, gradients, new ArrayList<>(),
                 position -> startCalculator(position));
         rvListOfCalculating.setAdapter(adapter);
-        AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
-            @Override
-            public void loadFin(@NotNull ArrayList<NativeAd> nativeList) {
-                adapter.insertAds(nativeList);
-            }
-        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isHidden()) {
+            AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
+                @Override
+                public void loadFin(@NotNull ArrayList<NativeAd> nativeList) {
+                    adapter.insertAds(nativeList);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
+                @Override
+                public void loadFin(@NotNull ArrayList<NativeAd> nativeList) {
+                    adapter.insertAds(nativeList);
+                }
+            });
+        }
     }
 
     private void setMargins() {
