@@ -15,6 +15,8 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.RenderMode
 import com.amplitude.api.Amplitude
+import com.android.installreferrer.api.InstallReferrerClient
+import com.android.installreferrer.api.InstallReferrerStateListener
 import com.diets.weightloss.common.DBHolder
 import com.diets.weightloss.common.FBWork.Companion.getFCMToken
 import com.diets.weightloss.utils.LangChoicer
@@ -64,6 +66,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bindRef()
         Ampl.runApp()
         bindLocale()
         bindFCM()
@@ -77,13 +80,43 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         SubscriptionProvider.startGettingPrice()
     }
 
+    private fun bindRef() {
+        var client = InstallReferrerClient.newBuilder(this)
+                .build()
+        client.startConnection(object : InstallReferrerStateListener {
+            override fun onInstallReferrerSetupFinished(responseCode: Int) {
+                when (responseCode) {
+                    InstallReferrerClient.InstallReferrerResponse.OK -> Log.e("LOL",
+                            client.installReferrer.installReferrer
+                    )
+                    InstallReferrerClient.InstallReferrerResponse.DEVELOPER_ERROR -> Log.e("LOL",
+                            "DEVELOPER_ERROR"
+                    )
+                    InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED -> Log.e("LOL",
+                            "FEATURE_NOT_SUPPORTED"
+                    )
+                    InstallReferrerClient.InstallReferrerResponse.SERVICE_DISCONNECTED -> Log.e("LOL",
+                            "SERVICE_DISCONNECTED"
+                    )
+                    InstallReferrerClient.InstallReferrerResponse.SERVICE_UNAVAILABLE -> Log.e("LOL",
+                            "SERVICE_UNAVAILABLE"
+                    )
+                }
+            }
+
+            override fun onInstallReferrerServiceDisconnected() {
+                Log.e("LOL", "onInstallReferrerServiceDisconnected")
+            }
+        })
+    }
+
 
     override fun onPostResume() {
         super.onPostResume()
         runAnim()
     }
 
-    private fun runAnim(){
+    private fun runAnim() {
         val dip = -72f
         val r: Resources = resources
         val px = TypedValue.applyDimension(
@@ -92,11 +125,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 r.displayMetrics
         )
 
-        var show =  ValueAnimator.ofFloat(tvText.alpha, 1f)
+        var show = ValueAnimator.ofFloat(tvText.alpha, 1f)
         show.duration = 400L
         show.addUpdateListener {
             tvText.alpha = it.animatedValue as Float
-            if (it.animatedFraction == 1.0f){
+            if (it.animatedFraction == 1.0f) {
                 init(this@SplashActivity)
                 post()
             }
@@ -106,7 +139,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         moveToLeft.duration = 600L
         moveToLeft.addUpdateListener {
             ivLogo.translationX = it.animatedValue as Float
-            if (it.animatedFraction == 1.0f){
+            if (it.animatedFraction == 1.0f) {
                 //init(this@SplashActivity)
                 show.start()
             }
@@ -194,7 +227,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             PreferenceProvider.setFirstTime(date)
         }
     }
-
 
 
     private fun loadData() {

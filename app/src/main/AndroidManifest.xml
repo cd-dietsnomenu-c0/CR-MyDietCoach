@@ -179,6 +179,8 @@
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
 
+
+
     </application>
 
 </manifest>

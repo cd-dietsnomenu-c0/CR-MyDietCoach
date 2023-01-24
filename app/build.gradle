@@ -115,6 +115,7 @@ dependencies {
     implementation 'com.yandex.android:mobileads:5.0.0'
     implementation 'com.yandex.android:mobmetricalib:4.1.1'
 
+    implementation 'com.android.installreferrer:installreferrer:1.0'
 
     //implementation 'com.bugsee:bugsee-android:+'
 }
