@@ -6,10 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.media.AudioAttributes
-import android.media.RingtoneManager
 import android.net.Uri
-import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.widget.RemoteViews
@@ -60,7 +57,7 @@ class FCMService : FirebaseMessagingService() {
 
 
             var pendingIntent = PendingIntent
-                    .getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+                    .getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
             var collapsedView = RemoteViews(packageName, R.layout.view_eat_notification)
 
@@ -107,7 +104,7 @@ class FCMService : FirebaseMessagingService() {
 
 
         var pendingIntent = PendingIntent
-                .getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+                .getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         var collapsedView = RemoteViews(packageName, R.layout.view_water_notification)
 
@@ -146,7 +143,7 @@ class FCMService : FirebaseMessagingService() {
             Ampl.recieveFCM()
 
             var pendingIntent = PendingIntent
-                    .getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+                    .getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
             var collapsedView = RemoteViews(packageName, R.layout.view_notification)
             collapsedView.setTextViewText(R.id.tvNotificationTitle, p0.data["title"])
