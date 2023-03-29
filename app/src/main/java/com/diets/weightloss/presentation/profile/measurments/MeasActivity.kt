@@ -20,6 +20,7 @@ import com.diets.weightloss.utils.ad.NativeSpeaker
 import com.diets.weightloss.utils.water.WaterCounter
 import com.diets.weightloss.utils.water.WaterRateProvider
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.android.synthetic.main.load_ad_include.*
 import kotlinx.android.synthetic.main.meas_activitys.*
 import kotlinx.android.synthetic.main.meas_activitys.flAdContainer
@@ -83,7 +84,7 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activitys) {
         prepareAnimViews()
 
         AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 if (nativeList.size > 0) {
                     loadNative(nativeList[0])
                 }
@@ -92,7 +93,7 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activitys) {
     }
 
 
-    private fun loadNative(nativeAd: UnifiedNativeAd) {
+    private fun loadNative(nativeAd: NativeAd) {
         ad_view.mediaView = ad_media
         ad_view.headlineView = ad_headline
         ad_view.bodyView = ad_body
@@ -103,10 +104,10 @@ class MeasActivity : AppCompatActivity(R.layout.meas_activitys) {
         (ad_view.callToActionView as Button).text = nativeAd.callToAction
         val icon = nativeAd.icon
         if (icon == null) {
-            ad_view.iconView.visibility = View.INVISIBLE
+            ad_view.iconView!!.visibility = View.INVISIBLE
         } else {
             (ad_view.iconView as ImageView).setImageDrawable(icon.drawable)
-            ad_view.iconView.visibility = View.VISIBLE
+            ad_view.iconView!!.visibility = View.VISIBLE
         }
         ad_view.setNativeAd(nativeAd)
 

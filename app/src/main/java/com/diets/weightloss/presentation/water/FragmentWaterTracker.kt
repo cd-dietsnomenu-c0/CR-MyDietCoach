@@ -7,11 +7,8 @@ import android.content.Intent
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -43,7 +40,6 @@ import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.utils.notif.services.TopicWorker
 import kotlinx.android.synthetic.main.bottom_begin_meas.*
 import kotlinx.android.synthetic.main.bottom_water_settings.*
-import kotlinx.android.synthetic.main.fr_types.*
 import kotlinx.android.synthetic.main.fragment_water_tracker.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -709,7 +705,7 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
                     } else {
                         FullToast.show(activity!!)
                     }
-                    ActionAd.action()
+                    ActionAd.action(requireActivity())
                     Ampl.addWater()
                 }
 

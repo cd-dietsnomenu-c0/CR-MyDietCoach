@@ -27,6 +27,7 @@ import com.diets.weightloss.utils.ad.AdWorker
 import com.diets.weightloss.utils.ad.NativeSpeaker
 import com.diets.weightloss.utils.history.HistoryProvider
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.android.synthetic.main.history_ad_include.*
 import kotlinx.android.synthetic.main.history_ad_include.ad_view
 import kotlinx.android.synthetic.main.history_diet_activity.*
@@ -54,7 +55,7 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         setListeners()
 
         AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 if (nativeList.size > 0) {
                     loadFirstNative(nativeList[0])
                     if (nativeList.size > 1){
@@ -67,7 +68,7 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         })
     }
 
-    private fun loadFirstNative(nativeAd: UnifiedNativeAd) {
+    private fun loadFirstNative(nativeAd: NativeAd) {
         ad_view.mediaView = ad_media
         ad_view.headlineView = ad_headline
         ad_view.bodyView = ad_body
@@ -78,16 +79,16 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         (ad_view.callToActionView as Button).text = nativeAd.callToAction
         val icon = nativeAd.icon
         if (icon == null) {
-            ad_view.iconView.visibility = View.INVISIBLE
+            ad_view.iconView!!.visibility = View.INVISIBLE
         } else {
             (ad_view.iconView as ImageView).setImageDrawable(icon.drawable)
-            ad_view.iconView.visibility = View.VISIBLE
+            ad_view.iconView!!.visibility = View.VISIBLE
         }
         ad_view.setNativeAd(nativeAd)
         flAdContainer.visibility = View.VISIBLE
     }
 
-    private fun loadSecondNative(nativeAd: UnifiedNativeAd) {
+    private fun loadSecondNative(nativeAd: NativeAd) {
         ad_view_second.mediaView = ad_media_second
         ad_view_second.headlineView = ad_headline_second
         ad_view_second.bodyView = ad_body_second
@@ -98,10 +99,10 @@ class HistoryDietActivity : AppCompatActivity(R.layout.history_diet_activity), W
         (ad_view_second.callToActionView as Button).text = nativeAd.callToAction
         val icon = nativeAd.icon
         if (icon == null) {
-            ad_view_second.iconView.visibility = View.INVISIBLE
+            ad_view_second.iconView!!.visibility = View.INVISIBLE
         } else {
             (ad_view_second.iconView as ImageView).setImageDrawable(icon.drawable)
-            ad_view_second.iconView.visibility = View.VISIBLE
+            ad_view_second.iconView!!.visibility = View.VISIBLE
         }
         ad_view_second.setNativeAd(nativeAd)
         flAdContainerSecond.visibility = View.VISIBLE

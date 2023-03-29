@@ -28,6 +28,7 @@ import com.diets.weightloss.presentation.diets.list.modern.article.controller.ma
 import com.diets.weightloss.presentation.diets.list.modern.article.toasts.AddToast
 import com.diets.weightloss.presentation.tracker.LoadingActivity
 import com.diets.weightloss.utils.CustomDate
+import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.android.synthetic.main.diet_act.*
 import java.util.*
 
@@ -42,7 +43,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
     lateinit var hideAnim : Animation
 
     override fun onBackPressed() {
-        AdWorker.showInter()
+        AdWorker.showInter(this)
         super.onBackPressed()
     }
 
@@ -69,7 +70,7 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         }, arrayListOf())
         rvDiet.adapter = adapter
         AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 adapter.insertAds(nativeList)
             }
         })

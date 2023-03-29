@@ -12,7 +12,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.diets.weightloss.App
 import com.diets.weightloss.Config
 import com.diets.weightloss.MainActivity
 import com.diets.weightloss.model.interactive.Diet
@@ -380,7 +379,7 @@ class FragmentTracker : Fragment(R.layout.fragment_tracker), BlockWinDialog.Call
             override fun checkEat(type: Int) {
                 DBHolder.checkEat(type)
                 refreshEats(type)
-                ActionAd.action()
+                ActionAd.action(requireActivity())
             }
         })
         rvEats.adapter = eatsAdapter

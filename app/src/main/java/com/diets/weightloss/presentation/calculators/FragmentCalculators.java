@@ -19,6 +19,7 @@ import com.diets.weightloss.R;
 import com.diets.weightloss.utils.ad.AdWorker;
 import com.diets.weightloss.utils.ad.NativeSpeaker;
 import com.diets.weightloss.presentation.calculators.controllers.CalculatingAdapter;
+import com.google.android.gms.ads.nativead.NativeAd;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -54,7 +55,7 @@ public class FragmentCalculators extends Fragment {
         rvListOfCalculating.setAdapter(adapter);
         AdWorker.INSTANCE.observeOnNativeList(new NativeSpeaker() {
             @Override
-            public void loadFin(@NotNull ArrayList<UnifiedNativeAd> nativeList) {
+            public void loadFin(@NotNull ArrayList<NativeAd> nativeList) {
                 adapter.insertAds(nativeList);
             }
         });

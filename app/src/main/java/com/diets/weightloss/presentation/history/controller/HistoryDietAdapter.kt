@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.common.db.entities.HistoryDiet
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.google.android.gms.ads.nativead.NativeAd
 
 private const val NATIVE_AD_PERIOD_INSERT = 6
 
-class HistoryDietAdapter(val listDiet: List<HistoryDiet>, val clickListener: HistoryClickListener, var nativeList: ArrayList<UnifiedNativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HistoryDietAdapter(val listDiet: List<HistoryDiet>, val clickListener: HistoryClickListener, var nativeList: ArrayList<NativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val BODY_TYPE = 0
     val AD_TYPE = 1
@@ -35,7 +36,7 @@ class HistoryDietAdapter(val listDiet: List<HistoryDiet>, val clickListener: His
 
     }
 
-    fun insertAds(listAds: ArrayList<UnifiedNativeAd>) {
+    fun insertAds(listAds: ArrayList<NativeAd>) {
         nativeList = listAds
         notifyDataSetChanged()
     }

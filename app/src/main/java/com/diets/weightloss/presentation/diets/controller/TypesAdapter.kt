@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.diets.weightloss.Config
 import com.diets.weightloss.presentation.diets.IClick
+import com.google.android.gms.ads.nativead.NativeAd
 
 class TypesAdapter(val listSchemas: List<com.diets.weightloss.model.schema.Schema>,
-                   var nativeList : ArrayList<UnifiedNativeAd>,
+                   var nativeList : ArrayList<NativeAd>,
                    val iClick: IClick) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val BODY_TYPE = 0
@@ -57,7 +58,7 @@ class TypesAdapter(val listSchemas: List<com.diets.weightloss.model.schema.Schem
         }
     }
 
-    fun insertAds(listAds: ArrayList<UnifiedNativeAd>) {
+    fun insertAds(listAds: ArrayList<NativeAd>) {
         nativeList = listAds
         notifyDataSetChanged()
     }

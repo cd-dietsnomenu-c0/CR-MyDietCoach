@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.diets.weightloss.common.db.entities.water.DrinksCapacities
 import com.diets.weightloss.presentation.water.statistics.pager.pages.marathons.controller.NativeWaterVH
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.google.android.gms.ads.nativead.NativeAd
 import kotlin.math.PI
 
-class FrequencyAdapter(val drinks: List<DrinksCapacities>, val centerPieText: SpannableString, val showedDrinks: List<DrinksCapacities>, val otherValue: Float, var nativeList: ArrayList<UnifiedNativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FrequencyAdapter(val drinks: List<DrinksCapacities>, val centerPieText: SpannableString, val showedDrinks: List<DrinksCapacities>, val otherValue: Float, var nativeList: ArrayList<NativeAd>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var counter = 0
 
@@ -40,7 +41,7 @@ class FrequencyAdapter(val drinks: List<DrinksCapacities>, val centerPieText: Sp
         }
     }
 
-    fun insertAds(listAds: ArrayList<UnifiedNativeAd>) {
+    fun insertAds(listAds: ArrayList<NativeAd>) {
         nativeList = listAds
         notifyDataSetChanged()
     }

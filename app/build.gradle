@@ -103,7 +103,7 @@ dependencies {
     implementation 'com.userexperior:userexperior-android:6.0.9'
 
     //Boom (google)
-    implementation platform('com.google.firebase:firebase-bom:26.4.0')
+    implementation platform('com.google.firebase:firebase-bom:30.0.0')
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-messaging'
@@ -112,7 +112,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-config'
     implementation 'com.google.firebase:firebase-perf'
 
-    implementation 'com.google.android.gms:play-services-ads:19.8.0'
+    implementation 'com.google.android.gms:play-services-ads:21.5.0'
 
     //implementation 'com.bugsee:bugsee-android:+'
 }

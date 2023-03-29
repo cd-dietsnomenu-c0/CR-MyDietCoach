@@ -18,6 +18,7 @@ import com.diets.weightloss.utils.ad.AdWorker
 import com.diets.weightloss.utils.ad.NativeSpeaker
 import com.diets.weightloss.utils.history.HistoryProvider
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.android.synthetic.main.fr_types.*
 import kotlinx.android.synthetic.main.history_list_diets_activity.*
 import kotlinx.android.synthetic.main.load_fragment.*
@@ -76,7 +77,7 @@ class HistoryListDietsActivity : AppCompatActivity(R.layout.history_list_diets_a
             rvHistory.adapter = adapter
 
             AdWorker.observeOnNativeList(object : NativeSpeaker {
-                override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+                override fun loadFin(nativeList: ArrayList<NativeAd>) {
                     adapter!!.insertAds(nativeList)
                 }
             })

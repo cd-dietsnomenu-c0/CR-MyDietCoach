@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fr_article.*
 class ActivityArticle : AppCompatActivity(R.layout.fr_article) {
 
     override fun onBackPressed() {
-        AdWorker.showInter()
+        AdWorker.showInter(this)
         super.onBackPressed()
     }
 

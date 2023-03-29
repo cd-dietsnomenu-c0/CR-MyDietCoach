@@ -20,6 +20,7 @@ import com.diets.weightloss.presentation.diets.list.old.OldDietsActivity
 import com.diets.weightloss.utils.ad.AdWorker
 import com.diets.weightloss.utils.ad.NativeSpeaker
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.android.synthetic.main.fr_types.*
 
 class FragmentTypes : Fragment(R.layout.fr_types) {
@@ -54,7 +55,7 @@ class FragmentTypes : Fragment(R.layout.fr_types) {
         rvTypes.layoutManager = LinearLayoutManager(view.context)
         rvTypes.adapter = adapter
         AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 adapter.insertAds(nativeList)
             }
         })

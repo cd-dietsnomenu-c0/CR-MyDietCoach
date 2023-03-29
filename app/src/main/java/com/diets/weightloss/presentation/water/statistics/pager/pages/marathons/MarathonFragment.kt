@@ -14,6 +14,7 @@ import com.diets.weightloss.utils.ad.AdWorker
 import com.diets.weightloss.utils.ad.NativeSpeaker
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.android.synthetic.main.marathon_fragment.*
 import kotlinx.android.synthetic.main.marathon_fragment.banner
 import kotlinx.android.synthetic.main.marathon_fragment.llEmptyState
@@ -54,7 +55,7 @@ class MarathonFragment : Fragment(R.layout.marathon_fragment) {
         rvMarathon.adapter = adapter
 
         AdWorker.observeOnNativeList(object : NativeSpeaker {
-            override fun loadFin(nativeList: ArrayList<UnifiedNativeAd>) {
+            override fun loadFin(nativeList: ArrayList<NativeAd>) {
                 adapter.insertAds(nativeList)
             }
         })

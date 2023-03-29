@@ -1,5 +1,6 @@
 package com.diets.weightloss.utils.ad
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.diets.weightloss.App
@@ -10,6 +11,9 @@ import com.diets.weightloss.utils.PreferenceProvider
 import com.diets.weightloss.utils.analytics.Ampl
 import com.diets.weightloss.utils.analytics.FBAnalytic
 import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -22,8 +26,8 @@ object AdWorker {
     private const val MAX_QUERY = 3
     private var counterFailed = 0
     var isFailedLoad = false
-    var adsList: ArrayList<UnifiedNativeAd> = arrayListOf()
-    var bufferAdsList: ArrayList<UnifiedNativeAd> = arrayListOf()
+    var adsList: ArrayList<NativeAd> = arrayListOf()
+    var bufferAdsList: ArrayList<NativeAd> = arrayListOf()
     var adLoader: AdLoader? = null
     var nativeSpeaker: NativeSpeaker? = null
     var isNeedShowNow = false
@@ -36,42 +40,38 @@ object AdWorker {
 
 
     fun init(context: Context) {
-        inter = InterstitialAd(context)
-        inter?.adUnitId = context.getString(R.string.interstitial_id)
-        inter?.loadAd(AdRequest.Builder().build())
         loadReward()
         loadNative(context)
-        inter?.adListener = object : AdListener() {
+        loadInter()
 
-            override fun onAdFailedToLoad(p0: Int) {
-                Ampl.failedOneLoads(p0)
+    }
+
+    private fun loadInter() {
+        InterstitialAd.load(App.getInstance(), App.getInstance().getString(R.string.interstitial_id), AdRequest.Builder().build(), object : InterstitialAdLoadCallback(){
+            override fun onAdFailedToLoad(p0: LoadAdError) {
+                Log.e("LOL", "onAdFailedToLoad")
+                Ampl.failedOneLoads(p0.message)
                 counterFailed++
                 if (counterFailed <= MAX_QUERY) {
                     reload()
                 } else {
-                    Ampl.failedAllLoads(p0)
+                    Ampl.failedAllLoads(p0.message)
                     isFailedLoad = true
                 }
             }
 
-            override fun onAdClosed() {
-                inter?.loadAd(AdRequest.Builder().build())
-            }
-
-            override fun onAdLoaded() {
-                super.onAdLoaded()
+            override fun onAdLoaded(p0: InterstitialAd) {
+                super.onAdLoaded(p0)
+                Log.e("LOL", "onAdLoaded")
                 if (isNeedShowNow && needShow() && !Config.FOR_TEST) {
                     isNeedShowNow = false
-                    inter?.show()
+                    inter = p0
                     Ampl.showAd()
                 }
             }
+        })
 
-            override fun onAdClicked() {
-                super.onAdClicked()
-                FBAnalytic.adClick()
-            }
-        }
+
     }
 
     private fun loadNative(context: Context) {
@@ -79,13 +79,13 @@ object AdWorker {
             if (!PreferenceProvider.isHasPremium) {
                 adLoader = AdLoader
                         .Builder(context, context.getString(R.string.native_ad))
-                        .forUnifiedNativeAd { nativeAD ->
+                        .forNativeAd { nativeAD ->
                             bufferAdsList.add(nativeAD)
                             if (!adLoader!!.isLoading) {
                                 endLoading()
                             }
                         }.withAdListener(object : AdListener() {
-                            override fun onAdFailedToLoad(p0: Int) {
+                            override fun onAdFailedToLoad(p0: LoadAdError) {
                                 if (!adLoader!!.isLoading) {
                                     endLoading()
                                 }
@@ -104,8 +104,7 @@ object AdWorker {
                 AdRequest.Builder().build(),
                 object :
                         RewardedAdLoadCallback() {
-
-                    override fun onRewardedAdFailedToLoad(p0: LoadAdError?) {
+                    override fun onAdFailedToLoad(p0: LoadAdError) {
                         Log.e("LOL", "fail reward")
                         counterRewardFailed++
                         if (counterRewardFailed <= MAX_QUERY_REWARD_VIDEO) {
@@ -113,6 +112,15 @@ object AdWorker {
                         }
                         rewardedAd = null
                     }
+
+                    /*override fun onRewardedAdFailedToLoad(p0: LoadAdError?) {
+                        Log.e("LOL", "fail reward")
+                        counterRewardFailed++
+                        if (counterRewardFailed <= MAX_QUERY_REWARD_VIDEO) {
+                            loadReward()
+                        }
+                        rewardedAd = null
+                    }*/
 
                     override fun onAdLoaded(p0: RewardedAd) {
                         Log.e("LOL", "loaded reward")
@@ -150,7 +158,7 @@ object AdWorker {
     }
 
     private fun reload() {
-        inter?.loadAd(AdRequest.Builder().build())
+        loadInter()
     }
 
     fun checkLoad() {
@@ -161,12 +169,12 @@ object AdWorker {
         }
     }
 
-    fun showInter() {
+    fun showInter(activity: Activity) {
         if (!PreferenceProvider.isHasPremium && needShow() && !Config.FOR_TEST) {
             if (Counter.getInstance().getCounter() % MAX_REQUEST_AD == 0) {
-                if (inter?.isLoaded == true) {
+                if (inter != null) {
                     FBAnalytic.adShow()
-                    inter?.show()
+                    inter?.show(activity)
                     Ampl.showAd()
                     Counter.getInstance().adToCounter()
                 } else if (isFailedLoad) {
@@ -181,11 +189,11 @@ object AdWorker {
     }
 
 
-    fun showInterWithoutCounter() {
+    fun showInterWithoutCounter(activity: Activity) {
         if (!PreferenceProvider.isHasPremium && needShow()) {
-            if (inter?.isLoaded == true) {
+            if (inter != null) {
                 FBAnalytic.adShow()
-                inter?.show()
+                inter?.show(activity)
                 Ampl.showAd()
             } else if (isFailedLoad) {
                 counterFailed = 0
@@ -195,11 +203,11 @@ object AdWorker {
         }
     }
 
-    fun getShow() {
+    fun getShow(activity: Activity) {
         if (!PreferenceProvider.isHasPremium) {
-            if (inter?.isLoaded == true && needShow()) {
+            if (inter != null && needShow()) {
                 FBAnalytic.adShow()
-                inter?.show()
+                inter?.show(activity)
             } else {
                 isNeedShowNow = true
             }

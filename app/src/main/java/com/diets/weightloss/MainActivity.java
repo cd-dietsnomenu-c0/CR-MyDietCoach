@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AdWorker.INSTANCE.showInter();
+        AdWorker.INSTANCE.showInter(this);
         if (lastSectionNumber != MAIN && lastSectionNumber != EAT_TRACKER) {
             switch (lastSectionNumber) {
                 case SETTINGS:
@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkIntent(Bundle savedInstanceState) {
         if (getIntent().getStringExtra(Config.PUSH_TAG) != null
                 && getIntent().getStringExtra(Config.PUSH_TAG).equals(Config.OPEN_FROM_PUSH)) {
-            AdWorker.INSTANCE.getShow();
+            AdWorker.INSTANCE.getShow(this);
         } else if (savedInstanceState == null && getIntent().getSerializableExtra(DIET_HISTORY_KEY) != null) {
             HistoryDiet history = (HistoryDiet) getIntent().getSerializableExtra(DIET_HISTORY_KEY);
             startActivity(HistoryListDietsActivity.Companion.getIntent(history, this));
