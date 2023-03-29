@@ -42,7 +42,6 @@ object AdWorker {
             inter = null
             loadInter()
         }
-
     }
 
 
@@ -50,7 +49,6 @@ object AdWorker {
         loadReward()
         loadNative(context)
         loadInter()
-
     }
 
     private fun loadInter() {
