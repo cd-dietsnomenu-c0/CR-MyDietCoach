@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.diets.weightloss.App
-import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.diets.weightloss.Config
 import com.diets.weightloss.R
 import com.diets.weightloss.utils.PreferenceProvider
@@ -16,8 +15,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.google.firebase.analytics.FirebaseAnalytics
 import kotlin.random.Random
+
 
 object AdWorker {
     private const val MAX_REQUEST_AD = 3
@@ -36,6 +35,14 @@ object AdWorker {
 
     init {
         FrequencyManager.runSetup()
+    }
+
+    var fullScreenContentCallback: FullScreenContentCallback = object : FullScreenContentCallback() {
+        override fun onAdDismissedFullScreenContent() {
+            inter = null
+            loadInter()
+        }
+
     }
 
 
@@ -63,9 +70,10 @@ object AdWorker {
             override fun onAdLoaded(p0: InterstitialAd) {
                 super.onAdLoaded(p0)
                 Log.e("LOL", "onAdLoaded")
-                if (isNeedShowNow && needShow() && !Config.FOR_TEST) {
+                if (needShow()) {
                     isNeedShowNow = false
                     inter = p0
+                    inter!!.fullScreenContentCallback = fullScreenContentCallback
                     Ampl.showAd()
                 }
             }
