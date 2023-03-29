@@ -4,15 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/activity_calculator_brok.xml" value="0.2814814814814815" />
+        <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/advh_history.xml" value="0.24444444444444444" />
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/history_ad_include.xml" value="0.2814814814814815" />
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/history_diet_activity.xml" value="0.2814814814814815" />
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/history_second_ad_include.xml" value="0.2814814814814815" />
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/load_ad_include.xml" value="0.2814814814814815" />
+        <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/load_ad_water.xml" value="0.24444444444444444" />
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/loading_activity.xml" value="0.2814814814814815" />
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/meas_activitys.xml" value="0.2814814814814815" />
+        <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/notification_settings_activity.xml" value="0.24444444444444444" />
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/splash_activity.xml" value="0.4858447488584475" />
+        <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/vh_ad.xml" value="0.24444444444444444" />
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/vh_ad_calculator.xml" value="0.2814814814814815" />
+        <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/vh_ad_types.xml" value="0.24444444444444444" />
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/vh_native.xml" value="0.2814814814814815" />
+        <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/vh_native_main.xml" value="0.24444444444444444" />
         <entry key="..\:/projects/CR-MyDietCoach/app/src/main/res/layout/vh_native_stat.xml" value="0.2814814814814815" />
       </map>
     </option>

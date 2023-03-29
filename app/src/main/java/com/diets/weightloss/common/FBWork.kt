@@ -39,7 +39,7 @@ class FBWork {
                             Log.w("LOL", "getInstanceId failed", task.exception)
                             return@OnCompleteListener
                         }
-                        Log.e("LOL", "FCM token -- ${task.result}")
+                        Log.e("LOL", "FCM token -- ${task.result.toString()}")
                     })
         }
 
