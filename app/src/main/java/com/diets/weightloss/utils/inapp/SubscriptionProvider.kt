@@ -71,7 +71,8 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
             if (result != null && result.purchasesList != null && result.purchasesList!!.size > 0) {
                 hasSubscription = true
             }
-            PreferenceProvider.isHasPremium = hasSubscription
+            //TODO убрать после подключения подписок
+            ///PreferenceProvider.isHasPremium = hasSubscription
         }
     }
 

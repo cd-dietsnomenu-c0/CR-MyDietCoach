@@ -30,8 +30,13 @@
     <string name="water_channel_id" translatable="false">com.dieta.meal.planner.calorie.calorias.water</string>
     <string name="eat_channel_id" translatable="false">com.dieta.meal.planner.calorie.calorias.eat</string>
 
+
+
+    <string name="authorise_file_provider" translatable="false">com.dieta.meal.planner.calorie.calorias</string>
+    <string name="dev_email" translatable="false">igorigoryakh@gmail.com</string>
+
     <!--Profile-->
-    <string name="url_gdpr" translatable="false">https://www.freeprivacypolicy.com/privacy/view/272200879b5cf29dd1b4fcd0f0299409</string>
+    <string name="url_gdpr" translatable="false">https://docs.google.com/document/d/1jHeoif2OsDwiaL-AsIYMNiMBu9z-2Z1HCMioR6YAx-U/edit?usp=sharing</string>
     <string name="accompanying_text">Все работает в реальной жизни! Попробуй и ты!</string>
 
 
@@ -241,8 +246,6 @@
         <item>https://i.ibb.co/6J5qWQ1/back22.jpg</item>
     </string-array>
 
-    <string name="authorise_file_provider" translatable="false">com.diets.weightloss.fileprovider</string>
-    <string name="dev_email" translatable="false">udovoron@gmail.com</string>
     <string name="report_title">Найдена ошибка</string>
     <string name="report_text">Добрый день, нашли ошибку в вашем приложении ! Дело в том, что ..</string>
     <string name="report_wait">Выберите приложение</string>

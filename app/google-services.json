@@ -1,36 +1,27 @@
 {
   "project_info": {
-    "project_number": "438271434584",
-    "project_id": "diets-57623",
-    "storage_bucket": "diets-57623.appspot.com"
+    "project_number": "88596927517",
+    "firebase_url": "https://main-d90ea-default-rtdb.firebaseio.com",
+    "project_id": "main-d90ea",
+    "storage_bucket": "main-d90ea.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:438271434584:android:232a87dd2123b660d0cf2d",
+        "mobilesdk_app_id": "1:88596927517:android:9515dc5a7342a14c37a2f4",
         "android_client_info": {
-          "package_name": "com.diets.weightloss"
+          "package_name": "com.dieta.meal.planner.calorie.calorias"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "438271434584-88si0amcrord5usqv09pbuoha77hdtb2.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC2YKBpnB6j33td254t92lE78w5Llh_R-k"
+          "current_key": "AIzaSyDCB2BV0ooR28uttp-z6f7oFUr8bcHvrxY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "438271434584-88si0amcrord5usqv09pbuoha77hdtb2.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

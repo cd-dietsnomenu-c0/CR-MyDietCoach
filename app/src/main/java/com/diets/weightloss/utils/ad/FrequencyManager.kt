@@ -20,7 +20,7 @@ object FrequencyManager {
 
     private fun requestPercent() {
         var path = "percent_${BuildConfig.VERSION_CODE}"
-        FirebaseDatabase.getInstance("https://diets-57623-default-rtdb.firebaseio.com/")
+        FirebaseDatabase.getInstance("https://main-d90ea-default-rtdb.firebaseio.com")
                 .reference
                 .child(path)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -44,7 +44,7 @@ object FrequencyManager {
 
     private fun createNewDirectory(path: String) {
         FirebaseDatabase
-                .getInstance("https://diets-57623-default-rtdb.firebaseio.com/")
+                .getInstance("https://main-d90ea-default-rtdb.firebaseio.com")
                 .reference
                 .child(path)
                 .setValue(100)

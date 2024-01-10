@@ -133,7 +133,8 @@ class FCMService : FirebaseMessagingService() {
 
 
     private fun showReactNotif(p0: RemoteMessage) {
-        if (!PreferenceProvider.isHasPremium) {
+        //TODO изменить после билинга
+        if (PreferenceProvider.isHasPremium) {
             Ampl.showReactNotif()
             var intent = Intent(this, SplashActivity::class.java)
             intent.putExtra(Config.PUSH_TAG, Config.OPEN_FROM_PUSH)
