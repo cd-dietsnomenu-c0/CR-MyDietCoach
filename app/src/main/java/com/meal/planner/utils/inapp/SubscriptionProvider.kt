@@ -25,7 +25,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
     var idsSubs = listOf("sub_blue_lock", "sub_shout", "sub_alert", "sub_white_green")
 
     override fun onPurchasesUpdated(billingResult: BillingResult, purchases: MutableList<Purchase>?) {
-        if (billingResult!!.responseCode == BillingClient.BillingResponseCode.OK) {
+        /*if (billingResult!!.responseCode == BillingClient.BillingResponseCode.OK) {
             if (purchases != null && purchases.size > 0 && purchases[0].purchaseState == Purchase.PurchaseState.PURCHASED) {
                 inAppCallback?.trialSucces()
                 if (!purchases[0].isAcknowledged) {
@@ -39,23 +39,23 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                     playStoreBillingClient.acknowledgePurchase(params, listener)
                 }
             }
-        }
+        }*/
     }
 
 
     fun init(context: Context) {
-        preferences = context.getSharedPreferences("subscription", Context.MODE_PRIVATE)
+        /*preferences = context.getSharedPreferences("subscription", Context.MODE_PRIVATE)
         playStoreBillingClient = BillingClient.newBuilder(context.applicationContext)
                 .enablePendingPurchases() // required or app will crash
                 .setListener(this).build()
-        connectToPlayBillingService()
+        connectToPlayBillingService()*/
     }
 
     private fun connectToPlayBillingService(): Boolean {
-        if (!playStoreBillingClient.isReady) {
+        /*if (!playStoreBillingClient.isReady) {
             playStoreBillingClient.startConnection(this)
             return true
-        }
+        }*/
         return false
     }
 
@@ -65,7 +65,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
     }
 
     override fun onBillingSetupFinished(billingResult: BillingResult) {
-        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+        /*if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
             var hasSubscription = false
             val result = playStoreBillingClient.queryPurchases(BillingClient.SkuType.SUBS)
             if (result != null && result.purchasesList != null && result.purchasesList!!.size > 0) {
@@ -73,12 +73,12 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
             }
             //TODO убрать после подключения подписок
             ///PreferenceProvider.isHasPremium = hasSubscription
-        }
+        }*/
     }
 
 
     fun choiceSubNew(activity: Activity, subId: String, callback: InAppCallback) {
-        Ampl.attemptBilling()
+        /*Ampl.attemptBilling()
         inAppCallback = callback
         val params = SkuDetailsParams.newBuilder().setSkusList(arrayListOf(subId))
                 .setType(BillingClient.SkuType.SUBS).build()
@@ -100,11 +100,11 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                     Ampl.errorBilling(billingResult.responseCode)
                 }
             }
-        }
+        }*/
     }
 
     fun startGettingPrice(): String {
-        val params = SkuDetailsParams.newBuilder().setSkusList(arrayListOf(IDS.WHITE_MONTH, IDS.WHITE_YEAR))
+        /*val params = SkuDetailsParams.newBuilder().setSkusList(arrayListOf(IDS.WHITE_MONTH, IDS.WHITE_YEAR))
                 .setType(BillingClient.SkuType.SUBS).build()
         playStoreBillingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
             Log.e("LOL", billingResult.responseCode.toString())
@@ -123,7 +123,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                     }
                 }
             }
-        }
+        }*/
         return ""
     }
 
