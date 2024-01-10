@@ -3,6 +3,7 @@ package com.meal.planner.utils.ad
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import com.meal.planner.R
 import com.meal.planner.App
 import com.meal.planner.Config
 import com.meal.planner.utils.PreferenceProvider
