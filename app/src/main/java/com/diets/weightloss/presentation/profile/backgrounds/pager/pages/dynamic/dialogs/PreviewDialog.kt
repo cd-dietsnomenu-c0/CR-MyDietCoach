@@ -104,19 +104,19 @@ class PreviewDialog : DialogFragment() {
         }
 
         lavUnlock.addAnimatorListener(object : Animator.AnimatorListener{
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
                 lavPreview.pauseAnimation()
             }
 
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 lavPreview.resumeAnimation()
                 alphaAnimator.start()
             }
 
-            override fun onAnimationCancel(animation: Animator?) {
+            override fun onAnimationCancel(animation: Animator) {
             }
 
-            override fun onAnimationRepeat(animation: Animator?) {
+            override fun onAnimationRepeat(animation: Animator) {
             }
         })
 

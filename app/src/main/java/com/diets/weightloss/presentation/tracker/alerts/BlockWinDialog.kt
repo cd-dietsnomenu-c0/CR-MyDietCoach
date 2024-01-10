@@ -28,18 +28,18 @@ class BlockWinDialog : DialogFragment() {
 
 
         lavCheck.addAnimatorListener(object : Animator.AnimatorListener{
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
             }
 
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 tvLoad.visibility = View.VISIBLE
                 (targetFragment as Callback).endAnim()
             }
 
-            override fun onAnimationCancel(animation: Animator?) {
+            override fun onAnimationCancel(animation: Animator) {
             }
 
-            override fun onAnimationRepeat(animation: Animator?) {
+            override fun onAnimationRepeat(animation: Animator) {
             }
         })
     }

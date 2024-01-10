@@ -18,7 +18,6 @@ import com.diets.weightloss.common.db.migrations.Migrations;
 import com.diets.weightloss.utils.inapp.SubscriptionProvider;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.userexperior.UserExperior;
 
 public class App extends MultiDexApplication {
 
@@ -32,28 +31,18 @@ public class App extends MultiDexApplication {
 
         MobileAds.initialize(this);
         SubscriptionProvider.INSTANCE.init(this);
-        Amplitude.getInstance().initialize(this, "d0d5dffefe8b29a89279f15daf6d62b5").
+        Amplitude.getInstance().initialize(this, "a770f739966862b90a68d487d8bf7df4").
                 enableForegroundTracking(this);
         context = this;
         app = this;
         createNotificationChannel(getContext());
 
-        db = Room.databaseBuilder(this, DietDatabase.class, "dietPlans")
+        db = Room.databaseBuilder(this, DietDatabase.class, "weightloss")
                 .addMigrations(Migrations.INSTANCE.getMigration_1_2(), Migrations.INSTANCE.getMigration_2_3(),
                         Migrations.INSTANCE.getMigration_3_4(), Migrations.INSTANCE.getMigration_4_5())
                 .allowMainThreadQueries()
                 .build();
 
-        UserExperior.startRecording(
-                getApplicationContext(),
-                getString(R.string.release_user_expirior_id)
-        );
-
-        try {
-            UserExperior.setUserIdentifier(Amplitude.getInstance().getDeviceId());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         try {
             FirebaseCrashlytics.getInstance().setUserId(Amplitude.getInstance().getDeviceId());
@@ -61,7 +50,6 @@ public class App extends MultiDexApplication {
             e.printStackTrace();
         }
 
-        //Bugsee.launch(this, "5bdc0639-f870-4536-8038-8977c685cfc7");
     }
 
     @SuppressLint("NewApi")

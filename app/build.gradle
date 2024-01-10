@@ -8,13 +8,13 @@ apply plugin: 'com.google.firebase.firebase-perf'
 
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.diets.weightloss"
         minSdkVersion 21
-        targetSdkVersion 31
-        versionCode 33
-        versionName "1.0.28"
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -99,9 +99,6 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
 
-    //Recording
-    implementation 'com.userexperior:userexperior-android:6.0.9'
-
     //Boom (google)
     implementation platform('com.google.firebase:firebase-bom:30.0.0')
     implementation 'com.google.firebase:firebase-database'
@@ -114,6 +111,5 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-ads:21.5.0'
 
-    //implementation 'com.bugsee:bugsee-android:+'
 }
 

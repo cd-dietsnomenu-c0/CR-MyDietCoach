@@ -51,7 +51,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     fun post() {
         goCounter += 1
         if (goCounter >= maxGoCounter) {
-            var intent = if (isFirstTime && PreferenceProvider.isNeedPrem == ABConfig.PREM_NEED) {
+            var intent = if (isFirstTime && PreferenceProvider.isNeedPrem == ABConfig.PREM_NEED && !PreferenceProvider.isHasPremium) {
                 Intent(this, PremiumHostActivity::class.java)
             } else {
                 Intent(this, MainActivity::class.java).putExtra(Config.PUSH_TAG, openFrom)
@@ -64,6 +64,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setFakePrem()
+
         Ampl.runApp()
         bindLocale()
         bindFCM()
@@ -75,6 +78,10 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         loadData()
         setFirstTime()
         SubscriptionProvider.startGettingPrice()
+    }
+
+    private fun setFakePrem() {
+        PreferenceProvider.isHasPremium = true
     }
 
 

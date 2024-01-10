@@ -124,19 +124,21 @@ class DietAct : AppCompatActivity(R.layout.diet_act) {
         lavLike.setOnClickListener {
             if (!lavLike.isAnimating) {
                 lavLike.addAnimatorListener(object : Animator.AnimatorListener {
-                    override fun onAnimationRepeat(animation: Animator?) {
+
+
+                    override fun onAnimationRepeat(animation: Animator) {
 
                     }
 
-                    override fun onAnimationEnd(animation: Animator?) {
+                    override fun onAnimationEnd(animation: Animator) {
                         setFavoriteState()
                         lavLike.removeAllAnimatorListeners()
                     }
 
-                    override fun onAnimationCancel(animation: Animator?) {
+                    override fun onAnimationCancel(animation: Animator) {
                     }
 
-                    override fun onAnimationStart(animation: Animator?) {
+                    override fun onAnimationStart(animation: Animator) {
                     }
                 })
                 lavLike.playAnimation()

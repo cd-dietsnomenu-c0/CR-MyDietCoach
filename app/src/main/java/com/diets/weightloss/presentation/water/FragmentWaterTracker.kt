@@ -305,18 +305,18 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         cvHot.setOnClickListener {
             vm.changeHotFactor(false)
             lavHot.addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationRepeat(animation: Animator?) {
+                override fun onAnimationRepeat(animation: Animator) {
                 }
 
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     lavHot.removeAllAnimatorListeners()
                     setHotStateOff()
                 }
 
-                override fun onAnimationCancel(animation: Animator?) {
+                override fun onAnimationCancel(animation: Animator) {
                 }
 
-                override fun onAnimationStart(animation: Animator?) {
+                override fun onAnimationStart(animation: Animator) {
                 }
             })
             lavHot.playAnimation()
@@ -329,18 +329,18 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         cvHot.setOnClickListener {
             vm.changeHotFactor(true)
             lavHot.addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationRepeat(animation: Animator?) {
+                override fun onAnimationRepeat(animation: Animator) {
                 }
 
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     lavHot.removeAllAnimatorListeners()
                     setHotStateOn()
                 }
 
-                override fun onAnimationCancel(animation: Animator?) {
+                override fun onAnimationCancel(animation: Animator) {
                 }
 
-                override fun onAnimationStart(animation: Animator?) {
+                override fun onAnimationStart(animation: Animator) {
                 }
             })
             lavHot.playAnimation()
@@ -353,18 +353,18 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         cvTraining.setOnClickListener {
             vm.changeTrainingFactor(false)
             lavTraining.addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationRepeat(animation: Animator?) {
+                override fun onAnimationRepeat(animation: Animator) {
                 }
 
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     lavTraining.removeAllAnimatorListeners()
                     setTrainingStateOff()
                 }
 
-                override fun onAnimationCancel(animation: Animator?) {
+                override fun onAnimationCancel(animation: Animator) {
                 }
 
-                override fun onAnimationStart(animation: Animator?) {
+                override fun onAnimationStart(animation: Animator) {
                 }
             })
             lavTraining.playAnimation()
@@ -377,18 +377,18 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
         cvTraining.setOnClickListener {
             vm.changeTrainingFactor(true)
             lavTraining.addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationRepeat(animation: Animator?) {
+                override fun onAnimationRepeat(animation: Animator) {
                 }
 
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     lavTraining.removeAllAnimatorListeners()
                     setTrainingStateOn()
                 }
 
-                override fun onAnimationCancel(animation: Animator?) {
+                override fun onAnimationCancel(animation: Animator) {
                 }
 
-                override fun onAnimationStart(animation: Animator?) {
+                override fun onAnimationStart(animation: Animator) {
                 }
             })
             lavTraining.playAnimation()
@@ -571,18 +571,18 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
             }
 
             lavDone.addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationRepeat(animation: Animator?) {
+                override fun onAnimationRepeat(animation: Animator) {
                 }
 
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     lavDone.removeAllAnimatorListeners()
                     moveAnim.start()
                 }
 
-                override fun onAnimationCancel(animation: Animator?) {
+                override fun onAnimationCancel(animation: Animator) {
                 }
 
-                override fun onAnimationStart(animation: Animator?) {
+                override fun onAnimationStart(animation: Animator) {
                 }
             })
 
@@ -593,18 +593,18 @@ class FragmentWaterTracker : Fragment(R.layout.fragment_water_tracker) {
 
     private fun playBubblesAnim() {
         lavBubbles.addAnimatorListener(object : Animator.AnimatorListener {
-            override fun onAnimationRepeat(animation: Animator?) {
+            override fun onAnimationRepeat(animation: Animator) {
             }
 
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 lavBubbles.removeAllAnimatorListeners()
                 lavBubbles.frame = 0
             }
 
-            override fun onAnimationCancel(animation: Animator?) {
+            override fun onAnimationCancel(animation: Animator) {
             }
 
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
             }
         })
         lavBubbles.playAnimation()
