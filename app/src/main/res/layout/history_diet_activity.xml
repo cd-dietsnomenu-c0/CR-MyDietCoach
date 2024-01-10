@@ -640,7 +640,7 @@
                     android:textColor="#32374c"
                     android:textSize="20sp" />
 
-                <com.diets.weightloss.views.FixedSeekbar
+                <com.meal.planner.views.FixedSeekbar
                     android:id="@+id/sbDifficulty"
                     style="@style/SeekbarHistoryDifficulty"
                     android:layout_width="match_parent"
@@ -712,7 +712,7 @@
                     android:textColor="#32374c"
                     android:textSize="24sp" />
 
-                <com.diets.weightloss.views.FixedSeekbar
+                <com.meal.planner.views.FixedSeekbar
                     android:id="@+id/sbGrade"
                     style="@style/SeekbarHistoryGrade"
                     android:layout_width="match_parent"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.diets.weightloss">
+    package="com.meal.planner">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,7 +26,7 @@
     <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
 
     <application
-        android:name="com.diets.weightloss.App"
+        android:name="com.meal.planner.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_foreground"
@@ -36,7 +36,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.diets.weightloss.SplashActivity"
+            android:name="com.meal.planner.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -48,95 +48,95 @@
 
 
         <activity
-            android:name="com.diets.weightloss.presentation.onboarding.OnboardActivity"
+            android:name="com.meal.planner.presentation.onboarding.OnboardActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name="com.diets.weightloss.presentation.tracker.LoadingActivity"
+            android:name="com.meal.planner.presentation.tracker.LoadingActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name="com.diets.weightloss.MainActivity"
+            android:name="com.meal.planner.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
         <activity
-            android:name="com.diets.weightloss.presentation.history.HistoryDietActivity"
+            android:name="com.meal.planner.presentation.history.HistoryDietActivity"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"
             />
 
 
         <activity
-            android:name="com.diets.weightloss.presentation.history.HistoryListDietsActivity"
+            android:name="com.meal.planner.presentation.history.HistoryListDietsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
 
         <activity
-            android:name=".presentation.premium.PremiumHostActivity"
+            android:name="com.meal.planner.presentation.premium.PremiumHostActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name="com.diets.weightloss.presentation.water.statistics.StatActivity"
+            android:name="com.meal.planner.presentation.water.statistics.StatActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".presentation.water.notifications.NotificationSettingActivity"
+            android:name="com.meal.planner.presentation.water.notifications.NotificationSettingActivity"
             android:theme="@style/NotifSettings" />
 
         <activity
-            android:name="com.diets.weightloss.utils.res.TextCutActvity"
+            android:name="com.meal.planner.utils.res.TextCutActvity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.diets.weightloss.presentation.profile.favorites.FavoritesActivity"
+            android:name="com.meal.planner.presentation.profile.favorites.FavoritesActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
         <activity
-            android:name="com.diets.weightloss.presentation.profile.language.ChoiceLangActivity"
+            android:name="com.meal.planner.presentation.profile.language.ChoiceLangActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name="com.diets.weightloss.presentation.diets.list.old.inside.ActivityListItems"
+            android:name="com.meal.planner.presentation.diets.list.old.inside.ActivityListItems"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.diets.weightloss.presentation.diets.list.old.OldDietsActivity"
+            android:name="com.meal.planner.presentation.diets.list.old.OldDietsActivity"
             android:theme="@style/NewDiets"/>
 
-        <activity android:name="com.diets.weightloss.presentation.diets.list.old.inside.article.ActivityArticle"/>
+        <activity android:name="com.meal.planner.presentation.diets.list.old.inside.article.ActivityArticle"/>
 
         <activity
-            android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorSPK"
-            android:theme="@style/NewDiets"/>
-
-        <activity
-            android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorBrok"
+            android:name="com.meal.planner.presentation.calculators.ActivityCalculatorSPK"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorIMT"
+            android:name="com.meal.planner.presentation.calculators.ActivityCalculatorBrok"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.diets.weightloss.presentation.calculators.ActivityCalculatorLorenc"
+            android:name="com.meal.planner.presentation.calculators.ActivityCalculatorIMT"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.diets.weightloss.presentation.diets.list.modern.article.DietAct"
+            android:name="com.meal.planner.presentation.calculators.ActivityCalculatorLorenc"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.diets.weightloss.presentation.diets.list.modern.NewDietsListActivity"
+            android:name="com.meal.planner.presentation.diets.list.modern.article.DietAct"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.diets.weightloss.presentation.profile.measurments.MeasActivity"
+            android:name="com.meal.planner.presentation.diets.list.modern.NewDietsListActivity"
+            android:theme="@style/NewDiets"/>
+
+        <activity
+            android:name="com.meal.planner.presentation.profile.measurments.MeasActivity"
             android:theme="@style/MeasActivity" />
 
         <service
-            android:name="com.diets.weightloss.utils.notif.services.FCMService"
+            android:name="com.meal.planner.utils.notif.services.FCMService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -158,7 +158,7 @@
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".SplashActivity" />
+            android:value="com.meal.planner.SplashActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
