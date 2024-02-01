@@ -26,13 +26,13 @@
     <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
     <string name="reward_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
 
-    <string name="react_channel_id" translatable="false">com.dieta.meal.planner.calorie.calorias.diets</string>
-    <string name="water_channel_id" translatable="false">com.dieta.meal.planner.calorie.calorias.water</string>
-    <string name="eat_channel_id" translatable="false">com.dieta.meal.planner.calorie.calorias.eat</string>
+    <string name="react_channel_id" translatable="false">com.calorie.calorias.dieta.meal.planner.diets</string>
+    <string name="water_channel_id" translatable="false">com.calorie.calorias.dieta.meal.planner.water</string>
+    <string name="eat_channel_id" translatable="false">com.calorie.calorias.dieta.meal.planner.eat</string>
 
 
 
-    <string name="authorise_file_provider" translatable="false">com.dieta.meal.planner.calorie.calorias</string>
+    <string name="authorise_file_provider" translatable="false">com.calorie.calorias.dieta.meal.planner</string>
     <string name="dev_email" translatable="false">igorigoryakh@gmail.com</string>
 
     <!--Profile-->

@@ -10,7 +10,7 @@ apply plugin: 'com.google.firebase.firebase-perf'
 android {
     compileSdkVersion 33
     defaultConfig {
-        applicationId "com.dieta.meal.planner.calorie.calorias"
+        applicationId "com.calorie.calorias.dieta.meal.planner"
         minSdkVersion 21
         targetSdkVersion 33
         versionCode 2

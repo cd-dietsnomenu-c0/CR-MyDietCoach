@@ -1,22 +1,21 @@
 {
   "project_info": {
-    "project_number": "88596927517",
-    "firebase_url": "https://main-d90ea-default-rtdb.firebaseio.com",
-    "project_id": "main-d90ea",
-    "storage_bucket": "main-d90ea.appspot.com"
+    "project_number": "452922726837",
+    "project_id": "diet-f04a9",
+    "storage_bucket": "diet-f04a9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:88596927517:android:9515dc5a7342a14c37a2f4",
+        "mobilesdk_app_id": "1:452922726837:android:5e1b26cbb26b289541e1fc",
         "android_client_info": {
-          "package_name": "com.dieta.meal.planner.calorie.calorias"
+          "package_name": "com.calorie.calorias.dieta.meal.planner"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDCB2BV0ooR28uttp-z6f7oFUr8bcHvrxY"
+          "current_key": "AIzaSyDC6r-S7r_QCPFLz_vg6E42fj88AN3UwxA"
         }
       ],
       "services": {
