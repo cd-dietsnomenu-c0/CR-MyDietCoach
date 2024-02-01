@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.meal.planner">
+    package="com.calorie.dieta">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,7 +28,7 @@
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
     <application
-        android:name="com.meal.planner.App"
+        android:name="com.calorie.dieta.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_foreground"
@@ -38,7 +38,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.meal.planner.SplashActivity"
+            android:name="com.calorie.dieta.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -50,95 +50,95 @@
 
 
         <activity
-            android:name="com.meal.planner.presentation.onboarding.OnboardActivity"
+            android:name="com.calorie.dieta.presentation.onboarding.OnboardActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name="com.meal.planner.presentation.tracker.LoadingActivity"
+            android:name="com.calorie.dieta.presentation.tracker.LoadingActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name="com.meal.planner.MainActivity"
+            android:name="com.calorie.dieta.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
         <activity
-            android:name="com.meal.planner.presentation.history.HistoryDietActivity"
+            android:name="com.calorie.dieta.presentation.history.HistoryDietActivity"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"
             />
 
 
         <activity
-            android:name="com.meal.planner.presentation.history.HistoryListDietsActivity"
+            android:name="com.calorie.dieta.presentation.history.HistoryListDietsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
 
         <activity
-            android:name="com.meal.planner.presentation.premium.PremiumHostActivity"
+            android:name="com.calorie.dieta.presentation.premium.PremiumHostActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name="com.meal.planner.presentation.water.statistics.StatActivity"
+            android:name="com.calorie.dieta.presentation.water.statistics.StatActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.meal.planner.presentation.water.notifications.NotificationSettingActivity"
+            android:name="com.calorie.dieta.presentation.water.notifications.NotificationSettingActivity"
             android:theme="@style/NotifSettings" />
 
         <activity
-            android:name="com.meal.planner.utils.res.TextCutActvity"
+            android:name="com.calorie.dieta.utils.res.TextCutActvity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.meal.planner.presentation.profile.favorites.FavoritesActivity"
+            android:name="com.calorie.dieta.presentation.profile.favorites.FavoritesActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
         <activity
-            android:name="com.meal.planner.presentation.profile.language.ChoiceLangActivity"
+            android:name="com.calorie.dieta.presentation.profile.language.ChoiceLangActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name="com.meal.planner.presentation.diets.list.old.inside.ActivityListItems"
+            android:name="com.calorie.dieta.presentation.diets.list.old.inside.ActivityListItems"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.meal.planner.presentation.diets.list.old.OldDietsActivity"
+            android:name="com.calorie.dieta.presentation.diets.list.old.OldDietsActivity"
             android:theme="@style/NewDiets"/>
 
-        <activity android:name="com.meal.planner.presentation.diets.list.old.inside.article.ActivityArticle"/>
+        <activity android:name="com.calorie.dieta.presentation.diets.list.old.inside.article.ActivityArticle"/>
 
         <activity
-            android:name="com.meal.planner.presentation.calculators.ActivityCalculatorSPK"
-            android:theme="@style/NewDiets"/>
-
-        <activity
-            android:name="com.meal.planner.presentation.calculators.ActivityCalculatorBrok"
+            android:name="com.calorie.dieta.presentation.calculators.ActivityCalculatorSPK"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.meal.planner.presentation.calculators.ActivityCalculatorIMT"
+            android:name="com.calorie.dieta.presentation.calculators.ActivityCalculatorBrok"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.meal.planner.presentation.calculators.ActivityCalculatorLorenc"
+            android:name="com.calorie.dieta.presentation.calculators.ActivityCalculatorIMT"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.meal.planner.presentation.diets.list.modern.article.DietAct"
+            android:name="com.calorie.dieta.presentation.calculators.ActivityCalculatorLorenc"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.meal.planner.presentation.diets.list.modern.NewDietsListActivity"
+            android:name="com.calorie.dieta.presentation.diets.list.modern.article.DietAct"
             android:theme="@style/NewDiets"/>
 
         <activity
-            android:name="com.meal.planner.presentation.profile.measurments.MeasActivity"
+            android:name="com.calorie.dieta.presentation.diets.list.modern.NewDietsListActivity"
+            android:theme="@style/NewDiets"/>
+
+        <activity
+            android:name="com.calorie.dieta.presentation.profile.measurments.MeasActivity"
             android:theme="@style/MeasActivity" />
 
         <service
-            android:name="com.meal.planner.utils.notif.services.FCMService"
+            android:name="com.calorie.dieta.utils.notif.services.FCMService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -160,7 +160,7 @@
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.meal.planner.SplashActivity" />
+            android:value="com.calorie.dieta.SplashActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
