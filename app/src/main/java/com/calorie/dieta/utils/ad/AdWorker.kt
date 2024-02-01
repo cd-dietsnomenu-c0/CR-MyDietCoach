@@ -15,6 +15,7 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import kotlin.random.Random
+import com.calorie.dieta.R
 
 
 object AdWorker {
