@@ -26,17 +26,17 @@
     <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
     <string name="reward_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
 
-    <string name="react_channel_id" translatable="false">com.calorie.calorias.dieta.meal.planner.diets</string>
-    <string name="water_channel_id" translatable="false">com.calorie.calorias.dieta.meal.planner.water</string>
-    <string name="eat_channel_id" translatable="false">com.calorie.calorias.dieta.meal.planner.eat</string>
+    <string name="react_channel_id" translatable="false">com.calor.calorias.dieta.diets</string>
+    <string name="water_channel_id" translatable="false">com.calor.calorias.dieta.water</string>
+    <string name="eat_channel_id" translatable="false">com.calor.calorias.dieta.eat</string>
 
 
 
-    <string name="authorise_file_provider" translatable="false">com.calorie.calorias.dieta.meal.planner</string>
-    <string name="dev_email" translatable="false">igorigoryakh@gmail.com</string>
+    <string name="authorise_file_provider" translatable="false">com.calor.calorias.dieta</string>
+    <string name="dev_email" translatable="false">r0qu4may0r4l92@gmail.com</string>
 
     <!--Profile-->
-    <string name="url_gdpr" translatable="false">https://docs.google.com/document/d/1jHeoif2OsDwiaL-AsIYMNiMBu9z-2Z1HCMioR6YAx-U/edit?usp=sharing</string>
+    <string name="url_gdpr" translatable="false">https://docs.google.com/document/d/1H4cwfqDqp_HzMsNyfEmy0CWnwrsaCslZctuq9ujQ4Ww/edit?usp=sharing</string>
     <string name="accompanying_text">Все работает в реальной жизни! Попробуй и ты!</string>
 
 
